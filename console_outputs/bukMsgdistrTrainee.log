@@ -1,0 +1,211 @@
+rohitm@dti7de14-010:~/Documents/SystemManagement/BUK/BUK_System_Design_Assignment/build$ ./bukMsgdistrTrainee.out 
+static void CdSuTrace::setLevel(unsigned int): Changing Trace level (1 -> 5)!! 
+basicinfraAdmin.cpp (174) : Uint32 changeIpAddr(char*)
+basicinfraTrainee.cpp (56) : Creating Message Distributor
+cdsumd.cpp (57) : CdSuMsgDistributor::CdSuMsgDistributor(const CdSuMdInitParam&)
+cdsumd.cpp (179) : bool CdSuMsgDistributor::start()
+basicinfraAdmin.cpp (174) : Uint32 changeIpAddr(char*)
+cdsumd.cpp (238) : CdSuMsgDistributor::registerMid
+basicinfraTrainee.cpp (80) : Admin HwUnit registered successfully.
+basicinfraAdmin.cpp (174) : Uint32 changeIpAddr(char*)
+cdsumd.cpp (238) : CdSuMsgDistributor::registerMid
+basicinfraTrainee.cpp (102) : Mentor HwUnit registered successfully.
+ Application Module of trainee has been registered to MsgDistributor Successfully.
+ NH UDP has been registered to MsgDistributor Successfully.
+bukMsgdistrTrainee.cpp (398) : static void* TraineeMain::applicationStart(void*)
+cdsunhudpapi.cpp (52) : CdSuNhUdpApiRetType cdSuNhUdpMiInit(const CdSuNhUdpMiInitParam&, CdSuNhUdpInstId&)
+cdsunhudp.cpp (66) : CdSuNhUdp::CdSuNhUdp(CdSuNhUdpDb*)
+cdsunhudp.cpp (1449) : void CdSuNhUdp::changeState(CdSuNhUdpState)
+bukTrainee.cpp (58) : ~~~~~~~~ Creating Timer thread~~~~~~~~~ 
+cdsunhudp.cpp (169) : void CdSuNhUdp::run()
+cdsunhudpapi.cpp (213) : CdSuNhUdpApiRetType cdSuNhUdpMiCtrlReqcdsunhudp.cpp (191) : static void* CdSuNhUdp::threadEntry((const CdSuNhUdpMiCtrlReqParvoidam&)*
+)
+cdsunhudp.cpp (213) : UDP Nh Started
+Start NH Req : Successful
+cdsunhudpapi.cpp (468) : CdSuNhUdpApiRetType cdSuNhUdpUiAddUdpPortReq(const CdSuNhUdpUiAddUdpPortReqParam&, CdSubukMsgdistrTrainee.cpp (88) : void smMgmtEventHlr(void*) 
+Response to System Manager
+Init Nh Success
+Instance Id=0
+NhUdpPortKey&)
+cdsunhudpapiparamchk.cpp (198) : CdSucdsunhudp.cpp (552) : void CdSuNhUdp::createdStHNlr(CdMessagehUdpApiRetTyp*e val)i
+cdsunhudp.cpp (937) : datevAoid CdSuNhUddUdpPortdp::sRtCreatedCtrleqParRaeqMsgHlr(CdMem(const CdSuNshsage*)
+cdsunhudp.cpp (1449) : vUdpUoid iAddUdpPortReqParam&)
+CdSuNhUdp::changeState(CdSuNhUdpState)
+bukMsgdistrTrainee.cpp (88) : void smMgmtEventHlr(void*) 
+Response to System Manager
+Start UDP NH Success
+cdsunhudp.cpp (1120) : void CdSuNhUdp::addUdpPortReqMsgHlr(CdMessage*)
+cdsunhudp.cpp (1505) : CdSuNhUdpRspFailCode CdSuNhUdp::addUdpPort(const CdSuNhUdpPortId&, CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&, const CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&, const CdSuActorId&, CdSuNhUdpEventHlr)
+cdsunhudp.cpp (1533) : CdSuNhUdp::addUdpPort(): Binding socket 5 to 192.168.16.40:50008
+cdsunhudp.cpp (145) : CdSuNhUdp::CdSuNhUdpPortInfo::CdSuNhUdpPortInfo()
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrTrainee.cpp (226) : void applEventHlr(void*) 
+Add Udp Port Succes
+Udp Port ID = 1
+Udp Local Port = 50008
+cdsunhudp.cpp (1929) : int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)
+cdsunhudp.cpp (1939) : Reading Port Id =1...........
+cdsunhudp.cpp (1956) : CdSuNhUdp::readNoOfBytes(): connected socket 5 to 192.168.16.40:49226
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrTrainee.cpp (226) : void applEventHlr(void*) 
+Data Indication
+Port ID = 1
+Data Len = 4
+Remote PortNo 49226
+Dest Addr = 192.168.16.40
+bukMsgdistrTrainee.cpp (328) : Registration Request processing...
+bukMsgdistrTrainee.cpp (335) : NH: Sent message
+bukMsgdistrTrainee.cpp (455) : 
+Message received in MsgDistrTrainee
+bukMsgdistrTrainee.cpp (459) : Message Source: Trainee Menu
+bukMsgdistrTrainee.cpp (491) : Request for Registration Message Arrived
+bukMsgdistrTrainee.cpp (495) : Trainee: in INIT state
+bukMsgdistrTrainee.cpp (612) : Request for Registration Msg processing...
+bukMsgdistrTrainee.cpp (620) : Trainee Id = 1
+bukMsgdistrTrainee.cpp (621) : Trainee 1 state: INIT
+bukMsgdistrTrainee.cpp (625) : Registration request Sending to Admin..
+bukMsgdistrTrainee.cpp (632) : Sent message
+bukMsgdistrTrainee.cpp (455) : 
+Message received in MsgDistrTrainee
+bukMsgdistrTrainee.cpp (471) : Message Source: Admin
+bukMsgdistrTrainee.cpp (690) : Message: Registration Ack
+bukMsgdistrTrainee.cpp (697) : Trainee 1: in INIT state
+bukMsgdistrTrainee.cpp (699) : Trainee 1: state changed to REGISTERED
+bukMsgdistrTrainee.cpp (455) : 
+Message received in MsgDistrTrainee
+bukMsgdistrTrainee.cpp (471) : Message Source: Admin
+bukMsgdistrTrainee.cpp (726) : Message: Mentor Id
+bukMsgdistrTrainee.cpp (738) : Trainee 1: in REGISTERED state
+bukMsgdistrTrainee.cpp (455) : 
+Message received in MsgDistrTrainee
+bukMsgdistrTrainee.cpp (465) : Message Source: Mentor
+bukMsgdistrTrainee.cpp (802) : Message: Introduction
+bukMsgdistrTrainee.cpp (813) : Trainee 1: in REGISTERED state
+bukMsgdistrTrainee.cpp (815) : Trainee 1: Receieved Introduction from Mentor 1
+bukMsgdistrTrainee.cpp (818) : Trainee 1: changed state to TRAINING
+bukMsgdistrTrainee.cpp (823) : Trainee 1: Sending Intro Reply Message
+bukMsgdistrTrainee.cpp (831) : Sent message
+bukMsgdistrTrainee.cpp (551) : start Periodic Report Timer
+Periodic Report Timer started
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+cdsunhudp.cpp (1929) : int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)
+cdsunhudp.cpp (1939) : Reading Port Id =1...........
+cdsunhudp.cpp (1956) : CdSuNhUdp::readNoOfBytes(): connected socket 5 to 192.168.16.40:49821
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrTrainee.cpp (226) : void applEventHlr(void*) 
+Data Indication
+Port ID = 1
+Data Len = 8
+Remote PortNo 49821
+Dest Addr = 192.168.16.40
+bukMsgdistrTrainee.cpp (344) : Guidance request Message processing...
+bukMsgdistrTrainee.cpp (351) : NH: Sent message.
+bukMsgdistrTrainee.cpp (455) : 
+Message received in MsgDistrTrainee
+bukMsgdistrTrainee.cpp (459) : Message Source: Trainee Menu
+bukMsgdistrTrainee.cpp (514) : Guidance Request Message Arrived
+bukMsgdistrTrainee.cpp (638) : Guidance Request Message processing...
+bukMsgdistrTrainee.cpp (643) : Guidance Request Message from Trainee 1
+bukMsgdistrTrainee.cpp (650) : Trainee 0: in TRAINING state
+bukMsgdistrTrainee.cpp (657) : Trainee 1: Sending Guidance Request Message to Mentor 1
+bukMsgdistrTrainee.cpp (665) : Sent message.
+bukMsgdistrTrainee.cpp (455) : 
+Message received in MsgDistrTrainee
+bukMsgdistrTrainee.cpp (465) : Message Source: Mentor
+bukMsgdistrTrainee.cpp (877) : Message: Guidance Reply
+bukMsgdistrTrainee.cpp (884) : Trainee 1: in TRAINING state
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+cdsunhudp.cpp (1929) : int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)
+cdsunhudp.cpp (1939) : Reading Port Id =1...........
+cdsunhudp.cpp (1956) : CdSuNhUdp::readNoOfBytes(): connected socket 5 to 192.168.16.40:37625
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrTrainee.cpp (226) : void applEventHlr(void*) 
+Data Indication
+Port ID = 1
+Data Len = 8
+Remote PortNo 37625
+Dest Addr = 192.168.16.40
+bukMsgdistrTrainee.cpp (344) : Guidance request Message processing...
+bukMsgdistrTrainee.cpp (351) : NH: Sent message.
+bukMsgdistrTrainee.cpp (455) : 
+Message received in MsgDistrTrainee
+bukMsgdistrTrainee.cpp (459) : Message Source: Trainee Menu
+bukMsgdistrTrainee.cpp (514) : Guidance Request Message Arrived
+bukMsgdistrTrainee.cpp (638) : Guidance Request Message processing...
+bukMsgdistrTrainee.cpp (643) : Guidance Request Message from Trainee 1
+bukMsgdistrTrainee.cpp (650) : Trainee 0: in TRAINING state
+bukMsgdistrTrainee.cpp (657) : Trainee 1: Sending Guidance Request Message to Mentor 1
+bukMsgdistrTrainee.cpp (665) : Sent message.
+bukMsgdistrTrainee.cpp (455) : 
+Message received in MsgDistrTrainee
+bukMsgdistrTrainee.cpp (465) : Message Source: Mentor
+bukMsgdistrTrainee.cpp (877) : Message: Guidance Reply
+bukMsgdistrTrainee.cpp (884) : Trainee 1: in TRAINING state
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (455) : 
+Message received in MsgDistrTrainee
+bukMsgdistrTrainee.cpp (465) : Message Source: Mentor
+bukMsgdistrTrainee.cpp (845) : Message: Report Request
+bukMsgdistrTrainee.cpp (852) : Trainee 1: in TRAINING state
+bukMsgdistrTrainee.cpp (859) : Trainee 1: Sending Report...
+bukMsgdistrTrainee.cpp (867) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (577) : Trainee 1: Sending Periodic Report to Mentor
+bukMsgdistrTrainee.cpp (596) : Sent message
+bukMsgdistrTrainee.cpp (455) : 
+Message received in MsgDistrTrainee
+bukMsgdistrTrainee.cpp (471) : Message Source: Admin
+bukMsgdistrTrainee.cpp (752) : Message: Training Complete
+bukMsgdistrTrainee.cpp (762) : Trainee 1: in TRAINING state
+bukMsgdistrTrainee.cpp (767) : Trainee 1: Training Complete Ack Sending...
+bukMsgdistrTrainee.cpp (774) : Sent message
+bukMsgdistrTrainee.cpp (778) : Trainee 1: changed state to TERMINATED
+

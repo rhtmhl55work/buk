@@ -1,0 +1,7066 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head><title>UDP Network Handler Test Plan</title></head>
+
+<body text="#000000" bgcolor="#ffffff" link="#0000ff" vlink="#ff0000" alink="#000088">
+
+<hr noshade="noshade">
+<h2 align="center">UDP Network Handler Feature Test Plan</h2>
+
+<hr noshade="noshade">
+<p>
+<table cellspacing="0" border="0" width="80%">
+<tbody><tr>
+	<td><b>Document id</b></td>
+	<td>:</td>
+	<td><b>ITS-FTP-CDSU_NHUDP-001 </b></td>
+</tr>
+
+<tr>
+	<td><b>Document name</b></td>
+	<td>:</td>
+	<td> <b>UDP Network Handler Feature Test Plan</b> </td>
+</tr>
+
+<tr>
+	<td><b>Author(s)</b></td>
+	<td>:</td>
+	<td>Vijaya Kumar</td>
+</tr>
+
+<tr>
+	<td><b>Contributors</b></td>
+	<td>:</td>
+	<td>Seema Jain, Sumit Bijwe, Prakash R, Biplab</td>
+</tr>
+<tr>
+	<td><b>Approved By</b></td>
+	<td>:</td>
+	<td>Prakash R.</td>
+</tr>
+
+<tr>
+	<td><b>Document Source</b></td>
+	<td>:</td>
+	<td>Softswitch and Media Gateway BU, C-DOT, Bangalore</td>
+</tr>
+</tbody></table>
+
+</p><p>
+<table cellspacing="0">
+<tbody><tr>
+
+	<td><i>Copyright © 2004 by C-DOT. All rights reserved. Contents of
+publication may not be reproduced in any form without permission from C-DOT.</i></td>
+</tr>
+</tbody></table>
+
+</p><h4>Revision Chart</h4>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="10" width="100%">
+<tbody><tr>
+        <th colspan="5">Document History</th>
+</tr>
+<tr>
+        <th> Version No </th>
+        <th> Revised By </th>
+        <th> Released On </th>
+        <th> Approved By </th>
+        <th> Remarks </th>
+</tr>
+<tr>
+        <td align="left"> Draft 1</td>
+        <td align="left"> Vijaya Kumar  </td>
+        <td align="left"> Mar 17, 2004 </td>
+        <td align="left"> Prakash R </td>
+        <td align="left"> <br> </td>
+</tr>
+<tr>
+        <td align="left"> Draft 2</td>
+        <td align="left"> Vijaya Kumar  </td>
+        <td align="left"> Apr 1, 2004 </td>
+        <td align="left"> Prakash R </td>
+        <td align="left"> <br> </td>
+</tr>
+<tr>
+        <td align="left"> Draft 3</td>
+        <td align="left"> Vijaya Kumar  </td>
+        <td align="left"> Apr 13, 2004 </td>
+        <td align="left"> Prakash R </td>
+        <td align="left"> <br> </td>
+</tr>
+<tr>
+        <td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br> </td>
+</tr>
+<tr>
+	<td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br> </td>
+
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+</tbody></table>
+
+</p><p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<p>
+</p><h2>Contents</h2>
+
+<font face="">
+<b><i>
+</i></b></font><pre><font face=""><b><i><a href="#1.">1. Introduction</a>
+	<a href="#1.1">1.1 Purpose and Scope</a>
+	<a href="#1.2">1.2 References</a>
+	<a href="#1.3">1.3 Definitions, Acronyms and Abbreviations</a>
+
+<a href="#2.">2. Test items</a>
+
+<a href="#3.">3. Features to be tested</a>
+
+<a href="#4.">4. Features not to be tested</a>
+
+<a href="#5.">5. Approach</a>
+	<a href="#5.1">5.1.Description</a>
+	<a href="#5.2">5.2. Constraints</a>
+
+<a href="#6.">6. Testing Environment</a>
+
+<a href="#7.">7. Schedule</a>
+
+<a href="#8.">8.Risks and contingencies</a>
+
+<a href="#9.">9.Test Case Specification</a>
+
+<a href="#10.">10.Approvals</a></i></b></font>
+
+</pre>
+
+
+<p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="1."></a>
+<h2>1.Introduction</h2>
+
+<a name="1.1"></a>
+<h3>1.1) Purpose and Scope</h3>
+
+<p>This document provides a test plan for generic network handler module which
+is the part of basic utility kit.
+It has two following interfaces. 
+</p><ol>
+<li>Management Interface .</li>
+<li>User (Appl) Interface.</li>
+</ol>
+
+<a name="1.2"></a>
+<h3>1.2) References </h3>
+
+<table border="0" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td valign="top">[mdd] </td>
+<td valign="top">:</td>
+<td valign="top">Module Design Document of UDP Network Handler.</td>
+</tr>
+
+<tr>
+<td valign="top">[C++NP] </td>
+<td valign="top">:</td>
+<td valign="top">C++ Network Programming : Douglas  C. Schmidt and Stephen D.
+Huston .</td>
+</tr>
+
+</tbody></table>
+
+<a name="1.3"></a>
+<h3>1.3) Definitions, Acronyms and Abbreviations</h3>
+
+<p> 
+<ol>
+<li>MI		: Management Interface.
+<li>UI		: User Layer Interface.
+<li>UDP		: User Datagram Protocol.
+<li>IUT		: Implementation Under Test	
+</ol>
+</p>
+
+<p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="2."></a>
+<h2>2.Test Items</h2>
+<li>Management Interface Functionalities UDP NH Instance. </li>
+<li>User Layer Interface Functionalities UDP NH Instance. </li>
+<li>Statistics Package.
+<li>UDP NH Instance.
+<p> 
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="3."></a>
+<h2>3. Features to be tested</h2>
+ Features to be tested are given bellow. Each category has to be tested 
+for default and non default eventhandler. In case of default eventhandler
+response or indication comes through message.
+<ol>
+<p></p><li><b>Management Interface Functionalities of UDP NH Instance.</b>
+	<ol>
+	<li> Init Network Handler.
+	<li> Initial Configuration of Network Handler. </li>
+	<li> General Configuration of Network Handler. </li>
+	<li> Start Network Handler. </li>
+	<li> Stop Network Handler. </li>	
+	<li> Check the Status of Network Handler. </li>
+	<li> Get the Statistics Report. </li>
+	</ol>
+
+<p></p><li><b>User Layer Functionalities of UDP NH Instance</b>
+	<ol>
+		<li>Local Transport Address Only Fixed and Local Port is Ephemeral port.
+			<ol>
+				<li> Adding Udp Port.
+				<li> Sending Data.
+				<li> Data Indication.	
+			</ol>
+		<li>Local Transport Address Only Fixed and Local Port is Standard port.
+			<ol>
+				<li> Adding Udp Port.
+				<li> Sending Data.
+				<li> Data Indication.	
+			</ol>
+		<li>Destination Transport Address Only Fixed.
+			<ol>
+				<li> Adding Udp Port.
+				<li> Sending Data.
+			</ol>
+		<li>Both Local And Destination Both Transport Address Fixedand local port no is ephemeral.
+			<ol>
+				<li> Adding Udp Port.
+				<li> Sending Data.
+				<li> Data Indication.	
+			</ol>
+		<li>Both Local And Destination Both Transport Address Fixed and local port no is standard.
+			<ol>
+				<li> Adding Udp Port.
+				<li> Sending Data.
+				<li> Data Indication.	
+			</ol>
+		<li>Both Local And Destination Both Transport Address Not Fixed.
+			<ol>
+				<li> Adding Udp Port.
+				<li> Sending Data.
+			</ol>
+		<li> Removing Udp Port.
+	</ol>
+	</li>
+<p></p><li><b>Default Event Handler Test</b>
+	<p>All the test cases related to Management interface and
+User Interfaces are valid test cases here. And the support of multiple
+user of one UDP NH should be tested(Since Message Interface it is easy
+to test multiple user support).
+</p>
+<p></p><li><b>Invalid Sequence Of Operation</b>
+<p>
+	When System Manager or User does out of sequence of operation
+UDP Nh should behave properly. This feature has to be tested.
+</p>	
+
+<p></p><li><b>Configure Parameter Test</b>
+	<ol>
+	<li>Maximum no of UDP Port.
+	<li>Maximum size of Buffer.
+	<li>Data Select Timer.
+	</ol>
+
+<p></p><li><b>Multiple UDP NH Instance Support</b>
+<p>
+	This utility must support existance of multiple UDP NH Instances.
+</p>
+
+<p></p><li><b>Multiple User Support</b>
+<p>
+	This utility must support existance of multiple user for one UDP NH Instances.
+
+</p>
+
+<p></p><li><b>Multiple UDP NH Instance and Multiple User Support</b>
+<p>
+	This utility must support existance of multiple UDP NH Instances and multiple User.
+</p>
+
+<p></p><li><b>Staticsics Package Test</b>
+<p>
+	Do Various Type of operation on UDP NH after each operation
+counter should be updated properly.
+</p>
+
+<p></p><li><b>Miscellaneous Test Cases</b>
+<p>TBD</p>
+<p></p><li><b>Load Testing</b>
+	<ol>	
+	<li> Open maximum no of udp port possible.
+	<li> Open x NH instance y udp port send data over each udp port.
+	(Each isntace has y/x udp port). In remote end open one receiver.
+	then do data transfer.
+	</ol>
+<p>
+</ol>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="4."></a>
+<h2>4. Features not to be tested</h2>
+<p> <br>
+
+</p>
+<!-- -------------------------------------------------------------------- -->
+</p>
+<hr noshade="noshade">
+
+<a name="5."></a>
+<h2>5. Approach</h2>
+<p>The testing approach is different as per MI and UI interfaces.
+MI testing functionalities is based on state transitions of UDP
+network handler and System Management API parameter validation.
+UI testing functionalities is based on the udp port, type of udp port,
+and also User Layer API parameter validations.</p>
+
+
+<a name="5.1"></a>
+</p><h2>5.1 Description</h2>
+<p>Black box testing approach is used which just checks what a program
+is supposed to do without going into the program structure.
+
+<a name="5.2"></a>
+</p><h2>5.2 Constraints</h2>
+<p>None
+
+</p><p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="6."></a>
+<h2>6. Testing Environment</h2>
+
+<p>The test setup is as follows:</p>
+
+<center>
+<img src="nhtest-setup.gif"> </img>
+</center>
+
+<a name="6.1"></a>
+</p><h3>6.1) Test Setup Description</h3>
+<p>
+	The Test Setup which is shown in the above diagram depicts that there 
+	will be two test stub.
+	<ol>
+	<li> local test stub : The test case results will be given by this stub.
+	<li> Remote test stub : It will help to complete the test cases which
+	involves remote entity responses/actions.
+	</ol>
+
+</p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="7."></a>
+<h2>7. Schedule</h2>
+<p>TBD
+
+</p><p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="8."></a>
+<h2>8. Risks and contingencies</h2>
+<p>TBD
+
+
+</p><p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="9."></a>
+<h2>9. Test Case Specification</h2>
+<br>
+The following are the identified test cases for System Management:
+
+<center>
+<img src="nhmi-test-case-dgm.gif"> </img>
+<p><i>Figure </i>Test Cases analysis diagram for system management.</p>
+</center>
+<p>
+<i>Note:</i> Test Case Id described as <b>Module/Interface/State/Functionality</b> in following Test Case Description Tables. 
+And Functionality may have attribute in some cases in the following format.<br>
+([TypeOfUdpPort]/[ParameterType]/[InvalidParameter])
+<br>
+<br>
+<b>Module</b> : UDP
+<br>
+<b>Interface</b> : Either System Management of User Layer.
+<br>
+<b>State</b>  : The current state of a module on which the test functionality has to be
+run.
+<br>
+<b>TypeOfUdpPort</b>: Indicates type of udp port.
+<br>
+<b>ParameterType</b>: Indicates whether parameter is valid or not.
+<br> 
+<b>InvalidParameter</b>: Indicates which parameter is not valid.
+<br><br>
+			
+
+</p>
+<h2>Test Cases</h2>
+<h3>Management Interface Functionalities.</h3>
+<br>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Case Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/IDLE/INIT_NH(I/NHACTID)</b> </td>
+	<td> Invalid NH Actor ID Parameter passed to cdSuNhUdpMiInit by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/IDLE/INIT_NH(I/SMACTID)</b> </td>
+	<td> Invalid SM actor ID Parameter passed to cdSuNhUdpMiInit by Local System Management. 
+</tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/INIT_NH(I/BUFLEN)</b> </td>
+	<td> Invalid Parameter buffer len(out of range) passed to cdSuNhUdpMiInit by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/IDLE/INIT_NH(I/DATASELTMR)</b> </td>
+	<td> Invalid Parameter data select timer(out of range) passed to cdSuNhUdpMiInit by System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/IDLE/INIT_NH(I/NOHLRTMR)</b> </td>
+	<td> Invalid Parameter no handler timer(out of range) passed to cdSuNhUdpMiInit by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/IDLE/INIT_NH(V)</b> </td>
+	<td> Valid Parameter passed to cdSuNhUdpMiInit by Local System Management. 
+</tr>
+<tr>
+	<td> <b>UDP/MI/CRE/CFG_NH(I/SUBOPC)</b> </td>
+	<td> Invalid Subopcode Parameter passed to cdSuNhUdpMiCfgReq by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/CRE/GEN_CFG_NH(V)</b> </td>
+	<td> Valid Parameter passed to cdSuNhUdpMiCfgReq by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/CRE/CTRL_NH(I/SUPOPC)</b> </td>
+	<td>Invalid Sub Opcode Parameter passed to cdSuNhUdpMiCtrlReq by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/CRE/DEL_NH(V)</b> </td>
+	<td> Valid Parameter passed to cdSuNhUdpMiDelNhReq by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/CRE/STATUS_REQ(V)</b> </td>
+	<td> Valid Parameter passed to cdSuNhUdpMiStatus by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/CRE/STRT_NH(V)</b> </td>
+	<td> Valid Parameter passed to cdSuNhUdpMiCtrlReq by Local System Management. 
+</tr>
+
+
+
+<tr>
+	<td> <b>UDP/MI/RUN/CTRL_NH(I/SUBOPC)</b> </td>
+	<td>Invalid Sub Opcode Parameter passed to cdSuNhUdpMiCtrlReq by Local System Management. 
+</tr>
+
+
+<tr>
+	<td> <b>UDP/MI/RUN/STOP_NH(V)</b> </td>
+	<td> Valid Parameter passed to cdSuNhUdpMiCtrlReq by Local System Management. 
+</tr>
+
+
+
+
+<tr>
+	<td> <b>UDP/MI/RUN/STATUS_REQ(V)</b> </td>
+	<td> Valid Parameter passed to cdSuNhUdpMiStatus by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/RUN/STATS_REQ(V)</b> </td>
+	<td> Valid Parameter passed to cdSuNhUdpMiStsReq by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/RUN_CRE/DEL_NH(V)</b> </td>
+	<td> Valid Parameter passed to cdSuNhUdpMiDelNhReq by Local System Management. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/DEL/TERMINATE_NH(V)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpMiTerminate by Local System Management. 
+</tr>
+
+</tbody></table>
+
+<h3>User Layer Interface Functionalities</h3>
+<!--
+<center>
+<img src=""> </img>
+<p><i>Figure :</i>Test Cases analysis diagram for UDP Port.</p>
+</center>
+</p> -->
+
+
+<p><b>Test Case for all type of UDP Port.</b>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+
+<!--- Common Invalid Operation -->
+	
+<tr>
+	<td> <b>UDP/UI/RUN/ADD_UDPPORT(I/ACTID)</b> </td>
+	<td>Invalid Application Actor ID Parameter is passed to cdSuNhUdpUiAddUdpPortReq by User Layer.
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/ADD_UDPPORT(I/LPORTINUSE)</b> </td>
+	<td>Local Port No = Port No in use is passed to cdSuNhUdpUiAddUdpPortReq by User Layer.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/ADD_UDPPORT(I/DIF_LADDR)</b> </td>
+	<td>Local addres different than Ip address of local machine
+is passed to cdSuNhUdpUiAddUdpPortReq by User Layer.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/ADD_UDPPORT(I/DPORT_ZERO)</b> </td>
+	<td>Invalid parameter(Dest port = 0) passed to cdSuNhUdpUiAddUdpPortReq by User Layer.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(I/PORTID)</b> </td>
+	<td>Invalid Udp Port ID Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(I/ACTID)</b> </td>
+	<td>Invalid Actor Id Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(I/DLEN)</b> </td>
+	<td>Data Len = 0 Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(I/DPTR)</b> </td>
+	<td>Data Ptr = NULL Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(I/DLEN)</b> </td>
+	<td>Data LEN = 0  passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(I/DPORT_ZERO)</b> </td>
+	<td> Destination Port = 0  Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/REMPORT(I/PORTID)</b> </td>
+	<td>Invalid port ID prameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/REMPORT(I/ACTID)</b> </td>
+	<td>Invalid application actror ID prameter passed to cdSuNhUdpUiRemUdpPortReq by User Layer. 
+</tr>
+
+<!--  Common Valid Operation -->
+
+<tr>
+	<td> <b>UDP/UI/RUN/REMPORT(V)</b> </td>
+	<td> Valid prameter passed to cdSuNhUdpUiRemUdpPortReq by User Layer.</td>
+</tr>
+
+</tbody></table>
+
+<!--Test case for Local Only Fixed and Standard Port NO. -->
+
+<p><b>Test Case for Local Only Fixed and Standard Port no type of UDP Port.</b>
+
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+
+<tr>
+	<td> <b>UDP/UI/RUN/ADD_UDPPORT(LFS/V)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiAddUdpPortReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(LFS/I/DPORT)</b> </td>
+	<td>Destination Port = default (Invalid port no)  Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(LFS/V/DPORT_DADDR_SAME)</b> </td>
+	<td>Valid Parameter but destination port = local port no and destination address = local address  passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(LFS/V)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/DATA_IND(LFS)</b> </td>
+	<td>Data Indication Over UDP Port of type Local Transport Address only fixed and port no is standard.</tr>
+</tr>
+</tbody> </table>
+<!--Test case for Local Only Fixed and Ephemeral Port NO. -->
+
+<p><b>Test Case for Local Only Fixed and Ephemeral Port no type of UDP Port.</b>
+
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+
+<tr>
+	<td> <b>UDP/UI/RUN/ADD_UDPPORT(LFE/V)</b> </td>
+	<td>Valid parameter(local port = 0) passed to cdSuNhUdpUiAddUdpPortReq by User Layer.
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(LFE/I/DPORT)</b> </td>
+	<td>Destination Port = default (Invalid port no)  Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(LFE/V/DPORT_DADDR_SAME)</b> </td>
+	<td>Valid Parameter but destination port = local port no and destination address = local address  passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(LFE/V)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/DATA_IND(LFE)</b> </td>
+	<td>Data Indication Over UDP Port of type Local Transport Address only fixed and port no is ephemeral.</tr>
+</tr>
+
+</tbody></table>
+
+<!-- Test case for Destination Only Fixed -->
+<p><b>Test Case for  Destination Only Fixed type of UDP Port.</b>
+
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+
+<tr>
+	<td> <b>UDP/UI/RUN/ADD_UDPPORT(DF/V)</b> </td>
+	<td>Valid parameter passed to cdSuNhUdpUiAddUdpPortReq by User Layer.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(DF/I/DPORT)</b> </td>
+	<td>InValid destination port(dest port no != connected)
+ Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(DF/I/DADDR)</b> </td>
+	<td>InValid destination address(dest address != connected Addr) Parameter passed to cdSuNhUdpUiDataReq by User Layer.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(DF/V/RPNOTEXIST)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote port is not exist. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(DF/V/RNOTUP)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote is not up. 
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(DF/V/RPEXIST_DADDR_DPORT)</b> </td>
+	<td>Valid Parameter(including Destination Address and Destination Port) passed to
+ cdSuNhUdpUiDataReq by User Layer where remote port exist.
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(DF/V/RPEXIST)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote port exist.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/DATA_IND(DF/V/RCONPORT)</b> </td>
+	<td>Data Indication Over UDP Port where remote is connected one
+</tr>
+
+</tbody></table>
+<!-- Test Case for Destination and local both fixed and local port no is standard. -->
+<p><b>Test Case for Destination and local both fixed and local port no is standard type of UDP Port.</b>
+
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+
+<tr>
+	<td> <b>UDP/UI/RUN/ADD_UDPPORT(BFS/V)</b> </td>
+	<td>Valid parameter passed to cdSuNhUdpUiAddUdpPortReq by User Layer.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFS/I/DPORT)</b> </td>
+	<td>InValid destination port(dest port no != connected)
+ Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFS/I/DADDR)</b> </td>
+	<td>Invalid destination address(dest address != connected Addr) Parameter passed to cdSuNhUdpUiDataReq by User Layer.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFS/V/RPNOTEXIST)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote port is not exist. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFS/V/RNOTUP)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote is not up. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFS/V/RPEXIST_DADDR_DPORT)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote port exist.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFS/V/RPEXIST)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote port exist.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/DATA_IND(BFS/V/RCONPORT)</b> </td>
+	<td>Data Indication Over UDP Port where remote is connected one
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/DATA_IND(BFS/V/RNOTCONPORT)</b> </td>
+	<td>Data Indication Over UDP Port where remote is  not connected one.
+</tr>
+
+</tbody></table>
+<!-- Test Case for Destination and local both fixed and local port no is Ephemeral. -->
+
+<p><b>Test Case for Destination and local both fixed and local port no is Ephemeral type of UDP Port.</b>
+
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+
+<tr>
+	<td> <b>UDP/UI/RUN/ADD_UDPPORT(BFE/V)</b> </td>
+	<td>Valid parameter passed to cdSuNhUdpUiAddUdpPortReq by User Layer.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFE/I/DPORT)</b> </td>
+	<td>InValid destination port(dest port no != connected)
+ Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFE/I/DADDR)</b> </td>
+	<td>InValid destination address(dest address != connected Addr) Parameter passed to cdSuNhUdpUiDataReq by User Layer.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFE/V/RPNOTEXIST)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote port is not exist.. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFE/V/RNOTUP)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote is not up. 
+</tr>
+
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFE/V/RPEXIST_DADDR_DPORT)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote port exist.
+</tr>
+
+
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BFE/V/RPEXIST)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer where remote port exist.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/DATA_IND(BFE/V/RCONPORT)</b> </td>
+	<td>Data Indication Over UDP Port where remote is connected one
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/DATA_IND(BFE/V/RNOTCONPORT)</b> </td>
+	<td>Data Indication Over UDP Port where remote is  not connected one.
+</tr>
+</tbody></table>
+<!-- Both Not Fixed -->
+
+<p><b>Test Case for Destination and local both not fixed type of UDP Port(Including Always opened udp port).</b>
+
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+
+<tr>
+	<td> <b>UDP/UI/RUN/ADD_UDPPORT(BNF/V)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiAddUdpPortReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BNF/I/DPORT)</b> </td>
+	<td>Destination Port = default (Invalid port no)  Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SEND_DATA(BNF/V)</b> </td>
+	<td>Valid Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/DATA_IND(BNF</b> </td>
+	<td>Data indication. 
+</tr>
+
+</tbody></table>
+
+<p><b>Out of Sequence : Test Cases</b>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/IDLE/GEN_CFG_NH(I/NHINST)</b> </td>
+	<td> Invalid NH instance ID Parameter passed to cdSuNhUdpMiCfgReq by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/GEN_CFG_NH(I/NHINST/MAX)</b> </td>
+	<td> NH instance ID > MAX NH  passed to cdSuNhUdpMiCfgReq by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/STRT_NH(I/NHINST)</b> </td>
+	<td>Invalid NH Instance ID Parameter passed to cdSuNhUdpMiCtrlReq by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/STRT_NH(I/NHINST/MAX)</b> </td>
+	<td>NH Instance ID  > MAX NH passed to cdSuNhUdpMiCtrlReq by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/STOP_NH(I/NHINST)</b> </td>
+	<td>Invalid NH Instance ID Parameter passed to cdSuNhUdpMiCtrlReq by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/STOP_NH(I/NHINST/MAX)</b> </td>
+	<td>NH Instance ID > MAX NH passed to cdSuNhUdpMiCtrlReq by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/DEL_NH(I/NHINST)</b> </td>
+	<td> Invalid NH Instance ID Parameter passed to cdSuNhUdpMiDelNhReq by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/DEL_NH(I/NHINST/MAX)</b> </td>
+	<td> NH Instance ID  > MAX NH passed to cdSuNhUdpMiDelNhReq by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/TERMINATE_NH(I/NHINST)</b> </td>
+	<td>Invalid NH Instance ID Parameter passed to cdSuNhUdpMiTerminate by Local System Management. 
+</td></tr>
+<tr>
+		<td> <b>UDP/MI/IDLE/TERMINATE_NH(I/NHINST/MAX)</b> </td>
+	<td>NH Instance ID > MAX NH passed to cdSuNhUdpMiTerminate by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/STATUS_REQ(I/NHINST)</b> </td>
+	<td> Invalid NH Instance ID Parameter passed to cdSuNhUdpMiStatus by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/STATUS_REQ(I/NHINST/MAX)</b> </td>
+	<td> NH Instance ID > MAX NH passed to cdSuNhUdpMiStatus by Local System Management. 
+</td></tr>
+
+<tr>
+	<td> <b>UDP/MI/IDLE/STATUS_REQ(I/NHINST)</b> </td>
+	<td> Invalid NH Instance ID Parameter passed to cdSuNhUdpMiStatus by Local System Management. 
+</td></tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/STATUS_REQ(I/NHINST/MAX)</b> </td>
+	<td> NH Instance ID > MAX NH passed to cdSuNhUdpMiStatus by Local System Management. 
+</td></tr>
+
+<tr>
+	<td> <b>UDP/MI/IDLE/STATS_REQ(I/NHINST)</b> </td>
+	<td> Invalid NH instance ID Parameter passed to cdSuNhUdpMiStsReq by Local System Management. 
+</td></tr>
+
+<tr>
+	<td> <b>UDP/MI/IDLE/STATS_REQ(I/NHINST/MAX)</b> </td>
+	<td> NH instance ID > MAX NH  passed to cdSuNhUdpMiStsReq by Local System Management. 
+</td></tr>
+
+<tr>
+	<td> <b>UDP/MI/CRE/TERMINATE</b> </td>
+	<td>Call cdSuNhUdpMiTerminate when NH in created state.</td>
+</tr>
+
+<tr>
+<td> <b>UDP/UI/IDLE/ADD_UDPPORT(I/NHINST)</b> </td>
+	<td>Invalid NH instance ID Parameter is passed to cdSuNhUdpUiAddUdpPortReq by User Layer.
+
+</tr>
+<td> <b>UDP/UI/IDLE/ADD_UDPPORT(I/NHINST/MAX)</b> </td>
+	<td> NH instance ID > MAX NH is passed to cdSuNhUdpUiAddUdpPortReq by User Layer.
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/IDLE/SEND_DATA(I/NHINST)</b> </td>
+	<td>Invalid NH Instance ID Parameter passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+<tr>
+	<td> <b>UDP/UI/IDLE/SEND_DATA(I/NHINST/MAX)</b> </td>
+	<td>NH Instance ID > MAX NH passed to cdSuNhUdpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/IDLE/REMPORT(I/NHINST)</b> </td>
+	<td>Invalid NH Instance ID  Parameter
+passed to cdSuNhUdpUiRemUdpPortReq by User Layer. 
+</tr>
+<tr>
+	<td> <b>UDP/UI/IDLE/REMPORT(I/NHINST/MAX)</b> </td>
+	<td> NH Instance ID  > MAX NH passed to cdSuNhUdpUiRemUdpPortReq by User Layer. 
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/CRE/STOP</b> </td>
+	<td>Call cdSuNhUdpMiCtrlReq with stop subopcode when NH in 
+created state.</td>
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/CRE/STATS</b> </td>
+	<td>Call cdSuNhUdpMiStsReq when NH in created state.</td>
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/CRE/ADD_UDPPORT</b> </td>
+	<td>Call cdSuNhUdpUiAddUdpPortReq when NH in created state.</td>
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/CRE/REM_UDPPORT</b> </td>
+	<td>Call cdSuNhUdpUiRemUdpPortReq when NH in created state.</td>
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/CRE/SEND_DATA</b> </td>
+	<td>Call cdSuNhUdpUiDataReq when NH in created state.</td>
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/CRE/DATA_IND</b> </td>
+	<td>Data Indication when NH in created state.</td>
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/RUN/TERMINATE</b> </td>
+	<td>Call cdSuNhUdpMiTerminate when NH in running state.</td>
+</tr>
+<tr>
+	<td> <b>UDP/MI/RUN/DEL</b> </td>
+	<td>Call cdSuNhUdpMiDelNhReq when NH in running state.</td>
+</tr>
+<tr>
+	<td> <b>UDP/MI/DEL/STOP</b> </td>
+	<td>Call cdSuNhUdpMiCtrlNhReq with STOP sub opcode when NH in deleted state.</td>
+</tr>
+<tr>
+	<td> <b>UDP/MI/DEL/STATS</b> </td>
+	<td>Call cdSuNhUdpMiStsNhReq when NH in deleted state.</td>
+</tr>
+<tr>
+	<td> <b>UDP/UI/DEL/ADD_UDPPORT</b> </td>
+	<td>Call cdSuNhUdpUiAddUdpPortReq when NH in deleted state.</td>
+</tr>
+<tr>
+	<td> <b>UDP/UI/DEL/REM_UDPPORT</b> </td>
+	<td>Call cdSuNhUdpUiRemUdpPortReq when NH in deleted state.</td>
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/DEL/SEND_DATA</b> </td>
+	<td>Call cdSuNhUdpUiDataReq when NH in deleted state.</td>
+</tr>
+<tr>
+	<td> <b>UDP/UI/DEL/DATA_IND</b> </td>
+	<td>Data Indication in deleted state.</td>
+</tr>
+<tr>
+	<td> <b>UDP/UI/DEL/DEL</b> </td>
+	<td>Call cdSuNhUdpUiDelNhReq when NH in deleted state.</td>
+</tr>
+
+</tbody></table>
+
+<p><b>Default Event Hlr: Test Cases</b>
+<p> All the above test cases.</p>
+
+<p><b>Configure Parameter Validation: Test Cases</b>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+<tr>
+	<td> <b>UDP/MI/IDLE/MAXINST</b> </td>
+	<td>Test case for maximum no of NH instance.</td>
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/MAX_NO_UDPPORT</b> </td>
+	<td>Test case for maximum no of udp port configure parameter.</td>
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/MAX_BUF</b> </td>
+	<td>Test case for max buffer len configure parameter.</td>
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/SELTMR</b> </td>
+	<td>Test case for select timer configure parameter.</td>
+</tr>
+
+</tbody></table>
+
+<p><b>Multiple NH Instance Support Testing.</b>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/RUN/MULNH</b> </td>
+	<td>Multiple NH Instance Support Testing.</td>
+</tr>
+
+</tbody></table>
+
+<p><b>Multiple NH User Support Testing.</b>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/RUN/MULUSR</b> </td>
+	<td>Multiple NH User  Support Testing.</td>
+</tr>
+
+</tbody></table>
+
+<p><b>Multiple NH Instance and Multiple User Support Testing.</b>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/RUN/MULNH_MULUSR</b> </td>
+	<td>Multiple NH Instance and Multiple User Support Testing.</td>
+</tr>
+
+</tbody></table>
+
+<p><b>Testing Statistics Package.</b>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td> <b>UDP/MI/RUN/STATS</b> </td>
+	<td>Statistics package testing.</td>
+</tr>
+
+</tbody></table>
+
+<p><b>Load Testing.</b>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td> <b>UDP/UI/RUN/NUDPPORT</b> </td>
+	<td>Try to open maximum no. of udp port.</td>
+</tr>
+<tr>
+	<td> <b>UDP/UI/RUN/LOADTEST</b> </td>
+	<td>Load testing</td>
+</tr>
+</tbody></table>
+
+
+<h4>Test Case Descriptions :</h4>
+
+
+<p>
+
+<h4>Management Interface Functionalities</h4>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/INIT_NH(I/NHACTID)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td> To check whether cdSuNhUdpMiInit rejects
+invalid NH Actor ID.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Null.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get error return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiInit with parmeters such as.
+	<ol>
+		<li>Invalid NH Actor ID. </li>
+		<li>Valid SM Actor ID. </li>
+		<li>Valid range of Maximum no. of UDP Port.
+		<li>Valid maximum buffer length.
+		<li>Valid range of Time to wait in the select call waiting for reading.(microsecs)
+		<li>Valid range of Time to wait if there is no udp port to read.
+		<li>Valid Callback function pointer (In case message based interface it should be NULL, 
+dont keep junk value)
+	</ol>
+</td>
+</tr>
+</tbody></table>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/INIT_NH(I/SMACTID)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check whether cdSuNhUdpMiInit rejects
+invalid SM Actor ID.<td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td> Null.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get error return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiInit with parmeters such as.
+	<ol>
+		<li>Valid NH Actor ID. </li>
+		<li>Invalid SM Actor ID. </li>
+		<li>Valid range of Maximum no. of UDP Port.
+		<li>Valid maximum buffer length.
+		<li>Valid range of Time to wait in the select call waiting for reading.(microsecs)
+		<li>Valid range of Time to wait if there is no udp port to read.
+		<li>Valid Callback function pointer (In case message based interface it should be NULL,
+dont keep junk value)
+	</ol>
+</td>
+</tr>
+</tbody></table>
+
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/INIT_NH(I/BUFLEN)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check whether cdSuNhUdpMiInit takes
+care of out of range Buffer length.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td> Null.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get error in return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiInit with parmeters such as.
+	<ol>
+		<li>Valid NH Actor ID. </li>
+		<li>Valid SM Actor ID. </li>
+		<li>Valid range of Maximum no. of UDP Port.
+		<li>Out of range buffer length.
+		<li>Valid range of Time to wait in the select call waiting for reading.(microsecs)
+		<li>Valid range of Time to wait if there is no udp port to read.
+		<li>Valid Callback function pointer (In case message based interface it should be NULL,
+dont keep junk value)
+	</ol>
+</td>
+</tr>
+</tbody></table>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>  UDP/MI/IDLE/INIT_NH(I/DATASELTMR)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To ensure cdSuNhUdpMiInit takes
+care of out of range data selector time.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td> Null.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get error in return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiInit with parmeters such as.
+	<ol>
+		<li>Valid NH Actor ID. </li>
+		<li>Valid SM Actor ID. </li>
+		<li>Valid range of Maximum no. of UDP Port.
+		<li>Valid buffer length.
+		<li>Out of range Value to wait in the select call waiting for reading.(microsecs) <li>Valid range of Time to wait if there is no udp port to read.
+		<li>Valid Callback function pointer (In case message based interface it should be NULL,
+dont keep junk value)
+	</ol>
+</td>
+</tr>
+</tbody></table>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>   UDP/MI/IDLE/INIT_NH(I/NOHLRTMR)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To ensure cdSuNhUdpMiInit takes
+care of out of range no handler timer.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td> Null.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get error in return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiInit with parmeters such as.
+	<ol>
+		<li>Valid NH Actor ID. </li>
+		<li>Valid SM Actor ID. </li>
+		<li>Valid range of Maximum no. of UDP Port.
+		<li>Valid buffer length.
+		<li>Valid Value to wait in the select call waiting for reading.(microsecs)
+		<li>Out of range of Time value to wait if there is no udp port to read.
+		<li>Valid Callback function pointer (In case message based interface it should be NULL,
+dont keep junk value)
+	</ol>
+</td>
+</tr>
+</tbody></table>
+
+
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/INIT_NH(V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td> To check cdSuNhUdpMiInit works fine when
+valid parameters are supplied.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td> Null.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get NH Instance ID. And Response will come saying
+operation is success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiInit with parmeters such as.
+	<ol>
+		<li>Valid NH Actor ID. </li>
+		<li>Valid SM Actor ID. </li>
+		<li>Valid range of Maximum no. of UDP Port.
+		<li>Valid maximum buffer length.
+		<li>Valid range of Time to wait in the select call waiting for reading.(microsecs)
+		<li>Valid range of Time to wait if there is no udp port to read.
+		<li>Valid Callback function pointer (In case message based interface it should be NULL,
+dont keep any junk value).
+	</ol>
+</td>
+</tr>
+</tbody></table>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/CRE/CFG_NH(I/SUBOPC)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check whether UDP Nh responds with
+failuare message when invalid configuration is requested and
+NH in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH instance should be created successfully.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get response saying error(error in return value).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiCfgReq with either of these parmeters such as.
+	<ol>
+		<li>Valid Instance ID Parameter
+		<li>Invalid SubOpcode 
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/CRE/GEN_CFG_NH(V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check whether UDP Nh Configures properly.
+when NH in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH instance should be created successfully.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get response saying success. </td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiCfgReq function with following parmeters.
+	<ol>
+		<li> Valid Instance ID.
+		<li> Valid Sub Opcode(General Config) .
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/CRE/CTRL_NH(I/SUPOPC)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check whether UDP Nh responds with
+failuare message when invalid configuration is requested and
+when NH in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH instance should be created successfully.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get response saying error(or error in return value).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiCtrlReq with these parmeters such as.
+	<ol>
+		<li>Valid Instance ID Parameter
+		<li>Invalid SubOpcode 
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/CRE/DEL_NH(V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check whether delete NH works fine
+when NH in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance should be in created state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH will  response with success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiDelNhReq function with the following parmeters. 
+	<ol>
+		<li>Valid Instance ID.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/CRE/STATUS_REQ(V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check status request works fine
+when NH in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance should be in created state and instance
+id should be equal to mentioned in parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH will response with status = CREATED.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiStatusReq function with the following parmeters. 
+	<ol>
+		<li>Valid Instance ID.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/CRE/STRT_NH(V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check start NH works fine
+when NH is in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh should be in created state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get success Response.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiCtrlReq function with these following parmeters.
+	<ol>
+		<li>Valid Instance Id.
+		<li>Valid Sub Opcode (Start).
+	</ol>
+Then NH should go to RUNNING State. If cdSuNhUdpMiStatusReq implemented 
+properly then check state of NH.
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/RUN/CTRL_NH(I/SUBOPC)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+<td>To check NH responds with failuare when
+NH is in running state and control NH with invalid sub opcode request is done.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH will response with error(function may return error).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiCtrlReq function with these following parmeters.
+	<ol>
+		<li>Valid Instance Id.
+		<li>Invalid Subopcode.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/RUN/STOP_NH(V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check stop NH works fine when NH is in running state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH Response with success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhTcpMiCtrlReq function with the following parmeters. 
+	<ol>
+		<li>Valid Instance ID.
+		<li>Valid SubOpcode (Stop).
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/RUN/STATUS_NH(V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check status request works fine when NH is in
+running state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh Should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with status = RUNNING.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiStatusReq function with  these following parmeters. 
+	<ol>
+		<li>Valid Instance ID.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> UDP/MI/RUN/STATS_REQ(V)</td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check statistics request works fine when NH
+is in running state. </td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH will response with statistics.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiStsReq with appropriate parmeters.<ol>
+		<li> Valid Instance ID.
+	</ol>
+</td>
+
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> UDP/MI/RUN_CRE/DEL_NH(V)</td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check delete NH works fine when stack is in created
+state and previously it was in running state.</td>
+</tr>
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh was in running state and now it is in created state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>API call returns false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiDelNhReq with appropriate parmeters.
+	<ol>
+		<li> Valid Instance ID.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/DEL/TERMINATE_NH(V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check terminate NH works fine when
+NH is in delete state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td> NH should be in DELETE state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>True return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiTerminate with appropriate parmeters.
+	<ol>
+		<li> Valid Instance ID.
+	</ol>
+ Then call some function with valid parameter to make sure that
+NH deleted.
+</td>
+</tr>
+
+</tbody></table>
+<br>
+
+<br>
+
+<h4>User Layer Interface Functionalities</h4>
+<h4>Test Case for all type of UDP Port</h4>
+
+<p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/ADD_UDPPORT(I/ACTID)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check add udp port api takes care of invalid
+actor id.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value(or Response).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiAddUdpPortReq with following parmeters.
+	<ol>
+	<li> Valid Instance ID.
+	<li> Invalid application actor ID.
+	<li> Valid Local port no.
+	<li> Valid Local Ip address.
+	<li> Dest port number not equal to zero.
+	<li> Valid IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/ADD_UDPPORT(I/LPORTINUSE)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check opening udp port with port id already in
+use fails.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh should be in running state, and local port should be in use.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh Response with fail(reason:Port in user error)</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiAddUdpPortReq with following parmeters.
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor ID.
+	<li> Valid Local port no but it in use.
+	<li> Valid Local Ip address but in use.
+	<li> Dest port number not equal to zero.
+	<li> Valid IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/ADD_UDPPORT(I/DIF_LADDR)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check opening udp port fails when different
+ip address than machine ip address is used.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh Response with fail (reason: Bind Error)</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiAddUdpPortReq with following parmeters.
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor ID.
+	<li> Valid Local port no.
+	<li> Valid Local Ip address but different than the ip address of machine.
+	<li> Dest port number.
+	<li> Valid IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/ADD_UDPPORT(I/DPORT_ZERO)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check opening udp port fails when destination
+address is zero.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh Response with fail(reason: Invalid Parameter)</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiAddUdpPortReq with following parmeters.
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor ID.
+	<li> Valid Local port no.
+	<li> Valid Local Ip address.
+	<li> Dest port number equal to zero.
+	<li> Valid IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(I/PORTID)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data request fail when invalid
+port id parameter is passed.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh should be in running state, Udp Port mentioned in the
+parameter shouldn't exist.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH responses with fail(reason: UDP Port Not exist)</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiDataReq with following parmeters.
+	<ol>
+	<li> Invalid UdpPortKey(Valid Instance id but Invalid port id).
+	<li> Valid application actor ID.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.
+	<li> Valid Dest Port No.
+	<li> Valid Dest IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(I/ACTID)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data takes care of invalid application
+actor id when NH is in running state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>fail return value</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiDataReq with following parmeters.
+	<ol>
+	<li> Valid UdpPortKey(Valid Instance id and Valid port id).
+	<li> Invalid application actor ID.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.
+	<li> Valid Dest Port No.
+	<li> Valid Dest IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(I/DLEN)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data fails when data length = 0.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>fail return value(Nh response with fail) </td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiDataReq with following parmeters.
+	<ol>
+	<li> Valid UdpPortKey(Valid Instance id & Valid port id).
+	<li> Valid application actor ID.
+	<li> Valid Data Pointer.
+	<li> Invalid Data Length(= 0).
+	<li> Opaque Data.
+	<li> Valid Dest Port No.
+	<li> Valid Dest IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(I/DPTR)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data fails when data pointer is invalid.
+</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value (or NH response with fail)</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiDataReq with following parmeters.
+	<ol>
+	<li> Valid UdpPortKey(Valid Instance id & Valid port id).
+	<li> Valid application actor ID.
+	<li> Invalid Data Pointer(= NULL).
+	<li> Valid Data Length.
+	<li> Opaque Data.
+	<li> Valid Dest Port No.
+	<li> Valid Dest IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(I/DPORT_ZERO)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data fails if destination port = 0.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH Response with fail(reason : Invalid Parameter)</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiDataReq with following parmeters.
+	<ol>
+	<li> Valid UdpPortKey(Valid Instance id & Valid port id).
+	<li> Valid application actor ID.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.
+	<li> Invalid Dest Port No(=0).
+	<li> Valid Dest IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/REMPORT(I/PORTID)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check remove udp port fails if invalid 
+port id parameter passed to api.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh mentioned in the parameter shouldn't exist.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh response with fail(Reason: Port not in use)</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiRemUdpPortReq with following parmeters.
+	<ol>
+	<li> Invalid UdpPortKey(Valid Instance id but Invalid port id).
+	<li> Valid application actor ID.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/REMPORT(I/ACTID)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+<td>To check remove udp port fails when invalid
+application actor id parameter is passed.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should exist.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiRemUdpPortReq with following parmeters.
+	<ol>
+	<li> Invalid UdpPortKey(Valid Instance id & valid port id).
+	<li> Invalid application actor ID.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/REMPORT(V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check remove udp port works fine when valid
+parameter are passed.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should exist.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH Response with success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiRemUdpPortReq with following parmeters.
+	<ol>
+	<li> Valid UdpPortKey(Valid Instance id & valid port id).
+	<li> Valid application actor ID.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Test Case for Local Only Fixed and Standard Port no type of UDP Port</b>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/ADD_UDPPORT(LFS/V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check whether possible to open local fixed and
+standard port type udp port.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Port no shouldn't be
+in use.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH will response with success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiAddUdpPortReq function with following parmeters. 
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor Id.
+	<li> Valid Local Port No(!= 0 and != Default(Invalid)).
+	<li> Valid Local IP address.
+	<li> Default DestPortNo(Don't set any value).
+	<li> Dest Address(no need of setting the value)	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(LFS/I/DPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data fails over local fixed and
+standard local port type udp port when destination port no = default.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port Should exist with
+standard port no and local only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with fail(Reason: Invalid Param)</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Default DestPortNo.
+	<li> Dest Address(no need of setting the value)	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(LFS/V/DPORT_DADDR_SAME)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data to self work fine in
+case local fixed and standard port type udp port.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should exist with
+standard port no and local only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No = Local Port No.
+	<li> Dest Address = Local Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(LFS/V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data over udp port of type
+local fixed and standard port works fine.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port Should exist with 
+standard port no and local only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Valid DestPortNo.
+	<li> Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/DATA_IND(LFS)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check data indication is fired over
+local fixed and standard port when remote sends data.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should exist with
+standard port no and local only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will send data indication.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters in remote
+end. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Default Dest Port No = Local Port of Udp port of Local
+	Test Tub.
+	<li> Dest Address =Local Address of Udp port of Local
+	Test Tub.
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p><b>Test Case for Local Only Fixed and Ephemeral Port no type of UDP Port</b>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/ADD_UDPPORT(LFE/V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check add udp port of type local fixed and local port
+ephemeral is possible.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH will response with success(It includes ephemeral
+port no bound).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiAddUdpPortReq function with following parmeters. 
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor Id.
+	<li> Local Port No = 0.
+	<li> Valid Local IP address.
+	<li> Default DestPortNo(Don't set any value).
+	<li> Dest Address(no need of setting the value)	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(LFE/I/DPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data fails over local fixed and
+ephemeral local port type udp port when destination port no = default.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port Should exist with
+ephemeral port no and local only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with fail(Reason: Invalid Param)</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Default DestPortNo.
+	<li> Dest Address(no need of setting the value)	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(LFE/V/DPORT_DADDR_SAME)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data to self work fine in
+case local fixed and ephemeral port type udp port.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should exist with
+ephemeral port and local only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No = Local Port No.
+	<li> Dest Address = Local Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(LFE/V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data over udp port of type
+local fixed and ephemeral port works fine.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should exist with 
+ephemeral port and local only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Valid DestPortNo.
+	<li> Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/DATA_IND(LFE)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check data indication is fired over
+local fixed and ephemeral port when remote sends data.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port Should exist with
+ephemeral port and local only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will send data indication.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters in remote
+end. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Default Dest Port No = Local Port of Udp port of Local
+	Test Tub.
+	<li> Dest Address =Local Address of Udp port of Local
+	Test Tub.
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Test Case for Destination Only Fixed type of UDP Port.</b>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/ADD_UDPPORT(DF/V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check opening udp port of type destination
+only fixed is possible.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH will response with success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiAddUdpPortReq function with following parmeters. 
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor Id.
+	<li> Default Local Port No.
+	<li> Local IP address(need not be set).
+	<li> Valid DestPortNo(!= 0 and != Default Value).
+	<li> Valid Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(DF/I/DPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data fails when different port
+no is passed in case udp port of type destination only fixed.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of 
+type destination only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with fail.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No != Connected Dest Port No.
+	<li> Dest Address(need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(DF/I/DADDR)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data fails when different destination
+address is passed in case udp port of type destination only fixed.<td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+destination only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with fail.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No = Connected Dest Port No.
+	<li> Dest Address != Connected Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(DF/V/RPNOTEXIST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data responses with fail when try to 
+send data over destination only fixed type udp port and destination 
+machine up and port doesn't exist.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+destination only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>First time NH will respond with success but next time
+will respond with fail.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Set up remote such that machine is up but there is no 
+udp port with port no mentioned in the parameter.<br>
+
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No() = Connected Dest Port No.
+	<li> Dest Address = Connected Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(DF/V/RNOTUP)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check how send data responses when try to send
+data over udp port type of type destination only fixed and remote machine
+is not up.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+destination only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote machine shouldn't be up. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No() = Connected Dest Port No.
+	<li> Dest Address = Connected Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(DF/V/RPEXIST_DADDR_DPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send  data works fine if correct destination
+port and destination address are passed.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+destination only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote port should exist. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No() = Connected Dest Port No.
+	<li> Dest Address = Connected Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(DF/V/RPEXIST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data works fine if default destination
+port no(whatever may be the destination address) is passed when 
+udp port of type destination only fixed.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+destination only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote port should exist. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Default Dest Port No.
+	<li> Dest Address(Need not be set)	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/DATA_IND(DF/V/RCONPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check data indication is possible in case
+udp port of type destination only fixed.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port Should exist with
+ephemeral port and local only fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters in remote
+end. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Default Dest Port No = Local Port of Udp port of Local
+	Test Tub.
+	<li> Dest Address =Local Address of Udp port of Local
+	Test Tub.
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+Set up remote such way that it should reply to received data(It is
+required because local transport address is not fixed, So when
+remote end receives data then only it can know the remote port
+no).
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Test Case for Destination and local both fixed and local port no is standard type of UDP Port.</b>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/ADD_UDPPORT(BFS/V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check opening udp port of type destination and
+local both fixed and standard local port no. is possible.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state, Port no shouldn't be in
+use.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH will response with success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiAddUdpPortReq function with following parmeters. 
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor Id.
+	<li> Valid Local Port No (!=0 and default).
+	<li> Valid Local IP address.
+	<li> Valid DestPortNo(!= 0 and != Default Value).
+	<li> Valid Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFS/I/DPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data over udp port of type 
+destination and local both fixed and local standard port fails
+if different port no.(than connected port) is passed.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of 
+type both local and destination  fixed and local portno is standard.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with fail.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No != Connected Dest Port No.
+	<li> Dest Address(need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFS/I/DADDR)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data over udp port of type 
+destination and local both fixed and local standard port fails
+if different destination address(than connected address) is passed.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+both local and destination fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with fail.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No = Connected Dest Port No.
+	<li> Dest Address != Connected Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFS/V/RPNOTEXIST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check sender will come to know that destination
+is not reachable if destination port doesn't exist if udp port of
+type both fixed and local port is standard..</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+both local and destination fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Set up remote such that machine is up but there is no 
+udp port with port no. mentioned in the parameter.<br>
+
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Default Dest Port No.
+	<li> Dest Address(Need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFS/V/RNOTUP)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check how send data responses when try to send
+data over udp port type of both destination and local fixed and
+remote machine is not up.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+both local and destination fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote machine shouldn't be up. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Def Dest Port No().
+	<li> Dest Address(Need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFS/V/RPEXIST_DADDR_DPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data works fine when correct
+destination address and destination port is passed where udp port of
+type both local and destination both fixed and local standard.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+local and destination fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote port should exist. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No() = Connected Dest Port No.
+	<li> Dest Address = Connected Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFS/V/RPEXIST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data works fine where udp port
+of type both destination and local fixed and local port is standard
+one.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+local and destination fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote port should exist. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Default Dest Port No().
+	<li> Dest Address(Need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/DATA_IND(BFS/V/RCONPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check data indication works fine where
+udp port of type both local and destination fixed and
+local port is standard.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port of type both local
+and destination fixed and standard port no, should exist.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh response with data indication.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Send Data From remote end to local machine. Remote end's udp port
+must have local port no and local address equal to destination port
+and destination address of local udp port. 
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/DATA_IND(BFS/V/RNOTCONPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check whether udp port receives data from
+udp port other than connected one.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port of type both local
+and destination fixed and standard port no, should exist.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Send Data From remote end to local machine. Remote end's udp port
+must have local port no or local address not equal to destination port
+and destination address of local udp port. 
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Test Case for Destination and local both fixed and local port no is ephemeral type of UDP Port.</b>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/ADD_UDPPORT(BFE/V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check opening udp port of type destination and
+local both fixed and local port is ephemeral.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state, Port no shouldn't be in
+use.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH will response with success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiAddUdpPortReq function with following parmeters. 
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor Id.
+	<li> Valid Local Port No (=0)
+	<li> Valid Local IP address.
+	<li> Valid DestPortNo(!= 0 and != Default Value).
+	<li> Valid Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFE/I/DPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send dat fails if different destination 
+port is passed where udp port of type destination and local both 
+fixed and local port is ephemeral.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of 
+type both local and destination  fixed and local port no is
+ephemeral.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with fail.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No != Connected Dest Port No.
+	<li> Dest Address(need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFE/I/DADDR)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send dat fails if different destination 
+address is passed where udp port of type destination and local both 
+fixed and local port is ephemeral.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+both local and destination fixed and local port no is ephemeral
+.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with fail.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No = Connected Dest Port No.
+	<li> Dest Address != Connected Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFE/V/RPNOTEXIST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check sender will come to know that destination
+is not reachable if destination port doesn't exist if udp port of
+type both fixed and local port is ephemeral.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+both local and destination fixed and local port no is ephemeral.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Set up remote such that machine is up but there is no 
+udp port with portno  mentioned in the parameter.<br>
+
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No = Connected Dest Port No.
+	<li> Dest Address = Connected Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFE/V/RNOTUP)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check how send data responses when try to send
+data over udp port type of both destination and local fixed and local
+port is ephemeral and remote machine is not up.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+both local and destination fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote machine shouldn't be up. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No() = Connected Dest Port No.
+	<li> Dest Address = Connected Dest Address.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFE/V/RPEXIST_DADDR_DPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data works fine when correct
+destination address and destination port is passed where udp port of
+type both local and destination both fixed and local port ephemeral.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+local and destination fixed and local portno is ephemeral.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote port should exist. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No() = Remote Connected Port No.
+	<li> Dest Address = Remote Connected Dest Addr.	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BFE/V/RPEXIST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data works fine where udp port
+of type both destination and local fixed and local port is ephemeral.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+local and destination fixed and local portno is ephemeral.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote port should exist. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No() = Default.
+	<li> Dest Address = (need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/DATA_IND(BFE/V/RCONPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check data indication works fine where udp port
+of type both desination and local fixed and local port is ephemeral.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port of type both local
+and destination fixed and ephemeral local port no, should exist.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh response with data indication.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Send Data From remote end to local machine. Remote end's udp port
+must have local port no and local address equal to destination port
+and destination address of local udp port. 
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/DATA_IND(BFE/V/RNOTCONPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check local and destination both fixed
+udp port doesn't receive data from differen udp port than
+connected one.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port of type both local
+and destination fixed and ephemeral port no, should exist.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Send Data From remote end to local machine. Remote end's udp port
+must have local port no or local address not equal to destination port
+and destination address of local udp port. 
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Test Case for Destination and local both not fixed type of UDP Port.
+</b>
+<p>
+	Following test cases valid for always opened udp port also(Instance ID = 0).
+</p>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/ADD_UDPPORT(BNF/V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check opening udp port of type both not fixed
+is possible.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state </tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>NH will response with success.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiAddUdpPortReq function with following parmeters. 
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor Id.
+	<li> Default Local Port No
+	<li> Local IP address(Need not be set).
+	<li> Default DestPortNo.
+	<li> Dest Address (Need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BNF/I/DPORT)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check send data fails where udp port
+of type both destination and local not fixed and destination 
+port parameter passed to send data is of type default(invalid). </td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+both not fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh response with fail.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote port should exist. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Dest Port No() = Default.
+	<li> Dest Address = (need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SEND_DATA(BNF/V)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check sending data is possible over udp port
+of type both destination and local not fixed.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port should be of type
+both not fixed.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Remote port should exist. <br>
+Call cdSuNhUdpUiDataReq function with following parmeters. 
+	<ol>
+	<li> Valid Udp Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.	
+	<li> Valid Dest Port No (!= 0 and != Default).
+	<li> Valid Dest Address .	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/DATA_IND(BNF)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check data indication is not possible over
+udp port of type both destination and local not fixed.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH should be in running state. Udp Port of type both not fixed.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not Known.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Send Data from local end to remote. Then remote should send data 
+back. 
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Test Case for Out Of Sequence Of Operation.
+</b>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/GEN_CFG_NH(I/NHINST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects general configuration
+request when NH is in idle state(NH instance id is invalid)
+. </td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td> There shouldn't be any NH Instance with instance id equal
+to the value of instance id parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get error return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiCfgReq with either of these parmeters such as.
+	<ol>
+		<li>Invalid Instance ID Parameter
+		<li>Valid SubOpcode (General Config)
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/GEN_CFG_NH(I/NHINST/MAX)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To ensure api takes care of NH instance id > Max no. of NH.
+. </td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td> There shouldn't be any NH Instance with instance id equal
+to the value of instance id parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>MI will get error return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpMiCfgReq with either of these parmeters such as.
+	<ol>
+		<li>Instance ID Parameter > MAX no. of NH
+		<li>Valid SubOpcode (General Config)
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/STRT_NH(I/NHINST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects start NH request when NH is
+in idle state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>There shouldn't be any NH Instance with instance id mentioned
+in the parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>API returns false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiCtrlReq function with  these following parmeters.
+	<ol>
+		<li>Invalid Instance ID.
+		<li>Valid Sub Opcode.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/STRT_NH(I/NHINST/MAX)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects start NH request when NH id > MAX no of NH.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>There shouldn't be any NH Instance with instance id mentioned
+in the parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>API returns false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiCtrlReq function with  these following parmeters.
+	<ol>
+		<li>Instance ID > Max No of NH.
+		<li>Valid Sub Opcode.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/STOP_NH(I/NHINST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects stop NH request when NH
+is in idle state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhTcpMiCtrlReq function with either of these following parmeters.
+	<ol>
+		<li>CdSuNhUdpInstId > Max No of NH.
+		<li>Valid smActorId.
+		<li>Valid CdSuNhTcpSubOpode.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/STOP_NH(I/NHINST/MAX)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects stop NH request when NH
+ID > max no of NH.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhTcpMiCnfgReq function with either of these following parmeters.
+	<ol>
+		<li>CdSuNhUdpInstId > Max No Of NH.
+		<li>Valid smActorId.
+		<li>Valid CdSuNhTcpSubOpode.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/DEL_NH(I/NHINST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects delete NH request when 
+NH is in idle state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance shouldn't exist with instance id 
+mentioned in the parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiDelNhReq function with the following parmeters. 
+	<ol>
+		<li>Invalid Instance ID.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/DEL_NH(I/NHINST/MAX)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects delete NH request when 
+NH id > max no. of NH.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance shouldn't exist with instance id 
+mentioned in the parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiDelNhReq function with the following parmeters. 
+	<ol>
+		<li>Instance ID > Max No Of NH.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/TERMINATE(I/NHINST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects terminate NH when
+NH is in idle state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance shouldn't exist with instance id 
+mentioned in the parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiTerminate function with the following parmeters. 
+	<ol>
+		<li>Invalid Instance ID.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/TERMINATE(I/NHINST/MAX)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects terminate NH when
+NH > Max No Of NH.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance shouldn't exist with instance id 
+mentioned in the parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiTerminate function with the following parmeters. 
+	<ol>
+		<li>Instance ID > Max No Of Nh.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/UDP/STATUS_REQ(I/NHINST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects status request when NH is in
+idle state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance shouldn't exist with instance id 
+mentioned in the parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiStatusReq function with the following parmeters. 
+	<ol>
+		<li>Invalid Instance ID.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/UDP/STATUS_REQ(I/NHINST/MAX)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects status request when NH > Max No Of Nh.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance shouldn't exist with instance id 
+mentioned in the parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiStatusReq function with the following parmeters. 
+	<ol>
+		<li>Instance ID > Max No Of NH.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/STATS_REQ(I/NHINST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects statistics request when 
+NH is in idle state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance shouldn't exist with instance id 
+mentioned in the parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiStsReq function with the following parmeters. 
+	<ol>
+		<li>Invalid Instance ID.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/IDLE/STATS_REQ(I/NHINST/MAX)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects statistics request when 
+NH > max No Of NH.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH Instance shouldn't exist with instance id 
+mentioned in the parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiStsReq function with the following parmeters. 
+	<ol>
+		<li>Instance ID > Max No Of NH.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/IDLE/ADD_UDPPORT(I/NHINST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects add udp port request when
+NH is in idle state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH shouldn't exist with instance id mentioned in
+parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Invalid UdpPort Key returned.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiAddUdpPortReq with following parmeters.
+	<ol>
+	<li> Invalid Instance ID.
+	<li> Valid application actor ID.
+	<li> Valid Local port no.
+	<li> Valid Local Ip address.
+	<li> Dest port number not equal to zero.
+	<li> Valid IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/IDLE/ADD_UDPPORT(I/NHINST/MAX)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects add udp port request when
+NH > Max No Of NH.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>NH shouldn't exist with instance id mentioned in
+parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Invalid UdpPort Key returned.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiAddUdpPortReq with following parmeters.
+	<ol>
+	<li> Instance ID > Max No Of NH.
+	<li> Valid application actor ID.
+	<li> Valid Local port no.
+	<li> Valid Local Ip address.
+	<li> Dest port number not equal to zero.
+	<li> Valid IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/IDLE/SEND_DATA(I/NHINST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects send data when NH is
+in idle state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh shouldn't exist with instance id mentioned in 
+parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiDataReq with following parmeters.
+	<ol>
+	<li> Invalid UdpPortKey(Invalid Instance id but valid port id).
+	<li> Valid application actor ID.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.
+	<li> Valid Dest Port No.
+	<li> Valid Dest IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/IDLE/SEND_DATA(I/NHINST/MAX)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects send data when NH > Max No Of NH.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh shouldn't exist with instance id mentioned in 
+parameter.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiDataReq with following parmeters.
+	<ol>
+	<li> UdpPortKey(Instance id > Max No Of Nh but valid port id).
+	<li> Valid application actor ID.
+	<li> Valid Data Pointer.
+	<li> Valid Data Length.
+	<li> Opaque Data.
+	<li> Valid Dest Port No.
+	<li> Valid Dest IP address.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/IDLE/REMPORT(I/NHINST)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects remove port request when
+NH is in idle state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh mentioned in the parameter shouldn't exist.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiRemUdpPortReq with following parmeters.
+	<ol>
+	<li> Invalid UdpPortKey(Invalid Instance id but valid port id).
+	<li> Valid application actor ID.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/IDLE/REMPORT(I/NHINST/MAX)</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects remove port request when
+NH > Max No Of Nh.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+
+<td>Nh mentioned in the parameter shouldn't exist.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Fail return value</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call function cdSuNhUdpUiRemUdpPortReq with following parmeters.
+	<ol>
+	<li> Invalid UdpPortKey(Instance id  > Max No Of NH but valid port id).
+	<li> Valid application actor ID.
+	<li> Valid callback function pointer.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/CRE/TERMINATE</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+<td>To check NH rejects terminate request
+when NH is in created state.</td>
+
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in created state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>API returns false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiTermiate function with  these following parmeters.
+	<ol>
+		<li>Valid Instance ID.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/CRE/STOP</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects stop NH request when NH
+is in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in created state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh Responses with fail(Api may return false).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiCtrlReq function with  these following parmeters.
+	<ol>
+		<li>Valid Instance ID.
+		<li>Valid Sub Opcode(stop).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/CRE/STATS</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects statistics request when NH
+is in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in created state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh Responses with fail(Api may return false).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiStsReq function with  these following parmeters.
+	<ol>
+		<li>Valid Instance ID.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/CRE/ADD_UDPPORT</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects add udp port when NH is in
+created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in created state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh Responses with fail(Api may return false).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiAddUdpPortReq function with  these following parmeters.
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor Id.
+	<li> Valid Local Port No
+	<li> Valid Local IP address.
+	<li> Default DestPortNo.
+	<li> Dest Address (Need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+<li>Valid Instance ID.
+
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/CRE/REM_UDPPORT</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects remove udp port request when 
+NH is in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in created state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh Responses with fail(Api may return false).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiRemUdpPortReq function with  these following parmeters.
+	<ol>
+	<li> Valid UDP Port Key.
+	<li> Valid application actor Id.
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+<li>Valid Instance ID.
+
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/CRE/SEND_DATA</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects send data request when
+NH is in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in created state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh Responses with fail(Api may return false).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with  these following parmeters.
+	<ol>
+	<li> Valid UDP Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer
+	<li> Valid Data Length
+	<li> Valid Opaque Data
+	<li> Valid Destiantion Port No.
+	<li> Valid Destination Address.	
+	<li> Callback function	 pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+<li>Valid Instance ID.
+
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/CRE/DATA_IND</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH sends any data indication when
+NH is in created state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in created state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>No Response.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>
+ Open Udp Port then Stop the NH. Before stoping the NH don't close
+Udp Port. Then from remote end send data where remote end was destination
+and local fixed type udp port. In remote end should get send error.
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/RUN/TERMINATE</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects terminate NH request when
+NH is in running state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>API returns false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiTermiate function with  these following parmeters.
+	<ol>
+		<li>Valid Instance ID.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/RUN/DEL</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects delete NH request when NH
+is in running state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in Running state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh Responses with fail(Api may return false).</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiDelNhReq function with  these following parmeters.
+	<ol>
+		<li>Valid Instance ID.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/DEL/STOP</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects stop NH request when
+NH is in deleted state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in deleted state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Api returns false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiCtrlReq function with  these following parmeters.
+	<ol>
+		<li>Valid Instance ID.
+		<li>Valid Sub Opcode(stop).
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/DEL/STATS</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects statistics request when NH
+is in DEL state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in deleted state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Api returns false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiStsReq function with  these following parmeters.
+	<ol>
+		<li>Valid Instance ID.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/DEL/ADD_UDPPORT</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects add udp port request
+when NH is in deleted state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in deleted state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Api  return false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiAddUdpPortReq function with  these following parmeters.
+	<ol>
+	<li> Valid Instance ID.
+	<li> Valid application actor Id.
+	<li> Valid Local Port No
+	<li> Valid Local IP address.
+	<li> Default DestPortNo.
+	<li> Dest Address (Need not be set).	
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+<li>Valid Instance ID.
+
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/DEL/REM_UDPPORT</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects rem udp port request
+when NH is in deleted state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in deleted state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Api return false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiRemUdpPortReq function with  these following parmeters.
+	<ol>
+	<li> Valid UDP Port Key.
+	<li> Valid application actor Id.
+	<li> Callback function pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+<li>Valid Instance ID.
+
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/DEL/SEND_DATA</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects send udp port request
+when NH is in deleted state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in deleted state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Api returns false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpUiDataReq function with  these following parmeters.
+	<ol>
+	<li> Valid UDP Port Key.
+	<li> Valid application actor Id.
+	<li> Valid Data Pointer
+	<li> Valid Data Length
+	<li> Valid Opaque Data
+	<li> Valid Destiantion Port No.
+	<li> Valid Destination Address.	
+	<li> Callback function	 pointer(If callback interface required, otherwise set it to NULL, dont keep junk value).
+<li>Valid Instance ID.
+
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/DEL/DATA_IND</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH doesn't throw data indication
+when NH is in deleted state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in deleted state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>No Response.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>
+ Open Udp Port then delete(Stop first then delete) the NH.
+ Before deleting the NH don't close
+Udp Port. Then from remote end send data where remote end was destination
+and local fixed type udp port. In remote end should get send error.
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/MI/DEL/DEL</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To check NH rejects delete NH request
+when NH is in deleted state.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in deleted state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Api return false.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+
+<td>Call cdSuNhUdpMiDelNhReq function with  these following parmeters.
+	<ol>
+		<li>Valid Instance ID.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Test Case for Default Event Hlr.
+</b>
+<p>
+<p> Do all above test cases without registering call back functions.</p>
+
+<p><b>Test Case for Config Parameter.
+</b>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/MAXINST</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To test NH configured properly.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>Null.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>cdSuNhUdpMiInit will response with success till number of NH instance 
+crosses the maximum no of NH instance</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+	<ol>
+	<li> Call cdSuNhUdpMiInit more than 'maximum no of NH instance' times.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/MAX_NO_UDPPORT</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To test NH configured properly.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in running state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Nh will response with success till number of udp port 
+crosses the maximum no of udp port configured</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+	<ol>
+	<li> Call CdSuNhUdpUiAddUdpPortReq more than 'maximum no of udp port' times.
+	<li> Use ephemeral port no.
+	<li> Open mixture of all type of udp port.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/MAX_BUF</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To test NH configured properly.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in running state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+	<ol>
+	<li>Set Max buffer to 'x'.
+	<li> Send Data from remote end where size of
+the data lies in boundary of 'x'.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/SELTMR</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>To test NH configured properly.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in running state.</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+Set Select Timer to 0, 250, 500, etc. Then do some udp data transfer.
+Check NH works fine. Check how it effects operation of NH.
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Multiple NH Instance Support Testing.
+</b>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/MULNH</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>Multiple NH Instance Support Testing.
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in running state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known</td>
+</tr>
+ 
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+<p>	<ol>
+		<li> Open 4 Instance of NH.
+		<li> On each Instance open one different type of udp port.
+		<li> Do data transfer on each udp port.
+	</ol>
+</p>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Multiple User Support Testing.
+</b>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/MULNH</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>Multiple User Support Testing.
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in running state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+<p>
+	<ol>
+	<li>Open one instance of NH.
+	<li>Open 4 type of udp port.
+	<li>Make UI interface message based.
+	<li>Create 4 thread for 4 user.
+	<li>Each user can take responsibility of one type of UDP Port.
+	<li>Do data transfer.
+	</ol>
+</p>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Multiple NH Instance and Multiple User Support Testing.
+</b>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/MULNH_MULUSR</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>Multiple NH Instance and Multiple User Support Testing.
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in running state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+<p>
+	<ol>
+	<li> Open 2 NH Instance.
+	<li> Create Two thread for two user.
+	<li> Each user will open 1 udp port on each Instance.
+(total 2 udp port for each user)
+	<li> Then do data transfer.
+	</ol>
+</p>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Testing Statistics Package.
+</b>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/STATS</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>Testing statistics package.
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in running state. UI interface functions shouldn't have been executed.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>All Type Counter Should be updated properly.</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+<td>
+<p>
+	Open All type of Udp Port (Local Only fixed(Both Ephemeral and
+Standard Port Type), Desination Port Only Fixed, Both Local And Destination
+Only Fixed, Both Destination And Local not Fixed. etc). Send Data on 
+each type of udp port, remove upd port all thease operation.
+Keep track about no of operation done, how many success operation etc.
+Finaly get the statistics report. Match the statistics report with counter
+maintained in test stubs. Check for validity of counter values.
+</p>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Load Testing
+</b>
+</p>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/NUDPPORT</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>Load Testing.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in running state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+</td>
+<td>
+Open maximum Udp Port in local machine.
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td><b>Test Case</b></td>
+
+<td> <b>UDP/UI/RUN/LOADTEST</b> </td>
+</tr>
+
+<tr>
+<td> <b>Purpose</b> </td>
+
+<td>Load Testing.</td>
+</tr>
+
+<tr>
+<td><b>Pre-Test Condition</b></td>
+<td>NH should be in running state.
+</td>
+</tr>
+
+<tr>
+<td><b>Expected Outcome</b></td>
+
+<td>Not known</td>
+</tr>
+
+<tr>
+<td><b>Test Description</b></td>  
+</td>
+<td>
+Local SetUp:<br>
+	*) Open x no of UDP NH instance<br>
+	*) Open y no of UDP port (x/y udp port on each instance)</br>
+Remote SetUp: <br>
+	*) Open 'a' no of UDP NH instance<br>
+	*) Open 'y' no of UDP port (y/a udp port on each instance)</br>
+Then let total no. of data transfer to be done 'z'.<br>	
+Local: <br>
+	*) do 'z' no of data transfer  on each opened port to each opened
+port in remote.(so total no of data transfer = z*x*y)<br>
+
+<br>
+Try different combination value for x, y, z, a.
+<br>
+Find statistics about no of add udp port request, no of successful add 
+udp port, no of successful add udp port response, no of data request,
+no of successful data request, no of successful data request response,
+no of data indication. 
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<hr noshade="noshade">
+<i>End of Document</i>
+<hr noshade="noshade">
+
+</body></html>

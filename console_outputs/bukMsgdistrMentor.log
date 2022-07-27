@@ -1,0 +1,349 @@
+rohitm@dti7de14-010:~/Documents/SystemManagement/BUK/BUK_System_Design_Assignment/build$ ./bukMsgdistrMentor.out 
+static void CdSuTrace::setLevel(unsigned int): Changing Trace level (1 -> 5)!! 
+basicinfraAdmin.cpp (174) : Uint32 changeIpAddr(char*)
+basicinfraMentor.cpp (56) : Creating Message Distributor
+cdsumd.cpp (57) : CdSuMsgDistributor::CdSuMsgDistributor(const CdSuMdInitParam&)
+cdsumd.cpp (179) : bool CdSuMsgDistributor::start()
+basicinfraAdmin.cpp (174) : Uint32 changeIpAddr(char*)
+cdsumd.cpp (238) : CdSuMsgDistributor::registerMid
+basicinfraMentor.cpp (80) : Admin HwUnit registered successfully.
+basicinfraAdmin.cpp (174) : Uint32 changeIpAddr(char*)
+cdsumd.cpp (238) : CdSuMsgDistributor::registerMid
+basicinfraMentor.cpp (101) : Trainee HwUnit registered successfully.
+ Application Module of mentor has been registered to MsgDistributor Successfully.
+ NH UDP has been registered to MsgDistributor Successfully.
+bukMsgdistrMentor.cpp (433) : static void* MentorMain::applicationStart(void*)
+cdsunhudpapi.cpp (52) : CdSuNhUdpApiRetType cdSuNhUdpMiInit(const CdSuNhUdpMiInitParam&, CdSuNhUdpInstId&)
+bukMentor.cpp (61) : ~~~~~~~~ Creating Timer thread~~~~~~~~~ 
+cdsunhudp.cpp (66) : CdSuNhUdp::CdSuNhUdp(CdSuNhUdpDb*)
+cdsunhudp.cpp (1449) : void CdSuNhUdp::changeState(CdSuNhUdpState)
+cdsunhudp.cpp (169) : void CdSuNhUdp::run()
+cdsunhudpapi.cpp (213) : CdSuNhUdpApiRetType cdSuNhUdpMiCtrlReq(const CdSuNhUdpMiCtrlReqParam&)
+cdsunhudp.cpp (191) : Start NH Req : Successful
+cdsunhudpapi.cpp (468) : CdSuNshtaUtic void* CddSpApiRetType cduSuNhUdpUiAddUdpNPortReq(const ChdSuNhUdpUdp::threaUdiAddUdpEPnortReqPatram&, CdSuNrhUdy(void*)p
+cdsunhudp.cpp (213) : UDP Nh Started
+PortKey&)
+cdsunhudpapiparamchk.cpp (198) : CdSuNhUdpApiRetType validateAddUdpPortReqParam(const CdSuNhUdpUiAddUdpPortReqParam&)
+bukMsgdistrMentor.cpp (87) : void smMgmtEventHlr(void*) 
+Response to System Manager
+Init Nh Success
+Instance Id=0
+cdsunhudp.cpp (552) : void CdSuNhUdp::createdStHlr(CdMessage*)
+cdsunhudp.cpp (937) : void CdSuNhUdp::stCreatedCtrlReqMsgHlr(CdMessage*)
+cdsunhudp.cpp (1449) : void CdSuNhUdp::changeState(CdSuNhUdpState)
+bukMsgdistrMentor.cpp (87) : void smMgmtEventHlr(void*) 
+Response to System Manager
+Start UDP NH Success
+cdsunhudp.cpp (1120) : void CdSuNhUdp::addUdpPortReqMsgHlr(CdMessage*)
+cdsunhudp.cpp (1505) : CdSuNhUdpRspFailCode CdSuNhUdp::addUdpPort(const CdSuNhUdpPortId&, CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&, const CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&, const CdSuActorId&, CdSuNhUdpEventHlr)
+cdsunhudp.cpp (1533) : CdSuNhUdp::addUdpPort(): Binding socket 5 to 192.168.16.40:50005
+cdsunhudp.cpp (145) : CdSuNhUdp::CdSuNhUdpPortInfo::CdSuNhUdpPortInfo()
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrMentor.cpp (223) : void applEventHlr(void*) 
+Add Udp Port Succes
+Udp Port ID = 1
+Udp Local Port = 50005
+cdsunhudp.cpp (1929) : int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)
+cdsunhudp.cpp (1939) : Reading Port Id =1...........
+cdsunhudp.cpp (1956) : CdSuNhUdp::readNoOfBytes(): connected socket 5 to 192.168.16.40:52067
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrMentor.cpp (223) : void applEventHlr(void*) 
+Data Indication
+Port ID = 1
+Data Len = 4
+Remote PortNo 52067
+Dest Addr = 192.168.16.40
+bukMsgdistrMentor.cpp (323) : NH: Registration Request Message processing...
+bukMsgdistrMentor.cpp (330) : NH:Sent message
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (492) : Message Source: Mentor Menu
+bukMsgdistrMentor.cpp (522) : Message: Registration Request
+bukMsgdistrMentor.cpp (525) : Mentor: in INIT state
+bukMsgdistrMentor.cpp (762) : Registration Request Processing...
+bukMsgdistrMentor.cpp (769) : New Mentor Id = 1
+bukMsgdistrMentor.cpp (773) : Registration Request Sending to Admin...
+bukMsgdistrMentor.cpp (780) : Sent message
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (498) : Message Source: Admin
+bukMsgdistrMentor.cpp (828) : Message: Registration Ack
+bukMsgdistrMentor.cpp (834) : Mentor 1: in INIT state
+bukMsgdistrMentor.cpp (836) : Mentor 1: changed state to REGISTERED
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (498) : Message Source: Admin
+bukMsgdistrMentor.cpp (898) : Message: Trainee Id
+bukMsgdistrMentor.cpp (909) : Mentor 1: in REGISTERED or WORKING state
+bukMsgdistrMentor.cpp (920) : Introduction message Sending to Trainee 1...
+bukMsgdistrMentor.cpp (927) : Sent message
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (996) : Message: Introduction Reply
+bukMsgdistrMentor.cpp (1003) : Mentor 1: Receieved Introduction Reply
+bukMsgdistrMentor.cpp (1007) : Mentor 1: In REGISTERED state
+bukMsgdistrMentor.cpp (1009) : Mentor 1: changed state to TRAINING
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (498) : Message Source: Admin
+bukMsgdistrMentor.cpp (863) : Message: Work Request
+bukMsgdistrMentor.cpp (881) : Mentor 1: in TRAINING state
+bukMsgdistrMentor.cpp (884) : Mentor 1: changed state to WORKING_TRAINING
+Work Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (655) : Mentor 1: Work Completed
+bukMsgdistrMentor.cpp (684) : Mentor 1: In WORKING_TRAINING state
+bukMsgdistrMentor.cpp (687) : Mentor 1: Training Not Completed
+bukMsgdistrMentor.cpp (689) : Mentor 1: changed state to TRAINING
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1063) : Message: Guidance Request
+bukMsgdistrMentor.cpp (1074) : Mentor 1: in TRAINING state
+bukMsgdistrMentor.cpp (1078) : Mentor 1: Guidance Reply Message Sending...
+bukMsgdistrMentor.cpp (1086) : Sent message
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1063) : Message: Guidance Request
+bukMsgdistrMentor.cpp (1074) : Mentor 1: in TRAINING state
+bukMsgdistrMentor.cpp (1078) : Mentor 1: Guidance Reply Message Sending...
+bukMsgdistrMentor.cpp (1086) : Sent message
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (498) : Message Source: Admin
+bukMsgdistrMentor.cpp (863) : Message: Work Request
+bukMsgdistrMentor.cpp (881) : Mentor 1: in TRAINING state
+bukMsgdistrMentor.cpp (884) : Mentor 1: changed state to WORKING_TRAINING
+Work Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (655) : Mentor 1: Work Completed
+bukMsgdistrMentor.cpp (684) : Mentor 1: In WORKING_TRAINING state
+bukMsgdistrMentor.cpp (687) : Mentor 1: Training Not Completed
+bukMsgdistrMentor.cpp (689) : Mentor 1: changed state to TRAINING
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+cdsunhudp.cpp (1929) : int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)
+cdsunhudp.cpp (1939) : Reading Port Id =1...........
+cdsunhudp.cpp (1956) : CdSuNhUdp::readNoOfBytes(): connected socket 5 to 192.168.16.40:57396
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrMentor.cpp (223) : void applEventHlr(void*) 
+Data Indication
+Port ID = 1
+Data Len = 8
+Remote PortNo 57396
+Dest Addr = 192.168.16.40
+bukMsgdistrMentor.cpp (339) : NH:Report Request Message processing...
+bukMsgdistrMentor.cpp (346) : NH:Sent message
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (492) : Message Source: Mentor Menu
+bukMsgdistrMentor.cpp (543) : Message: Report Request
+bukMsgdistrMentor.cpp (548) : Report Request Message from 1
+bukMsgdistrMentor.cpp (786) : Report Request Message Processing...
+bukMsgdistrMentor.cpp (793) : Mentor 1 in TRAINING state
+bukMsgdistrMentor.cpp (799) : Report Request Message Sending to Trainee 1...
+bukMsgdistrMentor.cpp (806) : Sent message
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1047) : Message: Report
+bukMsgdistrMentor.cpp (1054) : Mentor 1: in TRAINING or WORKING_TRAINING state
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (504) : Message Source: Trainee
+bukMsgdistrMentor.cpp (1028) : Message: Periodic Report
+bukMsgdistrMentor.cpp (1035) : Mentor in TRAINING or WORKING_TRAINING state
+Timer stopped
+Periodic Report Timer started
+bukMsgdistrMentor.cpp (488) : 
+Message Received in MsgDistrMentor application
+bukMsgdistrMentor.cpp (498) : Message Source: Admin
+bukMsgdistrMentor.cpp (937) : Message: Training Complete
+Timer stopped, id :30
+bukMsgdistrMentor.cpp (952) : Mentor 1: In TRAINING state
+bukMsgdistrMentor.cpp (957) : Mentor 1: Training Complete Ack Sending to Admin...
+bukMsgdistrMentor.cpp (964) : Sent message
+bukMsgdistrMentor.cpp (967) : Mentor 1: in Training state
+bukMsgdistrMentor.cpp (969) : Mentor 1: changed state to TERMINATED
+

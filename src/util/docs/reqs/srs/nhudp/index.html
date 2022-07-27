@@ -1,0 +1,748 @@
+<html bgcolor="white">
+<head>
+<title>Generic UDP Network Handler Software Requirements Specifications Document</title></head>
+<body bgcolor="white">
+<hr>
+<h2 align="center">Generic UDP Network Handler Software Requirements Specifications Document</h2>
+<hr>
+
+<table border="0" width="80%">
+<tbody><tr>
+        <td><b>Document id</b></td>
+        <td>:<br> </td>
+        <td><b>ITS-SRS-CDSU_NHUDP-001</b></td
+</tr>
+<tr>
+        <td><b>Document name</b></td>
+        <td>: <br> </td>
+        <td>Generic UDP Network Handler Software Requirements Specifications Document</td>
+</tr>
+<tr>
+
+        <td><b>Author(s)</b></td>
+        <td>:<br> </td>
+        <td>Vijaya Kumar</td>
+</tr>
+<tr>
+        <td><b>Contributor(s)</b></td>
+        <td>: <br></td>
+
+        <td>Prakash R, Seema Jain, Sumit Bijwe.</td>
+</tr>
+<tr>
+        <td><b>Approved By</b></td>
+        <td>:<br> </td>
+        <td> Prakash R.</td>
+</tr>
+
+<tr>
+        <td><b>Document Source</b></td>
+        <td>:<br> </td>
+        <td>Softswitch and Media Gateway BU, C-DOT, Bangalore</td>
+</tr>
+
+</tbody></table>
+
+
+<table>
+
+<tbody><tr>
+        <td><i>Copyright © 2004 by C-DOT. All rights reserved. Contents of
+        publication may not be reproduced in any form without permission from
+        C-DOT.</i></td>
+</tr>
+</tbody></table>
+
+<h4>Revision Chart</h4>  
+<p>
+<table width="100%" cellpadding="5" border="1" cellspacing="0">
+<tbody><tr>
+        <th colspan="5">Document History</th>
+</tr>
+
+<tr>
+        <th> Version No </th>
+        <th> Revised By </th>
+        <th> Released On </th>
+        <th> Approved By </th>
+        <th> Remarks </th>
+</tr>
+<tr>
+        <td> Draft 1</td>
+        <td> Vijaya Kumar </td>
+        <td> Mar 17, 2004 </td>
+        <td> Prakash R</td>
+        <td>  <br> </td>
+</tr>
+<tr>
+        <td> Draft 2</td>
+        <td> Vijaya Kumar </td>
+        <td> Apr 13, 2004 </td>
+        <td> Prakash R</td>
+        <td>  <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+</tbody></table>
+
+<br></p><hr>
+
+<!-- --------------------------------------------------------------------- -->
+<h2>Table of Contents</h2>
+<ul>
+  <li>    <a href="#intro">1.0 Introduction</a></li>
+  <ul>
+    <li><a href="#intro-pur">1.1 Purpose</a></li>
+    <li><a href="#intro-scp">1.2 Scope</a></li>
+    <li><a href="#intro-daa">1.3 Definitions, Abbreviations and Acronyms</a></li>
+    <li><a href="#intro-ref">1.4 References</a></li>
+    <li><a href="#intro-ovw">1.5 Overview</a></li>
+  </ul>
+  <li>    <a href="#gd">2.0 General Description</a> </li>
+  <ul>
+    <li><a href="#prod-pers">2.1 Module Perspective</a></li>
+    <ul>
+    	<li><a href="#bg">2.1.1 Background</a></li>
+	<li><a href="#sysintf">2.1.2 System Interfaces</a></li>
+	<li><a href="#usrintf">2.1.3 User Interfaces</a></li>
+	<li><a href="#mgmtintf">2.1.4 Management Interfaces</a></li>
+	<li><a href="#hdwintf">2.1.5 Hardware Interfaces</a></li>
+	<li><a href="#comintf">2.1.6 Communication Interfaces</a></li>
+	<li><a href="#memcon">2.1.7 Memory constraints</a></li>
+	<li><a href="#oper">2.1.8 Operations</a></li>
+	<li><a href="#sadpreq">2.1.9 Site Adaption Requirements </a></li>
+    </ul>
+    <li><a href="#prod-func">2.2 Module Functions</a></li>
+    <li><a href="#user-char">2.3 User Characteristics</a></li>
+    <li><a href="#const">2.4 Constraints</a></li>
+    <li><a href="#asd">2.5 Assumptions and Dependencies</a></li>
+    <li><a href="#asd">2.6 Apportioning of Requirements</a></li>
+  </ul>
+
+    <li><a href="#spec-req">3.0 Specific Requirements</a></li>
+	<ul>
+	<li><a href="#ext-int">3.1 External Interfaces Requirements</a></li>
+	<li><a href="#fun-req">3.2 Functional Requirements</a></li>
+	<li><a href="#per-req">3.3 Performance Requirements</a></li>
+	<li><a href="#logdr">3.4 Logical Database Requirements</a></li>
+	<li><a href="#des-con">3.5 Design constraints</a></li>
+		 <ul>
+			<li><a href="#std-com">3.5.1 Standards Compliance</a></li>
+		</ul>
+	<li><a href="#attr">3.6 Attributes</a></li>
+		 <ul>
+			<li><a href="#attr-rel">3.6.1 Reliability</a></li>
+			<li><a href="#attr-aval">3.6.2 Availability</a></li>
+			<li><a href="#attr-sec">3.6.2 Security</a></li>
+			<li><a href="#attr-man">3.6.3 Maintainability</a></li>
+			<li><a href="#attr-tran">3.6.4 Portability</a></li>
+		</ul>
+
+	<li><a href="#other">3.7 Other Requirements</a></li>
+		<ul>
+			<li><a href="#deli">3.7.1 Deliverables</a>	
+		</ul>
+	<li><a href="#add-com">3.8 Additional Comments</a></li>
+	</ul>
+</ul>
+
+<!-- --------------------------------------------------------------------- -->
+<hr width="100%" size="2" noshade="noshade">
+
+<a name="intro"> </a>
+<h2>1. Introduction </h2>
+
+<h3><a name="intro-pur">1.1  Purpose </a></h3>
+<p> The purpose of this document is to capture the functional, performance, 
+    operational and interface requirements of a generic UDP Network Handler
+    for the Internet Telephony System. The module needs to be built such that
+    it can be used with all stacks such as H.323, SIP, Meagaco or any other
+    module.	    
+</p>
+
+<h3><a name="intro-scp">1.2  Scope </a></h3>
+<p>The reader is assumed to be familiar with the UDP and the related document  
+in the references. Here only the specifications are given. The Architecture
+and detail document will be available later.
+<br>
+This document gives requirement specification for generic UDP Network Handler
+to be built. UDP Network Handler will give functionality like opening UDP 
+port, sending data over UDP port, receiving data over UDP port, closing UDP
+port etc.
+
+Objective of UDP network handler is to remove complexity in UDP socket
+operation by giving good API.
+
+Since UDP Network Handler provides callback function interface to users, 
+aynchrnous operation on UDP socket can be handled very easily .
+
+<h3><a name="intro-daa">1.3  Definitions, Acronyms and Abbreviations</a> </h3>
+
+<h3>Abbreviations</h3>
+<table cellspacing="0" cellpadding=0  border=0>
+<tbody>
+
+<tr>
+<td>ACK</td>
+<td>:</td>
+<td> Acknowledgement</td>
+</tr>
+
+<tr>
+<td>API</td>
+<td>:</td>
+<td> Application Programming Interface</td>
+</tr>
+
+
+<tr>
+<td>MI</td>
+<td>:</td>
+<td> Management Interface</td>
+</tr>
+
+<tr>
+<td>NH</td>
+<td>:</td>
+<td> Network Handler</td>
+</tr>
+
+<tr>
+<td>SI</td>
+<td>:</td>
+<td> System Interface</td>
+</tr>
+
+
+<tr>
+<td>SRS</td>
+<td> :</td>
+<td> Software Requirement Specifications</td>
+</tr>
+
+<tr>
+<td>SUI</td>
+<td>:</td>
+<td> Software Utilities Interface</td>
+</tr>
+
+<tr>
+<td>TCP</td>
+<td>:</td>
+<td> Transport Control Protocol</td>
+</tr>
+
+
+<tr>
+<td> TBD</td>
+<td> :</td>
+<td> To Be Done</td>
+</tr>
+
+<tr>
+<td> UDP</td>
+<td> :</td>
+<td> User Datagram Protocol</td>
+</tr>
+
+<tr>
+<td>UI</td>
+<td>:</td>
+<td> User Layer Interface</td>
+</tr>
+
+</tbody></table>
+
+<h3>Definitions</h3>
+<table valign="top" cellpadding="2" border="1" cellspacing="0">
+<tbody>
+
+<tr valign="top">
+	<td><b> System Management</b></td>
+	<td> System Management is responsible for creating, configuring,
+	deleting of UDP Network Handler instance.
+	</td>
+</tr>
+
+<tr valign="top">
+	<td><b> Transport Address</b></td>
+	<td> Ip address and port number together makes Transport Address. 
+In case of UDP Ip address and UDP port number together makes UDP Transport Address.
+	</td>
+</tr>
+
+
+<tr valign="top">
+	<td><b> UDP Network Handler</b></td>
+	<td>The UDP Netwok Handler offers the basic UDP network services like
+	 open UDP port, send data over UDP port, receive data over UDP port,
+	 removing UDP port etc.</td>
+</tr>
+
+<tr valign="top">
+	<td><b> UDP Network Handler Instance Id</b></td>
+	<td> It is the unique identity of newly created UDP Network Handler.
+	</td>
+</tr>
+
+<tr valign="top">
+	<td><b> UDP Port</b></td>
+	<td> This is an abstraction for the UDP socket over which data can be
+	 sent,received.
+	</td>
+</tr>
+
+<tr valign="top">
+	<td><b> User Layer</b></td>
+	<td>User Layer is the customer of UDP Network Handler which avails the
+	services offered by it. 
+	</td>
+</tr>
+<tr valign="top">
+	<td><b> Fixed Local Transport Address Standard Port  </b></td>
+	<td> If user wants Server UDP Port then he has to fix the local port number and port number should be given
+by user(standard port no).
+	</td>
+</tr>
+
+<tr valign="top">
+	<td><b> Fixed Local Transport Address Ehpermal Port  </b></td>
+	<td> If user wants to send data to remote and wants reply back over UDP Port then he has to fix the local port
+number but he need not fix port number. He can mention port number 0, then system will asign free port number.
+	</td>
+</tr>
+
+<tr valign="top">
+	<td><b> Fixed Destination Transport Address  </b></td>
+	<td> If user wants to send and receive data from only one remote UDP Port then he can fix the Destination
+Transpor address.
+	</td>
+</tr>
+</table>
+
+<h3><a name="intro-ref">1.4  References</a></h3>
+<table border="0" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td valign="top">[TCP/IP] </td>
+<td valign="top">:</td>
+<td valign="top">Unix Network Programming Volume 1 by W.Rechard Stevens</td>
+</tr>
+
+</tbody></table>
+
+
+<h3> <a name="intro-ovw">1.5 Overview </a> </h3>
+
+<p> The overview of the document is as follows.
+<br>
+<br>
+Section 2 gives a general description of the UDP network handler module
+implementation that should be developed. It gives the module perspective,
+module functions,capabilities which are supported and will be supported
+in the future, user characteristics, constraints, assumptions and dependencies of the module being
+developed.
+<br>
+<br>
+ Section 3 gives system specific requirements of the UDP network handler module
+ implementation. It gives the specific requirements, external interface
+ requirements, performance requirements, functions, design constraints,
+ standards compliance, attributes and any other requirements to be supported.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+<hr width="100%" size="2" noshade="noshade"><a name="gd"><h2>2. General Description</h2></a>
+
+<a name="prod-pers"><h3>2.1 Module Perspective</h3></a>
+<p>
+	System Context of the UDP Network Handler is given in the
+ following figure. Each of the interfaces are explained in next sub section of
+ this section. 
+<br>
+ <center><img src="udpnw-system-context.gif"></center>
+<br>
+ System Management can create multiple instances of UDP Network handler
+ isntances, as many as he required . User can use any of the instances of UDP
+ Network Handler. There can be multiple System management, multiple User also.
+ Then overall system context of UDP Network handler Module looks as in the
+ following figure.
+<br>
+	<center><img src="overall-context.gif"></center>
+<br>
+ In single process there can be maximum 128 instances of UDP Network Handler.
+ Maximum no of UDP Port that supported by each instances should be configurable
+ by System Management. These requirement can arise in certain cases like in load
+ conditions, to have separate network handlers for self opened UDP Port. This
+ gives the feature of load sharing. Each instances can be implemented as thread.
+
+<br>
+ Each UDP network handler instance must support following functions to user.<br>
+<ul>
+   <li> Opening an UDP port.<br>
+	 While opening UDP Port user can fix Local Transport Address or Destination Transport Address or both.
+ If user wants to recieve data over UDP Port then he has to fix local transport address.
+ There are two type of fixing local transport address.
+	<ul>
+    		<li> Standard Port.
+		<li> Ephemeral Port.
+	</ul>
+In the case of Standard Port user has to mention the nozero +ve port no. But in the case of Ephemeral Port he has to mention port number 0. Then UDP Network Handler Module will assign free port number. If user wants Server UDP Port then first case is suitable. If user wants client UDP Port but he wants reply over that UDP port then second option is suitable.
+If user want to open UDP port which receives or sends data to only one reomte UDP Port, then he can fix remote UDP Port transport address. This will speed the operaton of sending data. Note that there is no Ephemeral Port number in this case.
+Note: User can send data without opening UDP Port, if he wants client UDP Port and doesn't expect any reply.
+   <li> registering callback functions.		
+   <li> Sending data over  UDP port.
+   <li> Receiving data over UDP prot.
+   <li> Module should allow user to give opaque data with send data request.
+    Module is not going to do anything with opaque data, but it should be returned in data transmission response. It is upto user to make use of it. 
+   <li> Closing opened UDP port.	
+</ul>
+<br>
+Module Should support following functions to System Management.
+<ul>
+	<li> Creating Instances of UDP Network Handler.
+	<li> Removing created instances of UDP Network Handler.
+	<li> Terminating UDP Network Handler Instance.
+	<li> Registering callback functions.
+	<li> Performing control operation like creating, deleting, starting,
+	 stoping instances of UDP Network Handler.
+	<li> Configuring instances of UDP Network Handler.
+	<li> Getting Status report of UDP Network Handler.
+	<li> Getting Statistics report of UDP Network Handler.
+</ul>
+<br> 
+Response for all above operation and asynchronous event(e.g data arrive) should be notified to 
+user and management through callback functions. 
+</p>
+<h3><a name="bg">2.1.1 Background</a></h3>
+<p>
+Lots of modules in the Internet Telephony System uses network services
+to interact with each other. In a case of IP-IP call, we need to establish the
+connections between end points and to communicate on established connections.
+The lowest essential block in such modules provides the transport mechanism.
+It offers all network services which upper layers  requires to communicate across.  
+</p>
+<h3><a name="sysintf">2.1.2 System Interfaces </a></h3>
+<p>
+UDP network handler is a midleware between UDP services and user.
+It makes use of UDP services provided by Operating System. UDP API provides
+following functions. <br>
+<ul>
+	<li> socket
+	<li> bind
+	<li> connect
+	<li> close
+</ul> 
+</p> 
+<h3><a name="usrintf">2.1.2 User Interfaces</a></h3>
+<p>The main purpose of the UDP network handler is to transport packets
+over IP network by managing multiple UDP ports.
+It needs to offer the general services like</p>
+<ul>
+<li> Opening UDP Port.<br> 
+	There can be 3 type of opening UDP Port.
+	<ul>
+		<li> Only local transport address is fixed.
+		<li> Only remote transport address is fixed.
+		<li> Both local an remote transport address are fixed.
+	</ul>
+	There can be two type of fixed transport address. This is valid for only local
+	transport address fixed.
+	<ul>
+		<li> Fixed Transport address where port no is standard.
+		<li> Fixed Transport address where port no is ephemeral.
+	</ul>
+<li>Registering Call back functions for each UDP Port.
+<li>Sending data over UDP port where only local transport address is fixed</li>
+<li>Sending data over UDP port where both local transport address and destination transport address are fixed.</li>
+<li>Sending data over UDP port where only destination transport address is fixed. </li>
+<li>Sending data over UDP port where both local and destination transport address are fixed.<br>
+	In this case user will simply send data without opening UDP port. 	
+<li>Receiving data over UDP port where only local transport address is fixed.</li>
+<li>Receiving data over UDP port where both local and destination transport address are fixed. 
+	
+</ul>
+<h3><a name="mgmtintf">2.1.3 Management Interfaces</a></h3>
+<p>
+<ul>
+	<li> Creating  multiple UDP Network handler(instances of UDP network handler).
+	<li> Removing instance of UDP Network handler. (It just deletes the UDP NH instance)
+	<li> Termination isntance of UDP Network handler.(It destroys the UDP NH Instance)
+	<li> Registring Callback functions for each UDP network handler instances.
+	<li>Configuration of UDP Network Handler instances. <br> 
+	 Support  Initial (static) and General (dynamic)configuration.
+	<li>Getting Status of Network Handler instances.<br>
+	<li>Controling of Network Handler instances.
+	<br> The control functions like <br>
+	- Create NH.<br>
+	- Delete NH.<br>
+	- Start NH.<br>
+	- Stop NH.<br>
+	<li>Getting Statistics of Network Handler instances. <br>
+</ul>
+
+</p>
+<h3><a name="sftintf">2.1.4 Software Interfaces</a></h3>
+<p>
+ Internet telephony system basic utility kit has utiltypes,timer, thread,
+ message distributor, hashtable utilities. Thease utilities can be used if required.
+</p>
+<h3><a name="hdwintf">2.1.5 Hardware Interfaces</a></h3>
+<p>
+None	
+</p>
+<h3><a name="comintf">2.1.6 Communication Interfaces </a></h3>
+<p>
+	UDP protocol(see section 2.1.2).
+</p>
+<h3><a name="memcon">2.1.7 Memory Constaints</a></h3>
+<p>
+<ul>
+	<li>It should have low run-time memory.
+	<li>It should have efficient memory management.</li>
+	<li>It should be thread safe and re-entrant.</li>
+</ul>
+</p>
+<h3><a name="oper"></a>2.1.8 Operations</a></h3>
+<p>
+ 	UDP Network Handler must support all the functions explained under
+  section module perspective, operations. Apart from that it should support following functionality also.<br>
+<ul>	
+<li> Issuing Data indication to user when data arrives from remote end.<br>
+<li> Issuing Unsolicated Status Indication to System Management.	
+<li> Issuing Request Response to user.
+	<ul>
+		<li> Add Udp Port Response.
+		<li> Data Request Response.
+		<li> Remove UDP Port Response.
+	</ul>
+<li> Issuing Request Response to System Management.
+	<ul>
+		<li> Create UDP NH Instance Response.
+		<li> Remove UDP NH Instance Response.
+		<li> Control Response.
+		<li> Configure Response.
+		<li> Status Response. 	The NH should report its status like RUNNING, STOPPED, CREAETED.<br>
+
+		<li> Statistics Response. The NH should report with the following statistics.<br>
+
+	- Total number of Add UDP Port Request.<br>
+	- Total number of Add UDP Port Request where only local transport address is fixed.<br>
+	- Total number of Add UDP Port Request where both  local and destination transport address is fixed.<br>
+	- Total number of Add UDP Port Request where only destination trasport address is fixed.<br>
+	- Total number of Add UDP Port Request where local port is fixed and standard.<br>
+	- Total number of Add UDP Port Request where local port is fixed and ephemeral.<br>
+	<br>
+	- Total number of Data Requests.<br>
+	- Total number of Data Requests on UDP port where only local transport address is fixed.<br>
+	- Total number of Data Requests on UDP port where both local and destination transport
+ address is fixed.<br>
+	- Total number of Data Requests on UDP port where only destination transport address is fixed.<br>
+	- Total number of Data Requests on UDP port where both local and destination transport address is fixed.<br>
+	- Total number of Data Requests on UDP port where local port is fixed and standard.<br>
+	- Total number of Data Requests on UDP port where local port is fixed and ephemeral.<br>
+	<br>
+	- Total number of Remove UDP Port request.<br>
+	- Total number of Remove UDP Port Request where only local transport address is fixed.<br>
+	- Total number of Remove UDP Port Request where both  local and destination transport address is fixed.<br>
+	- Total number of Remove UDP Port Request where only destination trasport address is fixed.<br>
+	- Total number of Remove UDP Port Request where local port is fixed and standard.<br>
+	- Total number of Remove UDP Port Request where local port is fixed and ephemeral.<br>
+	<br>
+	- Total number of Data Indications.<br>
+	- Total number of Data Indications over UDP Port where only local transport address is fixed.<br>
+	- Total number of Data Indications over UDP Port where both  local and destination transport address is fixed.<br>
+	- Total number of Data Indications over UDP Port where local port is fixed and standard.<br>
+	- Total number of Data Indications over UDP Port where local port is fixed and ephemeral.<br>
+	<br>	
+	- Total number of Success Add UDP Port Request.<br>
+	- Total number of Success Add UDP Port Request where only local transport address is fixed.<br>
+	- Total number of Success Add UDP Port Request where both  local and destination transport address is fixed.<br>
+	- Total number of Success Add UDP Port Request where only destination trasport address is fixed.<br>
+	- Total number of Success Add UDP Port Request where local port is fixed and standard.<br>
+	- Total number of Success Add UDP Port Request where local port is fixed and ephemeral.<br>
+	<br>
+	- Total number of Success Data Requests.<br>
+	- Total number of Success Data Requests on UDP port where only local transport address is fixed.<br>
+	- Total number of Success Data Requests on UDP port where both local and destination transport
+ address is fixed.<br>
+	- Total number of Success Data Requests on UDP port where only destination transport address is fixed.<br>
+	- Total number of Success Data Requests on UDP port where both local and destination transport address is fixed.<br>
+	- Total number of Success Data Requests on UDP port where local port is fixed and standard.<br>
+	- Total number of Success Data Requests on UDP port where local port is fixed and ephemeral.<br>
+	<br>
+	- Total number of Success Remove UDP Port request.<br>
+	- Total number of Success Remove UDP Port Request where only local transport address is fixed.<br>
+	- Total number of Success Remove UDP Port Request where both  local and destination transport address is fixed.<br>
+	- Total number of Success Remove UDP Port Request where only destination trasport address is fixed.<br>
+	- Total number of Success Remove UDP Port Request where local port is fixed and standard.<br>
+	- Total number of Success Remove UDP Port Request where local port is fixed and ephemeral.<br>
+	<br>
+	- Total number of Active Udp Port.
+	</ul>
+</ul>
+All this response and indication are issused to system management or user through callback function. If callback functions are not registered, then module should
+post message.
+</p>
+<h3><a name="sadpreq">2.1.8 Site Adaption Requirements </a></h3>
+<p>
+TBD
+</p>
+
+<a name="prod-func"><h3>2.2 Module Functions</h3></a>
+<p>
+	Module Should Support all the functions explained in section Module Perspective.
+</p>
+<a name="user-char"><h3>2.3 User Characteristics</h3></a>
+<p>As there are two interface, System Manager and User
+Layer. Both the interface registers with event handlers as a call back function to get responses
+or event indication from NH on appropriate API calls.  So whenever any events occurs or 
+NH need to send response to user request, NH will call callback registered with NH.
+User has to write callback functions such way that it should return as immediately as possible.
+Because the callback function will be called in NH context.
+</p>
+<a name="const"><h3>2.4 Constraints</h3></a>
+<p>
+ <ul>
+	<li> The key for UDP port will be allocated by NH not by the user.
+	<li> Once destination transport address is fixed for UDP port, then can't be changed.
+ </ul>	
+</p>
+
+<a name="asd"><h3>2.5 Assumptions and Dependencies</h3></a>
+<p> TBD </p>
+<a name="apr"><h3>2.6 Apportioning of Requirements</h3></a>
+<p> TBD </p>
+<!-- --------------------------------------------------------------------- -->
+<hr width="100%" size="2" noshade="noshade">
+<h2><a name="spec-req">3.0 Specific Requirements</a></h2>
+
+<h3><a name="ext-int">3.1 External Interfaces Requirements</a></h3>
+<p>TBD</p>
+
+<h3><a name="fun-req">3.2 Functional Requirements</a></h3>
+<p>
+	Module should take care of validity of operation by user.
+
+<ul>
+	<li>During creation of UDP network handler instance validity of module id given
+should be taken care.
+	<li> During all operation valid parameter should be passed.
+	<li> Module should take care of insequence operation by user.
+</ul>	
+</p>
+
+<h3><a name="per-req">3.3 Performance Requirements</a></h3>
+<p>	
+<ul>
+	<li>It should have high throughput in Load Conditions.</li>
+	<li>There can be multiple simultaneous users.</li>
+	<li>User and NH should be in same process.</li>
+</ul>
+</p>
+
+<h3><a name="logdr">3.4 Logical Database Requirements</a></h3>
+<p>TBD</p>
+
+<h3><a name="des-con">3.5 Design constraints</a></h3>
+<p>TBD</p>
+
+<h3><a name="std-com">3.5.1 Standards Compliance</a></h3>
+<p>TBD</p>
+
+<h3><a name="attr">3.6 Software System Attributes</a></h3>
+<h3><a name="attr-rel">3.6.1 Reliability</a></h3>
+<p>TBD</p>
+
+<h3><a name="attr-aval">3.6.2 Availability</a></h3>
+<ol>
+	<li>Support for high availability requirements</li>
+</ol>
+<h3><a name="attr-sec">3.6.3 Security</a></h3>
+<p>None</p>
+<h3><a name="attr-man">3.6.4 Maintainability</a></h3>
+<p>TBD</p>
+<h3><a name="attr-tran">3.6.5 Portability</a></h3>
+<p>The UD Network Handler implementation should be portable on the following 
+computing platforms, processors and compilers.
+</p><ol>
+	<li>OS</li>
+	<ol>
+		<li>Linux</li>
+		<li>Solaris</li>
+		<li>Embedded targets like eCos etc.</li>
+	</ol>
+	<li>Compilers</li>
+	<ol>
+		<li>GNU C/C++</li>
+	</ol>
+	<li>Processors</li>
+	<ol>
+		<li>Intel x86 series</li>
+		<li>PowerPC</li>
+		<li>Sun SPARC</li>
+	</ol>
+</ol>
+<p></p>
+
+<h3><a name="other">3.7 Other Requirments</a><h3>
+<h3><a name="deli">3.7.1 Deliverables</a></h3>
+<ol>
+<li><b> Source Code for Network Handler.</b>
+
+	<p> The source code to be delivered are C++ interface and
+	implementation files, Makefile for compiling the C++ files, README
+	files. </p>
+
+</li><li> <b>API.</b>
+	<p> The various API for the system manager interface and user layer
+	interface to be provided. </p>
+
+</li><li> <b>Test Stubs.</b>
+<p> All the test stubs for testing the functionality of Network Handler to be 
+    provided with the source code. </p>
+
+</li><li> <b>OS Wrappers.</b>
+	 <p> OS Wrappers for portability with other operating system 
+	    to be provided. The OS Wrappers to be developed should help in 
+	     minimum effort of portability. </p>
+
+</li><li> <b>Sample Customizable Modules.</b>
+	<p> Example customization modules should be provided.</p>
+
+</li></ol>
+
+
+<h3><a name="add-com">3.8 Additional Comments</a></h3>
+<p>None</p>
+
+<!-- ----------------------------------------- -->
+<hr noshade>
+<i>End of document</i>
+<hr noshade>
+</body></html>

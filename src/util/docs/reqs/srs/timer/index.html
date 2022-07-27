@@ -1,0 +1,396 @@
+<html bgcolor ="white">
+
+<head>
+<title>Timer Implementation SRS</title>
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#0000ff" vlink="#ff0000"
+ alink="#000088">
+   
+<hr>
+<h2 align=center> TIMER Software Requirements Specification </h2>
+<hr>
+
+<table width="80%" border=0>
+<tr>
+        <td><b>Document id</b></td>
+        <td>:<br> </td>
+        <td><b>ITS-SRS-CDSU_TIMER-001</b></td>
+</tr>
+<tr>
+        <td><b>Document name</b></td>
+        <td>: <br> </td>
+        <td>Timer Software Requirements Specification </td>
+</tr>
+<tr>
+        <td><b>Author(s)</b></td>
+        <td>:<br> </td>
+        <td>Indu Mishra</td>
+</tr>
+<tr>
+        <td><b>Contributor(s)</b></td>
+        <td>: <br></td>
+        <td>Shiv Kumar B, Titty Thomas</td>
+</tr>
+<tr>
+        <td><b>Approved By</b></td>
+        <td>:<br> </td>
+        <td> Prakash R.</td>
+</tr>
+<tr>
+        <td><b>Document Source</b></td>
+        <td>:<br> </td>
+        <td>Internet Telephony Group, C-DOT, Bangalore</td>
+</tr>
+</table>
+ 
+<table>
+<tr>
+	<td>Copyright @ 2003 by C-DOT. All rights reserved. Contents of publication
+ may not be reproduced in any form without permission from C-DOT </td>
+	</td>
+</tr>
+</table>
+
+<hr>
+ <h4>Revision Chart</h4>
+<p>
+
+<table border=1 cellpadding=10 width="100%">
+<tr>
+        <th colspan=5>Document History</th>
+
+</tr>
+<tr>
+        <th> Version No </th>
+        <th> Revised By </th>
+        <th> Released On </th>
+        <th> Approved By </th>
+        <th> Remarks </th>
+</tr>
+<tr>
+        <td> Draft 1 </td>
+        <td> Shiv Kumar B </td>
+        <td> 26th Feb, 2003 </td>
+        <td> Prakash R </td>
+        <td> The document was released as the Timer Module</td>
+</tr>
+<tr>
+        <td> Draft 2 </td>
+        <td> Shiv Kumar B </td>
+        <td> 12th May, 2003 </td>
+        <td> Prakash R</td>
+        <td> Feedback incorporation:  </td>
+
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+</table>
+
+<hr width="100%">
+
+<hr>  
+<h2> Table of contents </h2>
+    
+<p><br>
+<font face = arial>
+<pre> 
+1	<a href="#Introduction"><b>Introduction</b></a></li>
+	1.1	<a href="#Purpose"><b>Purpose & Scope</b></a>
+	1.2	<a href="#Definitions"><b>Definitions,Acronyms and Abbreviations</b></a>
+	1.3	<a href="#References"><b>References</b></a>
+	1.4	<a href="#Overview"><b>Overview</b></a>
+ 
+2       <a href="#General"><b>Overall Description</b></a>
+	2.1	<a href="#Product"><b>Product Perspective</b></a>
+	2.2	<a href="#Product-Functions"><b>Product Functions</b></a>
+	2.3	<a href="#User-Characteristics"><b>User Characteristics</b></a>
+	2.4	<a href="#General-Constraints"><b>General Constraints</b></a>
+	2.5	<a href="#Assumptions"><b>Assumptions &	Dependencies</b></a>
+
+3	<a href="#Specific-Requirements"><b>Specific Requirements</b></a>
+	3.1	<a href="#External-I"><b>External Interface Requirements</b></a>
+	3.2	<a href="#Functional-R"><b>Functional Requirements</b></a>
+	3.3	<a href="#Performance-R"><b>Performance	Requirements</b></a>
+	3.4	<a href="#Design"><b>Design Constraints</b></a>
+	3.5	<a href="#Software-Sys-Attr"><b>Software System Attributes</b></a>
+	3.6	<a href="#Other-Requirements"><b>Other Requirements</b></a>
+	3.6	<a href="#Deliverables"><b>Deliverables</b></a>
+</pre>
+</font>
+</p>
+
+<hr>  
+<a name="Introduction"></a><h2>1. Introduction</h2>
+    
+<h3><a name="Purpose"></a>1.1 Purpose & Scope</h3>
+<p>  This document gives the Software Specification Requirements for building
+ the Timer Utility using New Timing Wheel Implementation Algorithm [HTM97].It
+covers all the functional, performance and interface requirements for the
+Timer Module. This document is an enhancement of existing Timer Module for
+solving problems related to  
+<ul>
+	<li> Dangling pointers.</li>
+	<li> Optimal Memory usage.</li>
+	<li> Quality of implementation (understandability, maintainability, ease 
+of use etc.</li>
+	<li> Quality of the API.</li>
+	<li> The performance of the timer implementation, when a large number
+of timers  are started.</li>
+	<li> The performance of the timer implementation, when fine granularity 
+of  the timers are required. (Say  10ms, 100ms etc).</li>
+	<li> Thread-Safety.</li>
+   
+</ul>
+</p>
+    
+<h3><a name="Definitions"></a>1.2 Definitions, Acronyms and Abbreviations</h3>
+    
+<h3><a name="References"></a>1.3 References</h3>
+<p> [HTM97]: Hashed and Hierarchical Timing Wheels: Efficient Data Structures
+ for Implementing a Timer Facility , by George Varghese and Anthony Lauck, 
+ IEEE/ACM Transactions on networking, Dec 1997 .  
+</p>
+
+<h3><a name="Overview"></a>1.4 Overview</h3>
+<p> The overview of the document is as follows: </p> 
+<p><b>Section 2 </b>gives the general description of the Timer Class 
+ i.e. its function, perspective, its capabilites and the user characteristics.
+</p>
+ 
+<p><b>Section 3</b> gives the specific requirements of the Timer Class. It 
+tells about the interface used, performance requirements of the Timer, design  
+constraints, attributes and the other requirements if any. <br>
+</p>
+ 
+<h2><a name="General"></a>2. General System Description</h2>
+    
+<h3><a name="Product"></a>2.1 Product Perspective</h3>
+<p>  Timer Module is responsible for providing a number of Software  timers
+ which  can be used by  any stack, or a utility.  Timers consist 
+of following components:  
+<ul>
+	<li> API's which are used by processes to Start Timers ,Stop Timers  
+and for TimeOut Handling of Timers.</li>
+	<li>A Tick Mechanism which is used for Time Out handling is supposed to
+be provided by the external interface.When the Tick reaches some particular
+time  limit for which the timer was set then TimeOutHandler is called .</li>
+   
+</ul>
+ The API's are used to perform specific functions as per the requirements
+ and then  after timeout , Timer Module has a TimeOut Handling function
+ which interacts with  specific client Program to perform some activity.
+ We can start any number of timers and stop them. 
+ 
+ The Timer utility should be thread safe and re-entrant.  
+
+<h3><a name="Product-Functions"></a>2.2 Product Functions</h3>
+    The Timer Module performs following functions:  
+<ul>
+	<li> Start number of timers with different timeunits and timecounts like
+100MS , 5 SECOND  etc.</li>
+	<li>Stop number of timers as per the requirements.</li>
+	<li> Call User Specific TimeOut Handler Function which performs some
+important activity on client on timeout like sending some message or using
+Call back Function.</li>
+	<li> Seperating interface of  timer implementation  and program 
+part.It debarrs access to timer internals.</li>
+   
+</ul>
+  <b></b>
+<ul>
+   
+</ul>
+    
+<h3><a name="User-Characteristics"></a>2.3 User Characteristics</h3>
+<p>  User should have knowledge about the usage of Timers Module
+ and its API's. Implementation details are not required. Users should also
+ be aware of Thread Programming.
+</p>
+   
+<h3><a name="General-Constraints"></a>2.4 General Constraints</h3>
+   
+<h3> <a name="Assumptions"></a>2.5 Assumptions and Dependencies</h3>
+    
+<h2> <a name="Specific-Requirements"></a>3. Specific Requirements</h2>
+    
+<h3> <a name="External-I"></a>3.1 External Interface Requirements</h3>
+  This section gives the User interface requirements to help the Timers to
+ interact with other components:  
+<ul>
+    <li> The System requirements like Solaris /SUN required for CLOCK_TIMER 
+start and initialisation.</li>
+   <li> <b>The UserHandler Function</b> and <b>CALLBACK</b> function  
+to handle  timer timeout.</li>
+  <li>Use of Pointers will be internal to data structure.</li>
+  <li> Should execute on SUN, LINUX, e-cos OS.</li>
+    
+</ul>
+<ul>
+   
+</ul>
+   
+<h3><a name="Functional-R"></a>3.2 Functional Requirements</h3>
+  Timer Module is Multithreading capable.In order to strat a new timer we
+need to provide following  structure:
+
+<b>TimerUser Info</b>
+
+<br>
+<p> The functional diagram to show overall view of Timer Utility
+ is shown in fig 3.2.1
+</p>
+
+<center>  
+<p><img src="SRS.gif" height="454" width="664">
+</p>
+ 
+<p><b>fig 3.2.1</b></p>
+</center>
+
+<p>The functional requirements of the Timer is as follows:</p>
+<p>
+M  :  Mandatory <br>
+O  :  Optional <br>
+CM :  Conditional Mandatory
+</p>
+ 
+<ul>
+  <li> <b>TimerUser Info</b> : This Information consists of following:</li>
+</ul>
+    
+<center> 
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+<tr>
+ <td ><b> Fields </b></td>
+   <td><b> Mandatory </b></td>
+   <td><b> Description </b></td>
+</tr>
+<tr>
+   <td > TimeUnits </td>
+   <td> M </td>
+   <td> TimeUnits for which Timer is to be started.Can be in Seconds /Milliseconds/Hours
+etc </td>
+</tr>
+<tr>
+  <td> TimeCounts </td>
+   <td> M </td>
+   <td> Time count eg 10 ,20 etc. </td>
+</tr>
+<tr>
+  <td> Destination Module Id </td>
+  <td> M </td>
+  <td> Contains the destination at which TimeOut event has to be reported. </td>
+</tr>
+<tr>
+  <td> Opcode </td>
+   <td> M </td>
+   <td> Message type and is used to construct message structures which are
+used by userTimeOutHandler. </td>
+</tr>
+<tr>
+  <td> UserInfo[] </td>
+   <td> O </td>
+   <td> Contains additional details regarding a timer started.</td>
+</tr>
+<tr>
+  <td> TimeOutReportType </td>
+   <td> M </td>
+   <td> Handling of timeout will take place according to this parameter.If
+its of type Message then Message is constructed else if its of type CallBackFunction
+then CallBackFunction is used. </td>
+</tr>
+<tr>
+  <td> CallBackFunction </td>
+   <td> CM </td>
+   <td> Used when timerReportType is Callback.It sends information back to
+the Timer process from destination to client. </td>
+</tr>
+     
+</table>
+</center>
+    
+<h3><a name="Performance-R"></a>3.3 Performance Requirements</h3>
+<ul>
+	<li> Start at a time some thousands of Timers.</li>
+	<li> Time Precision should be very high.  Memory usage should be low.</li>
+</ul>
+
+<a name="Design"></a>3.4 Design Constraints<br>
+<p>  Same as General Constraints( 2.4) 
+</p>
+
+<h3><a name="Software-Sys-Attr"></a>3.5 Software System Attributes</h3>
+    
+<h3><a name="Other-Requirements"></a>3.6 Other Requirements</h3>
+    
+<h3><a name="Deliverables"></a>3.7 Deliverables</h3>
+    
+<p><br>
+            <b>1.Source
+Code:</b>  </p>
+ 
+<p>              
+ The Source code contains all  * .cpp and * .h files ,  makefile.
+</p>
+ 
+<p><b>2.Test Program:</b>
+</p>
+ 
+<p>               
+ Program used to show usage of Timer Module and User specific data parameters
+ which are required. Also threads use .
+</p>
+ 
+<p><b>3.User Guide:</b>
+</p>
+ 
+<p>              
+ Guide for user reference.
+</p>
+ 
+<p><b>4. API's Documents:</b> 
+</p>
+ 
+<p>               
+ Documentation for all the API's in the Timers to be given. <br>
+</p>
+ 
+<hr ><br>
+ End of Document
+<br>
+   
+<hr><br>
+   <br>
+   <br>
+   <br>
+    
+<ul>
+   
+</ul>
+   <br>
+   <br>
+   <br>
+   <br>
+ <br>
+</body>
+</html>

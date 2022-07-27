@@ -1,0 +1,49 @@
+bukudpmenu.cpp:94:1: warning: deprecated conversion from string constant to ‘char*’
+bukudpmenu.cpp:94:1: warning: deprecated conversion from string constant to ‘char*’
+bukudpmenu.cpp:94:1: warning: deprecated conversion from string constant to ‘char*’
+bukudpmenu.cpp:94:1: warning: deprecated conversion from string constant to ‘char*’
+bukudpmenu.cpp:94:1: warning: deprecated conversion from string constant to ‘char*’
+bukudpmenu.cpp:94:1: warning: deprecated conversion from string constant to ‘char*’
+bukudpmenu.cpp:94:1: warning: deprecated conversion from string constant to ‘char*’
+bukudpmenu.cpp:94:1: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/buk//include/../src/udpnh/cdsunhudptypes.h:22:0,
+                 from /home/Sumathi/prama/Documents/training/buk//include/cdsunhudpapi.h:17,
+                 from parameter.h:17,
+                 from bukudpfunctions.cpp:18:
+/home/Sumathi/prama/Documents/training/buk//include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/buk//include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+bukudpfunctions.cpp: In function ‘void* sysMgmtStart(void*)’:
+bukudpfunctions.cpp:170:1: warning: no return statement in function returning non-void
+bukudpfunctions.cpp: In function ‘void* applStart(void*)’:
+bukudpfunctions.cpp:241:1: warning: no return statement in function returning non-void
+bukudpfunctions.cpp: In function ‘void smMgmtEventHlr(void*)’:
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_MI_INIT_REQ’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_MI_DELNH_REQ’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_MI_CTRL_REQ’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_MI_CFG_REQ’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_MI_STATUS_REQ’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_MI_STATISTICS_REQ’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_MI_CFG_RSP’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_MI_USTATUS_IND’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_UI_ADD_UDPPORT_REQ’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_UI_REM_UDPPORT_REQ’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_UI_DATA_REQ’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_UI_SEND_REQ’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_UI_ADD_UDPPORT_RSP’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_UI_REM_UDPPORT_RSP’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_UI_DATA_RSP’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_UI_SEND_RSP’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_UI_DATA_IND’ not handled in switch
+bukudpfunctions.cpp:337:9: warning: enumeration value ‘CDSU_NHUDP_INVALID’ not handled in switch
+bukudpfunctions.cpp: In function ‘void statTest()’:
+bukudpfunctions.cpp:2053:17: warning: format ‘%d’ expects type ‘int*’, but argument 2 has type ‘char*’
+bukudpfunctions.cpp:2084:17: warning: format ‘%d’ expects type ‘int*’, but argument 2 has type ‘char*’
+bukudpfunctions.cpp:2358:17: warning: format ‘%d’ expects type ‘int*’, but argument 2 has type ‘char*’
+bukudpfunctions.cpp:1963:22: warning: unused variable ‘rtType’
+bukudpfunctions.cpp: In function ‘void applEventHlr(void*)’:
+bukudpfunctions.cpp:560:42: warning: ‘nhInstId’ may be used uninitialized in this function
+/usr/lib/gcc/i686-redhat-linux/4.5.1/../../../crt1.o: In function `_start':
+(.text+0x18): undefined reference to `main'
+collect2: ld returned 1 exit status
+make[1]: *** [all] Error 1
+make: *** [test] Error 1

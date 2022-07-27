@@ -1,0 +1,636 @@
+<html><head><title>Message Distributor Module Design Document</title></head><body bgcolor="white">
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade="noshade">
+<h2 align="center">Message Distributor Module Design Document</h2>
+<hr noshade="noshade">
+<!-- --------------------------------------------------------------------- -->
+
+<table width="80%" border="0">
+<tbody>
+<tr>
+        <td valign="top"><b>Document id</b></td>
+        <td valign="top">:</td>
+        <td valign="top"><b>ITS-MDD-CDSU_MSGDISTRIBUTOR-001</b></td>
+</tr>
+<tr>
+        <td valign="top"><b>Document name</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Message Distributor Module Design Document</td>
+</tr>
+<tr>
+        <td valign="top"><b>Author(s)</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Sumit Bijwe, Seema Chandak</td>
+</tr>
+<tr>
+        <td valign="top"><b>Contributor(s)</b></td>
+        <td valign="top">:</td>
+        <td valign="top"></td>
+        <td valign="top"><br></td>
+</tr>
+<tr>
+        <td valign="top"><b>Approved By</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Prakash R</td>
+</tr>
+<tr>
+        <td valign="top"><b>Document Source</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Internet Telephony Group, C-DOT, Bangalore</td>
+</tr>
+</tbody>
+</table>
+
+<table>
+<tbody><tr>
+        <td valign="top"><i>Copyright © 2003 by C-DOT. All rights reserved. Contents of
+        publication may not be reproduced in any form without permission from
+        C-DOT.</i></td>
+</tr>
+</tbody></table>
+
+
+<h3>Revision Chart</h3>
+<p>
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr>
+        <th colspan="5">Document History</th>
+</tr>
+<tr>
+        <th> Version No </th>
+        <th> Revised By </th>
+        <th> Revised On </th>
+        <th> Approved By </th>
+        <th> Remarks </th>
+</tr>
+<tr>
+        <td> Draft 1 </td>
+        <td> Sumit Bijwe, Seema Chandak</td>
+        <td> Jul 29, 2003 </td>
+        <td> Prakash R </td>
+        <td> <br> </td>
+</tr>
+<tr>
+	<td><br></td>
+	<td><br></td>
+	<td><br></td>
+	<td><br></td>
+	<td><br></td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+</tbody></table>
+
+
+<!-- --------------------------------------------------------------------- -->
+</p>
+<hr noshade="noshade">
+<h2>Table of contents</h2>
+
+<font face="arial">
+<pre>1.0  <a href="#intro"><b><i>Introduction</i></b></a>
+     1.1    <a href="#intro-ps"><b><i>Purpose and Scope</i></b></a>
+     1.2    <a href="#intro-aad"><b><i>Acronyms, Abbreviations and Definitions</i></b></a>
+     1.3    <a href="#intro-ref"><b><i>References</i></b></a>
+
+2.0  <a href="#md"><b><i>Module Description</i></b></a>
+        2.1  <a href="#md"><b><i>Design goals and constraints</i></b></a>
+        2.2  <a href="#md-properties"><b><i>Properties</i></b></a>
+        2.3  <a href="#md-responsibilities"><b><i>Responsibilities</i></b></a>
+        2.4  <a href="#md-functionality"><b><i>Functionalities</i></b></a>
+
+3.0  <a href="#dd"><b><i>Decomposition Description</i></b></a>
+        <a href="#dd-cd"><b><i>3.1  Class diagram</i></b></a>
+        <a href="#dd-eid"><b><i>3.2  Entity Interaction Diagram</i></b></a>
+                <a href="#dd-eid-e"><b><i>3.2.1 Entities</i></b></a>
+                <a href="#dd-eid-c"><b><i>3.2.2 Channels</i></b></a>
+
+4.0  <a href="#res-usage"><b><i>Resource usage</i></b></a>
+
+5.0  <a href="#des-con"><b><i>Design Considerations</i></b></a>
+
+6.0  <a href="#issue"><b><i>Issues</i></b></a>
+
+7.0  <a href="#state%20charts"><b><i>Processing/Algorithm/Pseudo code/STD/Statecharts</i></b></a>
+
+8.0  <a href="#data-struct"><b><i>Data Structures Required</i></b></a>
+
+9.0  <a href="#msgrxd"><b><i>Messages Received by module</i></b></a>
+
+10.0  <a href="#msgtxd"><b><i>Messages Transmitted by module</i></b></a>
+
+11.0  <a href="#tests"><b><i>Test cases</i></b></a>
+
+<a href=""><b><i>Appendix</i></b></a>
+</pre>
+</font>
+
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+
+<a name="intro"></a>
+<h2>1. Introduction</h2>
+<p> This document gives the design of Message Distributor. 
+    The Message Distributor distributes the message within the same processor or 
+    other processors. It maintains a table for all the modules within the same
+    processor(card). For modules in other card it can either store the
+    hardware unit it or the complete moduleId. It also stores the
+    corresponding ipcpInfo which will be used to deliver the message to that
+    module.
+</p>
+
+<a name="intro-ps"></a>
+<h3> 1.1. Purpose and Scope</h3>
+<p> This document provides the design details Message Distributor. This 
+document gives design goals and constraints, properties, responsibilities and
+functionalities of the Message Distributor. Section 3 gives the class diagram, its member
+functions and attributes. Later sections give the algorithms, data structures,
+etc.
+
+<a name="intro-aad"></a>
+</p><h3> 1.2. Acronyms Abbreviations and Definitions</h3>
+<table>
+<tbody><tr>
+<td valign="top"></td>
+<td valign="top">:</td>
+<td valign="top"></td>
+</tr>
+</tbody>
+</table>
+
+<a name="intro-ref"></a>
+<h3> 1.3. References</h3>
+<table>
+<tbody>
+<tr>
+<td valign="top"></td>
+<td valign="top">:</td>
+<td valign="top"></td>
+</tr>
+
+<tr>
+<td valign="top"></td>
+<td valign="top">:</td>
+<td valign="top"></td>
+</tr>
+</tbody></table>
+
+<a name="md"></a>
+<h2>2. Module Description</h2>
+
+<a name="md-goals"></a>
+<h3>2.1. Design Goals and Constraints</h3>
+<ol>
+	<li>The module should use low run-time memory. </li>
+	<li>The module should have efficient time management and memory
+	    management. </li>
+	<li>The data structures should be hidden from the outside world. </li>
+	<li>Zero copying of payload. </li>
+	<li>The module should be easily portable. </li>
+</ol>
+
+<a name="md-properties"></a>
+<h3>2.2 Properties</h3>
+<p>None.</p>
+
+<a name="md-responsibilities"></a>
+<h2>2.3. Responsibilities </h2>
+<p>None.</p>
+
+<a name="md-functionality"></a>
+<h2>2.4. Functionalities</h2>
+<p>The following are the methods/functions provided by the Message Distributor. </p>
+<ol>
+	<li> Registers a module by adding it to its moduleInfo Table . </li>
+	<li> Unregister a module from the moduleInfo Table. </li>
+	<li> Sending messages to various modules in the card or across the other cards. </li>
+	<li> Receiving messages from various modules in the card or the other cards. </li>
+</ol>
+
+<a name="dd"></a>
+<h2>3. Decomposition Description</h2>
+<p>This section provides the classes, entities, channels and messages.</p>
+
+<a name="dd-cd"></a>
+<h3>3.1. Class Diagram</h3>
+<p> The class diagram for CdSuMsgDistributor is given below.</p>
+<p align="center">
+<img src="mdcldia.gif" align="center"> </img>
+</p>
+<pre>
+
+</pre>
+
+<b>3.1.1 CdSuMsgDistributor</b>
+<p>The CdSuMsgDistributor has the following data structures.
+</p>
+<ol>
+	<li> A MultiByte Hash table mapping CdModuleId to IpcpInfo.</li>
+	<li> A UDP Network handler thread.</li>
+	<li> Information such as its moduleId, IP address etc.</li>
+</ol>
+<p></p>
+
+<a name="dd-eid"></a>
+<h3>3.2. Entity Interaction Diagram</h3>
+<i>None.</i>
+
+<a name="dd-eid-e"></a>
+<h3>3.2.1. Entities</h3>
+<i>None.</i>
+
+<a name="dd-eid-c"></a>
+<h3>3.2.2. Channels</h3>
+<i>None.</i>
+
+<a name="res-usage"></a>
+<h2>4. Resource usage</h2>
+<p>The memory usage of the each data structure is given below.
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+<tbody><tr>
+	<th>Entity</th>
+	<th>Memory usage</th>
+</tr>
+<tr>
+	<td>CdSuMsgDistributor</td>
+	<td>68 bytes</td>
+</tr>
+</tbody></table
+</p>
+
+<a name="des-con"></a>
+<h2>5. Design Considerations</h2>
+<ol>
+<li>The CdSuMsgDistributor has a multibyte hash table to keep all the module
+information which has been registered to it. The module will be registerd with 
+DestModInfo which contains module id and its IPCP mechanism. </li> 
+
+<li>It is not necessary that the module itself has to register itself with
+the Message Distributor. In case of registering a different hardware unit we 
+can only register the HardwareUnitId making the Service Handler Id as zero so
+that the no of entries in the hash table can decrease. </li>
+
+<li>We have to use <b>hton</b> and <b>ntoh</b> functions. All the messages
+which are to be sent to other card have to implement these functions. While
+sending a message before sending it to the message distributor the sender
+should change the message to network byte order. </li>
+
+<li>The CdMessageHdr also needs to have these functions because it will
+convert the message header to network byte order before sending it to the
+network handler.</li>
+
+<li>All msgs using the services of message distributor will not itself
+allocate memory. It has to call cdSuGetMsgBuf to get memory and cdSuFreeMsgBuf
+to clear memory.</li>
+
+</ol>
+
+<a name="issue"></a>
+<h2>6. Issues</h2>
+<i>None.</i>
+
+<a name="state%20charts"></a>
+<h2>7. Processing/Algorithm/Pseudocode/STD/Statecharts</h2>
+<b>7.1 CdSuMsgDistributor API : cdsumdapi.c</b>
+<p>
+<table border="1" cellpadding="5" cellspacing="0" width="100%">
+<tbody><tr>
+	<th>Method</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>cdSuMdInit ()</td>
+	<td>It is responsible for the creation and initialization of
+	    the message distributor.</td>
+</tr>
+<tr>
+	<td>cdSuMdTerminate ()</td>
+	<td> It is responsible for the termination of message distributor.</td>
+</tr>
+<tr>
+ 	<td>cdSuMdRegisterMid () </td>
+	<td>It is responsible for registration of a Module with
+ 	     Message Distributor. This is used when the module
+ 	     registering is in the same processor. </td>
+</tr>
+
+<tr>
+	<td>cdSuMdRegisterHwUnit ()</td>
+	<td>It is responsible for registration of a Hardware Unit Id
+	    with the Message Distributor. </td>
+</tr>
+
+<tr>
+	<td>cdSuMdUnregisterMid ()</td>
+	<td>It is responsible for unregistering a module from the
+ 	    Message Distributor.</td>
+</tr>
+
+<tr>
+	<td>cdSuMdSendMsg ()</td>
+	<td>It is responsible for sending messages to the same or
+ 	    different processor. </td>
+</tr>
+
+<tr>
+	<td>cdSuMdRecvMsg ()</td>
+	<td>It is responsible for receiving messages from the same or
+ 	    different processor. </td>
+</tr>
+
+<tr>
+	<td>cdSuMdRecvMsgNonBlock ()</td>
+	<td>It is responsible for receiving messages. The call is a
+ 	    Non Blocking one.</td>
+</tr>
+
+</tbody></table>
+</p>
+
+
+<b>7.2 Usage of CdSuMsgDistributor</b>
+<p>
+</p><ul>
+	<li>Init the Message Distributor with appropriate init parameters. </li>
+	<pre> cdSuMdInit (param) </pre>
+	
+	<li>Register Hardware UnitId of another card with IPCP info to message
+	   distirbutor.</li>
+	<pre>
+	if (cdSuMdRegisterHwUnit (hwUnitId, ipcpInfo) == true)
+		Destination HwUnit registered successfully.
+	else
+		Destination HwUnit registration fails.
+	</pre>
+
+	<li>Create the modules within the processor and Register it with message 
+	distributor.</li>
+	<pre>
+	if (cdSuMdRegisterMid (applMid1) == true)
+
+		 Application I has been registered to MsgDistributor Successfully.
+	else
+		 
+		 Error:: Application I cannot be registered with MsgDistributor. 
+	</pre>
+
+	<li>Create Application. </li>
+	<pre> Create application thread.</pre>
+
+	<li>Create the message. for e.g. CdSuIntraCardMsg </li>
+	<pre>CdSuTestMsg* msg = (CdSuTestMsg*) cdSuGetMsgBuf ( sizeof (CdSuIntraCardMsg));</pre>
+
+	<li>Use the initMsg method to initalize the member variables instead of
+	constructor. </li>
+	<pre>msg->initMsg (applMid1, applMid2, buf, bufLen); </pre>
+
+	<li> Call the cdsuMdSendMsg () to send message. This function will extaract
+	the destination id and will send the msg to its destination with the
+	IPCP mechanism associated with it.</li>
+	<pre>
+	if (cdSuMdSendMsg (msg) == false)
+		
+		ApplicationStart2: Error sending message.
+		cdSuFreeMsgBuf (msg);
+
+	else 
+		
+		ApplicationStart2: Message Sent successfully.
+
+	</pre>
+		
+	<li> To receive message from a particular module. the application has
+	     to call cdSuMdRecvMsg ().</li>
+	<pre>		
+	CdMessage* rxMsg;
+	while(1)
+	{
+		if (cdSuMdRecvMsg (&rxMsg, applMid2) == true)
+		{
+			TRACE (5, "Msg Rxvd in MsgDistrTestI appl2 .\n");
+			cdSuFreeMsgBuf (rxMsg);
+		}
+	
+	} 
+	</pre>
+		
+
+
+</ul>
+<p></p>
+
+<b>7.3 Working scenario of CdSuMsgDistributor (with UDP Network Handler)</b>
+<p align="center">
+<img src="testsetup.gif" align="center"> </img>
+</p>
+<b>7.4 Algorithm</b>
+<p>The algorithm for the main methods of CdSuMsgDistributor are given below.</p>
+
+<p><b>7.4.1 CdSuMsgDistributor::registerMid (const CdModuleId&, const CdSuMdIpcpInfo& ) </b> </p>
+<pre>
+Algorithm :
+	      *) Set retVal to true.
+	      *) Lock the mutex.
+	      *) If the module has already been registered
+	      	      *) set retVal = false.
+	      *) If Ipcp Mech is INTRA:
+		      *) If tsMsgQueue not equal to NULL retVal = false;
+	      *) Else
+		      *) Create the queue.
+		      *) Add the queue to the ipcpInfo.
+		      *) Update the table.
+	      *) If Ipcp Mech is UDP:
+		      *) Create the DestModInfo.
+		      *) Set the ModuleId and ipcpInfo appropriately.
+		      *) Update the table.
+	      *) Unlock the mutex.
+	      *) Return retVal.
+</pre>
+</p>
+<p><b>7.4.2  CdSuMsgDistributor::registerMid (const CdModuleId&)
+</b></p>
+<pre>
+Algorithm :
+	      *) Set retVal to true.
+	      *) If the Module registering is in some other card
+		      *) Return false.
+	      *) Lock the mutex.
+	      *) If the module has not been already registered.
+	      	      *) Create the DestModInfo.
+		      *) Create the queue.
+		      *) Add the queue to the ipcpInfo.
+		      *) Update the table.
+	      *) Else
+		      *) Return false.
+	      *) Unlock the mutex.
+	      *) Return retVal.
+
+</pre>
+
+<p><b>7.4.3 CdSuMsgDistributor::unregisterMid ()</b> </p>
+<pre>
+Algorithm :
+	     *) Lock the Mutex.
+	     *) Lookup the desModInfoTable.
+	     *) If lookup fail
+		     *) retVal = false.
+	     *) If retVal == true
+		     *) If the module belongs to the same card.
+			     *) delete the queue.
+		     *) Delete the desModInfo.
+		     *) Remove the ModuleId from the table.
+	     *) Unlock the Mutex.
+
+</pre>
+
+<p><b>7.4.4 CdSuMsgDistributor::sendMsg()</b> </p>
+<pre>
+Algorithm :
+              *) Lock the mutex.
+              *) Extract DestModId from the message.
+              *) Lookup the moduleInfo table.
+              *) If lookup is successful
+                      *) Take action based on the ipcpMech.
+              *) Else if destHwUnitId same as selfMid.destHwUnitId
+                      *) retVal = false. (Error: Can't send msg).
+              *) Else make the srvHlrId equal to 0 and search table again
+              *) If success
+                      *) Send msg based on ipcpMech. (INTRA is not allowed
+		      here.)
+              *) Else retVal = false (Error: Can't send msg).
+              *) Unlock the mutex.
+
+</pre>
+
+<p><b>7.4.5 CdSuMsgDistributor::recvMsg()</b> </p>
+<pre>
+Algorithm :
+              *) Lock the mutex.
+              *) Extract DestModId from the message.
+              *) Lookup the moduleInfo table.
+              *) If lookup is successful
+                      *) Extract the queue from ipcpInfo.
+		      *) Receive msg by blocking pop call to queue.
+              *) Else retVal = false (Error: Can't recv msg).
+	      *) Unlock the mutex.
+</pre>
+
+<p><b>7.4.6 CdSuMsgDistributor::recvMsgNonBlock()</b> </p>
+<pre>
+Algorithm :
+              *) Lock the mutex.
+              *) Extract DestModId from the message.
+              *) Lookup the moduleInfo table.
+              *) If lookup is successful
+                      *) Extract the queue from ipcpInfo.
+		      *) Receive msg by non blocking pop call to queue.
+              *) Else retVal = false (Error: Can't recv msg).
+	      *) Unlock the mutex.
+</pre>
+
+<b>7.5 Statechart Diagram</b>
+<p> <i>None.</i> </p>
+
+<a name="data-struct"></a>
+<h2>8. Data Structures Required</h2>
+<p>The methods and attributes of the CdSuMsgDistributor is given below.</p>
+
+
+<p><b>8.1 CdSuMsgDistributor class</b></p>
+<pre>
+class CdSuMsgDistributor
+{
+<b>Public methods and members</b>
+public :
+	CdSuMsgDistributor (const CdSuMdInitParam& initParam);
+	~CdSuMsgDistributor ();
+
+	bool registerMid (const CdModuleId& mid);
+	bool registerMid (const CdModuleId& mid, const CdSuMdIpcpInfo& ipcpInfo);
+	bool unregisterMid (const CdModuleId& mid);
+
+	bool sendMsg (CdMessage* msg);
+	bool recvMsg (CdMessage** msg, const CdModuleId& modId);
+	bool recvMsgNonBlock (CdMessage** msg, const CdModuleId& modId);
+
+private:
+	//--------------------------------------------------------------------
+	// Enumerations and typedefs.
+	//-------------------------------------------------------------------- 
+	struct DestModInfo
+	{
+		CdModuleId modId;
+		CdSuMdIpcpInfo ipcpInfo;
+	};
+	
+	//--------------------------------------------------------------------
+	// Helper Functions.
+	//--------------------------------------------------------------------
+	void createUdpNwHlrThread (CdSuMdUdpNhInitParam* initParam);
+
+	//--------------------------------------------------------------------
+	// Attributes.
+	//--------------------------------------------------------------------
+	Uint32 selfIpAddr;
+	CdModuleId selfMid;
+	Uint16 udpLpn;
+	CdSuMultiByteHash<DestModInfo*>* moduleInfoTable;
+	pthread_mutex_t mdMutex;
+
+	//--------------------------------------------------------------------
+	// UDP Network Handler attributes.
+	//--------------------------------------------------------------------
+	CdSuMdUdpNhInitParam* initParam;
+	CdModuleId nwHlrMid;
+	CdSuMdUdpPortInfo localUdpInfo;
+	CdSuTsQueue <CdMessage*>* udpNhQueue;
+	pthread_t udpNhThreadId;
+
+}; // class CdSuMsgDistributor
+</pre>
+
+<a name="msgrxd"></a>
+<h2>9. Messages Received</h2>
+<i>None.</i>
+
+<a name="msgtxd"></a>
+<h2>10. Messages Transmitted</h2>
+<i>None.</i>
+
+<a name="tests"></a>
+<h2>11. Test cases</h2>
+<ol>
+	<li>Test cdSuMdRegisterMid method (successful and unsuccessful).</li>
+	<li>Test cdSuMdUnregisterMid method (successful and unsuccessful).</li>
+	<li>Test cdSuMdRegisterHwUnit (successful and unsuccessful).</li>
+	<li>Test cdSuMdSendMsg method (successful and unsuccessful, to the
+	    same card and to the other card).</li>
+	<li>Test cdSuMdRecvMsg method (successful and unsuccessful, from the
+	    same card and from other card.)</li>
+</ol>
+<i>None.</i>
+
+
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+<i>End of document</i>
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+</body></html>

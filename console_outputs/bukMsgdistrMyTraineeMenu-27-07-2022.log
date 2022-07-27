@@ -1,0 +1,52 @@
+rohitm@dti7de14-010:~/Documents/SystemManagement/BUK/BUK_System_Design_Assignment/build$ ./bukMsgdistrMyTraineeMenu.out 
+static void CdSuTrace::setLevel(unsigned int): Changing Trace level (1 -> 5)!! 
+basicinfraAdmin.cpp (174) : Uint32 changeIpAddr(char*)
+basicinfraMyTraineeMenu.cpp (56) : Creating Message Distributor
+cdsumd.cpp (57) : CdSuMsgDistributor::CdSuMsgDistributor(const CdSuMdInitParam&)
+cdsumd.cpp (179) : bool CdSuMsgDistributor::start()
+basicinfraAdmin.cpp (174) : Uint32 changeIpAddr(char*)
+cdsumd.cpp (238) : CdSuMsgDistributor::registerMid
+basicinfraMyTraineeMenu.cpp (80) : Trainee HwUnit registered successfully.
+ Application Module of myTraineeMenu has been registered to MsgDistributor Successfully.
+ NH UDP has been registered to MsgDistributor Successfully.
+bukMsgdistrMyTraineeMenu.cpp (401) : static void* MyTraineeMenuMain::applicationStart(void*)
+cdsunhudpapi.cpp (52) : CdSuNhUdpApiRetType cdSuNhUdpMiInit(const CdSuNhUdpMiInitParam&, CdSuNhUdpInstId&)
+cdsunhudp.cpp (66) : CdSuNhUdp::CdSuNhUdp(CdSuNhUdpDb*)
+cdsunhudp.cpp (1449) : void CdSuNhUdp::changeState(CdSuNhUdpState)
+cdsunhudp.cpp (169) : void CdSuNhUdp::run()
+cdsunhudpapi.cpp (213) : CdSuNhUdpApiRetType cdSuNhUdpMiCtrlReq(const CdSuNhUdpMiCtrlReqParam&)
+Start NH Req : Successful
+cdsunhudpapi.cpp (468) : CdSuNhUdpApiRetType cdSuNhUdpUiAddUdpPortReq(const CdSuNhUdpUiAddUdpPortReqParam&, CdSuNhUdpPortKey&)
+cdsunhudpapiparamchk.cpp (198) : CdSuNhUdpApiRetType validateAddUdpPortReqParam(const CdSuNhUdpUiAddUdpPortReqParam&)
+bukMsgdistrMyTraineeMenu.cpp (462) : Request Msg Sending to Trainee...
+bukMsgdistrMyTraineeMenu.cpp (469) : Sent message
+bukMsgdistrMyTraineeMenu.cpp (475) : 
+Message received in MsgDistrMyTraineeMenu
+bukMsgdistrMyTraineeMenu.cpp (497) : Message Source: Trainee
+bukMsgdistrMyTraineeMenu.cpp (514) : Response Msg from Trainee Arrived
+bukMsgdistrMyTraineeMenu.cpp (664) : Response Msg received from Trainee...
+bukMsgdistrMyTraineeMenu.cpp (666) : Response Id = 13
+cdsunhudp.cpp (191) : static void* CdSuNhUdp::threadEntry(void*)
+cdsunhudp.cpp (213) : UDP Nh Started
+bukMsgdistrMyTraineeMenu.cpp (89) : void smMgmtEventHlr(void*) 
+Response to System Manager
+Init Nh Success
+Instance Id=0
+cdsunhudp.cpp (552) : void CdSuNhUdp::createdStHlr(CdMessage*)
+cdsunhudp.cpp (937) : void CdSuNhUdp::stCreatedCtrlReqMsgHlr(CdMessage*)
+cdsunhudp.cpp (1449) : void CdSuNhUdp::changeState(CdSuNhUdpState)
+bukMsgdistrMyTraineeMenu.cpp (89) : void smMgmtEventHlr(void*) 
+Response to System Manager
+Start UDP NH Success
+cdsunhudp.cpp (1120) : void CdSuNhUdp::addUdpPortReqMsgHlr(CdMessage*)
+cdsunhudp.cpp (1505) : CdSuNhUdpRspFailCode CdSuNhUdp::addUdpPort(const CdSuNhUdpPortId&, CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&, const CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&, const CdSuActorId&, CdSuNhUdpEventHlr)
+cdsunhudp.cpp (1533) : CdSuNhUdp::addUdpPort(): Binding socket 5 to 192.168.16.40:50011
+cdsunhudp.cpp (145) : CdSuNhUdp::CdSuNhUdpPortInfo::CdSuNhUdpPortInfo()
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrMyTraineeMenu.cpp (227) : void applEventHlr(void*) 
+Add Udp Port Succes
+Udp Port ID = 1
+Udp Local Port = 50011
+^Z
+[1]+  Stopped                 ./bukMsgdistrMyTraineeMenu.out
+

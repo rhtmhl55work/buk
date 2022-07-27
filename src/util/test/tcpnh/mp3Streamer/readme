@@ -1,0 +1,62 @@
+
+	This is one demo program of usage of TCP Network Handler.
+
+Concept:
+
+  There are Two Entity.
+
+   1. Mp3 Stream Server.
+   2. Mp3 Stream Client:
+   	
+
+
+Mp3 Stream Client can feed {mount} songs to Stream Server to unique mount point(logical)
+{you can think mount point as a channel} So there can be multiple client each can feed 
+different songs to Server.
+
+Using Xmms we can listen to any songs 
+
+
+Ex:
+
+ 	Assume That Client 1 feeds Kannada Songs.
+		Client 2 feeds English Songs
+		Client 3 feeds Hindi Songs
+
+
+	Then using xmms , we can listen to any of these 3 songs.
+
+
+Running 
+-------
+
+1. Open mp3StreamServer.cpp make sure that STREAMSERVERPORT
+		LISTENERSERVERPORT
+		MSG_DIST_UDP_PORT 
+		are not in use.
+	
+	STREAMSERVERPORT : Over this port Stream Server is Listening for Stream Client
+	to feed songs.
+	LISTENERSERVERPORT : Over this port Stream Server Listening for Xmms(or Such
+			Client) to play songs to xmms.
+	MSG_DIST_UDP_PORT : message Distributor Port. 
+
+	change localIpAddr 
+
+2. run make
+3. run ./mp3StreamerServer
+4. Run 3 instance of mp3StreameClietn as follows
+
+	a) ./mp3StreamerClient <ipAddress where mp3StreamServer is running>  STREAMSERVERPORT    kannada.mp3    /mnt/kannada
+	b) ./mp3StreamerClient <ipAddress where mp3StreamServer is running>  STREAMSERVERPORT    english.mp3    /mnt/english
+	c) ./mp3StreamerClient <ipAddress where mp3StreamServer is running>  STREAMSERVERPORT    hindi.mp3    	/mnt/hindi
+
+5. Open 3 XMMS on different Machine
+	Open Following 3 Urls in 3 XMMS
+	a) <ip address where mp3StreamServer is	running>:LISTENERSERVERPORT/mnt/kannada
+	b) <ip address where mp3StreamServer is	running>:LISTENERSERVERPORT/mnt/english
+	c) <ip address where mp3StreamServer is	running>:LISTENERSERVERPORT/mnt/hindi
+	
+	
+	
+

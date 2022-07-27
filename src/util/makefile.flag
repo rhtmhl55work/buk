@@ -1,0 +1,81 @@
+#=============================================================================
+# Internet Telephony Software - (c) Copyright 2006, Internet Telephony Group
+# Center for Development of Telematics (C-DOT), Bangalore, India.
+# Filename     : makefile.flag
+# Description  : Common File which defines compiler flags 
+# Author       : Vijaya Kumar
+# Created On   : Wed Apr 19 14:23:29 IST 2006
+# Last Modified:
+#============================================================================
+
+#-----------------------------------------------------------------------------
+# This file has following defines
+#	- CC (Compiler)
+#	- CCFLAGS (Compiler Flags)
+#	- CCOPTS (Compiler Options, Defines)
+#	- LD (Linker)
+#	- LDFLAGS (Linker Flags)
+#	- LDOPTS (Linker Options)
+# All make file should use above Macros instead of hardcoded values
+#-----------------------------------------------------------------------------
+
+
+#-----------------------------------------------------------------------------
+# Finding OS
+#-----------------------------------------------------------------------------
+OS = $(shell uname -s)
+
+#-----------------------------------------------------------------------------
+# compiler and flags for ECOS compilation
+#-----------------------------------------------------------------------------
+ifdef ECOS
+	CCOPTS += -D__ECOS
+	CC = powerpc-eabi-gcc  -msoft-float -mcpu=860
+	CCFLAGS = -c -msoft-float -mcpu=860 -Wall -Wpointer-arith \
+		-Wstrict-prototypes -Winline -Wundef -Woverloaded-virtual -g \
+		-ffunction-sections -fdata-sections -fno-rtti -fno-exceptions \
+		-finit-priority -Wp,-MD,clock.tmp -I$(ECOS_DIR)/include
+else
+	CC = g++
+	CCFLAGS += -g -c -Wall 
+endif
+
+#-----------------------------------------------------------------------------
+# Linker and flags
+#-----------------------------------------------------------------------------
+ifdef ECOS
+	LD = $(CC)
+	LDFLAGS = -nostartfiles -nostdlib -Xlinker -Map -Xlinker $@.map \
+		-Wl,--gc-sections 
+	LDOPTS = -L$(ECOS_DIR)/lib -Ttarget.ld
+else
+	LD = $(CC)
+	#LDFLAGS += -g -lrt -lpthread
+	# rohitm
+	LDFLAGS += -g -lrt -pthread
+endif
+
+#-----------------------------------------------------------------------------
+# Library Include Path 
+#-----------------------------------------------------------------------------
+ifndef ECOS
+	ifeq (Sun, $(findstring Sun, $(OS)))
+		LDFLAGS += -lsocket -lnsl -lposix4
+		CCFLAGS += -D_POSIX_PTHREAD_SEMANTICS 
+	endif
+endif
+
+#-----------------------------------------------------------------------------
+# Archive and flags
+#-----------------------------------------------------------------------------
+ifdef ECOS
+	AR = powerpc-eabi-ar
+else
+	AR = ar
+endif
+
+ARFLAGS = -cr
+AROPTS =
+#============================================================================
+# <End of Makefile.flag>
+#============================================================================

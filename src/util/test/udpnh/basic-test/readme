@@ -1,0 +1,173 @@
+Utility kit for testing
+-----------------------
+
+Introduction
+------------
+	This utility contains source files which can be used as a template for
+testing various modules. It contains timer utility, test menu, test server and
+test client. The user can add/modify specified sections of the source according
+to the needs of the module under testing.
+
+Description of files
+--------------------
+	timerdef.h, .cpp : contains declaration of the timer handler, timer
+			   thread create and delete functions, timer hander
+			   create and delete functions. It also contains the
+			   timeout handler where the user can specify the
+			   action to be done (eg. send timeout to a module) on
+			   timer expiry.
+	testmenu.h, .cpp : contains the testmenu which is a list of test names
+			   and the corresponding test functions. The user can
+			   add tests here. It also contains functions
+			   to open connection, send and receive  between the
+			   test client and server.
+	testfunctions.h, .cpp : contains the test function definitions. The user
+			   can define test functions here.
+	testserver.cpp	: the test server which waits for input from the client
+			  and executes the test function. The user can create
+			  and initialise the module before testing starts.
+			  And cleanup the module after testing.
+	testclient.cpp	: test test client which takes input from the user and
+			  sends it to the server.
+			 
+
+Modifications
+--------------
+	User should make the following modifications
+
+testserver.cpp : Add initialisation and cleanup code here.
+testclient.cpp : Change the ipaddr of the test server.
+testmenu.cpp : Add test name and test functions here.
+timerdef.cpp : Add timeout action here.
+Makefile : Define TEST_SERVER for making the server.
+
+Compilation :
+--------------
+*) Client- Server Mode.
+	1. make SERVER = 1
+	2. make CLIENT = 1
+	
+	In This Mode Server Contains Testscript and Client will contain menu.
+	So Client act as User interface.
+*) Single Mode
+
+	1. make 
+	
+	In this Mode there is no seperate client (User Interface) . Single Program
+	Gives User Interface and Implements Testscript.
+
+*) ReplyMode:
+		
+      - In Reply Mode Load tester will send data to each data received
+      	[Reply to data received] [if Reply mode is set in local end and remote end
+	then load tester will run for infinite time]
+	Setup of Reply mode is explained in this file later
+
+	
+Before Creating Executable, Following Changes Must Be Done.	
+-----------------------------------------------------------
+1) Two machine is needed, One Act as Local Setup and other act as Remote Setup.
+
+2) Copy this program [Including util library] to that two machine.
+
+3) open ../makefile.inc change UTIL_BASE_DIR path base directory.
+
+4) Both local and remote side, change the setup values as mentioned bellow.
+
+	1) If You are running code over Target 
+		Then Open testserver.cpp: Enable the blocking signals, So Uncomment
+		The signal blocking portion of code.
+		[For creating executable for Target we should do cross compilation]
+		
+	2) If You are using Client/Server Mode then open testclient.cpp. Change
+		CDTEST_SERVER_IPADDR according to setup
+
+	3) Open parameter.h
+		- Change  the following values according to your setup
+			- ISMIMSGINTF true -> if you want MI Interface to be Message based
+			- ISUIMSGINTF true -> if you want UI Interface to be Message based 
+			- DOREPLY     true -> If this program act as remote, and if 
+						remote to be in reply mode.
+						
+						When Remote is in reply mode, it sends
+						one datagram to other end for each data
+						received from other mode.
+						
+						If Local end also in reply mode then both
+						end runs for infinite time
+						
+			- LOCALPORT		Give free udp port [In Remote Setup = Local  DESTPORT]
+			- EXTRALOCALPORT  	Give udp port which is != LOCALPORT
+						This is used for checking connected
+						Udp Port.
+			- DESTPORT	  	Value Depends upon Local port of Remote Setup [In Remote = Local LOCALPORT]
+			- EXTRADESTPORT		For testing connected udp port. To make sure
+						that udp port doesn't receive data from 
+						 Different port .
+
+			- localIpAddr [4]  	Change the value according to setup
+			- diffLocalIpAddr [4] 	!= localIpAddr
+			- remoteIpAddr [4] 	Set according to setup
+			- diffRemoteIpAddr [4] != remoteIpAddr
+
+5) Once you run program you will see menu. 
+	Read ftp [feature test plan document]. For each test procedure set up can
+	be done using menus.
+	Ex. Consider TestCase A : opening udp port where nh instance id param for
+				opening udp port is invalid one. Expected outcome
+				is opening udp port must fail.
+	 	This testing done as follows.
+		*) There may be option to set invalid nnInstId. Choose that option
+		*) then choose option open udp port.
+
+Note: Some Time you may restart the program to test some testcases. For All Test case 
+	Following Operation Must be done before starting test.
+	1) Enabling Trace [Setting Trace Level ]
+	2) Initilizing Test Set UP [option 7]
+
+	
+Category of Menu Option
+------------------------	
+	1. Setting Trace Level	: 1-6
+	2. Initial Setup	: 7
+	3. Setting up parameter value	: 8-32
+	4. To check Parameter value	: 33
+	5. Operation Menu 		: 48
+	6. Statistics Package Testing 	: 49 - 50
+		Operation	: 49
+		Setup[Remote] 	: 50
+		Note: Default is Local Setup]
+
+
+Doing Statistics Package Test.
+------------------------------
+	- Run Local Setup
+		- Initilize Setup 	-  7
+		- Create UDP NH 	- 34
+		- Start UDP NH		- 41
+		- Run Statistics Test	- 49
+		
+	- Run Remote Set Up In Reply Mode When Local Setup Statistics Test Asks for
+		- Initialize Setup	-  7
+		- Create UDP NH		- 34
+		- Start UDP NH		- 41
+		- Run Statistics Remote Setup - 50
+		
+	Note: Do Statistics Test as fresh [ without doing other test]
+
+Feature Test.
+----------------
+*) Test Case : UDP/MI/IDLE/INIT_NH(I/BUFLEN)
+
+	- Give Following Option :6, 7, 13, 34 
+	- Expected OutCome	: operation  failed [error CDSU_NHUDP_API_RT_MAXBUFLEN_OUTOFRNG].
+
+*) Test Case : UDP/MI/IDLE/INIT_NH(I/NOHLRTMR)
+
+	- Give Following Option :6, 7, 17, 34 
+	- Expected OutCome	: operation  failed [error CDSU_NHUDP_API_RT_NOHLRTMRVAL_OUTOFRNG].
+
+In the same line other testing must be done	
+
+		
+	

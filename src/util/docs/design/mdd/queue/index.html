@@ -1,0 +1,539 @@
+<html><head>
+<title>Queue (CdSuQueue) Module Design Document</title></head>
+<body bgcolor="white">
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<h2 align="center">Queue (CdSuQueue) Module Design Document</h2>
+<hr noshade>
+<!-- --------------------------------------------------------------------- -->
+
+<table width="80%" border="0">
+<tbody><tr>
+        <td valign="top"><b>Document id</b></td>
+        <td valign="top">:</td>
+        <td valign="top"><b>ITS-MDD-CDSU_QUEUE-001</b></td>
+</tr>
+<tr>
+        <td valign="top"><b>Document name</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Queue (CdSuQueue) Module Design Document</td>
+</tr>
+<tr>
+        <td valign="top"><b>Author(s)</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Seema Chandak, Vijaya Kumar</td>
+</tr>
+<tr>
+        <td valign="top"><b>Contributor(s)</b></td>
+        <td valign="top">:</td>
+        <td valign="top"><br></td>
+</tr>
+<tr>
+        <td valign="top"><b>Approved By</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Prakash R</td>
+</tr>
+<tr>
+        <td valign="top"><b>Document Source</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Internet Telephony Group, C-DOT, Bangalore</td>
+</tr>
+</tbody></table>
+
+<table>
+<tbody><tr>
+        <td valign="top"><i>Copyright © 2004 by C-DOT. All rights reserved. Contents of
+        publication may not be reproduced in any form without permission from
+        C-DOT.</i></td>
+</tr>
+</tbody></table>
+
+
+<h3>Revision Chart</h3>
+<p>
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr>
+        <th colspan="5">Document History</th>
+</tr>
+<tr>
+        <th> Version No </th>
+        <th> Revised By </th>
+        <th> Revised On </th>
+        <th> Approved By </th>
+        <th> Remarks </th>
+</tr>
+<tr>
+        <td> Draft 1 </td>
+        <td> Seema Chandak </td>
+        <td> Jun 3, 2003 </td>
+        <td> Prakash R </td>
+        <td> <br> </td>
+</tr>
+<tr>
+	<td> Draft 2 </td>
+	<td> Vijaya Kumar </td>
+	<td> Aug 18, 2004</td>
+	<td> Shivali Mittal</td>
+	<td> Test cases for Copy Constructor is added.</td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+</tbody></table>
+
+
+<!-- --------------------------------------------------------------------- -->
+</p>
+<hr noshade>
+<h2>Table of contents</h2>
+
+<font face="arial">
+<pre>1.0  <a href="#intro"><b><i>Introduction</i></b></a>
+     1.1    <a href="#intro-ps"><b><i>Purpose and Scope</i></b></a>
+     1.2    <a href="#intro-aad"><b><i>Acronyms, Abbreviations and Definitions</i></b></a>
+     1.3    <a href="#intro-ref"><b><i>References</i></b></a>
+
+2.0  <a href="#md"><b><i>Module Description</i></b></a>
+        2.1  <a href="#md"><b><i>Design goals and constraints</i></b></a>
+        2.2  <a href="#md-properties"><b><i>Properties</i></b></a>
+        2.3  <a href="#md-responsibilities"><b><i>Responsibilities</i></b></a>
+        2.4  <a href="#md-functionality"><b><i>Functionalities</i></b></a>
+
+3.0  <a href="#dd"><b><i>Decomposition Description</i></b></a>
+
+4.0  <a href="#res-usage"><b><i>Resource usage</i></b></a>
+
+5.0  <a href="#des-con"><b><i>Design Considerations</i></b></a>
+        5.1  <a href="#thread-safe"><b><i>Simple Queue Vs ThreadSafe Queue.</i></b></a>
+
+6.0  <a href="#issues"><b><i>Issues</i></b></a>
+
+7.0  <a href="#state%20charts"><b><i>Processing/Algorithm/Pseudo code/STD/Statecharts</i></b></a>
+
+8.0  <a href="#data-struct"><b><i>Data Structures Required</i></b></a>
+
+9.0  <a href="#msgrxd"><b><i>Messages Received by module</i></b></a>
+
+10.0  <a href="#msgtxd"><b><i>Messages Transmitted by module</i></b></a>
+
+11.0  <a href="#tests"><b><i>Test cases</i></b></a>
+
+<a href=""><b><i>Appendix</i></b></a>
+</pre>
+</font>
+
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+
+<a name="intro"></a>
+<h2>1. Introduction</h2>
+<p> This document gives the design of CdSuQueue which is simple implementation
+    of a Queue. CdSuQueue is implemented as a linked list. It supports
+    functions like insertion of elements, removal of elements, checking
+    whether the queue is empty or full. The queue
+    as we all know works on FIFO i.e. First In First Out basis. It provides an
+    iterator to traverse through the queue.
+</p>
+
+<a name="intro-ps"></a>
+<h3> 1.1. Purpose and Scope</h3>
+<p> This document provides the design details of CdSuQueue. The section 2 of 
+the document gives design goals and constraints, properties, responsibilities
+and functionalities of the module. Section 3 gives the class diagram, its member
+functions and attributes. Later sections give the algorithms, data structures,
+etc.
+
+<a name="intro-aad"></a>
+</p><h3> 1.2. Acronyms Abbreviations and Definitions</h3>
+<table>
+<tbody><tr>
+<td valign="top">STL</td>
+<td valign="top">:</td>
+<td valign="top">Standard Template Library</td>
+</tr>
+</tbody>
+</table>
+
+<a name="intro-ref"></a>
+<h3> 1.3. References</h3>
+<table>
+<tbody>
+<tr>
+<td valign="top">[stl]</td>
+<td valign="top">:</td>
+<td valign="top">Designing Components with the C++ STL, Breymann, 1998, Addison
+Wesley Longman Limited.</td>
+</tr>
+
+<tr>
+<td valign="top">[dp]</td>
+<td valign="top">:</td>
+<td valign="top">Design Patterns, Elements of Reusable Object-Oriented Software,
+Gamma et al, 1995, Pearson Education, Inc.</td>
+</tr>
+
+</tbody></table>
+
+<a name="md"></a>
+<h2>2. Module Description</h2>
+
+<a name="md-goals"></a>
+<h3>2.1. Design Goals and Constraints</h3>
+<ol>
+	<li>The module should use low run-time memory. </li>
+	<li>The module should have efficient time management and memory
+	management. </li>
+	<li>The data structures should be hidden from the outside world. </li>
+	<li>Zero copying of payload. </li>
+	<li>The module should be easily portable. </li>
+</ol>
+
+<a name="md-properties"></a>
+<h3>2.2 Properties</h3>
+<p>None.</p>
+
+<a name="md-responsibilities"></a>
+<h2>2.3. Responsibilities </h2>
+<p>None.</p>
+
+<a name="md-functionality"></a>
+<h2>2.4. Functionalities</h2>
+<p>The following are the methods/functions provided by the list. 
+</p>
+<ol>
+	<li>Inserts a new element.</li>
+	<li>Removes element according to First In First Out.</li>
+	<li>Check whether the queue is full.</li>
+	<li>Check whether the queue is empty.</li>
+	<li>Provides and iterator for traversing the queue. </li>
+	<li>Returns an iterator pointing to the beginning of the list.</li>
+	<li>Returns an iterator pointing to the end of the list.</li>
+	<li>Returns the element at the current iterator position.</li>
+	<li>Increment the iterator position.</li>
+	<li>Check whether two iterators are equal.</li>
+	<li>Check whether two iterators are not equal.</li>
+</ol>
+<p></p>
+
+<a name="dd"></a>
+<h2>3. Decomposition Description</h2>
+<p>This section provides the classes, entities, channels and messages.</p>
+
+<a name="dd-cd"></a>
+<h3>3.1. Class Diagram</h3>
+<p>The class diagram for CdSuQueue is given below.</p>
+<pre>
+         +-----------+		       +-----------+
+         |CdSuQueue  |                 | Iterator  |
+         +-----------+                 +-----------+
+         |           |<----------------|           |
+         |           |                 |           |
+         +-----------+                 +-----------+
+</pre>
+	                
+</pre>
+
+<b>3.1.1 CdSuQueue</b>
+<p>CdSuQueue class has been implemented with the help of a simple list.</p>
+
+<b>3.1.2 Iterator</b>
+<p>Iterator class defines an iterator for traversing the queue. It keeps tracks
+of the current element of the list.</p>
+
+<h3>3.2. Block Interaction Diagram</h3>
+<i>None.</i>
+
+<h3>3.2.1. Entities</h3>
+<i>None.</i>
+
+<h3>3.2.2. Channels</h3>
+<i>None.</i>
+
+<a name="res-usage"></a>
+<h2>4. Resource usage</h2>
+
+<p>The memory usage of the each data structure is given below.
+<table border=1 cellpadding=5 cellspacing=0 width="100%">
+<tr>
+	<th>Entity</th>
+	<th>Memory usage</th>
+</tr>
+	<td>CdSuQueue</td>
+	<td> 8 bytes + 16 bytes for headNode and rearNode if value is of 
+	     4 bytes.</td>
+</tr>
+	
+	<td>Node</td>
+	<td>8 bytes, if the size of value is 4 bytes.</td>
+<tr>
+	<td>Iterator</td>
+	<td>4 bytes</td>
+</tr>
+</table>
+</p>
+
+<p> 
+
+<a name="des-con"></a>
+<h2>5. Design Considerations</h2>
+<p>The queue is implemented as a template to give the flexibility to
+specify the type of queue element while creating the queue.</p>
+
+<a name="issues"></a>
+<h2>6. Issues</h2>
+<i>None.</i>
+
+<a name="state%20charts"></a>
+<h2>7. Processing/Algorithm/Pseudo-code/STD/Statecharts</h2>
+<b>7.1 CdSuQueue API</b>
+<p>
+<table border=1 cellpadding=5 cellspacing=0 width="100%">
+<tr>
+	<th>Method</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>bool add (const KeyType item)</td>
+	<td>Insert a new element.</td>
+</tr>
+<tr>
+	<td>bool pop (KeyType& item) </td>
+	<td>Removes the first inserted element from the queue. </td>
+</tr>
+<tr>
+	<td>bool full ()</td>
+	<td>Returns true if the queue is full and false otherwise.</td>
+</tr>
+<tr>
+	<td>bool empty ()</td>
+	<td>Returns true if the queue is empty and false otherwise.</td>
+</tr>
+	<td>unsigned int getSize ()</td>
+	<td>Returns the size of the queue.</td>
+</tr>
+<tr>
+	<td>CdSuQueue::iterator begin ()</td>
+	<td>Returns an iterator pointing to the beginning of the queue.</td>
+</tr>
+
+<tr>
+	<td>CdSuQueue::iterator end ()</td>
+	<td>Returns an iterator pointing to the end of the queue.</td>
+</tr>
+</table>
+<b>7.2 Iterator API</b>
+<p>
+<table border=1 cellpadding=5 cellspacing=0 width="100%">
+<tr>
+	<th>Method</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>ValType&amp; operator* ()</td>
+	<td>Dereference operator. Returns the element at the current iterator position.</td>
+</tr>
+<tr>
+	<td>CdSuList::iterator&amp; operator++ ()</td>
+	<td>Preincrement operator. Iterator points to the next position.</td>
+</tr>
+<tr>
+	<td>CdSuList::iterator operator++ (int)</td>
+	<td>Postincrement operator. Iterator points to the next position.</td>
+</tr>
+<tr>
+	<td>bool operator== (const iterator&amp;)</td>
+	<td>Returns true if two iterators are equal, else false.</td>
+</tr>
+<tr>
+	<td>bool operator!= (const iterator&amp;)</td>
+	<td>Returns true if two iterators are not equal, else false.</td>
+</tr>
+</table>
+
+</p>
+<p> A brief description of the CdSuQueue API is given below:
+
+<ul>
+<p><li><b>bool add (const KeyType& item)</b></li>
+	Adds the element at the end of the queue. Returns true if the
+element is successfully, false otherwise.
+
+<p><li><b>bool pop (KeyType& item)</b></li>
+	Return true when successfully pops, false otherwise.
+The value of the item popped out is in the argument item.
+
+<p><li><b>bool full ()</b></li>
+	Returns true if the queue is full, false otherwise. add () should
+	return false when full () returns true.
+
+<p><li><b>bool empty ()</b></li>
+	Returns true if the queue is empty, false otherwise.
+
+<p><li><b>unsigned int getSize ()</b></li>
+	Returns the current size of the queue.
+
+<p><li><b>CdSuList::iterator begin ()</b></li>
+	Returns an iterator pointing to the beginning of the queue. It
+points to the next element pointed to by the headNode. It is used for
+traversing through the queue.
+
+<p><li><b>CdSuList::iterator end ()</b></li>
+	Returns an iterator pointing to the the next element of the
+rearNode. In the present implementation it is same as NULL as the next
+element of rearNode always points to NULL. 	
+</ul>
+
+<b>7.3 Usage of CdSuQueue and Iterator</b>
+<p>
+</p>
+<ul>
+	<li>Create a CdSuQueue object, specifying the type of element.</li>
+	<pre>
+	CdSuQueue&lt;int&gt; queue; </pre>
+
+	<li>Insert and remove elements.</li>
+	<pre>
+	queue.add (1);
+	queue.add (2);
+	int a, b;
+	queue.pop (a);
+	queue.pop (b);
+	</pre>
+
+	<li>Create an iterator.</li>
+	<pre>
+	CdSuQueue&lt;int&gt;::iterator iter; </pre>
+
+	<li>Make the iterator point to the beginning of the queue.</li>
+	<pre>
+	iter = queue.begin (); </pre>
+	
+	<li>Increment the iterator position. </li>
+	<pre>
+	iter++; </pre>
+
+	<li>Get the element at the current iterator position. </li>
+	<pre>
+	int num = *iter; </pre>
+</ul>
+<p></p>
+
+<b>7.4 Algorithm</b>
+<p>The queue is implemented as a simple list with a headnode and a rearnode
+to keep track of the elemented inserted first and last.  
+</p>
+
+<p>The following diagrams shows an empty queue, queue with one element and
+queue after adding an element to the front.</p>
+
+<p>
+<img src="queue.gif" alt="">
+</p>
+
+<b>7.5 Statechart Diagram</b>
+<p> <i>None.</i> </p>
+
+<a name="data-struct"></a>
+<h2>8. Data Structures Required</h2>
+<p>The methods and attributes of the CdSuQueue Iterator classes
+are given below.</p>
+
+<p><b>8.1 CdSuQueue class</b></p>
+<pre>
+template &lt;class KeyType&gt;
+class CdSuQueue
+{
+<b>Public methods</b>
+	CdSuQueue (unsigned long maxqsize);
+	CdSuTsQueue (CdSuTsQueue<KeyType>& queue);
+	~CdSuQueue ();
+
+	bool full ();
+	bool empty ();
+
+	bool add (const KeyType& item);
+
+	unsigned int getSize () { return (size); };
+	bool pop (KeyType&);
+
+<b>Protected members</b>
+	None
+
+<b>Private members</b>
+	struct Node 
+	{
+		KeyType value;
+		Node *next;
+	};
+	Node* headNode;				
+	Node* rearNode;
+	unsigned long maxsize;
+	unsigned long size;
+
+<b>Public methods</b>
+class iterator
+	{
+	public:
+		iterator (Node* init = NULL);
+		KeyType& operator* ();
+		const KeyType& operator* () const;
+		iterator& operator++ ();
+		iterator operator++ (int);
+		bool operator== (const iterator& iter) const;
+		bool operator!= (const iterator& iter) const;
+	private:
+		Node* current;
+		friend class CdSuQueue;
+	}; // iterator
+
+	iterator begin () const;
+	iterator end () const;
+</pre>
+
+
+<a name="msg-rxd"></a>
+<h2>9. Messages Received</h2>
+<i>None.</i>
+
+<a name="msg-txd"></a>
+<h2>10. Messages Transmitted</h2>
+<i>None.</i>
+
+<a name="tests"></a>
+<h2>11. Test cases</h2>
+The following test cases were identified:
+<ol>
+	<li> TestCase 1: Trying to pop For Empty Queue.</li>
+	<li> TestCase 2: Check empty () function call.</li>
+	<li> TestCase 3: Adding to the queue and test pop call.</li>
+	<li> TestCase 5: Adding to a full queue.</li>
+	<li> TestCase 6: Check full () function call.</li>
+	<li> TestCase 7: Iterate through the queue and print its elements.</li>
+	<li> TestCase 8.1: Copy constructor when queue is not empty </li>
+	<li> TestCase 8.2: Copy constructor when queue is  empty </li>
+</ol>
+<i>None.</i>
+
+
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+<i>End of document</i>
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+</body></html>

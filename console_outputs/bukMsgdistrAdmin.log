@@ -1,0 +1,180 @@
+rohitm@dti7de14-010:~/Documents/SystemManagement/BUK/BUK_System_Design_Assignment/build$ ./bukMsgdistrAdmin.out 
+static void CdSuTrace::setLevel(unsigned int): Changing Trace level (1 -> 5)!! 
+basicinfraAdmin.cpp (174) : Uint32 changeIpAddr(char*)
+basicinfraAdmin.cpp (82) : Creating Message Distributor
+cdsumd.cpp (57) : CdSuMsgDistributor::CdSuMsgDistributor(const CdSuMdInitParam&)
+cdsumd.cpp (179) : bool CdSuMsgDistributor::start()
+basicinfraAdmin.cpp (174) : Uint32 changeIpAddr(char*)
+cdsumd.cpp (238) : CdSuMsgDistributor::registerMid
+basicinfraAdmin.cpp (110) : Mentor HwUnit registered successfully.
+cdsumd.cpp (238) : CdSuMsgDistributor::registerMid
+basicinfraAdmin.cpp (131) : Trainee HwUnit registered successfully.
+ Application has been registered to MsgDistributor Successfully.
+ NH UDP has been registered to MsgDistributor Successfully.
+bukMsgdistrAdmin.cpp (403) : static void* AdminMain::applicationStart(void*)
+cdsunhudpapi.cpp (52) : CdSuNhUdpApiRetType cdSuNhUdpMiInit(const CdSuNhUdpMiInitParam&, CdSuNhUdpInstId&)
+cdsunhudp.cpp (66) : CdSuNhUdp::CdSuNhUdp(CdSuNhUdpDb*)
+cdsunhudp.cpp (1449) : void CdSuNhUdp::changeState(CdSuNhUdpState)
+cdsunhudp.cpp (169) : void CdSuNhUdp::run()
+cdsunhudpapi.cpp (213) : CdSuNhUdpApiRetType cdSuNhUdpMiCtrlReq(const CdSuNhUdpMiCtrlReqParam&)
+cdsunhudp.cpp (191) : statiStart NH Req : Successful
+cdsunhudpapi.cpp (468) : CdSuNhUdpApiRetType cdSucN void* CdSuNhUdp::threadEntry(vhoUdpUiAddUdpPortReq(ciod*nst) 
+cdsunhudp.cpp (213) : UDP Nh Started
+CdSuNhUdpUiAddUdpPortReqParam&, CdSuNhUdpPortKey&)
+cdsunhudpapiparamchk.cpp (198) : CdSuNhUdpApiRetType validateAddUdpPortReqParam(const CdSuNhUdpUiAddUdpPortReqParam&)
+bukMsgdistrAdmin.cpp (87) : void smMgmtEventHlr(void*) 
+Response to System Manager
+Init Nh Success
+Instance Id=0
+cdsunhudp.cpp (552) : void CdSuNhUdp::createdStHlr(CdMessage*)
+cdsunhudp.cpp (937) : void CdSuNhUdp::stCreatedCtrlReqMsgHlr(CdMessage*)
+cdsunhudp.cpp (1449) : void CdSuNhUdp::changeState(CdSuNhUdpState)
+bukMsgdistrAdmin.cpp (87) : void smMgmtEventHlr(void*) 
+Response to System Manager
+Start UDP NH Success
+cdsunhudp.cpp (1120) : void CdSuNhUdp::addUdpPortReqMsgHlr(CdMessage*)
+cdsunhudp.cpp (1505) : CdSuNhUdpRspFailCode CdSuNhUdp::addUdpPort(const CdSuNhUdpPortId&, CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&, const CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&, const CdSuActorId&, CdSuNhUdpEventHlr)
+cdsunhudp.cpp (1533) : CdSuNhUdp::addUdpPort(): Binding socket 5 to 192.168.16.40:50003
+cdsunhudp.cpp (145) : CdSuNhUdp::CdSuNhUdpPortInfo::CdSuNhUdpPortInfo()
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrAdmin.cpp (221) : void applEventHlr(void*) 
+Add Udp Port Succes
+Udp Port ID = 1
+Udp Local Port = 50003
+bukMsgdistrAdmin.cpp (829) : 
+Message Arrived in MsgDistrAdmin application
+bukMsgdistrAdmin.cpp (847) : Message Source: Mentor
+bukMsgdistrAdmin.cpp (615) : Message: Registration Request
+bukMsgdistrAdmin.cpp (619) : Admin: in INIT state
+bukMsgdistrAdmin.cpp (632) : Registration Ack Sending to Mentor 1
+bukMsgdistrAdmin.cpp (639) : Sent message
+bukMsgdistrAdmin.cpp (829) : 
+Message Arrived in MsgDistrAdmin application
+bukMsgdistrAdmin.cpp (853) : Message Source: Trainee
+bukMsgdistrAdmin.cpp (737) : Message: Registration Request
+bukMsgdistrAdmin.cpp (741) : Admin: in INIT state
+bukMsgdistrAdmin.cpp (754) : Registration Ack Sending to Trainee 1...
+bukMsgdistrAdmin.cpp (761) : Sent message
+cdsunhudp.cpp (1929) : int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)
+cdsunhudp.cpp (1939) : Reading Port Id =1...........
+cdsunhudp.cpp (1956) : CdSuNhUdp::readNoOfBytes(): connected socket 5 to 192.168.16.40:50845
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrAdmin.cpp (221) : void applEventHlr(void*) 
+Data Indication
+Port ID = 1
+Data Len = 4
+Remote PortNo 50845
+Dest Addr = 192.168.16.40
+bukMsgdistrAdmin.cpp (321) : START TRAINING Message processing...
+bukMsgdistrAdmin.cpp (328) : NH: Sent message to MD
+bukMsgdistrAdmin.cpp (829) : 
+Message Arrived in MsgDistrAdmin application
+bukMsgdistrAdmin.cpp (841) : Message Source: Admin Menu
+bukMsgdistrAdmin.cpp (458) : Start Training Message processing...
+bukMsgdistrAdmin.cpp (462) : Admin: in INIT state
+bukMsgdistrAdmin.cpp (469) : Number of Mentors = 1
+bukMsgdistrAdmin.cpp (470) : Number of Trainees = 1
+bukMsgdistrAdmin.cpp (887) : 
+Mentor 1 assigned Trainee 1
+bukMsgdistrAdmin.cpp (891) : Sending Trainee Id to Mentor...
+bukMsgdistrAdmin.cpp (898) : Sent message
+bukMsgdistrAdmin.cpp (903) : Sending Mentor Id to Trainee...
+bukMsgdistrAdmin.cpp (910) : Sent message
+bukMsgdistrAdmin.cpp (485) : Admin: changed state to MONITOR
+cdsunhudp.cpp (1929) : int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)
+cdsunhudp.cpp (1939) : Reading Port Id =1...........
+cdsunhudp.cpp (1956) : CdSuNhUdp::readNoOfBytes(): connected socket 5 to 192.168.16.40:47040
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrAdmin.cpp (221) : void applEventHlr(void*) 
+Data Indication
+Port ID = 1
+Data Len = 8
+Remote PortNo 47040
+Dest Addr = 192.168.16.40
+bukMsgdistrAdmin.cpp (353) : WORK TO MENTOR Message  processing...
+bukMsgdistrAdmin.cpp (360) : NH: Sent message to MD
+bukMsgdistrAdmin.cpp (829) : 
+Message Arrived in MsgDistrAdmin application
+bukMsgdistrAdmin.cpp (841) : Message Source: Admin Menu
+bukMsgdistrAdmin.cpp (555) : Message: Work to Mentor Message Arrived
+bukMsgdistrAdmin.cpp (559) : Admin: in 1 state
+bukMsgdistrAdmin.cpp (565) : Work to be allocated to Mentor 1
+bukMsgdistrAdmin.cpp (582) : ALLOCATE WORK Message Sending to Mentor 1
+bukMsgdistrAdmin.cpp (589) : Sent message
+cdsunhudp.cpp (1929) : int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)
+cdsunhudp.cpp (1939) : Reading Port Id =1...........
+cdsunhudp.cpp (1956) : CdSuNhUdp::readNoOfBytes(): connected socket 5 to 192.168.16.40:46647
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrAdmin.cpp (221) : void applEventHlr(void*) 
+Data Indication
+Port ID = 1
+Data Len = 4
+Remote PortNo 46647
+Dest Addr = 192.168.16.40
+bukMsgdistrAdmin.cpp (321) : START TRAINING Message processing...
+bukMsgdistrAdmin.cpp (328) : NH: Sent message to MD
+bukMsgdistrAdmin.cpp (829) : 
+Message Arrived in MsgDistrAdmin application
+bukMsgdistrAdmin.cpp (841) : Message Source: Admin Menu
+bukMsgdistrAdmin.cpp (458) : Start Training Message processing...
+bukMsgdistrAdmin.cpp (498) : Admin can't start training in 1 state
+cdsunhudp.cpp (1929) : int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)
+cdsunhudp.cpp (1939) : Reading Port Id =1...........
+cdsunhudp.cpp (1956) : CdSuNhUdp::readNoOfBytes(): connected socket 5 to 192.168.16.40:43577
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrAdmin.cpp (221) : void applEventHlr(void*) 
+Data Indication
+Port ID = 1
+Data Len = 8
+Remote PortNo 43577
+Dest Addr = 192.168.16.40
+bukMsgdistrAdmin.cpp (353) : WORK TO MENTOR Message  processing...
+bukMsgdistrAdmin.cpp (360) : NH: Sent message to MD
+bukMsgdistrAdmin.cpp (829) : 
+Message Arrived in MsgDistrAdmin application
+bukMsgdistrAdmin.cpp (841) : Message Source: Admin Menu
+bukMsgdistrAdmin.cpp (555) : Message: Work to Mentor Message Arrived
+bukMsgdistrAdmin.cpp (559) : Admin: in 1 state
+bukMsgdistrAdmin.cpp (565) : Work to be allocated to Mentor 1
+bukMsgdistrAdmin.cpp (582) : ALLOCATE WORK Message Sending to Mentor 1
+bukMsgdistrAdmin.cpp (589) : Sent message
+cdsunhudp.cpp (1929) : int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)
+cdsunhudp.cpp (1939) : Reading Port Id =1...........
+cdsunhudp.cpp (1956) : CdSuNhUdp::readNoOfBytes(): connected socket 5 to 192.168.16.40:56235
+cdsunhudp.cpp (1998) : void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)
+bukMsgdistrAdmin.cpp (221) : void applEventHlr(void*) 
+Data Indication
+Port ID = 1
+Data Len = 4
+Remote PortNo 56235
+Dest Addr = 192.168.16.40
+bukMsgdistrAdmin.cpp (336) : STOP TRAINING Message  processing...
+bukMsgdistrAdmin.cpp (343) : NH: Sent message to MD
+bukMsgdistrAdmin.cpp (829) : 
+Message Arrived in MsgDistrAdmin application
+bukMsgdistrAdmin.cpp (841) : Message Source: Admin Menu
+bukMsgdistrAdmin.cpp (504) : Stop Training Message processing...
+bukMsgdistrAdmin.cpp (508) : Admin: in MONITOR state
+bukMsgdistrAdmin.cpp (512) : Admin: changed state to WAIT_TERMINATED
+bukMsgdistrAdmin.cpp (518) : Sending Training Complete message to mentor 1 
+bukMsgdistrAdmin.cpp (527) : Sent message
+bukMsgdistrAdmin.cpp (535) : Sending Training Complete message to trainee 1 
+bukMsgdistrAdmin.cpp (544) : Sent message
+bukMsgdistrAdmin.cpp (829) : 
+Message Arrived in MsgDistrAdmin application
+bukMsgdistrAdmin.cpp (847) : Message Source: Mentor
+bukMsgdistrAdmin.cpp (685) : Message: Training Complete Ack
+bukMsgdistrAdmin.cpp (689) : Admin: in WAIT_TERMINATED state
+bukMsgdistrAdmin.cpp (697) : Training complete Ack received from Mentor 1
+bukMsgdistrAdmin.cpp (705) : Admin: Mentor1-Trainee1 mapping deletion - SUCCESS
+bukMsgdistrAdmin.cpp (829) : 
+Message Arrived in MsgDistrAdmin application
+bukMsgdistrAdmin.cpp (853) : Message Source: Trainee
+bukMsgdistrAdmin.cpp (785) : Message: Training Complete Ack
+bukMsgdistrAdmin.cpp (789) : Admin: in WAIT_TERMINATED state
+bukMsgdistrAdmin.cpp (795) : Training complete Ack received from trainee 1
+bukMsgdistrAdmin.cpp (803) : Admin: changed state to TERMINATED
+bukMsgdistrAdmin.cpp (804) : All Training Completed
+Admin Exiting
+rohitm@dti7de14-010:~/Documents/SystemManagement/BUK/BUK_System_Design_Assignment/build$ 
+

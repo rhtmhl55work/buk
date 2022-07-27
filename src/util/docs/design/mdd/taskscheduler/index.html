@@ -1,0 +1,596 @@
+<html><head>
+<title>Task Scheduler Module Design Document</title></head>
+<body bgcolor="white">
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<h2 align="center">Task Scheduler Module Design Document</h2>
+<hr noshade>
+<!-- --------------------------------------------------------------------- -->
+
+<table width="80%" border="0">
+<tbody><tr>
+        <td valign="top"><b>Document id</b></td>
+        <td valign="top">:</td>
+        <td valign="top"><b>ITS-MDD-CDSU_TASKSCHEDULER-001</b></td>
+</tr>
+<tr>
+        <td valign="top"><b>Document name</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Task Scheduler Module Design Document</td>
+</tr>
+<tr>
+        <td valign="top"><b>Author(s)</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Seema Chandak</td>
+</tr>
+<tr>
+        <td valign="top"><b>Contributor(s)</b></td>
+        <td valign="top">:</td>
+        <td valign="top"><br></td>
+</tr>
+<tr>
+        <td valign="top"><b>Approved By</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Prakash R</td>
+</tr>
+<tr>
+        <td valign="top"><b>Document Source</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Internet Telephony Group, C-DOT, Bangalore</td>
+</tr>
+</tbody></table>
+
+<table>
+<tbody><tr>
+        <td valign="top"><i>Copyright © 2003 by C-DOT. All rights reserved. Contents of
+        publication may not be reproduced in any form without permission from
+        C-DOT.</i></td>
+</tr>
+</tbody></table>
+
+
+<h3>Revision Chart</h3>
+<p>
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr>
+        <th colspan="5">Document History</th>
+</tr>
+<tr>
+        <th> Version No </th>
+        <th> Revised By </th>
+        <th> Revised On </th>
+        <th> Approved By </th>
+        <th> Remarks </th>
+</tr>
+<tr>
+        <td> Draft 1 </td>
+        <td> Seema Chandak </td>
+        <td> Jun 20, 2003 </td>
+        <td> Prakash R </td>
+        <td> <br> </td>
+</tr>
+<tr>
+	<td><br></td>
+	<td><br></td>
+	<td><br></td>
+	<td><br></td>
+	<td><br></td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+</tbody></table>
+
+
+<!-- --------------------------------------------------------------------- -->
+</p>
+<hr noshade>
+<h2>Table of contents</h2>
+
+<font face="arial">
+<pre>1.0  <a href="#intro"><b><i>Introduction</i></b></a>
+     1.1    <a href="#intro-ps"><b><i>Purpose and Scope</i></b></a>
+     1.2    <a href="#intro-aad"><b><i>Acronyms, Abbreviations and Definitions</i></b></a>
+     1.3    <a href="#intro-ref"><b><i>References</i></b></a>
+
+2.0  <a href="#md"><b><i>Module Description</i></b></a>
+        2.1  <a href="#md"><b><i>Design goals and constraints</i></b></a>
+        2.2  <a href="#md-properties"><b><i>Properties</i></b></a>
+        2.3  <a href="#md-responsibilities"><b><i>Responsibilities</i></b></a>
+        2.4  <a href="#md-functionality"><b><i>Functionalities</i></b></a>
+
+3.0  <a href="#dd"><b><i>Decomposition Description</i></b></a>
+        <a href="#dd-cd"><b><i>3.1  Class diagram</i></b></a>
+        <a href="#dd-eid"><b><i>3.2  Entity Interaction Diagram</i></b></a>
+                <a href="#dd-eid-e"><b><i>3.2.1 Entities</i></b></a>
+                <a href="#dd-eid-c"><b><i>3.2.2 Channels</i></b></a>
+
+4.0  <a href="#res-usage"><b><i>Resource usage</i></b></a>
+
+5.0  <a href="#des-con"><b><i>Design Considerations</i></b></a>
+
+6.0  <a href="#issue"><b><i>Issues</i></b></a>
+
+7.0  <a href="#state%20charts"><b><i>Processing/Algorithm/Pseudo code/STD/Statecharts</i></b></a>
+
+8.0  <a href="#data-struct"><b><i>Data Structures Required</i></b></a>
+
+9.0  <a href="#msgrxd"><b><i>Messages Received by module</i></b></a>
+
+10.0  <a href="#msgtxd"><b><i>Messages Transmitted by module</i></b></a>
+
+11.0  <a href="#tests"><b><i>Test cases</i></b></a>
+
+<a href=""><b><i>Appendix</i></b></a>
+</pre>
+</font>
+
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+
+<a name="intro"></a>
+<h2>1. Introduction</h2>
+<p> This document gives the design of CdSuTaskScheduler. The TaskScheduler
+    maintains a table of all the tasks which has registered to it. It
+    continuously listens on a message queue and when it gets a message it
+    dispatches the message to appropriate tasks. Thus all the tasks belong
+    to one thread. They are always passive and become active only when a
+    message is posted to them. The message received by the TaskScheduler is 
+    CdTaskMessage type which is publicly derived from CdMessage.
+</p>
+
+<a name="intro-ps"></a>
+<h3> 1.1. Purpose and Scope</h3>
+<p> This document provides the design details CdSuTaskScheduler. This 
+document gives design goals and constraints, properties, responsibilities and
+functionalities of the Task Scheduler. Section 3 gives the class diagram, its member
+functions and attributes. Later sections give the algorithms, data structures,
+etc.
+
+<a name="intro-aad"></a>
+</p><h3> 1.2. Acronyms Abbreviations and Definitions</h3>
+<table>
+<tbody><tr>
+<td valign="top"></td>
+<td valign="top">:</td>
+<td valign="top"></td>
+</tr>
+</tbody>
+</table>
+
+<a name="intro-ref"></a>
+<h3> 1.3. References</h3>
+<table>
+<tbody>
+<tr>
+<td valign="top">[algoc++]</td>
+<td valign="top">:</td>
+<td valign="top">Algorithms in C++, Sedgewick, 1998, Pearson Education, Inc.</td>
+</tr>
+
+<tr>
+<td valign="top">[xkmap]</td>
+<td valign="top">:</td>
+<td valign="top">x-kernel Map Library Design Notes, Mosberger.</td>
+</tr>
+</tbody></table>
+
+<a name="md"></a>
+<h2>2. Module Description</h2>
+
+<a name="md-goals"></a>
+<h3>2.1. Design Goals and Constraints</h3>
+<ol>
+	<li>The module should use low run-time memory. </li>
+	<li>The module should have efficient time management and memory
+	    management. </li>
+	<li>The data structures should be hidden from the outside world. </li>
+	<li>Zero copying of payload. </li>
+	<li>The module should be easily portable. </li>
+</ol>
+
+<a name="md-properties"></a>
+<h3>2.2 Properties</h3>
+<p>None.</p>
+
+<a name="md-responsibilities"></a>
+<h2>2.3. Responsibilities </h2>
+<p>None.</p>
+
+<a name="md-functionality"></a>
+<h2>2.4. Functionalities</h2>
+<p>The following are the methods/functions provided by the TaskScheduler.
+</p>
+<ol>
+	<li> Registers a task by adding it to its taskList. </li>
+	<li> Removes a task from the taskList. </li>
+	<li> Assigns a TaskId to a task which has registered to it. </li>
+	<li> Allows the user to assign a taskId, if it is free. </li>
+	<li> Listens on its queue and dispatches message to the respective tasks.</li>
+</ol>
+<p></p>
+
+<a name="dd"></a>
+<h2>3. Decomposition Description</h2>
+<p>This section provides the classes, entities, channels and messages.</p>
+
+<a name="dd-cd"></a>
+<h3>3.1. Class Diagram</h3>
+<i>Refer to the diagram showing its data structures.</i>
+
+<b>3.1.1 CdSuTaskScheduler</b>
+<p>The CdSuTaskScheduler has the following data structures.
+<ol>
+	<li> A thread safe message queue.</li>
+	<li> List of all the tasks which registers to it.</li>
+	<li> Configuable maximum no of tasks that can register to it. <li>
+</ol>
+</p>
+
+<p>The data structures are shown in the diagram below.
+<p align="center">
+<img src="taskscheduler.gif" alt="">
+</p>
+
+<a name="dd-eid"></a>
+<h3>3.2. Entity Interaction Diagram</h3>
+<i>None.</i>
+
+<a name="dd-eid-e"></a>
+<h3>3.2.1. Entities</h3>
+<i>None.</i>
+
+<a name="dd-eid-c"></a>
+<h3>3.2.2. Channels</h3>
+<i>None.</i>
+
+<a name="res-usage"></a>
+<h2>4. Resource usage</h2>
+<p>The memory usage of the each data structure is given below.
+<table border=1 cellpadding=5 cellspacing=0 width="100%">
+<tr>
+	<th>Entity</th>
+	<th>Memory usage</th>
+</tr>
+<tr>
+	<td>CdSuTaskScheduler</td>
+	<td>12 bytes</td>
+</tr>
+<tr>
+	<td>CdSuTask</td>
+	<td>2 bytes</td>
+</tr>
+
+</table>
+</p>
+
+<a name="des-con"></a>
+<h2>5. Design Considerations</h2>
+<p> The taskList is implemented as a simple array because generally the no
+of tasks registering to a Task Scheduler will not be very large. Search
+Mechanism in such a case will be fastest in case of array. If the user can 
+estimate the approximate no of tasks that will register to the taskscheduler
+at the creation of task scheduler then the memory usage will also not be
+much.</p>
+
+<a name="issues"></a>
+<h2>6. Issues</h2>
+<i>None.</i>
+
+<a name="state%20charts"></a>
+<h2>7. Processing/Algorithm/Pseudocode/STD/Statecharts</h2>
+<b>7.1 CdSuTask API</b>
+<p>
+<table border=1 cellpadding=5 cellspacing=0 width="100%">
+<tr>
+	<th>Method</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>CdSuTask ()</td>
+	<td>CdSuTask constructor.</td>
+</tr>
+<tr>
+	<td>void setTaskId (CdSuTaskId tid)</td>
+	<td>Assigns a taskId to the task.</td>
+</tr>
+<tr>
+	<td>CdSuTaskId getTaskId ()</td>
+	<td>Allows to get the TaskId of a given Task.</td>
+</tr>
+
+<tr>
+	<td> virtual void handleMsg (CdMessage*) = 0</td>
+	<td> CdSuTask is an abstract base class. Its objects will have to
+	     define and implement this function based on the action it wants
+	     to perform based on the message it received.</td>
+</tr>
+</table>
+</p>
+
+<b>7.2 CdSuTaskScheduler API</b>
+<p>
+<table border=1 cellpadding=5 cellspacing=0 width="100%">
+<tr>
+	<th>Method</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>CdSuTaskScheduler (CdSuTsQueue<CdTaskMessage*>* msgQ, Uint32 maxNoOfTasks)</td>
+	<td>The constructor. It gives it the message queue that it should
+	    listen on. It also configures the maximum permissible no of tasks.</td>
+</tr>
+<tr>
+	<td>CdSuTaskId addTask (CdSuTask* task)</td>
+	<td>Allows to add a task to its task list. Return the TaskId that it
+	    has assigned to the task.</td>
+</tr>
+<tr>
+	<td>bool setTask (CdSuTaskId tid, CdSuTask* task) </td>
+	<td>Allows to add a task to its task list and assign the taskId also.</td>
+</tr>
+<tr>
+	<td>bool removeTask (CdSuTaskId tid)</td>
+	<td>Allows to remove the task with a given task Id from the task list.</td>
+</tr>
+<tr>
+	<td>void reset ()</td>
+	<td>Resets the task list of the Task Scheduler.</td>
+</tr>
+
+<tr>
+	<td>void dispatcher ()</td>
+	<td>This is responsible to listen to the queue and dispatch the
+	message to the appropriate tasks based on the message received. Note
+	that this function never returns.</td>
+</tr>
+</table>
+
+</p>
+
+<b>7.3 Usage of CdSuTaskScheduler</b>
+<p>
+<ul>
+	<li>Create a task scheduler. Create a message queue.</li>
+	<pre>
+	CdSuTaskScheduler* ts = new CdSuTaskScheduler (msgQueue, 3);
+	</pre>
+
+	<li>Create few tasks instantiated from classes publicly derived from 
+	    CdSuTask say task1, task2 and task3.</li>
+	
+	<li>Registers the task with the task scheduler.</li>
+	<pre>
+	if ((ts->addTask (task1) == CDSU_TID_INVALID)
+	{
+		// task registration fails.
+	} else
+	{
+		// task registration successful
+	}
+	if ((ts->addTask (task1) == CDSU_TID_INVALID)
+	{
+		// task registration fails.
+	} else
+	{
+		// task registration successful
+	}
+	if ((ts->addTask (task1) == CDSU_TID_INVALID)
+	{
+		// task registration fails.
+	} else
+	{
+		// task registration successful
+	}
+
+	</pre>
+
+	<li>Instead of adding a Task with any TaskId as allocated by the
+	Task Scheduler we can specify the TaskId while registering a task to the
+	TaskScheduler.</li>
+	<pre>
+	if ((ts->setTask (task1) == false)
+	{
+		// task registration fails.
+	} else
+	{
+		// task registration successful
+	}
+	if ((ts->setTask (task1) == false)
+	{
+		// task registration fails.
+	} else
+	{
+		// task registration successful
+	}
+	if ((ts->setTask (task1) == false)
+	{
+		// task registration fails.
+	} else
+	{
+		// task registration successful
+	}
+	</pre>
+
+	<li>Call the dispatcher function of the Task Scheduler.</li>
+	<pre>
+	ts->dispatcher ();
+	</pre>
+
+	<li>Posts message to the respective tasks by adding msgs to the
+	    msgQueue with appropriate destination subModuleIds.</li>
+	<pre>
+	msgQueue->add (taskMsg1);
+	</pre>
+
+	<li> Based on the destination subModuleId, the corresponding
+	handleMsg function of the task will be called by the dispatcher
+	function of the Task Scheduler. </li>
+</ul>
+</p>
+
+<b>7.4 Algorithm</b>
+<p>The algorithm for the main methods of CdSuTaskScheduler are given below.</p>
+
+<p><b>7.4.1 CdSuTaskScheduler::addTask ()</b> </p>
+<ol>
+	<li> Search the TaskList. If any element of the array is free the
+	     Task is set to the particular element of the taskList.</li>
+	<li> The TaskId is nothing but the location of the task in the
+	     taskList array.
+	<li> The corresponding TaskId is returned.</li>
+	<li> A Null Task cannot be added.</li>
+</ol>
+
+<p><b>7.4.2 CdSuTaskScheduler::setTask ()</b> </p>
+<ol>
+	<li> If TaskId is greater than maximum no of tasks or if that taskId
+	     has already been allocated or if the task is equal to NULL, setting
+	     of the task with the taskId is not allowed.</li>
+	<li> Else set the Task in the TaskList with the given taskId.</li>
+</ol>
+
+<p><b>7.4.3 CdSuTaskScheduler::removeTask ()</b> </p>
+<ol>
+	<li> The request is made to remove the Task with a given TaskId.</li>
+	<li> If the TaskId is greater than the maximum no of tasks or if
+	     there is no task corresponding to the TaskId, the function
+	     fails i.e return false. </li>
+	<li> Else the particular task is deleted and set to NULL.</li>
+</ol>
+
+<p><b>7.4.3 CdSuTaskScheduler::dispatcher ()</b> </p>
+<ol>
+	<li> It continuosly listens in the Blocking mode on the msgQueue
+	     passed.</li>
+	<li> When it gets the message, it extracts the destination
+	     submodule Id from the message.</li>
+	<li> If destination Id is less than the maximum no of tasks and if 
+	     there is a task corresponding to the TaskId the message is
+	     dispatched to the task i.e the handleMsg function of the task is
+	     called.</li>
+	<li> Else the task message is delete.</li>
+	<li> If the destination Id is greater than or equal to the maximum
+	     no of tasks then also the task message is deleted. </li>
+</ol>
+
+<p><b>7.4.3 CdSuTask::getTaskId ()</b> </p>
+<ol>
+	<li>Returns the TaskId of the Task.</li>
+</ol>
+
+<p><b>7.4.3 CdSuTask::setTaskId ()</b> </p>
+<ol>
+	<li>Sets the TaskId of the Task.</li>
+</ol>
+
+<p><b>7.4.3 CdSuTask::handleMsg ()</b> </p>
+<ol>
+	<li> This is a virtual void function.</li>
+	<li> CdSuTask is an abstract base class and cannot be instantiated. </li>
+	<li> The classes derived from CdSuTask can implement this function
+	     according to the action they want to take on receiving a
+	     message. <li>
+</ol>
+
+<b>7.5 Statechart Diagram</b>
+<p> <i>None.</i> </p>
+
+<a name="data-struct"></a>
+<h2>8. Data Structures Required</h2>
+<p>The methods and attributes of the CdSuTaskScheduler and CdSuTask are given below.</p>
+
+<p><b>8.1 CdSuTaskScheduler class</b></p>
+<pre>
+template &lt;class ValType&gt;
+class CdSuTaskScheduler
+{
+<b>Public methods and members</b>
+	CdSuTaskScheduler (CdSuTsQueue<CdTaskMessage*>* msgQ, 
+				Uint32 maxTasks = DEFAULT_NO_OF_TASKS);
+	~CdSuTaskScheduler ();
+
+	//--------------------------------------------------------------------
+	// API provided to the external world.
+	//--------------------------------------------------------------------
+	void reset ();
+	void dispatcher ();
+	CdSuTaskId addTask (CdSuTask* task);
+	bool setTask(CdSuTaskId tid, CdSuTask* task);
+	bool removeTask (CdSuTaskId tid);
+
+<b>Private methods and members</b>
+	//--------------------------------------------------------------------
+	// Enumerations and typedefs.
+	//--------------------------------------------------------------------
+	enum 
+	{
+		DEFAULT_NO_OF_TASKS = 64 
+	};
+
+	//--------------------------------------------------------------------
+	// Private Attributes.
+	//--------------------------------------------------------------------
+
+	CdSuTsQueue<CdTaskMessage*>* msgQueue;
+	CdSuTask** taskList;
+	Uint32 maxNoOfTasks;
+</pre>
+
+<p><b>8.1 CdSuTask class</b></p>
+<pre>
+<b>Public methods and members</b>
+	CdSuTask (){};
+	virtual ~CdSuTask (){};
+	
+	void setTaskId (CdSuTaskId tid) { taskId = tid;};
+	CdSuTaskId getTaskId (){ return (taskId);};
+	
+	virtual void handleMsg (CdTaskMessage*) = 0;
+
+<b>Private methods and members</b>
+	CdSuTaskId taskId;
+</pre>
+
+
+<a name="msgrxd"></a>
+<h2>9. Messages Received</h2>
+<i>None.</i>
+
+<a name="msgtxd"></a>
+<h2>10. Messages Transmitted</h2>
+<i>None.</i>
+
+<a name="tests"></a>
+<h2>11. Test cases</h2>
+<ol>
+	<li>Test addTask method (successful and unsuccessful).</li>
+	<li>Test setTask method (successful and unsuccessful).</li>
+	<li>Test removeTask method (successful and unsuccessful).</li>
+	<li>Test dispatch method (successful and unsuccessful).</li>
+</ol>
+<i>None.</i>
+
+
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+<i>End of document</i>
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+</body></html>

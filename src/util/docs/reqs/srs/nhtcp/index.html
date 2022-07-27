@@ -1,0 +1,592 @@
+<html bgcolor="white"><head><title>Generic TCP Network Handler Software Requirements Specifications Document</title></head>
+<body bgcolor="white">
+<hr>
+<h2 align="center">Generic TCP Network Handler Software Requirements Specifications Document</h2>
+<hr>
+
+<table border="0" width="80%">
+<tbody><tr>
+        <td><b>Document id</b></td>
+        <td>:<br> </td>
+        <td><b>ITS-SRS-CDSU_NHTCP-001</b></td>
+</tr>
+<tr>
+        <td><b>Document name</b></td>
+        <td>: <br> </td>
+        <td>Generic TCP Network Handler Software Requirements Specifications Document</td>
+</tr>
+<tr>
+
+        <td><b>Author(s)</b></td>
+        <td>:<br> </td>
+        <td>Sumit Bijwe</td>
+</tr>
+<tr>
+        <td><b>Contributor(s)</b></td>
+        <td>: <br></td>
+
+        <td>Prakash R, Seema Jain,Pramodh N., Krishanmurthy V.</td>
+</tr>
+<tr>
+        <td><b>Approved By</b></td>
+        <td>:<br> </td>
+        <td> Prakash R.</td>
+</tr>
+
+<tr>
+        <td><b>Document Source</b></td>
+        <td>:<br> </td>
+        <td>Softswitch and Media Gateway BU, C-DOT, Bangalore</td>
+</tr>
+
+</tbody></table>
+
+
+<table>
+
+<tbody><tr>
+        <td><i>Copyright © 2004 by C-DOT. All rights reserved. Contents of
+        publication may not be reproduced in any form without permission from
+        C-DOT.</i></td>
+</tr>
+</tbody></table>
+
+<h4>Revision Chart</h4>  
+<p>
+<table width="100%" cellpadding="10" border="1" cellspacing="0">
+<tbody><tr>
+        <th colspan="5">Document History</th>
+</tr>
+
+<tr>
+        <th> Version No </th>
+        <th> Revised By </th>
+        <th> Released On </th>
+        <th> Approved By </th>
+        <th> Remarks </th>
+</tr>
+<tr>
+        <td> Draft 1</td>
+        <td> Sumit Bijwe </td>
+        <td> Mar 17, 2004 </td>
+        <td> Prakash R</td>
+        <td>  <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+</tbody></table>
+
+<br></p><hr>
+
+<!-- --------------------------------------------------------------------- -->
+<h2>Table of Contents</h2>
+<ul>
+  <li>    <a href="#intro">1.0 Introduction</a></li>
+  <ul>
+    <li><a href="#intro-pur">1.1 Purpose</a></li>
+    <li><a href="#intro-scp">1.2 Scope</a></li>
+    <li><a href="#intro-daa">1.3 Definitions, Abbreviations and Acronyms</a></li>
+    <li><a href="#intro-ref">1.4 References</a></li>
+    <li><a href="#intro-ovw">1.5 Overview</a></li>
+  </ul>
+  <li>    <a href="#gd">2.0 General Description</a> </li>
+  <ul>
+    <li><a href="#prod-pers">2.1 Module Perspective</a></li>
+    <ul>
+    	<li><a href="#bg">2.1.1 Background</a></li>
+	<li><a href="#ovsig">2.1.2 Overview of Network Handler</a></li>
+	<li><a href="#fem2ua">2.1.3 Features of Network Handler</a></li>
+	<li><a href="#evt">2.1.4 Event Handler</a></li>
+	<li><a href="#api">2.1.5 API</a></li>
+	<li><a href="#multi">2.1.6 Mutli-Network Handler Support</a></li>
+    </ul>
+    <li><a href="#prod-func">2.2 Module Functions</a></li>
+    <ul>
+	    <li><a href="#si">2.2.1 Module Initialization</a></li>
+    </ul>
+    <li><a href="#user-char">2.3 User Characteristics</a></li>
+    <li><a href="#const">2.4 Constraints</a></li>
+    <li><a href="#asd">2.5 Assumptions and Dependencies</a></li>
+  </ul>
+
+    <li><a href="#spec-req">3.0 Specific Requirements</a></li>
+	<ul>
+	<li><a href="#ext-int">3.1 External Interface Requirements</a></li>
+	<li><a href="#fun-req">3.2 Functional Requirements</a></li>
+	<li><a href="#per-req">3.3 Performance Requirements</a></li>
+	<li><a href="#logdr">3.4 Logical Database Requirements</a></li>
+	<li><a href="#des-con">3.5 Design constraints</a></li>
+		 <ul>
+			<li><a href="#hrd-con">3.5.1 Hardware Limitations</a></li>
+		</ul>
+	<li><a href="#attr">3.6 Attributes</a></li>
+		 <ul>
+			<li><a href="#attr-aval">3.6.1 Availability</a></li>
+			<li><a href="#attr-sec">3.6.2 Security</a></li>
+			<li><a href="#attr-man">3.6.3 Maintainability</a></li>
+			<li><a href="#attr-tran">3.6.4 Portability</a></li>
+			<li><a href="#attr-cau">3.6.5 Caution</a></li>
+		</ul>
+
+	<li><a href="#deli">3.7 Deliverables</a></li>
+	<li><a href="#add-com">3.8 Additional Comments</a></li>
+	</ul>
+</ul>
+
+<!-- --------------------------------------------------------------------- -->
+<hr width="100%" size="2" noshade="noshade">
+
+<a name="intro"> </a>
+<h2>1. Introduction </h2>
+
+<h3><a name="intro-pur">1.1  Purpose </a></h3>
+<p> The purpose of this document is to capture the functional, performance, 
+    operational and interface requirements of a generic TCP Network Handler for the 
+    Internet Telephony System. The module needs to be build such that it can be
+    used with all stacks like H.323, SIP, Meagaco or any other module.	    
+</p>
+
+<h3><a name="intro-scp">1.2  Scope </a></h3>
+<p>The reader is assumed to be familiar with the TCP related and the document  
+in the references. Here only the specifications are given. The Architecture
+and detail document will be available later.
+<h3><a name="intro-daa">1.3  Definitions, Acronyms and Abbreviations</a> </h3>
+
+<h3>Abbreviations</h3>
+<table cellspacing="0">
+<tbody><tr>
+<td>API</td>
+<td>:</td>
+<td> Application Programming Interface</td>
+</tr>
+
+<tr>
+<td>ACK</td>
+<td>:</td>
+<td> Acknowledgement</td>
+</tr>
+
+<tr>
+<td>MI</td>
+<td>:</td>
+<td> Management Interface</td>
+</tr>
+
+<tr>
+<td>UI</td>
+<td>:</td>
+<td> User Layer Interface</td>
+</tr>
+
+<tr>
+<td>TCP</td>
+<td>:</td>
+<td> Transport Control Protocol</td>
+</tr>
+
+
+<tr>
+<td>SRS</td>
+<td> :</td>
+<td> Software Requirement Specifications</td>
+</tr>
+
+<tr>
+<td> TBD</td>
+<td> :</td>
+<td> To Be Done</td>
+</tr>
+</tbody></table>
+
+<h3>Definitions</h3>
+<table valign="top" cellpadding="5" border="1" cellspacing="0">
+<tbody>
+
+<tr valign="top">
+	<td><b> Connection</b></td>
+	<td> A full association that is used by peers to exchange data between
+	endpoints of a network application.
+	</td>
+</tr>
+
+
+<tr valign="top">
+	<td><b> Listener</b></td>
+	<td> Listenes on a particular port for connections.
+	</td>
+</tr>
+
+
+<tr valign="top">
+	<td><b> TCP Network Handler</b></td>
+	<td>The TCP Netwok Handler offers the basic tcp network services like open
+	connection, send data on connections, receive data from connections, set 
+	listeners, stop listeners and close connection etc.</td>
+</tr>
+
+<tr valign="top">
+	<td><b> TCP Network Handler Instance Id</b></td>
+	<td> It is the unique identity of newly created TCP Network Handler.
+	</td>
+</tr>
+
+<tr valign="top">
+	<td><b> System Management</b></td>
+	<td> System Management is responsible for creating, configuring,
+	deleting of TCP Network Handler module.
+	</td>
+</tr>
+
+<tr valign="top">
+	<td><b> User Layer</b></td>
+	<td>User Layer is the customer of TCP Network Handler which avails the
+	services offered by it. 
+	</td>
+</tr>
+
+</table>
+
+<h3><a name="intro-ref">1.4  References</a></h3>
+<table border="0" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td valign="top">[C++NP] </td>
+<td valign="top">:</td>
+<td valign="top">C++ Network Programming : Douglas  C. Schmidt and Stephen D.
+Huston .</td>
+</tr>
+
+</tbody></table>
+
+
+<h3> <a name="intro-ovw">1.5 Overview </a> </h3>
+
+<p> The overview of the document is as follows.
+<br>
+<br>
+Section 2 gives a general system description of the generic TCP network handler implementation that should
+be developed. It gives the module perspective, module functions,
+capabilities which are supported and will be supported in the future, user
+characteristics, assumptions and dependencies of the module being
+developed.
+<br>
+<br>
+ Section 3 gives system specific requirements of the generic TCP network handler implementation. It
+ gives the specific requirements, interface requirements, performance
+ constraints, design constraints, standards compliance, attributes and any
+ other requirements to be supported.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+<hr width="100%" size="2" noshade="noshade"><a name="gd"><h2>2. General Description</h2></a>
+
+<a name="prod-pers"><h3>2.1 Module Perspective</h3></a>
+
+<h3><a name="bg">2.1.1 Background</a></h3>
+<p>
+Most of the modules in the internet telephony system uses network services
+to interact with each other. In a case of IP-IP call, we need to establish the
+connections between end points and to communicate on established connections.
+The lowest essential block in such modules provides the transport mechanism.
+It offers all network services which upper layers  requires to communicate across.  
+</p>
+
+<h3><a name="ovsig">2.1.2 Overview of Network Handler</a></h3>
+<p>The main purpose of the tcp network handler is to transport packets
+over IP network by managing multiple connections.
+It needs to offer the general services like</p>
+<ul>
+<li>Opening TCP Connections.</li>
+<li>Closing TCP Connections.</li>
+<li>Start TCP Listeners.</li>
+<li>Stop TCP Listeners.</li>
+<li>Send data on TCP connection.</li>
+<li>Receive data on TCP connection.</li>
+</ul>
+
+<h3><a name="fem2ua">2.1.3 Features of Network Handler</a></h3>
+<b>Features Support</b>
+<p> It should support the following feature.</p>
+<ol>
+<li>Reliable communication.</li> 
+<li>Offering generic services.</li> 
+<li>High level of abstraction.</li> 
+<li>Management of multiple connections.</li>
+<li>Management of multiple listeners.</li>
+<li>Statistics Report.</li>
+<li>Supports TPKT.</li> 
+</ol>
+
+<b>Features Not Expected</b>
+<ol>
+TBD
+</ol>
+
+<h3><a name="evt">2.1.4 Event Handler</a></h3>
+<p>
+Both System Management and User Layer should be registerd with the event handler (as call back function).
+</p>
+<p>
+The System Management will register the event handler  with
+Network Handler. The responses for MI API function calls and events will be
+notified by Netwok Handler to the registered event handler. 
+</p>
+
+<p>
+Similarly, the User Layer will register with the two event handler. One is for
+listener events and another is for connection events. The responses for UI API 
+function calls and events of listener and connection will be notified by Network
+Handler to the registered listener and connection event handler respectively.
+</p>
+
+
+<h3><a name="api">2.1.5 API</a></h3>
+<p>Network handler should have function based API for the follwoing interfaces.
+<ol>
+	<li> System Management Interface </li>
+	<li> User Layer Interface </li>
+</ol>
+All the API calls will take essentials parameter as argument structure to
+perform intended operation.
+</p>
+
+
+<p>The intended functionality of the APIs is given below: 
+</p>
+<b>1. Management API</b>
+<ul>
+	<li>Configuration of Network Handler <br> 
+	API calls for Initial (static) and General (dynamic)configuration.</li><br>
+	
+	<li>Status of Network Handler<br>
+	The NH should report its status like RUNNING, STOPPED, CREAETED.<br>
+	</li>
+	<br>
+	
+	<li>Controling of Network Handler
+	<br> The control functions like <br>
+	- Create NH.<br>
+	- Delete NH.<br>
+	- Start NH.<br>
+	- Stop NH.<br>
+	</li>
+	<br>
+
+	<li>Statistics of Network Handler <br>
+	The NH should report with the following statistics.<br>
+
+	- Total number of Add Listener Requests.<br>
+	- Total number of Connection Requests.<br>
+	- Total number of Data Requests.<br>
+	- Total number of Disconect Connection Requests.<br>
+	- Total number of Remove Listener Requests.<br>
+	- Total number of Connection Indications.<br>
+	- Total number of Data Indications.<br>
+	- Total number of Close Connection Indications.<br>
+	- Total number of Successful Connection Requests.<br>
+	- Total number of Successful Add Listeners.<br>
+	- Total number of Successful Data Transmits.<br>
+	- Total number of Successful Close Connections.<br>
+	- Total number of Successful Remove Listeners.<br>
+	- Total number of Current Active Connections.<br>
+	- Total number of Current Active Listeners. <br>
+	</li>
+</ul>
+<b>2. User Layer Interface API</b>
+<ul>
+	<li>Opening TCP Connections.<br>
+	It will take remote IP address and port as parameters and returns with the connection id or handle and response code.</li> <br>
+	<li>Closing TCP Connections.<br>
+	It will take connection id/handle as parameter and returns with  response code.</li> <br>
+	<li>Start TCP Listeners.<br>
+	It will take self IP addresss and port as parameter and returns with the listener id or handle and response code.</li> <br>
+	<li>Stop TCP Listeners.<br>
+	It will take listener id/handler as parameter and returns with  response code.</li> <br>
+	<li>Send data on TCP connection.<br>
+	It will connection id /handler and data buffer as parameters returns with  response code.</li> <br>
+</ul>
+
+<br>
+<h3><a name="mutli">2.1.6 Multi-Network Handler Support.</a></h3>
+<p> The overview of Network Handler depicts the basic functionality
+expected by the upper layer. The idea of providing multiple instances of such
+network handlers  to upper layer leads to have Multi-Network Handler support.
+The upper layer can create as many instances of network handler as per the requirement. These
+requirement can arise in certain cases like in load conditions, to have separate network 
+handlers for self opened connections and remotely opened onnections. This gives
+the feature of load sharing. The network handler instance manager should be
+singleton modules in the system.</p>
+
+<a name="prod-func"><h3>2.2 Module Functions</h3></a>
+<a name="si"><h3>2.2.1 Module Initialization</h3></a>
+<ul>
+	<li>NH Module Init : This will return the NH instance id.</li>
+	<li>Configure NH : Two Types of configuration Initial and General.
+	Inital configuration
+	parameters are like maximum connections, maximum
+	listener, size of queues etc. General configuration parameter can be
+	used for dynamic configuration of NH.</li>
+	<li>Create NH : This is control call to create NH.</li>
+	<li>Start NH : It will make NH in ready state.</li>
+</ul>
+
+<a name="user-char"><h3>2.3 User Characteristics</h3></a>
+<p>As there are two interface, System Manager and User
+Layer. Both the interface registers with event handlers as a call back function to get responses
+from NH on appropriate API calls. In User Layer, it will have two call back
+function, one is for listeners and another is for connections. So whenever any
+events occurs on listener, NH will call the listener event handler as a call back and similarly any
+events on a connection, NH will call connection event handler.</p>
+<a name="const"><h3>2.4 Constraints</h3></a>
+<p> The id (handle) for connections or listener will be allocated by NH not by the user
+layer.</p>
+<a name="asd"><h3>2.5 Assumptions and Dependencies</h3></a>
+<p> TBD </p>
+<!-- --------------------------------------------------------------------- -->
+<hr width="100%" size="2" noshade="noshade">
+<h2><a name="spec-req">3.0 Specific Requirements</a></h2>
+
+<h3><a name="ext-int">3.1 External Interface Requirements</a></h3>
+<p>TBD</p>
+
+<h3><a name="fun-req">3.2 Functional Requirements</a></h3>
+<p>
+<ul>
+	<li> Support for Multiple Network Handler Creation. </li>
+	<li> Support all network services like  
+		<ul>
+		 <li>send data.</li>
+		 <li>receive data.</li>
+		 <li>opening multiple connections.</li>
+		 <li>opening multiple listeners. </li>
+		 <li>closing connection.</li>
+		 <li>closing listener.</li>
+		</ul>
+	</li>
+	<li>It should give statistical information.</li>
+	<li> Error report mechanism. </li>
+ 
+</ul>
+</p>
+
+<h3><a name="per-req">3.3 Performance Requirements</a></h3>
+<p>	
+<ul>
+	<li>It should have high throughput in Load Conditions.</li>
+	<li>It should have low run-time memory.</li>
+	<li>It should have efficient time management and memory management.</li>
+	<li>It should be thread safe and re-entrant.</li>
+
+</ul>
+</p>
+
+<h3><a name="logdr">3.4 Logical Database Requirements</a></h3>
+<p>TBD</p>
+
+<h3><a name="des-con">3.5 Design constraints</a></h3>
+<p>TBD</p>
+
+<h3><a name="std-com">3.5.1 Standards Compliance</a></h3>
+<p>TBD</p>
+
+<h3><a name="hrd-con">3.5.2 Hardware Limitations</a></h3>
+<p>None</p>
+
+<h3><a name="attr">3.6 Attributes</a></h3>
+<h3><a name="attr-aval">3.6.1 Availability</a></h3>
+<ol>
+	<li>Support for high availability requirements</li>
+</ol>
+<h3><a name="attr-sec">3.6.2 Security</a></h3>
+<h3><a name="attr-man">3.6.3 Maintainability</a></h3>
+<h3><a name="attr-tran">3.6.4 Portability</a></h3>
+<p>The TCP Network Handler implementation should be portable on the following computing platforms, processors and compilers.
+</p><ol>
+	<li>OS</li>
+	<ol>
+		<li>Linux</li>
+		<li>Solaris</li>
+		<li>Embedded targets like eCos etc.</li>
+	</ol>
+	<li>Compilers</li>
+	<ol>
+		<li>GNU C/C++</li>
+	</ol>
+	<li>Processors</li>
+	<ol>
+		<li>Intel x86 series</li>
+		<li>PowerPC</li>
+		<li>Sun SPARC</li>
+	</ol>
+</ol>
+<p></p>
+<h3><a name="attr-cau">3.6.5 Caution</a></h3>
+
+<p> None </p>
+
+<h3><a name="deli">3.7 Deliverables</a></h3>
+<ol>
+<li><b> Source Code for Network Handler.</b>
+
+	<p> The source code to be delivered are C++ interface and
+	implementation files, Makefile for compiling the C++ files, README
+	files. </p>
+
+</li><li> <b>API.</b>
+	<p> The various API for the system manager interface and user layer
+	interface to be provided. </p>
+
+</li><li> <b>Test Stubs.</b>
+<p> All the test stubs for testing the functionality of Network Handler to be 
+    provided with the source code. </p>
+
+</li><li> <b>OS Wrappers.</b>
+	<p> OS Wrappers for portability with other operating system 
+	    to be provided. The OS Wrappers to be developed should help in 
+	    minimum effort of portability. </p>
+
+</li><li> <b>Sample Customizable Modules.</b>
+	<p> Example customization modules should be provided.</p>
+
+</li></ol>
+
+
+<h3><a name="add-com">3.8 Additional Comments</a></h3>
+
+<!-- ----------------------------------------- -->
+<hr width="100%" size="2" noshade="noshade">End of Document
+<hr width="100%" size="2" noshade="noshade">&nbsp;<br>
+<p>&nbsp;</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body></html>

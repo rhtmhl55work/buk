@@ -1,0 +1,42 @@
+Utility kit for testing
+-----------------------
+
+Introduction
+------------
+	This utility contains source files which can be used as a template for
+testing various modules. It contains timer utility, test menu, test server and
+test client. The user can add/modify specified sections of the source according
+to the needs of the module under testing.
+
+Description of files
+--------------------
+	timerdef.h, .cpp : contains declaration of the timer handler, timer
+			   thread create and delete functions, timer hander
+			   create and delete functions. It also contains the
+			   timeout handler where the user can specify the
+			   action to be done (eg. send timeout to a module) on
+			   timer expiry.
+	testmenu.h, .cpp : contains the testmenu which is a list of test names
+			   and the corresponding test functions. The user can
+			   add tests here. It also contains functions
+			   to open connection, send and receive  between the
+			   test client and server.
+	testfunctions.h, .cpp : contains the test function definitions. The user
+			   can define test functions here.
+	testserver.cpp	: the test server which waits for input from the client
+			  and executes the test function. The user can create
+			  and initialise the module before testing starts.
+			  And cleanup the module after testing.
+	testclient.cpp	: test test client which takes input from the user and
+			  sends it to the server.
+			 
+
+Modifications
+--------------
+	User should make the following modifications
+
+testserver.cpp : Add initialisation and cleanup code here.
+testclient.cpp : Change the ipaddr of the test server.
+testmenu.cpp : Add test name and test functions here.
+timerdef.cpp : Add timeout action here.
+Makefile : Define TEST_SERVER for making the server.

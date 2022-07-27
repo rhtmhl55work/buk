@@ -1,0 +1,1633 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+<head>
+<title>Generic TCP Network Handler Module Design Document</title>
+</head>
+<body bgcolor="white">
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<h2 align="center">Generic TCP Network Handler Module Design Document</h2>
+<hr noshade>
+<!-- --------------------------------------------------------------------- -->
+
+<table width="80%" border=0>
+<tr>
+        <td valign=top><b>Document id</b></td>
+        <td valign=top>: </td>
+        <td valign=top><b>ITS-MDD-CDSU_NHTCP-001</b></td>
+</tr>
+<tr>
+        <td valign=top><b>Document name</b></td>
+        <td valign=top>: </td>
+        <td valign=top> Generic TCP Network Handler Module Design Document</td>
+</tr>
+<tr>
+        <td valign=top><b>Author(s)</b></td>
+        <td valign=top>:</td>
+        <td valign=top> Seema Jain</td>
+</tr>
+
+<tr>
+        <td valign=top><b>Contributor(s)</b></td>
+        <td valign=top>: </td>
+        <td valign=top>Prakash R., Sumit Bijwe, Pramodh N, Krishnamurthy <td>
+</tr>
+<tr>
+        <td valign=top><b>Approved By</b></td>
+        <td valign=top>:</td>
+        <td valign=top> Prakash R</td>
+</tr>
+<tr>
+        <td valign=top><b>Document Source</b></td>
+        <td valign=top>:</td>
+        <td valign=top> Softswitch and Media Gateway BU, C-DOT, Bangalore</td>
+</tr>
+
+</table>
+
+<table>
+
+<tr>
+        <td valign=top><i>Copyright © 2004 by C-DOT. All rights reserved. Contents of
+        publication may not be reproduced in any form without permission from
+        C-DOT.</i></td>
+</tr>
+</table>
+
+
+<h3>Revision Chart</h3>
+<p>
+<table border=1 cellspacing=0 cellpadding=5 width="100%">
+<tr>
+	<th colspan=5>Document History</th>
+</tr>
+<tr>
+	<th> Version No </th>
+	<th> Revised By </th>
+	<th> Revised On </th>
+	<th> Approved By </th>
+	<th> Remarks </th>
+</tr>
+<tr>
+	<td> Draft 1 </td>
+	<td> Seema Jain </td>
+	<td> Mar 12, 2004 </td>
+	<td> Prakash R </td>
+	<td> <br> </td>
+</tr>
+<tr>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+</tr>
+<tr>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+</tr>
+<tr>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+</tr>
+<tr>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+</tr>
+
+</table>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr noshade>
+<h2>Table of contents</h2>
+
+<!-- font face=arial -->
+<pre>
+
+1.0  <A HREF="#intro"><b><i>Introduction</i></b></A>
+     1.1    <a href="#intro-ps"><b><i>Purpose and Scope</i></b></a>
+     1.2    <a href="#intro-aad"><b><i>Acronyms, Abbreviations and Definitions</i></b></a>
+     1.3    <a href="#intro-ref"><b><i>References</i></b></a>
+
+2.0  <A HREF="#md"><b><i>Module Description</i></b></A>
+	2.1  <A HREF="#md"><b><i>Design goals and constraints</i></b></A>
+	2.2  <A HREF="#md-properties"><b><i>Properties</i></b></A>
+	2.3  <A HREF="#md-responsibilities"><b><i>Responsibilities</i></b></A>
+	2.4  <A HREF="#md-functionality"><b><i>Functionalities</i></b></A>
+
+3.0  <A HREF="#dd"><b><i>Decomposition Description</i></b></A>
+	3.1  <A HREF="#apiif"><b><i>API for each Interface </i></b></A>
+	3.2  <A HREF="#classdiag"><b><i>Class Diagram </i></b></A>
+	3.3  <A HREF="#objdiag"><b><i>Object Diagram </i></b></A>
+
+4.0  <A HREF="#ru"><b><i>Resource usage</i></b></A>
+
+5.0  <A HREF="#dc"><b><i>Design Considerations</i></b></A>
+
+6.0  <A HREF="#issues"><b><i>Issues</i></b></A>
+
+
+7.0  <A HREF="#pap"><b><i>Processing/Algorithm/Pseudocode/STD/Statecharts</i></b></A>
+
+8.0  <A HREF="#data-struct"><b><i>Data Structures Required</i></b></A>
+
+9.0  <A HREF="#9"><b><i>Messages Received by Various Modules></b></i></A>
+		9.1 <A HREF="#9.1"><b><i>Messages Received by TCP Network Handler.</b></i></A>
+		9.2 <A HREF="#9.2"><b><i>Messages Received by Application.</b></i></A>
+		9.3 <A HREF="#9.3"><b><i>Messages Received by TCP Network Handler Manager.</b></i></A>
+
+<A HREF="#apx"><b><i>Appendix</i></b></A>
+	API/User Manual etc.
+</pre>
+</font>
+
+<!---------------------------------------------------------------------------->
+<hr noshade>
+<A NAME="intro"></A>
+<h2>1. Introduction</h2>
+<p>This document describes the design of the TCP Network Handler. The TCP
+Network Handler (CdSuNhTcp) is a part of the utility kit. It hides the
+socket related complexity from the user and provides the user a friendly C
+API. The user registers its event handlers and events are notified to the
+corresponding event handlers.</A>
+
+<a name=intro-ps><h2>1.1 Purpose and Scope</h2></a>
+<p> The purpose is to provide a generic, reusable network handler able to
+    perform efficiently and in high load conditions. </p>
+
+
+<a name=intro-aad><h2>1.3 Acronyms, Abbreviations and Definitions</h2></a>
+<pre>
+API     	: Application Programming Interface
+TCP		: Transmission Control Protocol
+NHTCP		: TCP Network Handler.
+MI		: Management Interface.
+UI		: User Interface.
+</pre>
+
+<a name=intro-ref><h2>1.4 References</h2></a>
+
+<table border=0 cellpadding=0>
+<tr> 
+	<td> [unp] </td> 
+	<td>: Unix Network Programming by Richard Stevens.</td>
+</tr>
+
+<tr>
+	<td> [c++np] </td> 
+	<td>: C++ Network Programming by Douglas C. Schmidt and Stephen D.
+	      Huston.</td>
+</tr>
+
+</table>
+
+<hr noshade>
+<!---------------------------------------------------------------------------->
+<A NAME="md"></A>
+<h2>2) Module Description</h2>
+<h3>2.1) Design Goals and Constraints</h3>
+
+<p> <b>Goals:</b>
+<p> The TCP Network Handler should have the following properties:
+<ol>
+<li> It should be generic in nature.</li>
+<li> It should be reusable across various modules.</li>
+<li> It should be able to withstand high load conditions.</li>
+<li> Its data structures should be efficient to handle high load conditions.</li>
+<li> There should be many TCP network handler instances possible on a system.</li>
+<li> It should be scalable.</li>
+</ol>
+
+<p> <b>Constraints:</b></p>
+<p> The TCP Network Handler has the following constraints:</p>
+<ol>
+<li>  Low run-time memory.
+<li>  Efficient time and memory management.
+<li>  Thread safe and re-entrant.
+<li>  Data structures should be hidden from the outside world.
+<li>  Zero buffering of payload.
+</ol>
+
+<A NAME="md-properties"></A>
+<h2>2.2 Properties</h2>
+<p>The TCP Network Handler interfaces with one or more applications, one system 
+   management. The TCP Network Handler is a part of the utility kit.</p>
+
+<A NAME="md-responsibilities"></A>
+<h2>2.3) Responsibilities </h2>
+<p> The TCP Network Handler is responsible for the following things:
+<ol>
+<li> It has to provide a middleware to hide the network related complexity from
+     the application.</li>
+<li> It hides the socket related API from the application by providing a
+     more user friendly API.</li>
+</ol>
+
+<A NAME="md-functionality"></A>
+<h2>2.4) Functionalities</h2>
+<p> The TCP Network Handler performs the following functions:
+<ol>
+	<li> Opening TCP connections. </li>
+	<li> Closing TCP connections. </li>
+	<li> Sending data on TCP connections.</li>
+	<li> Receiving data on TCP connections.</li>
+	<li> Receiving connection indication from peer.</li>
+	<li> Receiving close connection indication from peer.</li>
+	<li> Maintaining and reporting statistics.</li>
+	<li> Performing  Error Handling.</li>
+</ol>
+</p>
+
+<hr noshade>
+<!---------------------------------------------------------------------------->
+<A NAME="dd"></A>
+<h2>3) Decomposition Description</h2>
+<center><img src=system-context.gif></center>
+<center><i>Fig 1. Software Architecture</i></center>
+
+
+<A NAME="apiif"></A>
+<h3>3.1) API for each Interface. </h3>
+
+<h3>MI Interface API.</h3>
+<p> We have the following functions on the <b> MI -> NH </b> interface:</p>
+ <ul>
+	<li> int cdSuNhTcpMiInit (CdSuNhTcpMiInitParam& initParam);</li>
+	<li> int cdSuNhTcpMiDelNhReq (CdSuNhTcpMiDelNhParam& delNhParam);</li>
+	<li> int cdSuNhTcpMiCtrlReq (const CdSuNhTcpMiCtrlReqParam& p);</li>
+	<li> int cdSuNhTcpMiCfgReq (const CdSuNhTcpMiCfgReqParam& p);</li>
+	<li> int cdSuNhTcpMiStatusReq (const CdSuNhTcpMiStatusReqParam& p);</li>
+	<li> int cdSuNhTcpMiStsReq (const cdSuNhTcpMiStsReqParam& p);</li> 
+</ul>
+
+ <p> These functions based on the parameters will create the appropriate
+      message and use the message distributor to appropriately send the
+      message. </p>
+
+In the <b>NH->MI</b> interface we will be calling Sytem Management 
+Event Handler. The System Management entity has to register its moduleId and 
+Event Handler once and for all in the CdSuNhTcpMiInit function. 
+	</ul>
+	It is the functionality of the Event Handler to further process the 
+	events specific to the Application.
+
+ In case no Event Handler is provided by the System Management we have  default
+ Event Handlers:
+ 	<ul>
+		<li> cdSuNhTcpSmEventHlr</li>
+	</ul>
+ These event handlers have the simple functionality of posting defined
+ messages to the system management will the help of message distributor.
+
+
+<h3>UI Interface API.</h3>
+ <p>We have the following functions on the <b>UI->NH</b> interface:</p>
+ <ul>
+	<li> int cdSuNhTcpUiAddLstnReq (const CdSuNhTcpUiAddLstnReqParam& p);</li>
+	<li> int cdSuNhTcpUiRemLstnReq (const CdSuNhTcpUiRemLstnReqParam& p);</li>
+	<li> int cdSuNhTcpUiConReq (const CdSuNhTcpUiConReqParam& p);</li>
+	<li> int cdSuNhTcpUiCloseConReq (const CdSuNhTcpUiCloseConReqParam& p); </li>
+	<li> int cdSuNhTcpUiDataReq (const CdSuNhTcpUiDataReqParam& p);</li>
+ </ul>
+
+ In the <b>NH->UI</b> interface we will be calling Event Handler registered
+ by the User. We are going to have two types of Evnet Handlers:
+ 	<ul>
+ 		<li> One for the Listen Event.</li>
+		<li> One for the Connection Event.</li>
+	</ul>
+	It is the functionality of the Event Handler to further process the 
+	events specific to the Application.
+
+ This design makes the Network Handler class generic and the
+ Application specific complexity is moved out to the respective Event
+ Handlers.
+
+ In case no Event Handler is provided by the Application we have two default
+ Event Handlers:
+ 	<ul>
+		<li> cdSuNhTcpDefLstnEventHlr</li>
+		<li> cdSuNhTcpDefConEventHlr</li>
+	</ul>
+ These event handlers have the simple functionality of posting defined
+ messages to the appropriate application with the help of message
+ distributor.
+
+<h3>Sytem Utilities API.</h3>
+<p> Simple function calls of the System Utilities is done.</p>
+
+<A NAME="classdiag"></A>
+<h3>3.1) Class Diagram for each Interface. </h3>
+<center><img src=nhclassdiag.gif></center>
+<center><i>Fig 2. Class Diagram</i></center>
+
+<A NAME="objdiag"></A>
+<h3>3.2) Object Diagram.</h3>
+<center><img src=obj-diag.gif></center>
+<center><i>Fig 2. Object Diagram</i></center>
+
+<ul>
+<li> In the listener list the normal possible event is connection indication.</li>
+<li> In the connection list which represent active connections, normal events
+     possible on the connection list is data indication, close connection
+     indication, data transfer request and close connection request.</p>
+</ul>
+
+
+<A NAME="dd-eid-e"></A>
+<h3>3.2.1) Entities</h3>
+<h3>Tcp Network Handler</h3>
+<p> 
+<ol>
+<li> This is an active class which performs the main functionality of the
+     Network Handler layer.</li>
+<li> It has 4 tables: 
+	<table width = 60%>
+	<tr>
+	<td> Key </td>
+	<td> Value </td>
+	</tr>
+
+	<tr>
+	<td> listenId</td>
+	<td> Listen Info </td>
+	</tr>
+
+	<tr>
+	<td> handle</td>
+	<td> Listen Info</td>
+	</tr>
+	
+	<tr>
+	<td> connId</td>
+	<td> Connection Info</td>
+	</tr>
+
+	<tr>
+	<td> handle </td>
+	<td> Connection Info</td>
+	</tr>
+	</table>
+</ol>
+</p>
+
+<h3> TCP Network Handler Database class</h3>
+<ol>
+	<li> It contains the static data base.</li>
+	<li> It also contains the statistics package which is updated run time.</li>
+</ol>
+
+
+<h3> TCP Network Handler Statistics Package</h3>
+<p> It contains the following counters:</p>
+<ol>
+<li> Total number of <b>Add Listener Requests</b> made by the Application.</li>
+<li> Total number of <b>Connection Requests</b> made by the Application.</li>
+<li> Total number of <b>Data Requests</b> made by the Application.</li>
+<li> Total number of <b>Disconnect Requests</b> made by the Application.</li>
+<li> Total number of <b>Delete Listener Requests</b> made by the Application.</li>
+<li> Total number of <b>Connection Indication</b> received by the TCP Network Handler.</li>
+<li> Total number of <b>Data Indication</b> received by the TCP Network Handler.</li>
+<li> Total number of <b>Close Connection Indication</b> received by the TCP Network Handler.</li>
+<li> Total number of <b>Successful Connections</b> made  by the TCP Network Handler.</li>
+<li> Total number of <b>Successful Add Listeners</b> made  by the TCP Network Handler.</li>
+<li> Total number of <b>Successful Data Transmits</b> made  by the TCP Network Handler.</li>
+<li> Total number of <b>Successful Conneciton Clsoe</b> made  by the TCP Network Handler.</li>
+<li> Total number of <b>Successful Delete Listeners</b> made  by the TCP Network Handler.</li>
+<li> Total number of <b>Current Active Connections</b> made  by the TCP Network Handler.</li>
+<li> Total number of <b>Current Active Listeners</b> made  by the TCP Network Handler.</li>
+</ol>
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<a name="ru"></a>
+<h2>4.0 Resource Usage</h2>
+<p><i>TBD.</i></p>
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<a name="dc"></a>
+<h2>5.0 Design Considerations</h2>
+	Some of the design issues are discussed below:
+	<ol>
+	<li> The TCP Network Handler Layer consists of only one thread.</li>
+	<li> There has to be a non blocking call on the TCP Network Handler queue.</li>
+	<li> The TCP Network Handler can listen on more than one ports.</li>
+	<li> Peer entity can connect to it on any one of those ports.</li>
+	<li><b>select call</b> is used to demultiplex connections.</li>
+	<li> The select call is also non blocking.</li>
+	<li> Data can also be received on any of the already opened connections.</li>
+	<li> Hence a <b>select call</b> is used to demultiplex data also.</li>
+	<li> The one thread design adds more overhead to the CPU utilization but synchronization is difficult if we use 
+	     multiple threads for receiving connections, receiving inputs from the Application. .</li>
+	<li> Fault tolerance is still not taken into consideration.</li>
+	</ol>
+	  
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<a name="issues"></a>
+<h2>6.0 Issues</h2>
+<p><i>TBD.</i></p>
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<a name="pap"></a>
+<h2>7.0 Processing/Algorithm/Pseudocode/STD/Statecharts</h2>
+
+<A NAME="pcfnhtcp"></A>
+<h2>7.1) Pseudocode for CdSuNhTcp</h2>
+<p> Statistics Pkg upgrade has not been taken care in the pseudo code.</p>
+<pre>
+bool CdSuNhTcp::createConn (const CdSuNhTcpConnectionId tcpConnId, CdSuIpv4Addr destIpAddr,
+		CdSuIpv4TcpPortNo destPortNo);
+{
+	retval = connect ();
+	if (success)
+	{
+		update connId2ConnInfoTable
+		update handle2ConnInfoTable
+		call connectionEventHandler
+	} else
+	{
+		call connectionEventHandler.
+	}
+}
+
+bool CdSuNhTcp::start ()
+{
+	while (1)
+	{
+		//-----------------------------------------------------------
+		// Process Msg From Application.
+		//-----------------------------------------------------------
+		msgDistr.recvNonBlocking (&msg)
+		if (msg != NULL)
+			handleMsgFromAppl (msg);
+		
+		//-----------------------------------------------------------
+		// Accept connections.
+		//-----------------------------------------------------------
+		multiAcceptor ();
+		
+		//-----------------------------------------------------------
+		// Read Data
+		//-----------------------------------------------------------
+		reactor ();
+
+}
+
+bool CdSuNhTcp::multiAcceptor ()
+{
+	Check on which fd in listenfdset activity is detected. 
+	retVal = select ();
+
+	if (retVal == 0)
+	{
+		// select timed out.
+		return true;
+
+	} else if (retVal < 0)
+	{
+		// select error.
+		return false;
+	} else
+	{
+		handle = accept (..fd..);
+		if (accept is successful)
+		{
+			update handle2ConnInfoTable
+			allocate connId.
+			update connId2ConnInfoTable
+			call connectionEventHandler
+			return true;
+
+		} else
+		{
+			return false;	
+		}
+	}
+}
+
+bool CdSuNhTcp::reactor ()
+{
+	Check on the connected sockets if some activity is detected.
+	retVal = select ();
+
+	if (retVal == 0)
+	{
+		// select timed out.	
+		return true;
+
+	} else if (retVal < 0)
+	{
+		// select error.
+		return false;
+
+	} else
+	{
+		 for sockfd present in the rdfds
+			 char* buffer;
+			 int bufferLen = 0;
+			 int n = rcvPacket (sockfd, buffer, bufferLen)
+			 if (recvPacket == 0)
+			 {
+				 // Disconnect by Peer. 
+				 closeConnFromPeer ();
+				 call appropriate Event Handler.
+
+			 } else if (recvPacket < 0)
+			 {
+				 // Note: Should never come in this loop.
+				 // Error in reading packet.
+			 } else
+			 {
+				// Successful Read.
+				call appropriate Event Handler.
+			 }
+	}
+}
+
+
+bool CdSuNhTcp::rcvPacket (int sockfd, char* buffer, int& bufferLen)
+{
+	Extract the connectionInfo object from the handle2ConnId table.
+
+	if (connectionInfo->tpkt == true)
+	{
+		// If Tpkt is present.
+		char tpkt [4];
+		readNoOfBytes (sockfd, tpkt, 4);
+		calculate readLen
+		buffer = new char [readLen];
+		bufferLen = readLen;
+		readNoOfBytes (sockfd, buffer, readLen);
+
+	} else
+	{
+		// If Tpkt is not present.
+		buffer = new char [MAX_BUFFER_LEN];
+		n = recvfrom ();
+		bufferLen = n;
+	}
+
+}
+
+bool CdSuNhTcp::closeConnFromPeer (int sockfd)
+{
+	Extract connectionInfo from handle2ConnectionInfo table.
+	Extract connId.
+	shutdown (sockfd, 2);
+	remove from the tables.
+	delete connectionInfo.
+}
+
+		
+</pre>
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<A NAME="data-struct"></A>
+<h2>8.0 Data Structures Required</h2>
+<p>The methods and attributes of main classes of h323 stack are given below.</p> 
+
+<b> Data Structures required by Transport Services.</b>
+
+<pre>
+<b> Types of Events</b>
+
+<b> struct CdSuNhTcpUiLstnEvent</b>
+{
+	CdSuNhTcpLstnKey lstnKey;		
+	CdSuActorId applActorId;		
+	CdSuNhTcpOpcode opcode;
+	
+	void init (CdSuNhTcpLstnKey lkey,
+			 CdSuActorId applActorId,
+			 CdSuNhTcpOpcode opcode);
+
+}
+
+<b> struct CdSuNhTcpUiConnEvent</b>
+{
+	CdSuNhTcpConnKey connKey;		
+	CdSuActorId applActorId;		
+	CdSuNhTcpOpcode opcode;
+	
+	void init (CdSuNhTcpConnKey ckey,
+			CdSuActorId applActorId,
+			CdSuNhTcpOpcode opcode);
+
+}; // struct CdSuNhTcpUiConnEvent
+
+<b>struct CdSuNhTcpMiEvent </b>
+{
+	CdSuNhTcpInstId nhTcpInstId;		// TCP network handler identifier
+	CdSuActorId smActorId;			// Report Events to this actor.
+	CdSuNhTcpOpcode opcode;
+
+	void init (CdSuNhTcpInstId nhTcpInstId, 
+			CdSuActorId smActorId,
+			CdSuNhTcpOpcode opcode);
+};
+
+<b><i> There are three base events. All other events are derived from these.</i></b>
+
+<b>struct CdSuNhTcpLisenInfo</b>
+{
+	CdSuNhTcpListenerId listenerId;		
+	CdSuNhTcpHandle handle;			
+
+	CdSuIpv4Addr listenerIpv4Addr;
+	CdSuIpv4TcpPortNo listenPortNo;		
+
+	bool tpkt;				
+
+	CdSuNhTcpEventHlr listenerEventHlr;	
+	CdSuNhTcpEventHlr connectionEventHlr;	
+
+	CdSuActorId applActorId;
+}
+
+
+<b>struct CdSuNhTcpConnectionInfo</b>
+{
+	CdSuNhTcpConnectionId connectionId;	
+	CdSuNhTcpHandle handle;		
+
+	// Destination IP Information.
+	CdSuIpv4Addr destIpv4Addr;
+	CdSuIpv4TcpPortNo destPortNo;		
+
+	// Self IP Information.
+	CdSuIpv4Addr selfIpv4Addr;
+	CdSuIpv4TcpPortNo selfPortNo;	
+
+	bool tpkt;			
+
+	CdSuNhTcpEventHlr connectionEventHlr;	
+	
+
+};
+</pre>
+<b> Other Entities of the TCP Network Handler layer.</b>
+
+<p> The major functions and data structures are captured below. Some
+    additional helper functions may be added later during actual
+    implementation.</p>
+
+<pre>
+<b>class CdSuNhTcp: public CdThread</b>
+{
+public:
+	//--------------------------------------------------------------------
+	//		Public Methods
+	//--------------------------------------------------------------------
+	
+CdSuNhTcp (CdSuNhTcpDb*);
+	~CdSuNhTcp ();
+	
+	static void* threadEntry (void*); 
+	void run ();			 	
+	void start ();
+
+	void handleMsg (CdMessage*);
+
+private:
+	//--------------------------------------------------------------------
+	// 			Private Methods.
+	//--------------------------------------------------------------------
+	// To connect to the server.
+	bool createConn (const CdSuNhTcpUiConReqParam conreqparam);
+
+	// To close an existing connection.
+	bool closeConn (const CdSuNhTcpUiCloseConReqParam clconreqparam);
+
+	// To add a listener.
+	bool addListener (CdSuIpv4Addr selfIpAddr, 
+			  CdSuIpv4TcpPortNo selfPortNo, 
+			  CdSuNhTcpEventHlr listenEventHlr,
+			  CdSuNhTcpEventHlr connectEventHlr,
+			  CdSuActorId apActorId,
+			  CdSuNhTcpLstnId lstnId,
+			  bool tpkt);
+
+	// To remove a Listener.
+	bool remListener (const CdSuNhTcpUiRemLstnReqParam rmlstnparam);
+
+	// To move to the ConnectionInfo table.
+	bool handleConInd (CdSuNhTcpConnId connId,
+			   CdSuIpv4Addr destIpAddr,
+			   CdSuIpv4TcpPortNo destPortNo, 
+			   CdSuNhTcpEventHlr connectEventHlr);
+
+	// To accept connections from the client.
+	bool multiAcceptor ();
+
+	// To receive data or close connection indication on existing connections.
+	bool reactor ();
+	
+	// To take appropriate action when connection is closed from peer.
+	bool closeConnFromPeer ();
+	
+	// To send a packet.
+	bool sendPacket (const CdSuNhTcpUiDataReqParam dparam);
+
+	// To receive a Packet.
+	int recvPacket (CdSuNhTcpConnInfo* info, sockaddr_in *&cliaddr);
+
+	// To read exact no of bytes.
+	int readNoOfBytes (int fd, char* vptr, int noOfBytes);
+	
+	// To write exact no of bytes.
+	int writeNoOfBytes (int fd, const char* vptr, int noOfBytes);
+		
+	// To change state of NH.
+	void changeState (CdSuNhTcpState tcpNhState);
+	
+	// Disconnection From Peer Handler.
+	bool discReqFromPeer ();
+
+	//--------------------------------------------------------------------
+	// State Handlers.
+	//--------------------------------------------------------------------
+	void createdStHlr (CdMessage* msg);
+	void runningStHlr (CdMessage* msg);
+
+	//--------------------------------------------------------------------
+	// SM Message Handlers.
+	//--------------------------------------------------------------------
+	void configReqMsgHlr (CdMessage* msg);
+	void delNhReqMsgHlr (CdMessage* msg);
+	void ctrlReqMsgHlr (CdMessage* msg);
+	void statusReqMsgHlr (CdMessage* msg);
+	void statsReqMsgHlr (CdMessage* msg);
+
+	//--------------------------------------------------------------------
+	// User Layer Message Handlers.
+	//--------------------------------------------------------------------
+	void addLstnMsgHlr (CdMessage* msg);
+	void remLstnMsgHlr (CdMessage* msg);
+	void conReqMsgHlr (CdMessage* msg);
+	void txDataReqMsgHlr (CdMessage* msg);
+	void discReqMsgHlr (CdMessage* msg);
+		
+	//--------------------------------------------------------------------
+	// Utility methods
+	//--------------------------------------------------------------------
+	
+	// Clean up the connection.
+	bool connCleanUp (CdSuNhTcpConnInfo* info);
+
+	// Clean up the listener.
+	bool lstnCleanUp (CdSuNhTcpLstnInfo* info);
+	
+	// Shut down the tcpHandle.
+	bool shutDownTcpHandle (CdSuNhTcpHandle tcpHandle);
+	
+	CdSuNhTcpConnInfo* buildConnInfo 
+		(CdSuNhTcpHandle tcpHandle, 
+		 CdSuNhTcpConnId tcpConnId,
+		 struct sockaddr_in *saddr,
+	         CdSuNhTcpLstnInfo* listnInfo);
+
+	CdSuNhTcpConnInfo* buildConnInfo 
+		(CdSuNhTcpHandle tcpHandle, 
+		 CdSuNhTcpConnId tcpConnId,
+		 CdSuIpv4Addr dstIpv4Addr,
+		 CdSuIpv4TcpPortNo dstPortNo,
+		 CdSuIpv4Addr selfIpv4Addr,
+		 CdSuIpv4TcpPortNo selfPortNo,
+		 bool tpkt,
+		 CdSuNhTcpEventHlr conEventHlr,
+		 CdSuActorId applActorId
+	         );
+
+	CdSuNhTcpLstnInfo* buildListenInfo
+		(CdSuNhTcpHandle tcpHandle, 
+	         CdSuNhTcpLstnId tcpListnId,
+		 CdSuIpv4Addr lipaddr,
+	         CdSuIpv4TcpPortNo lport,
+	         CdSuNhTcpEventHlr levthlr,
+	         CdSuNhTcpEventHlr cevthlr,
+		 CdSuActorId apActorId,
+	         bool tpkt);
+
+
+	CdSuNhTcpUiConIndEvent* buildConnIndEvent
+		(CdSuNhTcpLstnInfo* info, CdSuNhTcpConnId tcpConnId);
+
+	CdSuNhTcpUiDataIndEvent* buildDataIndEvent 
+		(CdSuNhTcpConnInfo* info, Uint16 dlen);
+
+	CdSuNhTcpUiCloseConIndEvent* buildCloseConIndEvent
+		(CdSuNhTcpConnInfo* info);
+
+
+	//--------------------------------------------------------------------
+	// 			Attributes
+	//--------------------------------------------------------------------
+	CdSuNhTcpDb* nhDb;
+	CdSuNhTcpStatisticsPkg* statisticsPkg;
+	CdSuNhTcpState nhState;
+	CdSuNhTcpHandle maxListenHandle;
+	CdSuNhTcpHandle maxConnHandle;
+
+	// Main tables
+	pthread_mutex_t lstnTableLock;
+	CdSuIntHash <CdSuNhTcpLstnInfo*>* lstnId2ListenInfoTable;
+	CdSuIntHash <CdSuNhTcpLstnInfo*>* handle2ListenInfoTable;
+
+	pthread_mutex_t connTableLock;
+	CdSuIntHash <CdSuNhTcpConnInfo*>* connId2ConnInfoTable;
+	CdSuIntHash <CdSuNhTcpConnInfo*>* handle2ConnInfoTable;
+
+}; // class CdSuNhTcp
+
+<b>class CdSuNhTcpDb </b>
+{
+
+	CdSuNhTcpDb (const CdSuNhTcpMiInitParam&);
+	~CdSuNhTcpDb ();
+
+	inline CdSuNhTcpConnId allocConnId () 
+	{
+		return (connIdAllocator->allocConnId ());
+
+	}
+	inline CdSuNhTcpLstnId allocLstnId ()
+	{
+		return (lstnIdAllocator->allocLstnId ());
+	}
+	inline bool freeConnId (CdSuNhTcpConnId connId)
+	{
+		return (connIdAllocator->freeConnId (connId));
+	}
+
+	inline bool freeLstnId (CdSuNhTcpLstnId lstnId)
+	{
+		return (lstnIdAllocator->freeLstnId (lstnId));
+
+	}
+	
+	inline CdSuActorId getNhActorId () { return (nhActorId); }
+	inline CdSuNhTcpEventHlr getSmEventHlr () { return (smEventHlr);}
+
+	inline Uint32 getMaxNoOfConn () { return (maxNoOfConn); }
+	inline Uint32 getMaxNoOfLnrs () { return (maxNoOfLstn); }
+	inline Uint32 getMaxBufferLen () { return (maxBufferLen); }
+	
+	inline Uint32 getLnqSize() { return (lnqSize); }
+	inline Uint32 getDataSelTmr () { return (dataSelTmr); }
+	inline Uint32 getLstnSelTmr () { return (lstnSelTmr); }
+	inline Uint32 getNoTcpHandleTmr () { return (noTcpHandleTmr); }
+
+
+	inline CdSuNhTcpInstId getNhInstId() { return (nhInstId); }
+	inline CdSuActorId getSmActorId () { return (smActorId); }
+
+	inline void setNhTcpPtr (CdSuNhTcp* nhTcp) { nhTcpPtr = nhTcp;}
+	inline CdSuNhTcp* getNhTcpPtr () { return (nhTcpPtr); }
+
+private:
+
+	class NhTcpConnIdAllocator 
+	{
+	public:
+		NhTcpConnIdAllocator (Uint32 maxSize);
+		~NhTcpConnIdAllocator ();
+	
+		CdSuNhTcpConnId allocConnId ();
+		bool freeConnId (const CdSuNhTcpConnId connId);
+
+	private:
+		enum
+		{
+			CIA_NUM_ATTEMPTS = 10
+		};
+		pthread_mutex_t connIdAllocMutex;
+		Uint32 connIdCounter;
+		CdSuIntHash<CdSuNhTcpConnId>* connIdAllocTable;
+		int tmparray [1000];
+	};
+
+	class NhTcpLstnIdAllocator 
+	{
+	public:
+		NhTcpLstnIdAllocator (Uint32 maxSize);
+		~NhTcpLstnIdAllocator ();
+	
+		CdSuNhTcpLstnId allocLstnId ();
+		bool freeLstnId (const CdSuNhTcpLstnId lstnId);
+
+		// void freeAllConnId ();
+
+	private:
+		enum
+		{
+			LIA_NUM_ATTEMPTS = 10
+		};
+		pthread_mutex_t lstnIdAllocMutex;
+		Uint32 lstnIdCounter;
+		CdSuIntHash<CdSuNhTcpConnId>* lstnIdAllocTable;
+		int tmparray [1000];
+	};
+
+	// Network Handler Database Parameters	
+	Uint32 maxNoOfConn;		
+	Uint32 maxNoOfLstn;		
+	Uint16 maxBufferLen;			
+	Uint32 lstnSelTmr;
+	Uint32 dataSelTmr;
+	Uint32 noTcpHandleTmr;
+	Uint32 lnqSize;	
+	
+	// Logical Id of the Network Handler Instance.
+	CdSuNhTcpInstId nhInstId;
+	NhTcpConnIdAllocator* connIdAllocator;
+	NhTcpLstnIdAllocator* lstnIdAllocator;
+
+	CdSuActorId nhActorId;			
+	CdSuActorId smActorId;			
+	
+	CdSuNhTcpEventHlr smEventHlr;
+	CdSuNhTcpStatisticsPkg statsPkg;
+
+	CdSuNhTcp* nhTcpPtr;
+
+}; // class CdSuNhTcpDb
+
+<b>class CdSuNhTcpStatisticsPkg</b>
+{
+public:
+
+	CdSuNhTcpStatisticsPkg ()
+	{
+		resetAllCtrs ();
+	}
+	~CdSuNhTcpStatisticsPkg ()
+	{
+	}
+
+	enum CdSuNhTcpCtrType
+	{	
+		CDSU_NHTCP_ADDLSTNREQ_CTR = 0,
+		CDSU_NHTCP_CONREQ_CTR,
+		CDSU_NHTCP_DATAREQ_CTR,
+		CDSU_NHTCP_DISCONREQ_CTR,
+		CDSU_NHTCP_REMLSTNREQ_CTR,
+
+		CDSU_NHTCP_CONIND_CTR,
+		CDSU_NHTCP_DATAIND_CTR,
+		CDSU_NHTCP_CLOSECON_IND_CTR,
+
+		CDSU_NHTCP_SUCCESS_CON_CTR,
+		CDSU_NHTCP_SUCCESS_ADDLSTN_CTR,
+		CDSU_NHTCP_SUCCESS_DATATX_CTR,
+		CDSU_NHTCP_SUCCESS_CLOSE_CON_CTR,
+		CDSU_NHTCP_SUCCESS_REMLSTN_CTR,
+
+		CDSU_NHTCP_CUR_ACTIVE_CON_CTR,
+		CDSU_NHTCP_CUR_ACTIVE_LSN_CTR,
+
+		CDSU_NHTCP_MAX_CTR
+	};
+	
+	void resetAllCtrs ()
+	{
+		for (int i = 0; i < CDSU_NHTCP_MAX_CTR; i++)
+		{
+			counters [i] = 0;
+		}
+	} 
+	void resetCtr (CdSuNhTcpCtrType ctrType)
+	{
+		counters [ctrType] = 0;
+
+	}
+	void incrementCtr (CdSuNhTcpCtrType ctrType)
+	{
+		++counters [ctrType];
+
+	}
+	void decrementCtr (CdSuNhTcpCtrType ctrType)
+	{
+		--counters [ctrType];
+	}
+
+private:	
+
+	Uint32 counters [CDSU_NHTCP_MAX_CTR];
+
+}; // class CdSuNhTcpStatisticsPkg
+
+
+</pre>
+<hr noshade>
+<!---------------------------------------------------------------------------->
+<A NAME="9"></A>
+<h2>9.0 Messages Received by Various Modules.</a></h2>
+
+<A NAME="9.1"></A>
+<h4>9.1) Messages to the TCP Network Handler. </h4>
+
+<pre>
+*)<b> CdSuNhTcpMiInitReqMsg </b>
+
+   General Description		: This message is recieved by the Network
+   				  Handler object after it is created. This
+				  message is created and sent by the
+				  function <b>cdSuNhTcpMiInit ()</b>.
+
+   CdMessage Attributes:
+   ------------------------
+   	Source			: TCP Network Handler Management.
+	Destination		: TCP Network Handler
+   	opcode			: CDSU_NHTCP_MI_INIT_REQ
+
+   Additional Attributes:
+   ---------------------
+   	CdSuNhTcpMiInitParam	: This consists of the following fields:
+					*) Network Handler Actor Id.
+					*) System Management Actor Id.
+					*) TCP Network Handler Instance Id.
+
+					*) Maximum number of TCP connections.
+					*) Maximum number of TCP listeners.
+					*) Maximum transmit buffer length.
+					*) Timeout value for select call for accepting connections.
+					*) Timeout value for select call for receiving data.
+					*) Timeout value when there is no handle.
+					*) Listen Queue size in listen call.
+
+					*) Sm Event Handler.
+*)<b> CdSuNhTcpMiDelNhReqMsg </b>
+
+ General Description		: This message is recieved by the Network
+				  Handler object before it is deleted. This
+     			  	  message is created and sent by the
+     			          function <b>cdSuNhTcpMiDelNhReq ()</b>.
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler Management.
+ Destination			: TCP Network Handler
+ opcode				: CDSU_NHTCP_MI_DELNH_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpMiDelNhReqParam	:  This contains the following fields:
+					*) TCP Network Handler Instance Id.
+	
+*)<b>CdSuNhTcpMiCtrlReqMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+   				  Handler Management Interface to the
+				  Network Handler to Control it. This
+				  message is created and sent by the
+				  function <b>cdSuNhTcpCtrlReq () </b>.
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler Management.
+ Destination			: TCP Network Handler
+ opcode				: CDSU_NHTCP_MI_CTRL_REQ
+
+   Additional Attributes:
+   ---------------------
+ CdSuNhTcpMiCtrlReqParam	: This consists of the following fields:
+ 					*) TCP Netwrok Handler Instance Id.
+					*) Subopcode indicating type of Control Request.
+
+
+ *)<b>CdSuNhTcpMiCfgReqMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+  				  Handler Management Interface to the
+       			   	  Network Handler to Configure it. This
+				  message is created and sent by the
+				  function <b>cdSuNhTcpMiCfgReq ()</b>.
+
+  CdMessage Attributes:
+  ------------------------
+  Source			: TCP Network Handler Management.
+  Destination			: TCP Network Handler
+  opcode			: CDSU_NHTCP_MI_CFG_REQ
+
+  Additional Attributes:
+  ---------------------
+  CdSuNhTcpMiCfgReqParam	: This consists of the following fields:
+  					*) Tcp Network Handler Instance Id.
+       					*) Subopcode indicating whether Initail or General Config.
+
+
+ *)<b>CdSuNhTcpMiStatusReqMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+  				  Handler Management Interface to the
+       			          Network Handler to request for its status. 
+				  This message is created and sent by the
+				  function <b> cdSuNhTcpMiStatusReq ()</b>.
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler Management.
+ Destination			: TCP Network Handler
+ opcode				: CDSU_NHTCP_MI_STATUS_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpMiStatusReqParam	: This consists of the following fields:
+ 					*) Tcp Network Handler Instance Id.
+
+
+*)<b>CdSuNhTcpMiStatisticsReqMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+  				  Handler Management Interface to the
+       			          Network Handler to request for statistics.
+				  This mesasge is created and sent by the
+				  function <b>cdSuNhTcpMiStsReq ()</b>.
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler Management
+ Destination			: TCP Network Handler
+ opcode				: CDSU_NHTCP_MI_STATISTICS_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpMiStsReqParam		: This consists of the following fields:
+ 					*) Tcp Network Handler Instance Id.
+ 
+
+*)<b>CdSuNhTcpUiAddListenerReqMsg </b>
+
+ General Description		: This message is sent from the Application
+  				  Interface to the TCP Network Handler to
+				  request for addition of listener. This
+				  message is created and sent by the
+				  function <b>CdSuNhTcpUiAddLstnReq ()</b>.
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler User
+ Destination			: TCP Network Handler
+ opcode				: CDSU_NHTCP_UI_ADD_LISTENER_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiAddLstnReqParam	: It contains the following fields:
+ 					*) Listener Key.
+					*) Application Actor Id.
+					*) Listen Event Handler.
+					*) Connection Event Handler.
+
+					*) IPv4 Address.
+					*) TCP Port No.
+					*) TPKT. 
+				
+*)<b>CdSuNhTcpUiRemListenerReqMsg </b>
+
+ General Description		: This message is sent from the Application
+  				  Interface to the TCP Network Handler to
+				  request for deletion of listener. This
+				  message is created and sent by the
+				  function <b>CdSuNhTcpUiRemLstnReq ()</b>
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler User
+ Destination			: TCP Network Handler
+ opcode				: CDSU_NHTCP_UI_REM_LISTENER_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiRemLstnReqParam	: It contains the following fields:
+ 					*) Listener Key.
+					*) Application Actor Id.
+					*) Listen Event Handler.
+
+
+*)<b>CdSuNhTcpUiConReqMsg </b>
+
+ General Description		: This message is sent from the Application
+  				  Interface to the TCP Network Handler to
+				  request for opening of a new TCP connection.
+				  This message is created and sent by the
+				  function <b>cdSuNhTcpUiConReq</b>
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler User
+ Destination			: TCP Network Handler
+ opcode				: CDSU_NHTCP_UI_CONNECT_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiConReqParam		: It contains the following fields:
+ 					*) TCP connection Key.
+					*) Application Actor Id.
+					*) Connection Event Handler.
+					*) Destination IPv4 address.
+					*) Destination Port Number.
+*)<b>CdSuNhTcpUiDataReqMsg </b>
+
+ General Description		: This message is sent from the Application
+  				  Interface to the TCP Network Handler to
+				  request for opening of a new TCP connection.
+				  This message is created and sent by the
+				  function <b>cdSuNhTcpUiDataReq ()</b> 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler User
+ Destination			: TCP Network Handler
+ opcode				: CDSU_NHTCP_UI_DATA_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiDataReqParam	: It contains the following fields:
+					*) Application Actor Id.
+ 					*) TCP Connection Key.
+					*) Data to be transmitted.
+					*) Length of the data to be transmitted.
+
+*)<b>CdSuNhTcpUiCloseConReqMsg </b>
+
+ General Description		: This message is sent from the Application
+  				  Interface to the TCP Network Handler to
+				  request for closing of an existing
+				  TCP connection. This message is created and
+				  sent by the function <b>cdSuNhTcpUiCloseConReq ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler User
+ Destination			: TCP Network Handler
+ opcode				: CDSU_NHTCP_UI_CLOSE_CON_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiCloseConReq		: It contains the following fields:
+ 					*) Application Actor Id.
+					*) Connection Event Handler.
+ 					*) TCP Connection Key.
+					*) Close Connection Reason.
+</pre>
+<A NAME="9.2"></A>
+<h4>9.2) Messages Received by Management Interface.</h4>
+<pre>
+
+*)<b>CdSuNhTcpMiInitRspMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the TCP Network Handler Management
+				  Entity. This is a response to the Init TCP
+				  Network Handler request. This message is
+				  created and sent by the function 
+				  <b>cdSuNhTcpMiInitRsp ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler
+ Destination			: TCP Network Handler Management
+ opcode				: CDSU_NHTCP_MI_INIT_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpMiInitRspParam	: It contains the following fields:
+ 					*) Response code indicating success or failure.
+
+*)<b>CdSuNhTcpMiDelNhRspMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the TCP Network Handler Management
+				  Entity. It is a response to the Delete
+				  TCP Network Handler request. This
+				  message is created and sent by 
+				  the function <b>cdSuNhTcpMiDelNhRsp ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler
+ Destination			: TCP Network Handler Management
+ opcode				: CDSU_NHTCP_MI_DELNH_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpMiDelNhRspParam	: It contains the following fields:
+ 					*) Response code indicating success or failure.
+
+*)<b>CdSuNhTcpMiCtrlRspMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the TCP Network Handler Management
+				  Entity. This is a response to the Control
+				  Request made by the Management Interface
+				  to the Network Handler. This message is
+				  created and sent by the function 
+				  <b>cdSuNhTcpMiCtrlRsp ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Management
+ opcode				: CDSU_NHTCP_MI_DELNH_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpMiCtrlRspParam	: It contains the following fields:
+ 					*) Response code indicating success or failure.
+
+*)<b>CdSuNhTcpMiCfgRspMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the TCP Network Handler Management
+				  Entity. This is a response to the Config
+				  Request made by the Management Interface
+				  to the Network Handler. This message is
+				  created and sent by the function 
+				  <b>cdSuNhTcpMiCfgRsp ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Management
+ opcode				: CDSU_NHTCP_MI_CFG_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpMiCfgRspParam		: It contains the following fields:
+ 					*) Response code indicating success or failure.
+
+*)<b>CdSuNhTcpMiStatusRspMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the TCP Network Handler Management
+				  Entity. This is a response to the Status
+				  Request made by the Management Interface
+				  to the Network Handler. This message is
+				  created and sent by the function 
+				  <b>cdSuNhTcpMiStatusRsp ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Management
+ opcode				: CDSU_NHTCP_MI_STATUS_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpMiStatusRspParam	: It contains the following fields:
+ 					*) Response code indicating success or failure.
+					*) Status of the TCP Network Handler.
+
+
+*)<b>CdSuNhTcpMiStatisticsRspMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the TCP Network Handler Management
+				  Entity. This is a response to the Status
+				  Request made by the Management Interface
+				  to the Network Handler. This message is
+				  created and sent by the function 
+				  <b>cdSuNhTcpMiStatisticsRsp ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Management
+ opcode				: CDSU_NHTCP_MI_STATISTICS_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpMiStsRspParam		: It contains the following fields:
+ 					*) Response code indicating success or failure.
+					*) Total number of Add Listener Requests.
+					*) Total number of Connection Requests.
+					*) Total number of Data Requests.
+					*) Total number of Disconect Connection Requests.
+					*) Total number of Remove Listener Requests.
+					*) Total number of Connection Indications.
+					*) Total number of Data Indications.
+					*) Total number of Close Connection Indications.
+					*) Total number of Successful Connection Requests.
+					*) Total number of Successful Add Listeners.
+					*) Total number of Successful Data Transmits.
+					*) Total number of Successful Close Connections.
+					*) Total number of Successful Remove Listeners.
+					*) Total number of Current Active Connections.
+					*) Total number of Current Active Listeners. 
+
+*)<b>CdSuNhTcpMiUStaIndMsg </b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the TCP Network Handler Management
+				  Entity.This gives an unsolicited status
+				  indication to the Management Entity. 
+				  This message is created and sent by 
+				  created and sent by the function 
+				  <b>cdSuNhTcpMiUstaIndMsg ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Management
+ opcode				: CDSU_NHTCP_MI_USTATUS_IND
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpMiStatusRspParam	: It contains the following fields:
+					*) Status of the TCP Network Handler.
+
+</pre>
+<A NAME="9.3"></A>
+<h4>9.3) Messages Received by Application.</h4>
+<p> Note that the TCP Network Handler calls the Event Handler registered by
+    the Application. In case Event Handler is specified the Default Event
+    Handlers are called. These messages are created and sent only by the
+    Default Event Handlers. </p>
+<pre>
+
+*)<b> CdSuTcpUiAddListenerRspMsg</b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the Application. Thsi message
+				  is created and sent by the default Event
+				  Handler <b>cdSuNhTcpDefLstnEventHlr ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Application.
+ opcode				: CDSU_NHTCP_UI_ADD_LISTENER_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiAddLstnRspEvent	: It contains the following fields:
+ 					*) Response code indicating success/failure.
+					*) TCP Listener Id.
+					*) Applicaton Actor Id.
+
+*)<b> CdSuTcpUiRemListenerRspMsg</b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the Application.This message is 
+				  created and sent by the default Event
+				  Handler <b>cdSuNhTcpDefLstnEventHlr ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Application.
+ opcode				: CDSU_NHTCP_UI_REM_LISTENER_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiAddLstnRspEvent	: It contains the following fields:
+ 					*) Response code indicating success/failure.
+					*) TCP Listener Id.
+					*) Application Actor Id.
+
+*)<b> CdSuTcpUiConnectRspMsg</b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the Application.This message is 
+				  created and sent by the default Event
+				  Handler <b>cdSuNhTcpDefConEventHlr ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Application.
+ opcode				: CDSU_NHTCP_UI_CONNECT_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiAddLstnRspEvent	: It contains the following fields:
+ 					*) Response code indicating success/failure.
+					*) TCP Listener Id.
+					*) Application Actor Id.
+
+*)<b> CdSuNhTcpUiDataRspMsg</b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the Application.This message is 
+				  created and sent by the default Event
+				  Handler <b>cdSuNhTcpDefConEventHlr ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Application
+ opcode				: CDSU_NHTCP_UI_DATA_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiDataRspEvent	: It contains the following fields:
+ 					*) Response code indicating success/failure.
+					*) TCP Connection Id
+					*) Application Actor Id
+
+*)<b> CdSuNhTcpUiCloseConRspMsg</b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the Application.This message is 
+				  created and sent by the default Event
+				  Handler <b>cdSuNhTcpDefConEventHlr ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Application
+ opcode				: CDSU_NHTCP_UI_CLOSE_CON_RSP
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiDataRspEvent	: It contains the following fields:
+ 					*) Response code indicating success/failure.
+					*) TCP Connection Id
+					*) Application Actor Id
+
+*)<b> CdSuNhTcpUiDataIndMsg</b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the Application.This message is 
+				  created and sent by the default Event
+				  Handler <b>cdSuNhTcpDefConEventHlr ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Application
+ opcode				: CDSU_NHTCP_UI_DATA_IND
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiDataIndEvent	: It contains the following fields:
+					*) TCP Connection Id
+					*) Application Actor Id
+					*) Data received.
+					*) Length of data received.
+*)<b> CdSuNhTcpUiConIndMsg</b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the Application.This message is 
+				  created and sent by the default Event
+				  Handler <b>cdSuNhTcpDefConEventHlr ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Application
+ opcode				: CDSU_NHTCP_UI_CON_IND
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiConIndEvent		: It contains the following fields:
+					*) TCP Connection Id
+					*) Application Actor Id
+
+*)<b> CdSuNhTcpUiCloseConIndMsg</b>
+
+ General Description		: This message is sent from the TCP Network
+ 				  Handler to the Application.This message is 
+				  created and sent by the default Event
+				  Handler <b>cdSuNhTcpDefConEventHlr ()</b>. 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: TCP Network Handler 
+ Destination			: TCP Network Handler Application
+ opcode				: CDSU_NHTCP_UI_CLOSE_CON_IND
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhTcpUiCloseConIndEvent	: It contains the following fields:
+					*) TCP Connection Id
+					*) Application Actor Id
+</pre>
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<a name="apx"></a>
+<h2>Appendix</h2>
+<p><i>TBD.</p></i>
+
+<hr noshade>
+<i>End of document.</i>
+<hr noshade>
+</body>
+</html>
+</body>
+</html>

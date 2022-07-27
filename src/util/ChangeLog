@@ -1,0 +1,162 @@
+	*) For details on versions BASIC_UTIL-V0_0_1 to BASIC_UTIL-V0_0_13
+	   refer to itel/modules/utilities/basic
+	   (:pserver:cvs@jnana450:/export/home1/cvs/.itcmArchive)
+
+------------------------> BASIC_UTIL-V0_0_13 <---------------------------
+
+Tue Dec 29 11:16:32 IST 2009 Anish Shankar, Arun K. Swain, Abhishek Srivastava, Meghna Doshi
+
+
+	--------------------------------------------------------------------
+				Changes
+	--------------------------------------------------------------------
+	*) BUK ported on 64 bit Redhat Enterprise Linux.
+	*) The issues mentioned below are fixed.
+	*) The SCR corresponding to this release is SCR 00002:
+		*) release/scr/scr-00002-src-BASIC_UTIL-V0_0_13.odt
+
+	--------------------------------------------------------------------
+				Status
+	--------------------------------------------------------------------
+	*) Basic testing done on the following OS:
+		*) 64 bit host: Red Hat Linux 5 / 2.6.18-92.1.10.el5
+		*) 32 bit host: Linux - Fedora Core 9 / 2.6.25-14.fc9.i686
+		*) 32 bit target: Linux - Kernel version 2.6.19.2 (PIC Linux)
+
+	   For details on testing done refer to 
+	   C-DOT Basic Utility Kit Module Test Report (BUK release candidate BASIC_UTIL-V0_0_14)
+	   (asg/asg-repos/projects/sgran/non-cnfgitem/reports/tech-reports/modules/internal/buk/mtr/overall/asg-sgran-mtr-buk-BASIC_UTIL-V0_0_14.odt)
+
+	--------------------------------------------------------------------
+				Documents Released
+	--------------------------------------------------------------------
+	*) CDOT Basic Utility Kit Module Test Plan Document (v01d01)
+	   (asg/asg-repos/projects/sgran/cnfgitem/modules/internal/buk/tags/ASG-SGRAN-MTP-BUK-v01d01)
+
+	*) C-DOT Basic Utility Kit Module Test Report (BUK release candidate BASIC_UTIL-V0_0_14)
+	   (asg/asg-repos/projects/sgran/non-cnfgitem/reports/tech-reports/modules/internal/buk/mtr/overall/asg-sgran-mtr-buk-BASIC_UTIL-V0_0_14.odt)
+
+	--------------------------------------------------------------------
+				Issue List
+	--------------------------------------------------------------------
+	*) Issue #556: UTIL: Code: Timer: BASIC_UTIL-V0_0_13: Timer basic
+	ticks to be a makefile option
+
+	*) Issue #1194: SAR: Basic Utility Kit - (BASIC_UTIL-V0_0_13): 
+	IntHash/CharHash lookup() fails on structure assignment
+
+	*) Issue #1250 : Basic Utility Kit - BASIC_UTIL-V0_0_13:
+	Code: Print to be added when trace level changed
+
+	*) Issue #1369: ASG: SGRAN: BASIC_UTIL-V0_0_13:
+	Sanity module: To be upgraded
+
+	*) Issue #1539: ASG: Basic Utility Kit - (BASIC_UTIL-V0_0_13): 
+	CdSutimer: Type cast of Uint32 to pointer creating problems
+
+	*) Issue #1973: ASG: Basic Utility Kit - (BASIC_UTIL-V0_0_13): 
+	CdSutimer: userInfo[] of type Uint32 creating problems when 
+	storing a pointer on a 64 bit machine.
+
+	*) Issue #1974: ASG: Basic Utility Kit - (BASIC_UTIL-V0_0_13):
+	New types to be added in cdsuutiltypes.h and cdsuutiltypes-c.h
+
+------------------------> BASIC_UTIL-V0_0_14 <---------------------------
+
+Mon May  3 12:22:06 IST 2010, Anish Shankar
+
+	--------------------------------------------------------------------
+				Changes
+	--------------------------------------------------------------------
+	*) The issues mentioned below are fixed.
+	*) The SCR corresponding to this release is SCR 00003:
+		*) release/scr/scr-00003-src-BASIC_UTIL-V0_0_14.odt
+
+	--------------------------------------------------------------------
+				Status
+	--------------------------------------------------------------------
+	*) Only code review of the issue fixes has been done. No testing has been done. 
+
+	--------------------------------------------------------------------
+				Documents Released
+	--------------------------------------------------------------------
+	*) None
+
+	--------------------------------------------------------------------
+				Issue List
+	--------------------------------------------------------------------
+	*) Issue #2554: SGRAN: BUK: BASIC_UTIL-V0_0_14: Unnecessary prints to be removed
+	*) Issue #2498: ASG: SGRAN: BUK: BASIC_UTIL-V0_0_14:TCP Network handler – tpkt
+	   giving error on 64bit processor.
+	*) Issue #2329: ASG: SGRAN: BUK: BASIC_UTIL-V0_0_14 (BSC overall SGRAN_BSC_NODE-V0_0_8 Integration):
+	   Sanity message not transmitted due to corruption of txSanityFlag variable.
+	*) Issue #1973: ASG: Basic Utility Kit - (BASIC_UTIL-V0_0_13): CdSutimer:
+	   userInfo[] of type Uint32 creating problems when storing a pointer on a 64 bit machine.
+
+------------------------> BASIC_UTIL-V0_1_0 <---------------------------
+
+Tue May 25 09:52:53 IST 2010 , Anish Shankar
+
+	--------------------------------------------------------------------
+				Changes
+	--------------------------------------------------------------------
+	*) The issues mentioned below are fixed.
+	*) The following files have been changed:
+		*) include/cdsusanitymsgs.h : Ulong type changed to Unit32 (Issue #2329)
+		*) include/cdsutimer.h	    : Ulong type changed to Unit32 (Issue #1973)
+		*) Makefile		    : Issue #2582 fixed
+		*) src/timer/cdsutimer.cpp  : Ulong type changed to Unit32 (Issue #1973)
+		*) src/udpnh/cdsunhudp.cpp  : Trace level changes
+
+	--------------------------------------------------------------------
+				Status
+	--------------------------------------------------------------------
+	*) Only code review of the issue fixes has been done. No testing has been done. 
+
+	--------------------------------------------------------------------
+				Documents Released
+	--------------------------------------------------------------------
+	*) None
+	
+	--------------------------------------------------------------------
+				Issue List
+	--------------------------------------------------------------------
+	*) Issue #2582: ASG: SGRAN: BUK: BASIC_UTIL-V0_1_0: Makefile: 
+	   Rule for 'clean' to be changed
+	*) Issue #1973: ASG: Basic Utility Kit - (BASIC_UTIL-V0_0_13): CdSutimer: 
+	   userInfo[] of type Uint32 creating problems when storing a pointer on a 64 bit machine 
+	*) Issue #2329: ASG: SGRAN: BUK: BASIC_UTIL-V0_0_14 (BSC overall SGRAN_BSC_NODE-V0_0_8 Integration): 
+	   Sanity message not transmitted due to corruption of txSanityFlag variable
+
+
+------------------------> BASIC_UTIL-V0_1_1 <---------------------------
+
+Wed Nov  9 14:12:45 IST 2011, Anish
+
+	--------------------------------------------------------------------
+				Changes
+	--------------------------------------------------------------------
+	*) Changes have been made to introduce priority in the message	distributor.
+	*) The SCR corresponding to this release is SCR 00004
+		*) scr-00004-src-BASIC_UTIL-V0_1_1.odt
+	*) The release candidate is BASIC_UTIL-V0_1_2
+
+	--------------------------------------------------------------------
+				Status
+	--------------------------------------------------------------------
+	*) Basic testing of the priority based message distributor has been done. 
+
+	--------------------------------------------------------------------
+				Documents Released
+	--------------------------------------------------------------------
+	*) None
+	
+	--------------------------------------------------------------------
+				Issue List
+	--------------------------------------------------------------------
+	*) Issue #3799: ASG: SGRAN: Basic Utility Kit: BUK: BASIC_UTIL-V0_1_1: Message priority to 
+	   be introduced in the message distributor
+	*) Issue #3924: ASG: SGRAN: Basic Utility Kit: BUK: BASIC_UTIL-V0_1_1: Read Buffer length of the
+	   message distributor to be increased 
+
+------------------------> BASIC_UTIL-V0_1_2 <---------------------------

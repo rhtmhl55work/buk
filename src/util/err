@@ -1,0 +1,867 @@
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutaskscheduler.h:15:0,
+                 from cdsutaskscheduler.cpp:24:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsutaskscheduler.cpp: In destructor ‘CdSuTaskScheduler::~CdSuTaskScheduler()’:
+cdsutaskscheduler.cpp:100:79: warning: deprecated conversion from string constant to ‘char*’
+cdsutaskscheduler.cpp: In member function ‘void CdSuTaskScheduler::reset()’:
+cdsutaskscheduler.cpp:116:79: warning: deprecated conversion from string constant to ‘char*’
+cdsutaskscheduler.cpp: In member function ‘void CdSuTaskScheduler::dispatcher()’:
+cdsutaskscheduler.cpp:138:79: warning: deprecated conversion from string constant to ‘char*’
+cdsutaskscheduler.cpp:160:130: warning: deprecated conversion from string constant to ‘char*’
+cdsutaskscheduler.cpp:174:75: warning: deprecated conversion from string constant to ‘char*’
+cdsutaskscheduler.cpp: In member function ‘CdSuTaskId CdSuTaskScheduler::addTask(CdSuTask*)’:
+cdsutaskscheduler.cpp:202:79: warning: deprecated conversion from string constant to ‘char*’
+cdsutaskscheduler.cpp: In member function ‘bool CdSuTaskScheduler::setTask(CdSuTaskId, CdSuTask*)’:
+cdsutaskscheduler.cpp:237:79: warning: deprecated conversion from string constant to ‘char*’
+cdsutaskscheduler.cpp: In member function ‘bool CdSuTaskScheduler::removeTask(CdSuTaskId)’:
+cdsutaskscheduler.cpp:261:79: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutaskscheduler.h:16:0,
+                 from cdsutaskscheduler.cpp:24:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In member function ‘bool CdSuTsQueue<KeyType>::popBlocking(KeyType&) [with KeyType = CdTaskMessage*]’:
+cdsutaskscheduler.cpp:148:43:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:482:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutaskscheduler.h:16:0,
+                 from cdsutaskscheduler.cpp:24:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:488:3: warning: deprecated conversion from string constant to ‘char*’
+cdsutaskscheduler.cpp:148:43:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:494:3: warning: deprecated conversion from string constant to ‘char*’
+cdsutaskscheduler.cpp:148:43:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:516:3: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp: In destructor ‘virtual CdSuThread::~CdSuThread()’:
+cdsuthread.cpp:43:95: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp: In member function ‘int CdSuThread::spawn(void* (*)(void*), void*, long unsigned int, long unsigned int, long unsigned int)’:
+cdsuthread.cpp:65:91: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp:72:89: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp:86:101: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp:94:100: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp:106:102: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp:112:101: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp:137:100: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp:171:95: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp: In member function ‘int CdSuThread::join(void**)’:
+cdsuthread.cpp:189:93: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp: In member function ‘int CdSuThread::getPriority() const’:
+cdsuthread.cpp:207:98: warning: deprecated conversion from string constant to ‘char*’
+cdsuthread.cpp: In member function ‘void CdSuThread::exit()’:
+cdsuthread.cpp:261:96: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsusanitymsgs.h:14:0,
+                 from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsusanity.h:26,
+                 from cdsusanity.cpp:17:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsusanity.cpp: In constructor ‘SanityModule::SanityModule(const SanityParams&, CdSuTimerHandler*)’:
+cdsusanity.cpp:39:74: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::reset()’:
+cdsusanity.cpp:123:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::setSanityParams(const SanityParams&)’:
+cdsusanity.cpp:146:73: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::getSanityParams(SanityParams&)’:
+cdsusanity.cpp:163:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::startTx()’:
+cdsusanity.cpp:178:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:184:60: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:191:94: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::stopTx()’:
+cdsusanity.cpp:210:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:213:60: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::startRx()’:
+cdsusanity.cpp:231:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:234:60: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:239:95: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::stopRx()’:
+cdsusanity.cpp:254:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:257:60: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘Uint8 SanityModule::getMissedSanityCount()’:
+cdsusanity.cpp:277:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::handleMessage(CdMessage*)’:
+cdsusanity.cpp:294:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::sanityHlr()’:
+cdsusanity.cpp:342:51: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:344:56: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::timeoutHlr(CdMessage*)’:
+cdsusanity.cpp:364:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:369:63: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:375:73: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::txTimeoutHlr()’:
+cdsusanity.cpp:391:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:410:101: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:436:76: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::rxTimeoutHlr()’:
+cdsusanity.cpp:451:72: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:479:95: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:486:74: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp: In member function ‘void SanityModule::print()’:
+cdsusanity.cpp:500:90: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:501:84: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:502:74: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:503:104: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:504:100: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:505:100: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:506:110: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:507:98: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:508:98: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:509:84: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:510:90: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:511:81: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:512:81: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:513:87: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:514:91: warning: deprecated conversion from string constant to ‘char*’
+cdsusanity.cpp:515:90: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutimer.h:44:0,
+                 from cdsutimingwheel.h:29,
+                 from cdsutimingwheel.cpp:32:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsutimingwheel.cpp: In member function ‘void CdSuTimingWheel::tickDecCount()’:
+cdsutimingwheel.cpp:409:116: warning: deprecated conversion from string constant to ‘char*’
+cdsutimingwheel.cpp:429:108: warning: deprecated conversion from string constant to ‘char*’
+cdsutimingwheel.cpp:448:72: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutimer.h:44:0,
+                 from cdsutimer.cpp:21:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+In file included from cdsumd.h:21:0,
+                 from cdsumdapi.cpp:20:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+In file included from cdsumd.cpp:26:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsumd.cpp: In constructor ‘CdSuMsgDistributor::CdSuMsgDistributor(const CdSuMdInitParam&)’:
+cdsumd.cpp:57:67: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp: In destructor ‘CdSuMsgDistributor::~CdSuMsgDistributor()’:
+cdsumd.cpp:104:68: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:121:68: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:134:68: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:154:66: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp: In member function ‘bool CdSuMsgDistributor::start()’:
+cdsumd.cpp:179:68: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:190:67: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:202:67: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:206:106: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp: In member function ‘bool CdSuMsgDistributor::registerMid(const CdModuleId&, const CdSuMdIpcpInfo&)’:
+cdsumd.cpp:238:77: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:245:63: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:254:72: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:276:71: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:292:71: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:309:70: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:316:74: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:324:65: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp: In member function ‘bool CdSuMsgDistributor::registerMid(const CdModuleId&)’:
+cdsumd.cpp:361:89: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:368:63: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:389:79: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:397:72: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:404:65: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp: In member function ‘bool CdSuMsgDistributor::unregisterMid(const CdModuleId&)’:
+cdsumd.cpp:439:63: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:449:97: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:474:65: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp: In member function ‘bool CdSuMsgDistributor::sendMsg(CdMessage*, int)’:
+cdsumd.cpp:516:63: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:541:67: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:553:67: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:559:66: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:560:66: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:561:291: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:562:292: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:571:65: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:619:106: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:669:95: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:678:65: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp: In member function ‘bool CdSuMsgDistributor::recvMsg(CdMessage**, const CdModuleId&)’:
+cdsumd.cpp:703:63: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:718:63: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp: In member function ‘bool CdSuMsgDistributor::recvMsgNonBlock(CdMessage**, const CdModuleId&)’:
+cdsumd.cpp:750:63: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:765:63: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsumd.cpp:27:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In member function ‘bool CdSuTsQueue<KeyType>::add(const KeyType&) [with KeyType = CdMessage*]’:
+cdsumd.cpp:124:28:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:352:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsumd.cpp:27:
+cdsumd.cpp:124:28:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:359:3: warning: deprecated conversion from string constant to ‘char*’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:371:4: warning: deprecated conversion from string constant to ‘char*’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:377:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsumd.cpp:27:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In destructor ‘CdSuTsQueue<KeyType>::~CdSuTsQueue() [with KeyType = CdMessage*]’:
+cdsumd.cpp:149:9:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:204:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsumd.cpp:27:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:208:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsumd.cpp:27:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In member function ‘bool CdSuTsQueue<KeyType>::insert(const KeyType&) [with KeyType = CdMessage*]’:
+cdsumd.cpp:548:57:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:409:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsumd.cpp:27:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:416:3: warning: deprecated conversion from string constant to ‘char*’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:434:4: warning: deprecated conversion from string constant to ‘char*’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:440:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsumd.cpp:27:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In member function ‘bool CdSuTsQueue<KeyType>::popBlocking(KeyType&) [with KeyType = CdMessage*]’:
+cdsumd.cpp:725:43:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:482:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsumd.cpp:27:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:488:3: warning: deprecated conversion from string constant to ‘char*’
+cdsumd.cpp:725:43:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:494:3: warning: deprecated conversion from string constant to ‘char*’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:516:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsumd.cpp:27:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In member function ‘bool CdSuTsQueue<KeyType>::popNonBlocking(KeyType&) [with KeyType = CdMessage*]’:
+cdsumd.cpp:772:46:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:561:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsumd.cpp:27:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:588:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:15:0,
+                 from cdsunhudpthrd.cpp:26:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhudpthrd.cpp: In function ‘void* cdsuMdUdpNwHlrStart(void*)’:
+cdsunhudpthrd.cpp:101:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpthrd.cpp:132:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpthrd.cpp: In function ‘void* cdsuMdUdpRxThrdStart(void*)’:
+cdsunhudpthrd.cpp:261:103: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsunhudpthrd.cpp:26:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In member function ‘bool CdSuTsQueue<KeyType>::popBlocking(KeyType&) [with KeyType = CdMessage*]’:
+cdsunhudpthrd.cpp:164:49:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:482:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from cdsunhudpthrd.cpp:26:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:488:3: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpthrd.cpp:164:49:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:494:3: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpthrd.cpp:164:49:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:516:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhudpglobals.h:16:0,
+                 from cdsunhudptxptsrvc.h:18,
+                 from cdsunhudptxptsrvc.cpp:34:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhudptxptsrvc.cpp: In constructor ‘CdSuUdpTxptServices::CdSuUdpTxptServices()’:
+cdsunhudptxptsrvc.cpp:54:78: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudptxptsrvc.cpp: In member function ‘bool CdSuUdpTxptServices::sendMsg(char*, Uint16, Uint32, Uint16)’:
+cdsunhudptxptsrvc.cpp:142:75: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudptxptsrvc.cpp: In member function ‘bool CdSuUdpTxptServices::recvMsg(char*, int&, Uint32&, Uint16&)’:
+cdsunhudptxptsrvc.cpp:190:80: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhtcpinstmgr.cpp:17:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhtcpinstmgr.cpp: In constructor ‘CdSuNhTcpInstMgr::CdSuNhTcpInstMgr()’:
+cdsunhtcpinstmgr.cpp:45:72: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhtcpapiparam.cpp:25:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+In file included from cdsunhtcpapiparamchk.cpp:15:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhtcpapiparamchk.cpp: In function ‘CdSuNhTcpApiRetType chkNhInstIdRng(CdSuNhTcpInstId)’:
+cdsunhtcpapiparamchk.cpp:238:92: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhtcpdb.cpp:20:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+In file included from cdsunhtcpmsg.cpp:17:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+In file included from cdsunhtcpapi.cpp:17:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpMiDelNhReq(const CdSuNhTcpMiDelNhParam&)’:
+cdsunhtcpapi.cpp:101:122: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:107:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:124:98: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpMiTerminate(const CdSuNhTcpMiTerminateParam&)’:
+cdsunhtcpapi.cpp:172:87: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpMiCtrlReq(const CdSuNhTcpMiCtrlReqParam&)’:
+cdsunhtcpapi.cpp:212:123: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:218:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpMiCfgReq(const CdSuNhTcpMiCfgReqParam&)’:
+cdsunhtcpapi.cpp:263:121: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:269:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpMiStatusReq(const CdSuNhTcpMiStatusReqParam&)’:
+cdsunhtcpapi.cpp:315:132: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:321:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpMiStsReq(const CdSuNhTcpMiStsReqParam&)’:
+cdsunhtcpapi.cpp:368:129: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:374:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpUiAddLstnReq(const CdSuNhTcpUiAddLstnReqParam&, CdSuNhTcpLstnKey&)’:
+cdsunhtcpapi.cpp:432:89: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:441:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:470:100: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:476:78: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpUiRemLstnReq(const CdSuNhTcpUiRemLstnReqParam&)’:
+cdsunhtcpapi.cpp:502:97: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:509:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:526:100: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpUiConReq(const CdSuNhTcpUiConReqParam&, CdSuNhTcpConnKey&)’:
+cdsunhtcpapi.cpp:557:86: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:566:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:594:97: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:600:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpUiCloseConReq(const CdSuNhTcpUiCloseConReqParam&)’:
+cdsunhtcpapi.cpp:628:99: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:635:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:651:101: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘CdSuNhTcpApiRetType cdSuNhTcpUiDataReq(const CdSuNhTcpUiDataReqParam&)’:
+cdsunhtcpapi.cpp:676:95: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:683:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:699:101: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘bool cdSuNhTcpDefLstnEventHlr(const CdSuNhTcpUiLstnEvent&)’:
+cdsunhtcpapi.cpp:717:94: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:746:104: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:772:104: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:783:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘bool cdSuNhTcpDefConEventHlr(const CdSuNhTcpUiConnEvent&)’:
+cdsunhtcpapi.cpp:802:92: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:831:104: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:858:104: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:884:104: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:911:104: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:937:104: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:963:104: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:974:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp: In function ‘bool cdSuNhTcpDefSmEventHlr(const CdSuNhTcpMiEvent&)’:
+cdsunhtcpapi.cpp:994:82: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:1023:103: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:1049:103: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:1075:103: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:1101:103: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:1127:103: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:1153:103: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:1179:103: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcpapi.cpp:1190:77: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhtcp.cpp:38:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhtcp.cpp: In constructor ‘CdSuNhTcp::CdSuNhTcp(CdSuNhTcpDb*)’:
+cdsunhtcp.cpp:67:70: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In destructor ‘virtual CdSuNhTcp::~CdSuNhTcp()’:
+cdsunhtcp.cpp:108:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::run()’:
+cdsunhtcp.cpp:151:78: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::handleMsg(CdMessage*)’:
+cdsunhtcp.cpp:279:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘CdSuNhTcpFailCode CdSuNhTcp::createConn(CdSuNhTcpUiConReqParam, CdSuNhTcpConnId)’:
+cdsunhtcp.cpp:315:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:329:97: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:332:124: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:337:105: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:342:110: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:356:88: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:362:90: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:381:93: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘bool CdSuNhTcp::closeConn(CdSuNhTcpUiCloseConReqParam)’:
+cdsunhtcp.cpp:478:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:488:101: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:498:102: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:504:106: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘CdSuNhTcpFailCode CdSuNhTcp::addListener(CdSuIpv4Addr, CdSuIpv4TcpPortNo, void (*)(void*), void (*)(void*), CdSuActorId, CdSuNhTcpLstnId, bool)’:
+cdsunhtcp.cpp:569:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:580:98: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:583:125: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:588:106: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:593:111: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:605:114: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:612:67: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:619:96: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:623:90: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:624:88: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘bool CdSuNhTcp::remListener(CdSuNhTcpUiRemLstnReqParam)’:
+cdsunhtcp.cpp:700:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:710:101: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:720:102: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:727:106: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘bool CdSuNhTcp::handleConInd(CdSuNhTcpConnId, CdSuIpv4Addr, CdSuIpv4TcpPortNo, void (*)(void*))’:
+cdsunhtcp.cpp:792:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘bool CdSuNhTcp::multiAcceptor()’:
+cdsunhtcp.cpp:875:105: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:878:92: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:922:128: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:926:109: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:930:114: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:934:65: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1017:128: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘bool CdSuNhTcp::reactor()’:
+cdsunhtcp.cpp:1149:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1180:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1259:75: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘int CdSuNhTcp::recvPacket(CdSuNhTcpConnInfo*, sockaddr_in*&)’:
+cdsunhtcp.cpp:1331:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1349:70: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1358:69: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1366:96: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1378:89: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1404:100: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1405:67: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1410:70: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1421:69: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1467:115: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1470:94: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1476:87: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘bool CdSuNhTcp::sendPacket(CdSuNhTcpUiDataReqParam)’:
+cdsunhtcp.cpp:1502:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1515:77: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1546:85: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1547:81: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1548:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1560:85: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1561:81: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1562:73: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1590:113: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1598:96: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘int CdSuNhTcp::readNoOfBytes(int, char*, int)’:
+cdsunhtcp.cpp:1662:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1679:66: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘int CdSuNhTcp::writeNoOfBytes(int, const char*, int)’:
+cdsunhtcp.cpp:1706:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1720:112: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:1726:95: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::changeState(CdSuNhTcpState)’:
+cdsunhtcp.cpp:1751:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::createdStHlr(CdMessage*)’:
+cdsunhtcp.cpp:1771:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::runningStHlr(CdMessage*)’:
+cdsunhtcp.cpp:1809:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::outOfSeqMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2073:64: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::configReqMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2099:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2123:83: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2127:87: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::delNhReqMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2147:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2164:108: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2167:123: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2178:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2183:120: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2186:121: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::ctrlReqMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2255:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2343:82: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::statusReqMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2365:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::statsReqMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2415:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::addLstnMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2471:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2497:131: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2504:101: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2536:105: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::remLstnMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2559:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2570:104: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2574:108: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::conReqMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2597:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2616:128: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2624:95: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2655:99: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::txDataReqMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2677:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2696:128: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2708:102: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2712:106: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::discReqMsgHlr(CdMessage*)’:
+cdsunhtcp.cpp:2735:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2746:105: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2750:109: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘bool CdSuNhTcp::connCleanUp(CdSuNhTcpConnInfo*)’:
+cdsunhtcp.cpp:2776:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2781:81: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp:2787:78: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘bool CdSuNhTcp::lstnCleanUp(CdSuNhTcpLstnInfo*)’:
+cdsunhtcp.cpp:2821:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘bool CdSuNhTcp::shutDownTcpHandle(CdSuNhTcpHandle)’:
+cdsunhtcp.cpp:2858:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘CdSuNhTcpConnInfo* CdSuNhTcp::buildConnInfo(CdSuNhTcpHandle, CdSuNhTcpConnId, sockaddr_in*, CdSuNhTcpLstnInfo*)’:
+cdsunhtcp.cpp:2892:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘CdSuNhTcpConnInfo* CdSuNhTcp::buildConnInfo(CdSuNhTcpHandle, CdSuNhTcpConnId, CdSuIpv4Addr, CdSuIpv4TcpPortNo, CdSuIpv4Addr, CdSuIpv4TcpPortNo, bool, void (*)(void*), CdSuActorId)’:
+cdsunhtcp.cpp:2944:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘CdSuNhTcpLstnInfo* CdSuNhTcp::buildListenInfo(CdSuNhTcpHandle, CdSuNhTcpLstnId, CdSuIpv4Addr, CdSuIpv4TcpPortNo, void (*)(void*), void (*)(void*), CdSuActorId, bool)’:
+cdsunhtcp.cpp:2990:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘CdSuNhTcpUiConIndEvent* CdSuNhTcp::buildConnIndEvent(CdSuNhTcpLstnInfo*, CdSuNhTcpConnInfo*)’:
+cdsunhtcp.cpp:3028:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘CdSuNhTcpUiDataIndEvent* CdSuNhTcp::buildDataIndEvent(CdSuNhTcpConnInfo*, Uint16)’:
+cdsunhtcp.cpp:3063:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘CdSuNhTcpUiCloseConIndEvent* CdSuNhTcp::buildCloseConIndEvent(CdSuNhTcpConnInfo*)’:
+cdsunhtcp.cpp:3097:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘void CdSuNhTcp::incrStatsCtrs(CdSuNhTcpCtrType)’:
+cdsunhtcp.cpp:3123:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhtcp.cpp: In member function ‘Ulong* CdSuNhTcp::getStatsCtrs()’:
+cdsunhtcp.cpp:3140:72: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhtcp.cpp:39:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuqueue.h: In member function ‘bool CdSuQueue<KeyType>::add(const KeyType&) [with KeyType = CdSuNhTcpConnInfo*]’:
+cdsunhtcp.cpp:1202:32:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuqueue.h:218:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhtcp.cpp:39:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuqueue.h:232:4: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhudptypes.h:22:0,
+                 from cdsunhudpapiparam.h:23,
+                 from cdsunhudpapiparam.cpp:21:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+In file included from cdsunhudpapi.cpp:20:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhudpapi.cpp: In function ‘CdSuNhUdpApiRetType cdSuNhUdpMiInit(const CdSuNhUdpMiInitParam&, CdSuNhUdpInstId&)’:
+cdsunhudpapi.cpp:52:73: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp: In function ‘CdSuNhUdpApiRetType cdSuNhUdpMiTerminate(const CdSuNhUdpMiTerminateParam&)’:
+cdsunhudpapi.cpp:96:73: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:102:77: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:130:85: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp: In function ‘CdSuNhUdpApiRetType cdSuNhUdpMiDelNhReq(const CdSuNhUdpMiDelNhParam&)’:
+cdsunhudpapi.cpp:148:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:155:77: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:171:122: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:179:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:195:98: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp: In function ‘CdSuNhUdpApiRetType cdSuNhUdpMiCtrlReq(const CdSuNhUdpMiCtrlReqParam&)’:
+cdsunhudpapi.cpp:213:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:220:77: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:237:123: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:245:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp: In function ‘CdSuNhUdpApiRetType cdSuNhUdpMiCfgReq(const CdSuNhUdpMiCfgReqParam&)’:
+cdsunhudpapi.cpp:277:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:285:77: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:302:121: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:310:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp: In function ‘CdSuNhUdpApiRetType cdSuNhUdpMiStatusReq(const CdSuNhUdpMiStatusReqParam&)’:
+cdsunhudpapi.cpp:342:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:349:77: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:366:132: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:373:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp: In function ‘CdSuNhUdpApiRetType cdSuNhUdpMiStsReq(const CdSuNhUdpMiStsReqParam&)’:
+cdsunhudpapi.cpp:406:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:413:77: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:429:129: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:436:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp: In function ‘CdSuNhUdpApiRetType cdSuNhUdpUiAddUdpPortReq(const CdSuNhUdpUiAddUdpPortReqParam&, CdSuNhUdpPortKey&)’:
+cdsunhudpapi.cpp:468:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:477:77: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:493:88: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:501:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:525:103: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:531:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp: In function ‘CdSuNhUdpApiRetType cdSuNhUdpUiRemUdpPortReq(const CdSuNhUdpUiRemUdpPortReqParam&)’:
+cdsunhudpapi.cpp:550:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:557:77: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:573:140: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:580:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:596:100: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp: In function ‘CdSuNhUdpApiRetType cdSuNhUdpUiDataReq(const CdSuNhUdpUiDataReqParam&)’:
+cdsunhudpapi.cpp:614:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:621:77: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:637:135: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:644:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapi.cpp:660:97: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhudpinstmgr.cpp:16:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhudpinstmgr.cpp: In constructor ‘CdSuNhUdpInstMgr::CdSuNhUdpInstMgr()’:
+cdsunhudpinstmgr.cpp:40:72: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhudp.cpp:33:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhudp.cpp: In constructor ‘CdSuNhUdp::CdSuNhUdp(CdSuNhUdpDb*)’:
+cdsunhudp.cpp:66:70: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In destructor ‘virtual CdSuNhUdp::~CdSuNhUdp()’:
+cdsunhudp.cpp:110:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In constructor ‘CdSuNhUdp::CdSuNhUdpPortInfo::CdSuNhUdpPortInfo()’:
+cdsunhudp.cpp:145:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::run()’:
+cdsunhudp.cpp:169:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:173:78: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In static member function ‘static void* CdSuNhUdp::threadEntry(void*)’:
+cdsunhudp.cpp:191:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::start()’:
+cdsunhudp.cpp:213:63: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘bool CdSuNhUdp::reactor()’:
+cdsunhudp.cpp:336:100: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:339:87: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:474:122: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::createdStHlr(CdMessage*)’:
+cdsunhudp.cpp:552:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::configReqMsgHlr(CdMessage*)’:
+cdsunhudp.cpp:870:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::delNhReqMsgHlr(CdMessage*)’:
+cdsunhudp.cpp:886:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::stCreatedCtrlReqMsgHlr(CdMessage*)’:
+cdsunhudp.cpp:937:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::stRunningCtrlReqMsgHlr(CdMessage*)’:
+cdsunhudp.cpp:998:71: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::statusReqMsgHlr(CdMessage*)’:
+cdsunhudp.cpp:1057:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::statsReqMsgHlr(CdMessage*)’:
+cdsunhudp.cpp:1085:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::addUdpPortReqMsgHlr(CdMessage*)’:
+cdsunhudp.cpp:1120:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::remUdpPortReqMsgHlr(CdMessage*)’:
+cdsunhudp.cpp:1189:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1206:91: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::dataReqMsgHlr(CdMessage*)’:
+cdsunhudp.cpp:1266:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1292:92: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::sendReqMsgHlr(CdMessage*)’:
+cdsunhudp.cpp:1373:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘CdSuNhUdpRspFailCode CdSuNhUdp::remUdpPort(const CdSuNhUdpPortId&)’:
+cdsunhudp.cpp:1398:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1406:91: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1414:94: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1422:95: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1426:103: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::changeState(CdSuNhUdpState)’:
+cdsunhudp.cpp:1449:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘bool CdSuNhUdp::udpPortCleanUp(const CdSuNhUdp::CdSuNhUdpPortInfo*)’:
+cdsunhudp.cpp:1465:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘CdSuNhUdpRspFailCode CdSuNhUdp::addUdpPort(const CdSuNhUdpPortId&, CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&, const CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&, const CdSuActorId&, void (*)(void*))’:
+cdsunhudp.cpp:1505:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1518:98: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1533:155: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1537:70: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1557:106: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1588:150: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1591:73: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘CdSuNhUdpRspFailCode CdSuNhUdp::sendDatagram(const void*, const Uint16&, const CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&)’:
+cdsunhudp.cpp:1679:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘CdSuNhUdpRspFailCode CdSuNhUdp::sendDatagram(const CdSuNhUdpPortId&, const void*, const Uint16&, const CdSuIpv4UdpPortNo&, const CdSuIpv4Addr&)’:
+cdsunhudp.cpp:1737:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1746:74: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1763:79: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1769:78: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘int CdSuNhUdp::writeNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, const char*, int)’:
+cdsunhudp.cpp:1807:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1811:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1812:87: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1824:116: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘int CdSuNhUdp::writeNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, const char*, int, CdSuIpv4UdpPortNo, CdSuIpv4Addr)’:
+cdsunhudp.cpp:1852:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1856:80: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1857:91: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1873:65: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int)’:
+cdsunhudp.cpp:1895:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1899:117: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1905:127: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1908:121: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘int CdSuNhUdp::readNoOfBytes(CdSuNhUdp::CdSuNhUdpPortInfo*, char*, int, CdSuIpv4UdpPortNo&, CdSuIpv4Addr&)’:
+cdsunhudp.cpp:1929:72: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1939:105: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1945:76: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1949:102: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp:1955:126: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudp.cpp: In member function ‘void CdSuNhUdp::updateStatsPkgCounter(CdSuNhUdpOpcode, CdSuIpv4UdpPortNo, CdSuIpv4UdpPortNo, CdSuNhUdpRspFailCode)’:
+cdsunhudp.cpp:1998:72: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhudpdb.cpp:16:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhudpdb.cpp: In constructor ‘CdSuNhUdpDb::NhUdpPortIdAllocator::NhUdpPortIdAllocator(Uint32)’:
+cdsunhudpdb.cpp:94:67: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhudpmsg.cpp:18:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+In file included from cdsunhudptypes.h:22:0,
+                 from cdsunhudpapiparam.h:23,
+                 from cdsunhudpapiparamchk.h:18,
+                 from cdsunhudpapiparamchk.cpp:17:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhudpapiparamchk.cpp: In function ‘CdSuNhUdpApiRetType validateAddUdpPortReqParam(const CdSuNhUdpUiAddUdpPortReqParam&)’:
+cdsunhudpapiparamchk.cpp:198:82: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapiparamchk.cpp:201:90: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpapiparamchk.cpp:207:92: warning: deprecated conversion from string constant to ‘char*’
+In file included from cdsunhudpdefeventhlr.cpp:15:0:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+cdsunhudpdefeventhlr.cpp: In function ‘void cdSuNhUdpDefSmEventHlr(void*)’:
+cdsunhudpdefeventhlr.cpp:40:82: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpdefeventhlr.cpp:47:84: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpdefeventhlr.cpp:142:107: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpdefeventhlr.cpp:147:105: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpdefeventhlr.cpp: In function ‘void cdSuNhUdpDefApplEventHlr(void*)’:
+cdsunhudpdefeventhlr.cpp:166:83: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpdefeventhlr.cpp:173:85: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpdefeventhlr.cpp:258:95: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpdefeventhlr.cpp:267:104: warning: deprecated conversion from string constant to ‘char*’
+cdsunhudpdefeventhlr.cpp:271:105: warning: deprecated conversion from string constant to ‘char*’
+thread-test.cpp: In static member function ‘static void* TestThread::threadEntry(void*)’:
+thread-test.cpp:37:1: warning: no return statement in function returning non-void
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:15:0,
+                 from bukmsgthrd.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+bukmsgthrd.cpp: In function ‘Uint32 changeIpAddr(char*)’:
+bukmsgthrd.cpp:101:72: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp: In function ‘void smMgmtEventHlr(void*)’:
+bukmsgthrd.cpp:195:73: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_MI_INIT_REQ’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_MI_DELNH_REQ’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_MI_CTRL_REQ’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_MI_CFG_REQ’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_MI_STATUS_REQ’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_MI_STATISTICS_REQ’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_MI_CFG_RSP’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_MI_USTATUS_IND’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_UI_ADD_UDPPORT_REQ’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_UI_REM_UDPPORT_REQ’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_UI_DATA_REQ’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_UI_SEND_REQ’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_UI_ADD_UDPPORT_RSP’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_UI_REM_UDPPORT_RSP’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_UI_DATA_RSP’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_UI_SEND_RSP’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_UI_DATA_IND’ not handled in switch
+bukmsgthrd.cpp:200:9: warning: enumeration value ‘CDSU_NHUDP_INVALID’ not handled in switch
+bukmsgthrd.cpp: In function ‘void applEventHlr(void*)’:
+bukmsgthrd.cpp:471:73: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp: In function ‘void initAllGlobals()’:
+bukmsgthrd.cpp:719:73: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp: In function ‘int main()’:
+bukmsgthrd.cpp:809:78: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:814:86: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:841:110: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:843:88: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp: In static member function ‘static void* TestThread::applicationStart1(void*)’:
+bukmsgthrd.cpp:919:72: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:980:103: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:984:81: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:985:78: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:1010:94: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:1014:85: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:1025:1: warning: no return statement in function returning non-void
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from bukmsgthrd.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In destructor ‘CdSuTsQueue<KeyType>::~CdSuTsQueue() [with KeyType = int]’:
+bukmsgthrd.cpp:879:29:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:204:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from bukmsgthrd.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:208:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from bukmsgthrd.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In member function ‘bool CdSuTsQueue<KeyType>::popBlocking(KeyType&) [with KeyType = int]’:
+bukmsgthrd.cpp:881:23:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:482:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from bukmsgthrd.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:488:3: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd.cpp:881:23:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:494:3: warning: deprecated conversion from string constant to ‘char*’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:516:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:15:0,
+                 from bukmsgthrd2.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+bukmsgthrd2.cpp: In function ‘Uint32 changeIpAddr(char*)’:
+bukmsgthrd2.cpp:55:72: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp: In function ‘int main()’:
+bukmsgthrd2.cpp:94:78: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp:99:86: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp:126:111: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp:128:89: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp: In static member function ‘static void* TestThread::applicationStart2(void*)’:
+bukmsgthrd2.cpp:204:70: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp:229:92: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp:233:83: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp:239:103: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp:244:81: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp:245:78: warning: deprecated conversion from string constant to ‘char*’
+bukmsgthrd2.cpp:262:1: warning: no return statement in function returning non-void
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:15:0,
+                 from bukMsgdistrAdmin.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+bukMsgdistrAdmin.cpp: In function ‘Uint32 changeIpAddr(char*)’:
+bukMsgdistrAdmin.cpp:104:78: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp: In function ‘void smMgmtEventHlr(void*)’:
+bukMsgdistrAdmin.cpp:198:79: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_MI_INIT_REQ’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_MI_DELNH_REQ’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_MI_CTRL_REQ’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_MI_CFG_REQ’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_MI_STATUS_REQ’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_MI_STATISTICS_REQ’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_MI_CFG_RSP’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_MI_USTATUS_IND’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_UI_ADD_UDPPORT_REQ’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_UI_REM_UDPPORT_REQ’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_UI_DATA_REQ’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_UI_SEND_REQ’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_UI_ADD_UDPPORT_RSP’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_UI_REM_UDPPORT_RSP’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_UI_DATA_RSP’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_UI_SEND_RSP’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_UI_DATA_IND’ not handled in switch
+bukMsgdistrAdmin.cpp:203:9: warning: enumeration value ‘CDSU_NHUDP_INVALID’ not handled in switch
+bukMsgdistrAdmin.cpp: In function ‘void applEventHlr(void*)’:
+bukMsgdistrAdmin.cpp:336:79: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp: In function ‘void initAllGlobals()’:
+bukMsgdistrAdmin.cpp:465:79: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp: In function ‘int main()’:
+bukMsgdistrAdmin.cpp:554:84: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:559:92: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:586:116: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:588:94: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp: In static member function ‘static void* TestThread::applicationStart1(void*)’:
+bukMsgdistrAdmin.cpp:694:78: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:749:109: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:753:87: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:754:84: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:779:99: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:783:90: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:794:1: warning: no return statement in function returning non-void
+bukMsgdistrAdmin.cpp: In static member function ‘static void* TestThread::applicationStart2(void*)’:
+bukMsgdistrAdmin.cpp:798:78: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:810:109: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:814:87: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:815:84: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:840:99: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:844:90: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:855:1: warning: no return statement in function returning non-void
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from bukMsgdistrAdmin.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In destructor ‘CdSuTsQueue<KeyType>::~CdSuTsQueue() [with KeyType = int]’:
+bukMsgdistrAdmin.cpp:645:29:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:204:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from bukMsgdistrAdmin.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:208:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from bukMsgdistrAdmin.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h: In member function ‘bool CdSuTsQueue<KeyType>::popBlocking(KeyType&) [with KeyType = int]’:
+bukMsgdistrAdmin.cpp:647:23:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:482:3: warning: deprecated conversion from string constant to ‘char*’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:14:0,
+                 from bukMsgdistrAdmin.cpp:16:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:488:3: warning: deprecated conversion from string constant to ‘char*’
+bukMsgdistrAdmin.cpp:647:23:   instantiated from here
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:494:3: warning: deprecated conversion from string constant to ‘char*’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsutsqueue.h:516:3: warning: deprecated conversion from string constant to ‘char*’
+unixmemmon-test.cpp: In function ‘int main()’:
+unixmemmon-test.cpp:19:67: warning: format ‘%d’ expects type ‘int’, but argument 2 has type ‘long unsigned int’
+In file included from /home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsumdapi.h:15:0,
+                 from msgdistr2-test.cpp:15:
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:236:26: warning: ignoring packed attribute because of unpacked non-POD field ‘CdHardwareUnitId CdModuleId::hwUnitId’
+/home/Sumathi/prama/Documents/training/bukassignment/src/util/include/cdsuutiltypes.h:237:28: warning: ignoring packed attribute because of unpacked non-POD field ‘CdServiceHandlerId CdModuleId::srvcHlrId’
+msgdistr2-test.cpp: In function ‘int main()’:
+msgdistr2-test.cpp:72:83: warning: deprecated conversion from string constant to ‘char*’
+msgdistr2-test.cpp: In function ‘void* applicationStart2(void*)’:
+msgdistr2-test.cpp:288:79: warning: deprecated conversion from string constant to ‘char*’
+msgdistr2-test.cpp:291:79: warning: deprecated conversion from string constant to ‘char*’
+msgdistr2-test.cpp:292:79: warning: deprecated conversion from string constant to ‘char*’
+msgdistr2-test.cpp:293:79: warning: deprecated conversion from string constant to ‘char*’
+msgdistr2-test.cpp:294:90: warning: deprecated conversion from string constant to ‘char*’
+msgdistr2-test.cpp:295:85: warning: deprecated conversion from string constant to ‘char*’
+msgdistr2-test.cpp:304:1: warning: no return statement in function returning non-void

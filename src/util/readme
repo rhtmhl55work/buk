@@ -1,0 +1,141 @@
+Basic Utility Kit contains following modules which are used frequently.
+=======================================================================
+Char Hash:
+---------
+	It is a hash table with character key. It provides three types of 
+operations: mutating operations (insertion and removal), lookup operations 
+and an iterator (to traverse the hash table). The hash function used is 
+modular hash function. It uses separate chaining method for collision 
+resolution, ie, the keys that hash to the same bucket are chained 
+together in separate linked lists.
+
+Integer Hash:
+-------------
+	It is a hash table with integer key. It provides three types of 
+operations: mutating operations (insertion and removal), lookup operations 
+and an iterator (to traverse the hash table). The hash function used is 
+modular hash function. It uses separate chaining method for collision 
+resolution, ie, the keys that hash to the same bucket are chained 
+together in separate linked lists.
+
+List:
+-----
+ 	It is a circular doubly-linked list. It supports insertion and 
+removal of elements at the beginning, end and before given position. 
+It provides an iterator to traverse through the list.
+
+Message Distributor:
+-------------------
+	The Message Distributor distributes the message within the 
+same processor or other processors. It maintains a table for all the 
+modules within the same processor(card). For modules in other card it 
+can either store the hardware unit it or the complete moduleId. It 
+also stores the corresponding ipcpInfo which will be used to deliver 
+the message to that module.
+
+Mutlit Byte Hash:
+----------------
+	It is a hash table with a multibyte key. It provides three 
+types of operations: mutating operations (insertion and removal), lookup 
+operations and an iterator (to traverse the hash table). The hash 
+function used is modular hash function. It uses separate chaining 
+method for collision resolution, ie, the keys that hash to the same 
+bucket are chained together in separate linked lists.
+
+Tcp Network Handler and Udp Network Handler:
+--------------------------------------------
+	The TCP Network Handler and Udp Network Hanlder hides the 
+socket related complexity from the user and provides the user a 
+friendly C API. The user registers its event handlers and events 
+are notified to the corresponding event handlers.
+
+Queue:
+------
+	Queue is implemented as a linked list. It supports functions 
+like insertion of elements, removal of elements, checking whether the 
+queue is empty or full. The queue as we all know works on FIFO i.e. 
+First In First Out basis. It provides an iterator to traverse through the queue.
+
+Task Scheduler:
+---------------
+	The TaskScheduler maintains a table of all the tasks which has 
+registered to it. It continuously listens on a message queue and when it 
+gets a message it dispatches the message to appropriate tasks. Thus all 
+the tasks belong to one thread. They are always passive and become active 
+only when a message is posted to them. The message received by the 
+TaskScheduler is CdTaskMessage type which is publicly derived from CdMessage.
+
+Timer:
+-----
+	Timer Utility implements New Timing Wheel Implementation Algorithm [HTM97].
+
+Thread Safe Queue:
+-----------------
+	It is implemented as a list. It supports functions like insertion of 
+elements, removal of elements, checking whether the queue is empty or full. 
+It is a thread safe queue. The queue as we all know works on FIFO i.e. First 
+In First Out basis. It provides an iterator to traverse through the queue.
+
+NetPrintServer:
+---------------
+	netPrintServer.cpp in src/misc is the server side to print the trace
+	on different process/machine. It has to be compiled separately by
+	using g++ netPrintServer.cpp command.
+	
+				Compiling
+=============================================================================
+
+*) Compiling Library:
+	- Open makefile.inc, set BASE_DIR Path currectly
+	- For Host execute following command
+		make lib
+	- For Target
+		- Open makefile.path, set ECOS_DIR currectly
+		- Execute following command
+			make ECOS=1 {PIC|GII}=1
+	- Library will be generated in src directory with name
+libcdsuutil.a
+
+*) Compiling General Test Program:
+	- Generate Library as explained above
+	- Open Test Program which exist in test directory, change
+		system parameters
+	- Execute following command
+		make test 	
+	- You will get following test program executable in test directory.
+		- char hash
+		- integer hash
+		- list
+		- message distributor
+		- mutli byte hash
+		- queue
+		- task scheduler
+
+*) Compiling Tcp Network Handler Test Program
+	- Go to directory test/tcpnh
+	- Change system parameters of test program.
+	- Open makefile.inc set following varibles value
+  		UTIL_BASE_DIR
+		ECOSDIR	
+	- Execute following command for Host Testing
+		make 
+	- Execute following command for Host Testing
+		make ECOS=1
+			
+*) Compiling Udp Network Handler Test Program
+	- Go to directory test/udpnh
+	- Change system parameters of test program.
+	- Open makefile.inc set following varibles value
+  		UTIL_BASE_DIR
+		ECOSDIR	
+	- Execute following command for Host Testing
+		make 
+	- Execute following command for Host Testing
+		make ECOS=1
+
+Note : For more information about test refer README files of corresponding
+directory.	
+
+---------------
+<END OF README>
+---------------

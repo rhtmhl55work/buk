@@ -1,0 +1,1346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+<head>
+<title>Generic UDP Network Handler Module Design Document</title>
+</head>
+<body bgcolor="white">
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<h2 align="center">Generic UDP Network Handler Module Design Document</h2>
+<hr noshade>
+<!-- --------------------------------------------------------------------- -->
+
+<table width="80%" border=0>
+<tr>
+        <td valign=top><b>Document id</b></td>
+        <td valign=top>:</td>
+        <td valign=top><b>ITS-MDD-CDSU_NHUDP-001</b></td>
+</tr>
+<tr>
+        <td valign=top><b>Document name</b></td>
+        <td valign=top>: </td>
+        <td valign=top> UDP Network Handler Module Design Document</td>
+</tr>
+<tr>
+        <td valign=top><b>Author(s)</b></td>
+        <td valign=top>:</td>
+        <td valign=top> Vijaya Kumar</td>
+</tr>
+
+<tr>
+        <td valign=top><b>Contributor(s)</b></td>
+        <td valign=top>:</td>
+        <td valign=top> Seema Jain, Sumit Bijwe, Prakash R<td>
+</tr>
+<tr>
+        <td valign=top><b>Approved By</b></td>
+        <td valign=top>:</td>
+        <td valign=top> Prakash R</td>
+</tr>
+<tr>
+        <td valign=top><b>Document Source</b></td>
+        <td valign=top>:</td>
+        <td valign=top> Softswitch and Media Gateway BU, C-DOT, Bangalore</td>
+</tr>
+
+</table>
+
+<table>
+
+<tr>
+        <td valign=top><i>Copyright © 2004 by C-DOT. All rights reserved. Contents of
+        publication may not be reproduced in any form without permission from
+        C-DOT.</i></td>
+</tr>
+</table>
+
+
+<h3>Revision Chart</h3>
+<p>
+<table border=1 cellspacing=0 cellpadding=5 width="100%">
+<tr>
+	<th colspan=5>Document History</th>
+</tr>
+<tr>
+	<th> Version No </th>
+	<th> Revised By </th>
+	<th> Revised On </th>
+	<th> Approved By </th>
+	<th> Remarks </th>
+</tr>
+<tr>
+	<td> Draft 1 </td>
+	<td> Vijaya Kumar </td>
+	<td> Mar 17, 2004 </td>
+	<td> Prakash R </td>
+	<td> <br> </td>
+</tr>
+<tr>
+	<td> Draft 2 </td>
+	<td> Vijaya Kumar </td>
+	<td> Apr 13, 2004 </td>
+	<td> Prakash R </td>
+	<td> <br> </td>
+</tr>
+<tr>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+</tr>
+
+<tr>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+</tr>
+
+<tr>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+</tr>
+
+<tr>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+	<td> <br> </td>
+</tr>
+
+</table>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr noshade>
+<h2>Table of contents</h2>
+
+<ol>
+
+ <li> <A HREF="#intro"><b><i>Introduction</i></b></A>
+	<ol>
+         	<li><a href="#intro-ps"><b><i>Purpose and Scope</i></b></a>
+         	<li><a href="#intro-aad"><b><i>Acronyms, Abbreviations and Definitions</i></b></a>
+         	<li><a href="#intro-ref"><b><i>References</i></b></a>
+        </ol> 
+ <li> <A HREF="#md"><b><i>Module Description</i></b></A>
+	 <ol>
+		<li><A HREF="#md"><b><i>Design goals and constraints</i></b></A>
+	  	<li><A HREF="#md-properties"><b><i>Properties</i></b></A>
+	  	<li><A HREF="#md-responsibilities"><b><i>Responsibilities</i></b></A>
+	  	<li><A HREF="#md-functionality"><b><i>Functionalities</i></b></A>
+	</ol>
+ <li> <A HREF="#dd"><b><i>Decomposition Description</i></b></A>
+	<ol>
+		<li><A HREF="#apiif"><b><i>API for each Interface </i></b></A>
+		<li><A HREF="#erdgm"><b><i>Entity & Relationship Diagram </i></b></A>
+			<ol>
+				<li><A HREF="#entities"><b><i>Entities </i></b></A>
+			</ol>
+	</ol>
+ <li>  <A HREF="#ru"><b><i>Resource usage</i></b></A>
+
+ <li> <A HREF="#dc"><b><i>Design Considerations</i></b></A>
+
+ <li> <A HREF="#issues"><b><i>Issues</i></b></A>
+ 
+ <li> <A HREF="#issues"><b><i> Message Flow between Different Entity</i></b></A>
+
+ <li>  <A HREF="#pap"><b><i>Processing/Algorithm/Pseudocode/STD/Statecharts</i></b></A>
+	<ol>
+		<li><A HREF="#pcfnhudp"><b><i>Pseudocode for CdSuNhUdp</i></b></A>
+		<li><A HREF="#pcfnhudpinst"><b><i>Pseudocode for CdSuNhUdpInstMgr</i></b></A>
+	</ol>	
+ <li> <A HREF="#data-struct"><b><i>Data Structures Required</i></b></A>
+
+ <li> <A HREF="#9"><b><i>Messages Received by Various Modules></b></i></A>
+	<ol>	
+		<li><A HREF="#msgtonh"><b><i>Messages Received by UDP Network Handler.</b></i></A>
+	</ol>
+</ol>
+<A HREF="#apx"><b><i>Appendix</i></b></A>
+	API/User Manual etc.
+
+</font>
+
+<!---------------------------------------------------------------------------->
+<hr noshade>
+<A NAME="intro"></A>
+<h2>1. Introduction</h2>
+<p>This document describes the design of the Generic UDP Network Handler.
+The UDP Network Handler (CdSuNhUdp) is a part of the utility kit. 
+It hides the socket related complexity from the user and provides the user
+a friendly C API. The user can register event handlers with UDP Network
+Handler and events are notified to the event handlers registered.</A>
+
+<a name=intro-ps><h2>1.1 Purpose and Scope</h2></a>
+<p> The purpose is to provide a design document for generic, reusable UDP
+ network handler able to perform efficiently and in high load conditions.
+</p>
+
+
+<a name=intro-aad><h2>1.3 Acronyms, Abbreviations and Definitions</h2></a>
+<pre>
+API     	: Application Programming Interface
+DB		: Database
+NHUDP		: UDP Network Handler.
+MI		: Management Interface.
+UDP 		: User Datagram Protocol
+UI		: User Interface.
+</pre>
+
+<a name=intro-ref><h2>1.4 References</h2></a>
+
+<table border=0 cellpadding=0>
+<tr>
+	<td> [srs] </td> 
+	<td>: Software Requirement Document of Generic UDP Network Handler.
+	</td>
+</tr>
+<tr> 
+	<td> [nhudpapi] </td> 
+	<td>: Application Program Interface Of UDP Network Handler.</td>
+</tr>
+<tr> 
+	<td> [unp] </td> 
+	<td>: Unix Network Programming by Richard Stevens.</td>
+</tr>
+<tr>
+	<td> [c++np] </td> 
+	<td>: C++ Network Programming by Douglas C. Schmidt and Stephen D.
+	      Huston.</td>
+</tr>
+</table>
+
+<hr noshade>
+<!---------------------------------------------------------------------------->
+<A NAME="md"></A>
+<h2>2) Module Description</h2>
+<h3>2.1) Design Goals and Constraints</h3>
+
+<p> <b>Goals:</b>
+<p> The UDP Network Handler should have the following properties:
+<ol>
+<li> It should be generic in nature.</li>
+<li> It should be reusable across various modules.</li>
+<li> It should be able to withstand high load conditions.</li>
+<li> Its data structures should be efficient to handle high load conditions.</li>
+<li> It should be scalable.</li>
+</ol>
+
+<p> <b>Constraints:</b></p>
+<p> The UDP Network Handler has the following constraints:</p>
+<ol>
+<li>  Low run-time memory.
+<li>  Efficient time and memory management.
+<li>  Thread safe and re-entrant.
+<li>  Data structures should be hidden from the outside world.
+<li>  Zero buffering of payload.
+</ol>
+
+<A NAME="md-properties"></A>
+<h2>2.2 Properties</h2>
+<p>The UDP Network Handler interfaces with one or more applications, 
+one system management, one system service and one software utility. 
+The UDP Network Handler is a part of the utility kit.</p>
+
+<A NAME="md-responsibilities"></A>
+<h2>2.3) Responsibilities </h2>
+<p> The UDP Network Handler is responsible for the following things:
+<ol>
+<li> It has to provide a middleware to hide the network related 
+complexity from the application.</li>
+<li> It hides the socket related API from the application by providing a
+     more user friendly API.</li>
+</ol>
+
+<A NAME="md-functionality"></A>
+<h2>2.4) Functionalities</h2>
+<p> The UDP Network Handler performs the following functions:
+<ol>
+	<li> Opening of Multiple UDP Network Handler Instance.</li>
+	<li> Closing of UDP Network Handler Instance.</li>
+	<li> Opening UDP port. </li>
+	<li> Closing UDP port. </li>
+	<li> Sending data over UDP port.</li>
+	<li> Receiving data over UDP port.</li>
+	<li> Maintaining and reporting statistics.</li>
+	<li> Performing  Error Handling.</li>
+</ol>
+For more detail refer SRS of Generic UDP Network Handler.
+</p>
+
+
+<hr noshade>
+<!---------------------------------------------------------------------------->
+<A NAME="dd"></A>
+<h2>3) Decomposition Description</h2>
+<center><img src="udpnw-system-context.gif"></center>
+<center><i>Fig 1. Software Architecture</i></center>
+
+<A NAME="apiif"></A>
+<h3>3.1) API for each Interface. </h3>
+<p>
+	Refer API document of Generic UDP Network Handler.
+</p>
+<A NAME="erdgm"></A>
+<h3>3.2) Entity and Relationship Diagram.</h3>
+<center><img src=entity-diag.gif></center>
+<center><i>Fig 2. Entity Diagram of UDP Network Handler</i></center>
+
+ Above figure shows various entities present in UDP Network Handler.
+ Mainly UDP Network Handler contains following entities. 
+<ul>
+	<li> One Instance Manager
+	<li> More than one UDP Network Handler Instances. Each instances 
+	contains one database and one UDP Port Infomation Table.
+</ul>
+Message flows between each active entity through message distributor.
+Active entity are UDP Network Handler Instances, Application and Manager
+(See fig 1 also).<br><br>
+Relation between each entity is shown in the following object diagram.
+<center><img src=obj-diag.gif></center>
+<center><i>Fig 2. Object Diagram depicting relationship among entities
+</i></center>
+<br>
+Responsiblity of each entity explained bellow.
+<A NAME="entities"></A>
+<h3>3.2.1) Entities</h3>
+<h3>UDP Network Handler Instance Manager</h3>
+ It has information about all UDP Network Handler Instances. So it has
+ information about all UDP Network Handler Instances DB. It is supper set
+ of all UDP Network Handler Instances DB.
+<h3>UDP Network Handler Instance</h3>
+<p> 
+<ol>
+<li> This is an active class(thread) which performs the main 
+functionality of the  Network Handler.</li>
+<li> It has 2 table UDP Port Info table and Reverse Lookup Table<br>
+<b>UDP Port Info Table</b> 
+	<table width = 60%>
+	<tr>
+	<td> Key </td>
+	<td> Value </td>
+	</tr>
+
+	<tr>
+	<td> UdpPortId</td>
+	<td> Udp Port Info </td>
+	</tr>
+	</table>
+</ol>
+Udp Port Info Contains following information.
+<ul>
+	<li> Socket fd
+	<li> Event Handler Function Pointer
+	<li> Application Actor Id
+	<li> Self Port Number
+	<li> Self IP Address
+	<li> Destination Port Number
+	<li> Destination IP Address
+</ul>
+ It does following functions.
+<ul>
+	<li> Handling Management request
+		<ul>
+			<li> Control Request
+			<li> Configuration Request
+			<li> Status Request
+			<li> Statistics Request
+			<li> Delete NH Request
+		</ul>
+	<li> Sending Response/Indication to Management
+		<ul>	
+			<li> Control Request Response
+			<li> Configuration Request Response
+			<li> Status Request Response
+			<li> Statistics Request Response
+			<li> Delete NH Request Response
+			<li> Status Change Indication
+		</ul>	
+	<li> Handling Application Request
+		<ul>
+			<li> Add Udp Port Request
+			<li> Remove Udp Port Request
+			<li> Send Data Request
+		</ul>	
+	<li> Sending Response/Indication to Application
+		<ul>
+			<li> Add Udp Port Request Response
+			<li> Remove Udp Port Request Response
+			<li> Send Data Request Response
+			<li> Data Arrive Indication
+		</ul>	
+</ul>
+
+<b>Reverse Lookup table</b>
+	<table width = 60%>
+	<tr>
+	<td> Key </td>
+	<td> Value </td>
+	</tr>
+
+	<tr>
+	<td> Socket fd</td>
+	<td> Udp Port Id </td>
+	</tr>
+	</table>
+
+</p>
+
+
+<h3> UDP Network Handler Database</h3>
+<ol>
+	<li> It contains the static data base.</li>
+	<li> It also contains the statistics package which is update run time.</li>
+</ol>
+
+<h3> UDP Network Handler Statistics Package</h3>
+<p> It contains the following counters:</p>
+<ol>
+<li> Total number of <b>Add Udp Port Requests</b> made by the Application.
+<li> Total number of <b>Add Udp Port Requests where only local transport 
+address is fixed</b> made by the Application.</li>
+<li> Total number of <b>Add Udp Port Requests where local and destination 
+transport address are fixed</b> made by the Application.
+<li> Total number of <b>Add Udp Port Requests where only destination transport 
+address is fixed</b> made by the Application.</li>
+
+<li> Total number of <b>Add Udp Port Requests where local port is fixed and 
+standard </b> made by the Application
+<li> Total number of <b>Data Requests</b> made by the Application.</li>
+<li> Total number of <b>Data Requests on UDP port where only local transport
+ address is fixed </b> made by the Application.
+<li>Total number of <b>Data Requests on UDP port where both local and 
+destination transport address is fixed</b> made by the Application.
+<li>Total number of <b>Data Requests on UDP port where only dest transport
+ address is fixed</b> made by the Application.
+<li>Total number of <b>Data Requests on UDP port where local port is
+fixed and standard</b> made by the Application.
+<li> Total number of <b>Remove UDP Port Requests</b> made by the Application.
+<li> Total number of <b>Remove UDP Port Requests where only local transport address
+is fixed</b> made by the Application.
+<li> Total number of <b>Remove UDP Port Requests where both dest and local transport
+address are fixed</b> made by the Application.
+<li> Total number of <b>Remove UDP Port Requests where only dest transport address
+is fixed.</b> made by the Application.
+<li> Total number of <b>Remove UDP Port Requests where local transport address 
+is fixed and standard port no</b> made by the Application.
+
+<li> Total number of <b>Data Indication</b> issued by the UDP Network Handler
+to the Application.</li>
+<li> Total number of <b>Data Indication over udp port where only local transport address
+is fixed</b> issued by the UDP Network Handler
+to the Application.</li>
+
+<li> Total number of <b>Data Indication over udp port where both destination  and local transport
+address is fixed</b> issued by the UDP Network Handler
+to the Application.</li>
+
+<li> Total number of <b>Data Indication over udp port where both destination and
+local transport address is fixed</b> issued by the UDP Network Handler
+to the Application.</li>
+
+<li> Total number of <b>Data Indication where local transport address is fixed and
+standard port number</b> issued by the UDP Network Handler
+to the Application.</li>
+
+<li> Total number of <b>Error Data Indication</b> issued by the UDP Network Handler
+to the Application.</li>
+
+<li> Total number of <b>Successful Add Udp Port Requests</b> made by the Application.
+<li> Total number of <b>Successful Add Udp Port Requests where only local transport 
+address is fixed</b> made by the Application.</li>
+<li> Total number of <b>Successful Add Udp Port Requests where local and destination 
+transport address are fixed</b> made by the Application.
+<li> Total number of <b>Successful Add Udp Port Requests where only destination transport 
+address is fixed</b> made by the Application.</li>
+
+<li> Total number of <b>Successful Add Udp Port Requests where local port is fixed and 
+standard </b> made by the Application
+<li> Total number of <b>Successful Data Requests</b> made by the Application.</li>
+<li> Total number of <b>Successful Data Requests on UDP port where only local transport
+ address is fixed </b> made by the Application.
+<li>Total number of <b>Successful Data Requests on UDP port where both local and 
+destination transport address is fixed</b> made by the Application.
+<li>Total number of <b>Successful Data Requests on UDP port where only dest transport
+ address is fixed</b> made by the Application.
+<li>Total number of <b>Successful Data Requests on UDP port where local port is
+fixed and standard</b> made by the Application.
+<li> Total number of <b>Successful Remove UDP Port Requests</b> made by the Application.
+<li> Total number of <b>Successful Remove UDP Port Requests where only local transport address
+is fixed</b> made by the Application.
+<li> Total number of <b>Successful Remove UDP Port Requests where both dest and local transport
+address are fixed</b> made by the Application.
+<li> Total number of <b>Successful Remove UDP Port Requests where only dest transport address
+is fixed.</b> made by the Application.
+<li> Total number of <b>Successful Remove UDP Port Requests where local transport address 
+is fixed and standard port no</b> made by the Application.
+
+
+
+<li> Total number of <b>Current Active UDP Port</b> in UDP Network Handler.
+<li> Total number of <b>Current Active UDP Port where local fixed</b> in UDP Network Handler.
+
+</ol>
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<a name="ru"></a>
+<h2>4.0 Resource Usage</h2>
+<p><i>TBD.</i></p>
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<a name="dc"></a>
+<h2>5.0 Design Considerations</h2>
+	Some of the design issues are discussed below:
+	<ol>
+	<li> The UDP Network Handler doesn't contain seperate thread for
+transmitting and receiving data.</li>
+	<li> There has to be a non blocking call on the UDP Network Handler
+ queue.</li>
+	<li> The UDP Network Handler can listen on more than one ports.</li>
+	<li><b>select call</b> is used to demultiplex connections.</li>
+	<li> The select call is also non blocking.</li>
+	<li> Data can also be received on any of the already opened UDP Port.
+	</li>
+	<li> Hence a <b>select call</b> is used to demultiplex data also.</li>
+	<li> The one thread design adds more overhead to the CPU utilization
+ but synchronization is difficult if we use 
+	     multiple threads for receiving data, receiving inputs from the Application. .</li>
+	<li> Fault tolerance is still not taken into consideration.</li>
+	</ol>
+	  
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<a name="issues"></a>
+<h2>6.0 Issues</h2>
+<p><i>TBD.</i></p>
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<h2> <a name="flow">7. Message Flow between Different Entity</a></h2>
+<p>
+	Message flow between different entities is shown in the following
+figures. Actor entities are named like xxx(A).
+</p>
+<pre>
+
+1. Calling Method cdSuNhUdpMiInit for first time.
+
+        Mgr(A)       		      InstMgr	     NH Inst(A)
+--------+-------------------------------+---------------+-----
+	|				|		|
+	| 	  	    Create   	|		|
+	|		|==============>|		|
+	|    Init 	|		|		|
+	|-------------->|		|		|
+	|		|   ADD NH Inst	|		|
+	|    		|-------------->|		|
+	|		|	+---------------+	|
+	|		|	| Create DB	|	|
+	|		|	+---------------+	|		
+	|		|		|  Create	|		
+	|		|  		|==============>|
+	|		|		|		|
+	|		|	+---------------+	|
+	|		|	|  Update Info	|	|
+	|		|	+---------------+	|
+	|		|  InstId	|		|
+	|    InstId	|<--------------|		|
+	|<--------------|		|		|
+	|				|		|
+	|	     	Rsp		|		|
+	|<----------------------------------------------|
+	|				|		|
+	|				|		|
+--------+-------------------------------+---------------+-----
+
+
+2. Calling Method cdSuNhUdpMiInit after first time.
+
+
+        Mgr(A)       		      InstMgr	     NH Inst(A)
+--------------------------------------------------------------
+	|				|		|
+	| 	  	    	   	|		|
+	|    Init 			|		|
+	|-------------->|		|		|
+	|		|   ADD NH Inst	|		|
+	|    		|-------------->|		|
+	|		|	+---------------+	|
+	|		|	| Create DB	|	|
+	|		|	+---------------+	|	
+	|		|    	   	|  Create	|
+	|		|  		|==============>|
+	|		|		|		|
+	|		|	+---------------+	|
+	|		|	|  Update Info	|	|
+	|		|	+---------------+	|
+	|		|   InstId	|		|
+	|   InstId	|<--------------|		|
+	|<--------------|		|		|		
+	|	   			|		|
+	|		Rsp		|		|
+	|<----------------------------------------------|
+	|				|		|
+	|				|		|
+--------+-------------------------------+---------------+-----
+
+
+3. Calling Method cdSuNhUdpMiTerminate When there are more than one
+	UDP Nh Instances.
+
+
+        Mgr(A)       		      InstMgr	     NH Inst(Stoped Actor)
+--------------------------------------------------------------
+	|				|		|
+	| 	  	    	   	|		|
+	|    Terminate 			|		|
+	|-------------->|		|		|
+	|		|   Del NH Inst	|		|
+	|    		|-------------->|		|
+	|		|    	   	|  Delete	|
+	|		|  		|==============>|
+	|		|		|		|
+	|		|	+---------------+	|
+	|		|	|  Delete DB	|	|
+	|		|	+---------------+	|
+	|		|   return	|		|
+	|   return	|<--------------|		|
+	|<--------------|		|		|		
+	|	   			|		|
+	|				|		|
+--------+-------------------------------+---------------+-----
+
+4. Calling Method cdSuNhUdpMiTerminate When there is only one
+	UDP Nh Instance.
+
+
+        Mgr(A)       		      InstMgr	     NH Inst(Stoped Actor)
+--------------------------------------------------------------
+	|				|		|
+	| 	  	    	   	|		|
+	|    Terminate 			|		|
+	|-------------->|		|		|
+	|		|   Del NH Inst	|		|
+	|    		|-------------->|		|
+	|		|    	   	|  Delete	|
+	|		|  		|==============>|
+	|		|		|		|
+	|		|	+---------------+	|
+	|		|	|  Delete DB	|	|
+	|		|	+---------------+	|
+	|		|   return	|		|
+	|   		|<--------------|		|
+	|		|   Delete	|		|
+	|  return 	|-------------->|		|
+	|<--------------|		|		|		
+	|	   			|		|
+	|				|		|
+--------+-------------------------------+---------------+-----
+
+
+
+5. Calling Method call like cdSuNhUdpMiDelNhReq, cdSuNhUdpMiCfgReq,
+			 cdSuNhUdpMiCtrlReq, cdSuNhUdpMiStsReq,
+			 cdSuNhUdpMiStatusReq
+
+	Mgr(A)	     		  NH Inst(A)
+--------+-------------------------------+------
+	|  	Req	|		|	
+	|-------------->|		|
+	|		| Send Req Msg	|
+	|	return	|-------------->|
+	|<--------------|	+---------------+
+	|		|	| Handle Req	|
+	|			+---------------+
+	|				|
+	|      Rsp 			|
+	|<------------------------------|		
+	|				|
+--------+-------------------------------+------	
+
+6. CdSuNhUdpUiAddUdpPortReq
+
+	Appl(A)	     		  NH Inst(A)
+--------+-------------------------------+------
+	|  	Req	|		|	
+	|-------------->|		|
+	|		|  Req Msg	|
+	| Udp Port Id	|-------------->|
+	|<--------------|	+---------------+
+	|		|	| Open Socket.	|
+	|			| Update Table	|
+	|			+---------------+
+	|      Rsp			|
+	|<------------------------------|		
+	|				|
+--------+-------------------------------+------	
+
+7. CdSuNhUdpUiRemUdpPortReq
+
+	Appl(A)	     		  NH Inst(A)
+--------+-------------------------------+------
+	|  	Req	|		|	
+	|-------------->|		|
+	|		|  Req Msg	|
+	| Success Code	|-------------->|
+	|<--------------|	+---------------+
+	|		|	| Close Socket.	|
+	|			| Update Table	|
+	|			+---------------+
+	|      Rsp			|
+	|<------------------------------|		
+	|				|
+--------+-------------------------------+------	
+
+8. CdSuNhUdpUiDataReq
+
+	Appl(A)	     		  NH Inst(A)
+--------+-------------------------------+------
+	|  	Req	|		|	
+	|-------------->|		|
+	|		|  Req Msg	|
+	| Success Code	|-------------->|
+	|<--------------|	+---------------+
+	|		|	| Find Socket.	|
+	|			| Send Data	|
+	|			+---------------+
+	|      Rsp			|
+	|<------------------------------|		
+	|				|
+--------+-------------------------------+------
+
+
+
+9. CdSuNhUdpUiDataReq
+
+	Appl(A)	     		  NH Inst(A)
+--------+-------------------------------+------
+	|				|
+	|			+-------+-------+
+	|			| Data Arive 	|
+	|			| From Remote	|
+	|			| Get Data	|
+	|			+-------+-------+		
+	|				|
+	|			+-------+-------+
+	|			| Find Port Info|
+	|			| Get Event Hlr |
+	|			| Call Event Hlr|
+	|         Ind		+-------+-------+
+	|<------------------------------|
+	|				|
+--------+-------------------------------+------
+
+</pre>
+
+<a name="pap"></a>
+<h2>8.0 Processing/Algorithm/Pseudocode/STD/Statecharts</h2>
+
+<A NAME="pcfnhudp"></A>
+<h2>8.1) Pseudocode for CdSuNhUdp</h2>
+<pre>
+
+bool CdSuNhUdp::start ()
+{
+	while (1)
+	{
+			
+		if (nhState = CDSU_UDPNH_RUNNING)
+		{
+		//-----------------------------------------------------------
+		// Read Data
+		//-----------------------------------------------------------
+		reactor ();
+		}
+		//-----------------------------------------------------------
+		// Process Msg From Application.
+		//-----------------------------------------------------------
+		msgDistr.recvNonBlocking (&msg)
+		if (msg != NULL)
+			handleMsgFromAppl (msg);
+
+
+} // CdSuNhUdp::start ()
+
+bool CdSuNhUdp::reactor ()
+{
+	Check on the udp sockets if some read is detected.
+	retVal = select ();
+
+	if (retVal == 0)
+	{
+		// select timed out.	
+		return true;
+
+	} else if (retVal < 0)
+	{
+		// select error.
+		return false;
+
+	} else
+	{
+		 for sockfd present in the rdfds
+			 char* buffer;
+			 int bufferLen = 0;
+			 int n = rcvPacket (sockfd, buffer, bufferLen)
+			 if (recvPacket == 0)
+			 {
+				// TBD
+			 } else if (recvPacket < 0)
+			 {
+				// Error in reading packet.
+				// Incase of connected udp destination
+				// may not be reaching
+			 } else
+			 {
+				// Successful Read.
+				call appropriate Event Handler.
+			 }
+	}
+} //  CdSuNhUdp::reactor ()
+
+
+bool CdSuNhUdp::rcvPacket (int sockfd, char* buffer, int& bufferLen)
+{
+	Extract the Udp Port Info object from the UDP Port Info table.
+	buffer = new char [MAX_BUFFER_LEN];
+	n = recvfrom ();
+	bufferLen = n;
+}
+
+
+</pre>
+<A NAME="pcfnhudpinst"></A>
+<h2>8.1) Pseudocode for CdSuNhUdpInstMgr(Instance Manager)</h2>
+<pre>
+
+dSuNhUdpInstMgr* CdSuNhUdpInstMgr::createNhUdpInstMgr ()
+{
+	// if instance Manager is null then create instance Manager
+	// else simply return instacne Manager
+	if (nhUdpInstMgr == NULL)
+	{
+		nhUdpInstMgr = new CdSuNhUdpInstMgr ();
+		return (nhUdpInstMgr);
+	} else 
+	{
+		return (nhUdpInstMgr);
+	} // if () 
+
+} // CdSuNhUdpInstMgr::createNhUdpInstMgr ()
+
+
+CdSuNhUdpInstMgr* CdSuNhUdpInstMgr::deleteNhUdpInstMgr ()
+{
+	// if no of instance of NH = 0 then delete and return NULL
+	if (nhUdpInstMgr->noOfNhInst == 0)
+	{
+		delete nhUdpInstMgr; 
+		nhUdpInstMgr = NULL;
+	}
+	return nhUdpInstMgr;
+
+} // CdSuNhUdpInstMgr::deleteNhUdpInstMgr ()
+
+CdSuNhUdpInstId CdSuNhUdpInstMgr::addNhUdpInst (const CdSuNhUdpMiInitParam& initParam)
+{
+	pthread_mutex_lock (&dbLock);
+
+	for (Uint32 i = 0; i < maxNhInst; i++)
+	{
+		if (nhUdpDbTable [i] == NULL)
+		{
+			noOfNhInst++;
+			// Create the NhDb.
+			nhUdpDbTable [i] = new CdSuNhUdpDb (initParam, i);
+			// Create the Network Handler Active Instance.
+			CdSuNhUdp* nhUdp = new CdSuNhUdp (nhUdpDbTable [i]);	
+			// Set the nhudp pointer in db.
+			(nhUdpDbTable[i])->setNhUdpPtr (nhUdp);
+			// Run active class.
+			nhUdp->run ();
+			pthread_mutex_unlock (&dbLock);
+			// Return Instance ID.
+			return (i);
+		} // if ()
+	} // for ()
+
+	pthread_mutex_unlock (&dbLock);
+	return (CDSU_NHUDP_INV_NHINSTID);
+
+} // CdSuNhUdpInstMgr::addNhUdpInst ()
+
+
+CdSuNhUdpApiRetType CdSuNhUdpInstMgr::removeNhUdpInst (const CdSuNhUdpInstId instId)
+{
+	// instance id must not be greater or equal to maxNhInst ID.
+	if (instId >= maxNhInst) 
+	{
+		return CDSU_NHUDP_API_RT_INSTID_INV;
+	}
+	// Lock DB.
+	pthread_mutex_lock (&dbLock);
+	
+	// If nhInstance ID Invalid then following statement returns null
+	if (nhUdpDbTable [ instId ] == NULL)
+	{
+		// Unlock lock return error.
+		pthread_mutex_unlock (&dbLock);
+		return CDSU_NHUDP_API_RT_INSTID_INV;
+	}
+	
+	// Before deleting make sure that NH is in deleted state.  
+	if ((nhUdpDbTable [ instId ])->getNhUdpPtr()->isDeleted ())
+	{
+		// Get and delete the nhudp pointer. 
+		CdSuNhUdp* nhUdp = (nhUdpDbTable[ instId ])->getNhUdpPtr();
+		delete nhUdp;
+
+		// Delete the NhDb.
+		delete (nhUdpDbTable [ instId ]);
+		nhUdpDbTable [ instId ] = NULL;
+
+		noOfNhInst--;
+		// Unlock mutex
+		pthread_mutex_unlock (&dbLock);
+		return (CDSU_NHUDP_API_RT_SUCCESS);
+	} else
+	{
+		// Unlock Mutex
+		pthread_mutex_unlock (&dbLock);
+		return (CDSU_NHUDP_API_RT_OP_INV);
+	}
+	
+} // CdSuNhUdpInstMgr::removeNhUdpInst ()
+
+
+
+</pre>
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<A NAME="data-struct"></A>
+<h2>9. Data Structures Required</h2>
+<p>
+ The data structures related to api are explained in UDP Network
+ Handler API document. Following data structures are internal implementation
+ related. User need not bother about these data structure. But implementor
+ must know all typedefs, constants, structure, functions, objects explained
+ in API document and this document. 
+
+</p> 
+<b>Typedefs</b>
+<pre>
+typedef Sint32 CdSuNhUdpPortHandle; 	// socket fd.
+</pre>
+
+<pre>
+<b>struct CdSuNhUdpPortInfo</b>
+{
+	CdSuNhUdpPortId udpPortId;		
+	CdSuNhUdpHandle handle;		// actual Socket			
+	CdSuIpv4Addr selfIpv4Addr;
+	CdSuUdpPort selfPortNo;		
+	bool is localFixed;		// bool flag tells whetheer local transport address is fixed.
+	
+	CdSuIpv4Addr remoteIpv4Addr;	// valid if connected.
+	CdSuUdpPort remotePortNo;	// valid if connected.
+	bool isDestFixed.		// bool flag tells whether destination transport address is fixed.
+	
+	CdSuNhUdpEventHlr udpEventHlr;	
+	CdSuActorId applActorId;
+	
+} // struct CdSuNhUdpPortInfo
+</pre>
+
+<b>Udp Port Id to Udp Port Info Table</b>
+<pre>
+	Hash table where cdSuNhUdpPortId is key.
+</pre>
+<b>Udp Port Handle to Udp Port Info Table</b>
+<pre>
+	Hash table where cdSuNhUdpPortHandle is key.
+</pre>
+
+<b>CdSuNhUdpInstMgr</b>
+<pre>
+lass CdSuNhUdpInstMgr
+{
+public:
+	// Destroctor
+	~CdSuNhUdpInstMgr ();
+
+	// Method to add Udp Nh Instance.
+	CdSuNhUdpInstId addNhUdpInst (const CdSuNhUdpMiInitParam&);
+
+	// Method to remove UDP Nh instance.
+	CdSuNhUdpApiRetType removeNhUdpInst (const CdSuNhUdpInstId);
+
+	// Method to get singleton object of instance manager.
+	static CdSuNhUdpInstMgr* createNhUdpInstMgr ();
+	
+	// Method to delete singleton object of instance manager.
+	static CdSuNhUdpInstMgr* deleteNhUdpInstMgr ();
+	
+	// Method to get UDP Nh Db associated with UDP Nh.
+	inline CdSuNhUdpDb* getNhUdpDb (CdSuNhUdpInstId nhInstId) 
+	{
+		return (nhUdpDbTable [nhInstId]);
+	}
+
+private:
+
+	//--------------------------------------------------------------------
+	// Private methods.
+	//--------------------------------------------------------------------
+	
+	CdSuNhUdpInstMgr ();	// Constructor
+
+	// Allocate Instance ID
+	int allocateNhInstId ();
+
+	//--------------------------------------------------------------------
+	// Private attributes
+	//--------------------------------------------------------------------
+	
+	// Static Pointer to Singelton Object
+	static CdSuNhUdpInstMgr* nhUdpInstMgr;
+
+	// DB Lock
+	pthread_mutex_t dbLock;
+	
+	// Table Containing Pointer NH Instance
+	CdSuNhUdpDb* nhUdpDbTable[ CDSU_NHUDP_MAX_INST ];
+	
+	// Maximum No Of NH Instance.
+	Uint32 maxNhInst;
+	// Current No Of NH Instance.
+	Uint32 noOfNhInst;
+
+}; // class CdSuNhUdpInstMgr
+
+
+
+<b>class CdSuNhUdp: public CdThread</b>
+{
+public:
+	//--------------------------------------------------------------------
+	//		Public Methods
+	//--------------------------------------------------------------------
+	CdSuNhUdp ();
+	~CdSuNhUdp ();
+	
+	enum CdSuNhUdpState
+	{
+		NHUDP_ST_CREATED,
+		NHUDP_ST_RUNNING
+	};
+	void run ();			 	
+	static void* threadEntry (void*); 
+	void start ();
+
+private:
+	//--------------------------------------------------------------------
+	// 			Private Methods.
+	//--------------------------------------------------------------------
+
+	// To add a UDP Port.
+	bool addUdpPort (CdSuNhUdpPortId portId,
+			 CdSuIpv4Addr selfIpAddr, 
+			 CdSuIpv4PortNo selfPortNo, 
+			 CdSuIpv4Addr remoteIpAddr, 
+			 CdSuIpv4PortNo remotePortNo,
+			 CdSuNhUdpEventHlr udpEventHlr);
+		
+	// To receive data 
+	bool reactor ();
+
+	void changeState (CdSuNhUdpState udpNhState);
+
+	//--------------------------------------------------------------------
+	// 			Attributes
+	//--------------------------------------------------------------------
+	CdSuNhUdpStaticDb* nhDb;
+	CdSuNhUdpStatisticsPkg* statisticsPkg;
+	CdSuNhUdpState nhState;
+	CdSuNhUdpHandle maxUdpHandle;
+	
+	// Main tables
+	CdSuIntHash <CdSuUdpPortInfo*> udpPortId2UdpPortInfoTable;
+	CdSuIntHash <CdSuUdpPortInfo*> handle2UdpPortInfoTable;
+
+}; // class CdSuNhUdp
+
+<b>class CdSuNhUdpDb </b>
+{
+	CdSuNhUdpDb (const CdSuNhUdpInitParam& nhInitParam, CdSuNhUdpInstId instId)
+	{
+		maxNoOfUdpPort = nhInitParam.maxNoOfUdpPort;
+		maxBufLen = nhInitParam.maxBufferLen;
+		nhActorId = nhInitParam.nhActorId;
+		smActorId = nhInitParam.smActorId;
+		dataSelTmr = nhInitParam.dataSelectTimer;	
+		nhInstanceId = instId;
+	
+		smEventHlr = nhInitParam.smEventHlr;
+
+		udpPortIdAllocator = new CdSuNhUdpUdpPortIdAllocator (maxNoOfUdpPort);
+		
+	}
+
+	~CdSuNhUdpDb () {}
+	
+	// Network Handler Database Parameters	
+	Uint32 maxNoOfUdpPort;		
+	Uint16 maxBufLen;			
+	CdSuActorId nhActorId;			
+	CdSuActorId smActorId;			
+	Uint32 dataSelTmr;
+	CdSuNhUdpStatisticsPkg statsPkg;
+	CdSuNhUdpEventHlr smEventHlr;
+
+}; // class CdSuNhUdpDb
+
+<b>class CdSuNhUdpStatisticsPkg</b>
+{
+public:
+	CdSuNhUdpStatisticsPkg ()
+	{
+		resetAllCtrs ();
+	}
+	~CdSuNhUdpStatisticsPkg ()
+	{
+	}
+	void resetAllCtrs ()
+	{
+		for (int i = 0; i < CDSU_NHUDP_MAX_CTR; i++)
+		{
+			counters [i] = 0;
+		}
+	} 
+	void resetCtr (CdSuNhUdpCtrType ctrType)
+	{
+		connIndCtr [ctrType] = 0;
+
+	}
+	void incrementCtr (CdSuNhUdpCtrType ctrType)
+	{
+		++counters [ctrType];
+
+	}
+	void decrementCtr (CdSuNhUdpCtrType ctrType)
+	{
+		--counters [ctrType];
+	}
+
+private:	
+
+	Uint32 counters [CDSU_NHUDP_MAX_CTR];
+
+}; // class CdSuNhUdpStatisticsPkg
+
+</pre>
+
+<hr noshade>
+<!---------------------------------------------------------------------------->
+<A NAME="9"></A>
+<h2>10. Messages Received by Various Modules.</a></h2>
+
+<A NAME="msgtonh"></A>
+<h4>10.1) Messages to the UDP Network Handler. </h4>
+
+<pre>
+*)<b>CdSuNhUdpMiCtrlReqMsg </b>
+
+ General Description		: This message is sent from the UDP Network
+   				  Handler Management Interface to the
+				  Network Handler to Control it. This
+				  message is created and sent by the
+				  function <b>cdSuNhUdpMiCtrlReq () </b>.
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: UDP Network Handler Management.
+ Destination			: UDP Network Handler
+ opcode				: CDSU_NHUDP_MI_CTRL_REQ
+
+   Additional Attributes:
+   ---------------------
+ CdSuNhUdpMiCtrlReqParam	: This consists of the following fields:
+					*) Subopcode indicating type of Control Request.
+
+*)<b>CdSuNhUdpMiDelNhReqMsg </b>
+
+ General Description		: This message is sent from the UDP Network
+   				  Handler Management Interface to the
+				  Network Handler to stop it. This
+				  message is created and sent by the
+				  function <b>cdSuNhUdpMiDelNhReq () </b>.
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: UDP Network Handler Management.
+ Destination			: UDP Network Handler
+ opcode				: CDSU_NHUDP_MI_DEL_REQ
+
+   Additional Attributes:
+   ---------------------
+ CdSuNhUdpMiDelNhReqParam	: This consists of the following fields:
+					*) NH instance ID.
+
+ *)<b>CdSuNhUdpMiCfgReqMsg </b>
+
+ General Description		: This message is sent from the UDP Network
+  				  Handler Management Interface to the
+       			   	  Network Handler to Configure it. This
+				  message is created and sent by the
+				  function <b>cdSuNhUdpMiCfgReq ()</b>.
+
+  CdMessage Attributes:
+  ------------------------
+  Source			: UDP Network Handler Management.
+  Destination			: UDP Network Handler
+  opcode			: CDSU_NHUDP_MI_CFG_REQ
+
+  Additional Attributes:
+  ---------------------
+  CdSuNhUdpMiCfgReqParam	: This consists of the following fields:
+       					*) Subopcode indicating whether Initail or General Config.
+
+
+ *)<b>CdSuNhUdpMiStatusReqMsg </b>
+
+ General Description		: This message is sent from the UDP Network
+  				  Handler Management Interface to the
+       			          Network Handler to request for its status. 
+				  This message is created and sent by the
+				  function <b> cdSuNhUdpMiStatusReq ()</b>.
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: UDP Network Handler Management.
+ Destination			: UDP Network Handler
+ opcode				: CDSU_NHUDP_MI_STATUS_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhUdpMiStatusReqParam	: 
+
+
+*)<b>CdSuNhUdpMiStatisticsReqMsg </b>
+
+ General Description		: This message is sent from the UDP Network
+  				  Handler Management Interface to the
+       			          Network Handler to request for statistics.
+				  This mesasge is created and sent by the
+				  function <b>cdSuNhUdpMiStsReq ()</b>.
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: UDP Network Handler Management
+ Destination			: UDP Network Handler
+ opcode				: CDSU_NHUDP_MI_STATISTICS_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhUdpMiStsReqParam	: 
+ 
+
+*)<b>CdSuNhUdpUiAddUdpPortReqMsg </b>
+
+ General Description		: This message is sent from the Application
+  				  Interface to the UDP Network Handler to
+				  request for addition of UDP Port. This
+				  message is created and sent by the
+				  function <b>CdSuNhUdpUiAddUdpPortReq ()</b>.
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: UDP Network Handler User
+ Destination			: UDP Network Handler
+ opcode				: CDSU_NHUDP_UI_ADD_UDPPORT_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhUdpUiAddUdpPortReqParam	: It contains the following fields:
+ 					*) Self Port No.
+					*) IPv4 Address.
+					*) Remote Port No
+					*) Remote IPv4 Address
+					*) Application Actor Id.
+					*) Event Handler.
+				
+*)<b>CdSuNhUdpUiRemUdpPortReqMsg </b>
+
+ General Description		: This message is sent from the Application
+  				  Interface to the Udp Network Handler to
+				  request for deletion of UDP Port. This
+				  message is created and sent by the
+				  function <b>CdSuNhUdpUiRemUdpPortReq ()</b>
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: UDP Network Handler User
+ Destination			: UDP Network Handler
+ opcode				: CDSU_NHUDP_UI_REM_UDPPORT_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhUdpUiRemUdpPortReqParam	: It contains the following fields:
+ 					*) NH Instance Id.
+					*) Udp Port Id.	
+					*) Event Handler.
+
+
+*)<b>CdSuNhUdpUiDataReqMsg </b>
+
+ General Description		: This message is sent from the Application
+  				  Interface to the UDP Network Handler to
+				  request for sending data.
+				  This message is created and sent by the
+				  function <b>cdSuNhUdpUiDataReq ()</b> 
+
+ CdMessage Attributes:
+ ------------------------
+ Source				: UDP Network Handler User
+ Destination			: UDP Network Handler
+ opcode				: CDSU_NHUDP_UI_DATA_REQ
+
+ Additional Attributes:
+ ---------------------
+ CdSuNhUdpUiDataReqParam	: It contains the following fields:
+ 					*) UDP Port Id.
+					*) Data to be transmitted.
+					*) Length of the data to be transmitted.
+					*) Application Actor Id
+					*) opaque data
+					*) Destination Port No.
+					*) Destination Address.
+					*) is Response required flag.
+					*) Event Handler.
+</pre>
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<a name="apx"></a>
+<h2>Appendix</h2>
+<p><i>TBD.</p></i>
+
+<hr noshade>
+<i>End of document.</i>
+<hr noshade>
+</body>
+</html>
+</body>
+</html>

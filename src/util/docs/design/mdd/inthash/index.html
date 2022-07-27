@@ -1,0 +1,674 @@
+<html><head>
+<title>Integer Hash (CdSuIntHash) Module Design Document</title></head>
+<body bgcolor="white">
+
+<!-- --------------------------------------------------------------------- -->
+<hr noshade>
+<h2 align="center">Integer Hash (CdSuIntHash) Module Design Document</h2>
+<hr noshade>
+<!-- --------------------------------------------------------------------- -->
+
+<table width="80%" border="0">
+<tbody><tr>
+        <td valign="top"><b>Document id</b></td>
+        <td valign="top">:</td>
+        <td valign="top"><b>ITS-MDD-CDSU_INTHASH-001</b></td>
+</tr>
+<tr>
+        <td valign="top"><b>Document name</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Integer Hash (CdSuIntHash) Module Design Document</td>
+</tr>
+<tr>
+        <td valign="top"><b>Author(s)</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Titty Thomas, Vijaya Kumar</td>
+</tr>
+<tr>
+        <td valign="top"><b>Contributor(s)</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Seema Jain</td>
+</tr>
+<tr>
+        <td valign="top"><b>Approved By</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Prakash R</td>
+</tr>
+<tr>
+        <td valign="top"><b>Document Source</b></td>
+        <td valign="top">:</td>
+        <td valign="top">Internet Telephony Group, C-DOT, Bangalore</td>
+</tr>
+</tbody></table>
+
+<table>
+<tbody><tr>
+        <td valign="top"><i>Copyright © 2003 by C-DOT. All rights reserved. Contents of
+        publication may not be reproduced in any form without permission from
+        C-DOT.</i></td>
+</tr>
+</tbody></table>
+
+
+<h3>Revision Chart</h3>
+<p>
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+<tbody><tr>
+        <th colspan="5">Document History</th>
+</tr>
+<tr>
+        <th> Version No </th>
+        <th> Revised By </th>
+        <th> Revised On </th>
+        <th> Approved By </th>
+        <th> Remarks </th>
+</tr>
+<tr>
+        <td> Draft 1 </td>
+        <td> Titty </td>
+        <td> Jun 3, 2003 </td>
+        <td> Prakash R </td>
+        <td> <br> </td>
+</tr>
+<tr>
+	<td> Draft 2 </td>
+	<td> Vijaya Kumar</td>
+	<td> Aug 18, 2004</td>
+	<td> Shivali Mittal</td>
+	<td> Test cases for copy  constructor is added.</td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+</tbody></table>
+
+
+<!-- --------------------------------------------------------------------- -->
+</p>
+<hr noshade>
+<h2>Table of contents</h2>
+
+<font face="arial">
+<pre>1.0  <a href="#intro"><b><i>Introduction</i></b></a>
+     1.1    <a href="#intro-ps"><b><i>Purpose and Scope</i></b></a>
+     1.2    <a href="#intro-aad"><b><i>Acronyms, Abbreviations and Definitions</i></b></a>
+     1.3    <a href="#intro-ref"><b><i>References</i></b></a>
+
+2.0  <a href="#md"><b><i>Module Description</i></b></a>
+        2.1  <a href="#md"><b><i>Design goals and constraints</i></b></a>
+        2.2  <a href="#md-properties"><b><i>Properties</i></b></a>
+        2.3  <a href="#md-responsibilities"><b><i>Responsibilities</i></b></a>
+        2.4  <a href="#md-functionality"><b><i>Functionalities</i></b></a>
+
+3.0  <a href="#dd"><b><i>Decomposition Description</i></b></a>
+        <a href="http://jnana.cdotb.ernet.in/People/rprakash/work/itel/itcm/itel/modules/sdp/docs/mdd/dd-cd"><b><i>3.1  Class diagram</i></b></a>
+        <a href="http://jnana.cdotb.ernet.in/People/rprakash/work/itel/itcm/itel/modules/sdp/docs/mdd/dd-eid"><b><i>3.2  Entity Interaction Diagram</i></b></a>
+                <a href="http://jnana.cdotb.ernet.in/People/rprakash/work/itel/itcm/itel/modules/sdp/docs/mdd/dd-eid-e"><b><i>3.2.1 Entities</i></b></a>
+                <a href="http://jnana.cdotb.ernet.in/People/rprakash/work/itel/itcm/itel/modules/sdp/docs/mdd/dd-eid-c"><b><i>3.2.2 Channels</i></b></a>
+
+4.0  <a href="#res-usage"><b><i>Resource usage</i></b></a>
+
+5.0  <a href="#des-con"><b><i>Design Considerations</i></b></a>
+
+6.0  <a href="#issue"><b><i>Issues</i></b></a>
+
+7.0  <a href="#state%20charts"><b><i>Processing/Algorithm/Pseudo code/STD/Statecharts</i></b></a>
+
+8.0  <a href="#data-struct"><b><i>Data Structures Required</i></b></a>
+
+9.0  <a href="#msgrxd"><b><i>Messages Received by module</i></b></a>
+
+10.0  <a href="#msgtxd"><b><i>Messages Transmitted by module</i></b></a>
+
+11.0  <a href="#tests"><b><i>Test cases</i></b></a>
+
+<a href=""><b><i>Appendix</i></b></a>
+</pre>
+</font>
+
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+
+<a name="intro"></a>
+<h2>1. Introduction</h2>
+<p> This document gives the design of CdSuIntHash. CdSuIntHash is a hash table
+with integer key. It provides three types of operations: mutating operations
+(insertion and removal), lookup operations and an iterator (to traverse the hash
+table). The hash function used is modular hash function. It uses separate
+chaining method for collision resolution, ie, the keys that hash to the same
+bucket are chained together in separate linked lists.
+</p>
+
+<a name="intro-ps"></a>
+<h3> 1.1. Purpose and Scope</h3>
+<p> This document provides the design details CdSuIntHash. The section 2 of the
+document gives design goals and constraints, properties, responsibilities and
+functionalities of the module. Section 3 gives the class diagram, its member
+functions and attributes. Later sections give the algorithms, data structures,
+etc.
+
+<a name="intro-aad"></a>
+</p><h3> 1.2. Acronyms Abbreviations and Definitions</h3>
+<table>
+<tbody><tr>
+<td valign="top"></td>
+<td valign="top">:</td>
+<td valign="top"></td>
+</tr>
+</tbody>
+</table>
+
+<a name="intro-ref"></a>
+<h3> 1.3. References</h3>
+<table>
+<tbody>
+<tr>
+<td valign="top">[algoc++]</td>
+<td valign="top">:</td>
+<td valign="top">Algorithms in C++, Sedgewick, 1998, Pearson Education, Inc.</td>
+</tr>
+
+<tr>
+<td valign="top">[xkmap]</td>
+<td valign="top">:</td>
+<td valign="top">x-kernel Map Library Design Notes, Mosberger.</td>
+</tr>
+</tbody></table>
+
+<a name="md"></a>
+<h2>2. Module Description</h2>
+
+<a name="md-goals"></a>
+<h3>2.1. Design Goals and Constraints</h3>
+<ol>
+	<li>The module should use low run-time memory. </li>
+	<li>The module should have efficient time management and memory
+	management. </li>
+	<li>The data structures should be hidden from the outside world. </li>
+	<li>Zero copying of payload. </li>
+	<li>The module should be easily portable. </li>
+</ol>
+
+<a name="md-properties"></a>
+<h3>2.2 Properties</h3>
+<p>None.</p>
+
+<a name="md-responsibilities"></a>
+<h2>2.3. Responsibilities </h2>
+<p>None.</p>
+
+<a name="md-functionality"></a>
+<h2>2.4. Functionalities</h2>
+<p>The following are the methods/functions provided by CdSuIntHash.
+</p>
+<ol>
+	<li>Insert a key, value  pair in the hash.</li>
+	<li>Lookup for a key in the hash.</li>
+	<li>Remove a key, value pair from the hash.</li>
+	<li>Returns the number of elements in the hash.</li>
+	<li>Provides an iterator for traversing the hash.</li>
+	<li>Returns an iterator pointing to the beginning of the hash.</li>
+	<li>Returns an iterator pointing to the end of the hash.</li>
+	<li>Returns the element at the current iterator position.</li>
+	<li>Increment the iterator position.</li>
+	<li>Check whether two iterators are equal.</li>
+	<li>Check whether two iterators are not equal.</li>
+</ol>
+<p></p>
+
+<a name="dd"></a>
+<h2>3. Decomposition Description</h2>
+<p>This section provides the classes, entities, channels and messages.</p>
+
+<a name="dd-cd"></a>
+<h3>3.1. Class Diagram</h3>
+<p>The class diagram for CdSuIntHash is given below.</p>
+<pre>
+         +-----------+		       +-----------+
+         |CdSuIntHash|                 | Iterator  |
+         +-----------+                 +-----------+
+         |           |<----------------|           |
+         |           |                 |           |
+         +-----------+                 +-----------+
+</pre>
+
+<b>3.1.1 CdSuIntHash</b>
+<p>The CdSuIntHash has the following data structures.
+<ol>
+	<li>An array of hash table buckets. A bucket contains a linked list of
+	hash elements (All elements with key values that hash to the same
+	bucket).</li>
+	<li>A one-entry cache remembering the last successful lookup or insert
+	operation. Removing an entry from the hash resets the cache.</li>
+	<li>A linked-list of potentially non-empty buckets to make the iteration
+	faster. The non-empty buckets are chained together in a circular linked
+	list. The list is maintained lazily; ie, when a bucket becomes
+	non-empty, it is ensured that the bucket is on this list. When a bucket
+	becomes empty, nothing is done. Removal of empty buckets is deferred
+	until the next hash iteration.</li>
+	<li>A linked-list of free hash elements. When a value is removed from the
+	hash , the hash element is not deleted, but added to this free list. When a
+	new value is added to the hash, the free list is searched for hash
+	elements. If none is present then only a new element is "newed".</li>
+</ol>
+</p>
+
+<p>The data structures are shown in the diagram below.
+<p align="center">
+<img src="hash.gif" alt="">
+</p>
+
+<b>3.1.2 Iterator</b>
+<p>Iterator class defines an iterator for traversing the hash. It keeps track of
+the position in hash using two pointers: the current bucket and 
+the element in that bucket.</p>
+
+<h3>3.2. Block Interaction Diagram</h3>
+<i>None.</i>
+
+<h3>3.2.1. Entities</h3>
+<i>None.</i>
+
+<h3>3.2.2. Channels</h3>
+<i>None.</i>
+
+<a name="g"></a>
+<h2>4. Resource usage</h2>
+<p>The memory usage of the each data structure is given below.
+<table border=1 cellpadding=5 cellspacing=0 width="100%">
+<tr>
+	<th>Entity</th>
+	<th>Memory usage</th>
+</tr>
+<tr>
+	<td>CdSuIntHash</td>
+	<td>28 bytes</td>
+</tr>
+<tr>
+	<td>HashBucket</td>
+	<td>8 bytes</td>
+</tr>
+<tr>
+	<td>HashElement</td>
+	<td>12 bytes, if the size of value is 4 bytes.</td>
+</tr>
+<tr>
+	<td>Iterator</td>
+	<td>12 bytes</td>
+</tr>
+</table>
+</p>
+
+<p>For example, if the hash is created with 100 buckets, the memory used is
+28 + (100 * 8) = 828 bytes. And each element added to the hash will use 12
+bytes, if the size of value is 4 bytes.</p>
+
+<a name=""></a>
+<h2>5. Design Considerations</h2>
+<p>The hash is implemented as a template to give the flexibility to
+specify the type of value while creating the hash.</p>
+
+<a name=""></a>
+<h2>6. Issues</h2>
+<i>None.</i>
+
+<a name=""></a>
+<h2>7. Processing/Algorithm/Pseudocode/STD/Statecharts</h2>
+<b>7.1 CdSuIntHash API</b>
+<p>
+<table border=1 cellpadding=5 cellspacing=0 width="100%">
+<tr>
+	<th>Method</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>CdSuIntHash (TableSize)</td>
+	<td>CdSuIntHash constructor. Creates a hash with TableSize buckets.</td>
+</tr>
+<tr>
+	<td>bool insert (unsigned int key, ValType val)</td>
+	<td>Insert a new key and value. Returns false if the key with a
+	different value is already present in the hash, else true.</td>
+</tr>
+<tr>
+	<td>bool lookup (unsigned int, ValType&amp; val</td>
+	<td>Lookup for a given key. Returns true, if the key is present in the
+	hash, else false. The associated value is returned in val if the key is
+	present, else val is set to zero.</td>
+</tr>
+<tr>
+	<td>bool remove (unsigned int key)</td>
+	<td>Remove the key and value if present. Return true if successful, else
+	false.</td>
+</tr>
+<tr>
+	<td>int size ()</td>
+	<td>Returns the size of the hash.</td>
+</tr>
+<tr>
+	<td>void clear ()</td>
+	<td>Erases all the elements.</td>
+</tr>
+</table>
+</p>
+
+<b>7.2 Iterator API</b>
+<p>
+<table border=1 cellpadding=5 cellspacing=0 width="100%">
+<tr>
+	<th>Method</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>ValType&amp; operator* ()</td>
+	<td>Dereference operator. Returns the element at the current iterator position.</td>
+</tr>
+<tr>
+	<td>CdSuList::iterator&amp; operator++ ()</td>
+	<td>Preincrement operator. Iterator points to the next non-empty element
+	in the hash.</td>
+</tr>
+<tr>
+	<td>CdSuList::iterator operator++ (int)</td>
+	<td>Postincrement operator. Iterator points to the next non-element
+	element in the hash.</td>
+</tr>
+<tr>
+	<td>bool operator== (const iterator&amp;)</td>
+	<td>Returns true if two iterators are equal, else false.</td>
+</tr>
+<tr>
+	<td>bool operator!= (const iterator&amp;)</td>
+	<td>Returns true if two iterators are not equal, else false.</td>
+</tr>
+</table>
+
+</p>
+
+<b>7.3 Usage of CdSuIntHash and Iterator</b>
+<p>
+<ul>
+	<li>Create an int-to-int hash with 251 buckets.</li>
+	<pre>
+	CdSuIntHash&lt;int&gt; intHash (CdSuIntHash<int>::TZ_251)</pre>
+
+	<li>Insert and remove (key, value) pairs.</li>
+	<pre>
+	if (intHash.insert (10, 1000))
+	{
+		// success
+	}
+
+	if (intHash.insert (20, 4000))
+	{
+		// success
+	}
+
+	if (intHash.insert (30, 5000))
+	{
+		// success
+	}
+
+	if (intHash.remove (30))
+	{
+		// success
+	} </pre>
+
+	<li>Lookup for a key value</li>
+	<pre>
+	int val;
+	if (intHash.lookup (20, val))
+	{
+		// success, corresponding value in val
+	}
+	</pre>
+
+	<li>Clear the hash table</li>
+	<pre>
+	intHash.clear ();
+	</pre>
+
+</ul>
+</p>
+
+<p>The following examples shows usage of hash with user defined value type.
+<ul>
+	<li>Create a int-to-X* hash with 251 buckets, where X is a user defined
+	type (struct or class).</li>
+	<pre>
+	CdSuIntHash&lt;X*&gt; xHash;
+	</pre>
+
+	<li>Insert and remove (key, value) pairs.</li>
+	<pre>
+	X* xObj1 = new X;
+	if (xHash.insert (10, xObj1))
+	{
+		// success
+	}
+
+	X* xObj2 = new X;
+	if (xHash.insert (20, xObj2))
+	{
+		// success
+	}
+
+	X* xObj3 = new X;
+	if (xHash.insert (30, xObj3))
+	{
+		// success
+	}
+
+	if (xHash.remove (30))
+	{
+		// success
+	} </pre>
+
+	<li>Lookup for a key value</li>
+	<pre>
+	X* val;
+	if (xHash.lookup (20, val))
+	{
+		// success, corresponding value in val
+	}
+	</pre>
+
+	<li>Delete the objects in the hash and clear it.</li>
+	<pre>
+	CdSuIntHash&lt;X*&gt;::iterator iter = xHash.begin ();
+	for (; iter != xHash.end (); ++iter)
+	{
+		delete *iter;
+	}
+	xHash.clear ();
+	</pre>
+</ul>
+</p>
+
+<b>7.4 Algorithm</b>
+<p>The algorithm for the main methods of CdSuIntHash and Iterator are given
+below.</p>
+
+<p><b>7.4.1 CdSuIntHash::insert</b> </p>
+<ol>
+	<li>Get the bucket address by applying the hash function on the key.
+	<li>Search the elements in the bucket to check whether the key already
+	exits.
+	<li>If the key is found, compare the value corresponding to the key and
+	the value present in the hash. If they are same, return true else return false.
+	<li>If the key is not found, get a new element and add to the bucket.
+	<li>Increment the number of elements and update the cache.
+	<li>If the current bucket is not in chain, add the bucket to the chain.</li>
+</ol>
+
+<p><b>7.4.2 CdSuIntHash::lookup</b> </p>
+<ol>
+	<li>Compare the given key and the key in cache. If equal return the
+	     value and true.
+	<li> Else get the bucket address by hashing the key.
+	<li> Search the key in the elements of the bucket.
+	<li> If found, update cache, return the value and true, else return
+	     value=zero and false.
+</ol>
+
+<p><b>7.4.3 CdSuIntHash::remove</b> </p>
+<ol>
+	<li>Get the bucket address by hashing the key.
+	<li>Search the key in the elements of the bucket.
+	<li>If found, free the element, update number of elements and
+	set cache to zero. Return true.
+	<li>Else return false.	
+</ol>
+
+<b>7.5 Statechart Diagram</b>
+<p> <i>None.</i> </p>
+
+<a name="data-struct"></a>
+<h2>8. Data Structures Required</h2>
+<p>The methods and attributes of the CdSuIntHash and Iterator classes
+are given below.</p>
+
+<p><b>8.1 CdSuIntHash class</b></p>
+<pre>
+template &lt;class ValType&gt;
+class CdSuIntHash
+{
+<b>Public methods and members</b>
+	// size (num of buckets) of hash, must be prime numbers.
+	enum TableSize
+	{
+		TZ_251 = 251,
+		TZ_509 = 509,
+		TZ_1021	 = 1021,
+		TZ_2039 = 2039,
+		TZ_4093 = 4093,
+		TZ_8191 = 8191,
+		TZ_16381 = 16381
+	};
+
+	CdSuIntHash (TableSize numBuckets);
+	CdSuIntHash (CdSuIntHash<ValType>& intHash);
+
+	~CdSuIntHash ();
+
+	bool insert (unsigned int key, ValType value);
+	bool lookup (unsigned int key, ValType& value);
+	bool remove (unsigned int key);
+
+	int size () { return numElements; }
+	void clear ();
+	void print ();
+
+<b>Private methods and members</b>
+	// hash element
+	struct HashElement
+	{
+		// key, value and next element in the same bucket
+		unsigned int key;
+		ValType value;
+		HashElement* next;
+	};
+
+	// hash bucket
+	struct HashBucket
+	{
+		HashElement* first;
+		// chain of non-empty buckets
+		HashBucket* next;	
+	};
+
+	int numBuckets;
+	// one entry cache remembering the last successful lookup or insert
+	// operation
+	HashElement* cache;	
+	// buckets
+	HashBucket* buckets;
+	// chain of non-empty buckets
+	HashBucket chain;
+	// when a value is removed from the hash, the element is not deleted; but
+	// added to freelist. When a new value is added to hash, the element is
+	// reused.
+	HashElement* freeList;
+
+	// number of elements in hash table
+	int numElements;
+
+	// internal functions
+	void freeBucketList (HashElement* el);
+	bool keyMatch (HashElement* el, unsigned int key); 
+	HashElement* getElement (void);
+	void freeElement (HashElement* el);
+	
+	// hash functions
+	unsigned int hash (unsigned int key);
+
+	<b>Iterator class</b>
+	class iterator
+	{
+	<b>Public methods</b>
+		iterator (HashBucket* bucket = 0, HashElement* elem = 0,
+				const HashBucket* end = 0);
+		ValType& operator* ();
+		const ValType& operator* () const;
+		iterator& operator++ ();
+		iterator operator++ (int);
+		bool operator== (const iterator& iter) const;
+		bool operator!= (const iterator& iter) const;
+	<b>Private methods</b>
+		// pointer to bucket, element and end of chain
+		HashBucket* curBucket;
+		HashElement* curElem;
+		const HashBucket* endOfChain;
+		friend class CdSuIntHash;
+	}; // iterator
+
+	iterator begin () const;
+	iterator end () const;
+}; // CdSuIntHash
+
+</pre>
+
+
+<a name="rx-msgs"></a>
+<h2>9. Messages Received</h2>
+<i>None.</i>
+
+<a name="tx-msgs"></a>
+<h2>10. Messages Transmitted</h2>
+<i>None.</i>
+
+<a name="tests"></a>
+<h2>11. Test cases</h2>
+<ol>
+	<li>Test insert method (successful and unsuccessful).</li>
+	<li>Test lookup method (successful and unsuccessful).</li>
+	<li>Test remove method (successful and unsuccessful).</li>
+	<li>Test the iterator methods by traversing the hash.</li>
+	<li>Test the hash function to check how well it distributes the key.</li>
+	<li>Test size and clear methods.</li>
+	<li>Test Copy Constructor (When table is empty and not empty).</li>
+</ol>
+<i>None.</i>
+
+
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+<i>End of document</i>
+<!-- ---------------- --> <hr size="3" noshade="noshade"> <!-- ---------------- -->
+</body></html>

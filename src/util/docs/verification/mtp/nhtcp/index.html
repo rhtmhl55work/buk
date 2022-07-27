@@ -1,0 +1,2718 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head><title>Generic TCP Network Handler Feature Test Plan</title></head>
+
+<body text="#000000" bgcolor="#ffffff" link="#0000ff" vlink="#ff0000" alink="#000088">
+
+<hr noshade="noshade">
+<h2 align="center">Generic TCP Network Handler Feature Test Plan</h2>
+
+<hr noshade="noshade">
+<p>
+<table cellspacing="0" cellpadding=5 border="0" width="80%">
+<tbody><tr>
+	<td><b>Document id</b></td>
+	<td>:</td>
+	<td><b> ITS-FTP-CDSU_NHTCP-001</b></td>
+</tr>
+
+<tr>
+	<td><b>Document name</b></td>
+	<td>:</td>
+	<td>Generic TCP Network Handler Feature Test Plan</td>
+</tr>
+
+<tr>
+	<td><b>Author(s)</b></td>
+	<td>:</td>
+	<td>Sumit Bijwe</td>
+</tr>
+
+<tr>
+	<td><b>Contributors</b></td>
+	<td>:</td>
+	<td>Seema Jain, Vijaya Kumar</td>
+</tr>
+<tr>
+	<td><b>Approved By</b></td>
+	<td>:</td>
+	<td>Prakash R.</td>
+</tr>
+
+<tr>
+	<td><b>Document Source</b></td>
+	<td>:</td>
+	<td>Softswitch and Media Gateway BU, C-DOT, Bangalore</td>
+</tr>
+</tbody></table>
+
+</p><p>
+<table cellspacing="0">
+<tbody><tr>
+
+	<td><i>Copyright © 2003 by C-DOT. All rights reserved. Contents of
+publication may not be reproduced in any form without permission from C-DOT.</i></td>
+</tr>
+</tbody></table>
+
+</p><h4>Revision Chart</h4>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="5" width="100%">
+<tbody><tr>
+        <th colspan="5">Document History</th>
+</tr>
+<tr>
+        <th> Version No </th>
+        <th> Revised By </th>
+        <th> Released On </th>
+        <th> Approved By </th>
+        <th> Remarks </th>
+</tr>
+<tr>
+        <td align="left"> Draft 1</td>
+        <td align="left"> Sumit Bijwe  </td>
+        <td align="left"> March 17, 2004</td>
+        <td align="left"> Prakash R </td>
+        <td align="left"> <br> </td>
+</tr>
+<tr>
+        <td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br> </td>
+</tr>
+<tr>
+	<td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br></td>
+        <td align="left"> <br> </td>
+
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+<tr>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+        <td> <br> </td>
+</tr>
+</tbody></table>
+
+</p><p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<p>
+</p><h2>Contents</h2>
+
+<font face="">
+<b><i>
+</i></b></font><pre><font face=""><b><i><a href="#1.">1. Introduction</a>
+	<a href="#1.1">1.1 Purpose and Scope</a>
+	<a href="#1.2">1.2 References</a>
+	<a href="#1.3">1.3 Definitions, Acronyms and Abbreviations</a>
+
+<a href="#2.">2. Test items</a>
+
+<a href="#3.">3. Features to be tested</a>
+
+<a href="#4.">4. Features not to be tested</a>
+
+<a href="#5.">5. Approach</a>
+	<a href="#5.1">5.1.Description</a>
+	<a href="#5.2">5.2. Constraints</a>
+
+<a href="#6.">6. Testing Environment</a>
+
+<a href="#7.">7. Schedule</a>
+
+<a href="#8.">8.Risks and contingencies</a>
+
+<a href="#9.">9.Test Case Specification</a>
+
+<a href="#10.">10.Approvals</a></i></b></font>
+
+</pre>
+
+
+<p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="1."></a>
+<h2>1.Introduction</h2>
+
+<a name="1.1"></a>
+<h3>1.1) Purpose and Scope</h3>
+
+<p>This document provides a test plan for generic network handler module which
+is the part of basic utility kit.
+It has two following interfaces. 
+</p><ol>
+<li>Management Interface .</li>
+<li>User (Appl) Interface.</li>
+</ol>
+
+<a name="1.2"></a>
+<h3>1.2) References </h3>
+
+<table border="0" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td valign="top">[mdd] </td>
+<td valign="top">:</td>
+<td valign="top">Module Design Document of TCP Network Handler.</td>
+</tr>
+
+<tr>
+<td valign="top">[C++NP] </td>
+<td valign="top">:</td>
+<td valign="top">C++ Network Programming : Douglas  C. Schmidt and Stephen D.
+Huston .</td>
+</tr>
+
+</tbody></table>
+
+<a name="1.3"></a>
+<h3>1.3) Definitions, Acronyms and Abbreviations</h3>
+
+<p> 
+<ol>
+<li>ASM		: Application System Management.
+<li>ACK		: Acknowledgement.
+<li>FSM		: Finite State Maching.
+<li>MI		: Management Interface.
+<li>UI		: User Layer Interface.
+<li>TCP		: Transport Control Protocol.
+<li>V		: Valid Message or Valid Parameter to function
+<li>I		: Invalid Message or Invalid Parameter to function
+<li>R		: Remote test stub function call.
+<li>L		: Local test stub function call.
+<li>VREO	: Valid parameter and Remote end opened
+<li>VREC	: Valid parameter and Remote end closed
+<li>BP		: Bound Port(Port in use)
+<li>CL		: Communication Lost
+<li>RA		: Remote Application
+<li>IUT		: Implementation Under Test	
+</ol>
+</p>
+
+<p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="2."></a>
+<h2>2.Test Items</h2>
+<li> Management Interface Functionalities. </li>
+<li> User Layer Interface Functionalities. </li>
+<p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="3."></a>
+<h2>3. Features to be tested</h2>
+
+<ol>
+<p></p><li><b>  Management Interface Functionalities.</b>
+	<ol>
+	<li> Init Network Handler. </li>
+	<li> Create Network Handler. </li>
+	<li> Initial Configuration of Network Handler. </li>
+	<li> General Configuration of Network Handler. </li>
+	<li> Start Network Handler. </li>
+	<li> Check the Status of Network Handler. </li>
+	<li> Check the Statistics Report at any point of time. </li>
+
+	<li> Network Handler Creation without initial configuration. </li>
+	<li> Network Handler Creation more than once. </li>
+	<li> Starting Network Handler without creation. </li>
+	<li> Send Message without Starting the Network Handler. </li>
+	<li> Try Initial Configuration more than once. </li>
+	</ol>
+
+<p></p><li><b>  User Layer Functionalities</b>
+	<ol>
+	<li> Opening and Closing TCP Connection. </li>
+	<li> Opening and Closing TCP Listener. </li>
+	<li> Sending and receiving of Messages. </li>
+	</ol>
+
+<p> Note: User Layer Functionalities Testing should be done with the various conditions,
+
+	<ol>
+	<li>With a single tcp connection, run test case for send/receive.</li>
+	<li>Mulitple tcp connection (1000), run test case for send/receive.</li>
+	</ol>
+</p>
+
+
+</ol>
+
+<p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="4."></a>
+<h2>4. Features not to be tested</h2>
+<p> <br>
+
+</p>
+<!-- -------------------------------------------------------------------- -->
+</p>
+<hr noshade="noshade">
+
+<a name="5."></a>
+<h2>5. Approach</h2>
+<p>The testing approach is different as per MI and UI interfaces.
+MI testing functionalities is based on state transitions of TCP
+network handler and System Management API parameter validation.
+UI testing functionalities is based on the normal tcp connection, listeners states. 
+and also User Layer API parameter validations.</p>
+
+
+<a name="5.1"></a>
+</p><h2>5.1 Description</h2>
+<p>Black box testing approach is used which just checks what a program
+is supposed to do without going into the program structure.
+
+<a name="5.2"></a>
+</p><h2>5.2 Constraints</h2>
+<p>None
+
+</p><p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="6."></a>
+<h2>6. Testing Environment</h2>
+
+<p>The test setup is as follows:</p>
+
+<center>
+<img src="nhtest-setup.gif"> </img>
+</center>
+
+<a name="6.1"></a>
+</p><h3>6.1) Test Setup Description</h3>
+<p>
+	The Test Setup which is shown in the above diagram depicts that there 
+	will be two test stub.
+	<ol>
+	<li> local test stub : The test case results will be given by this stub.
+	<li> Remote test stub : It will help to complete the test cases which
+	involves remote entity responses/actions.
+	</ol>
+
+</p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="7."></a>
+<h2>7. Schedule</h2>
+<p>TBD
+
+</p><p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="8."></a>
+<h2>8. Risks and contingencies</h2>
+<p>TBD
+
+
+</p><p>
+<!-- -------------------------------------------------------------------- -->
+</p><hr noshade="noshade">
+
+<a name="9."></a>
+<h2>9. Test Case Specification</h2>
+<br>
+The following are the identified test cases for System Management and User Layer
+API:
+
+<center>
+<img src="nhtcp-mi-tc.gif"> </img>
+<p><i>Figure </i>Test Cases analysis diagram for system management.</p>
+</center>
+<p>
+<i>Note:</i> Test Case Id described as <b>Module/Interface/State/Functionality</b> in following Test Case Description Tables. 
+<br>
+Module : TCP
+<br>
+Interface : Either System Management of User Layer.
+<br>
+State  : The current state of a module on which the test functionality has to be
+run.
+</p>
+<h2>Test Cases</h2>
+<b>Management Interface Functionalities.</b>
+<br>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Case Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td>TCP/MI/IDLE/INIT_NH(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpMiInit by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/IDLE/INIT_NH(I)</td>
+	<td> Invalid Parameter passed to cdSuNhTcpMiInit by Local System Management. 
+</tr>
+
+
+<tr>
+	<td>TCP/MI/CRE/GEN_CFG_NH(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpMiCfgReq by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/CRE/GEN_CFG_NH(I)</td>
+	<td> Invalid Parameter passed to cdSuNhTcpMiCfgReq by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/CRE/STRT_NH(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpMiCtrlReq by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/CRE/STRT_NH(I)</td>
+	<td>Invalid Parameter passed to cdSuNhTcpMiCtrlReq by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/RUN/STOP_NH(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpMiCtrlReq by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/RUN/STOP_NH(I)</td>
+	<td>Invalid Parameter passed to cdSuNhTcpMiCtrlReq by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/CRE/DEL_NH(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpMiDelNhReq by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/CRE/DEL_NH(I)</td>
+	<td> Invalid Parameter passed to cdSuNhTcpMiDelNhReq by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/CRE/TERMINATE_NH(V)</td>
+	<td>Valid Parameter passed to cdSuNhTcpMiTerminate by Local System Management. 
+</tr>
+
+
+
+<tr>
+	<td>TCP/MI/CRE/TERMINATE_NH(I)</td>
+	<td>Invalid Parameter passed to cdSuNhTcpMiTerminate by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/ANY/STATUS_REQ(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpMiStatus by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/ANY/STATUS_REQ(I)</td>
+	<td> Invalid Parameter passed to cdSuNhTcpMiStatus by Local System Management. 
+</tr>
+
+
+<tr>
+	<td>TCP/MI/RUN/STATS_REQ(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpMiStsReq by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/RUN/STATS_REQ(I)</td>
+	<td> Invalid Parameter passed to cdSuNhTcpMiStsReq by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/IDLE/INIT_NH_MULTI(V)</td>
+	<td> Call cdSuNhTcpMiInit within range MAX_NHTCP_INSTANCE by Local System Management. 
+</tr>
+
+<tr>
+	<td>TCP/MI/IDLE/INIT_NH_MULTI(I)</td>
+	<td> Call cdSuNhTcpMiInit by Local System Management more than
+	MAX_NHTCP_INSTANCE limit. 
+</tr>
+
+
+</tbody></table>
+
+<p><b>User Layer Interface Functionalities</b>
+<center>
+<img src="nhtcp-ui-tc.gif"> </img>
+<p><i>Figure :</i>User Layer API sequence.</p>
+<img src="lstnst.gif"> </img>
+<p><i>Figure :</i>Test Cases analysis diagram for Listener and Connection.</p>
+</center>
+</p>
+
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/ADD_LISTNER(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiAddLstnReq by User Layer. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/ADD_LISTNER(I)</td>
+	<td> Invalid Parameter passed to cdSuNhTcpUiAddLstnReq by User Layer. 
+</tr>
+
+
+<tr>
+	<td>TCP/UI/RUN/DEL_LISTNER(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiRemLstnReq by User Layer. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/DEL_LISTNER(I)</td>
+	<td> Invalid Parameter passed to cdSuNhTcpUiRemLstnReq by User Layer. 
+</tr>
+
+
+<tr>
+	<td>TCP/UI/RUN/CONN_REMT(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiConReq by User Layer. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/CONN_REMT(I)</td>
+	<td> Invalid Parameter passed to cdSuNhTcpUiConReq by User Layer. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/ACCPT_CONN(V)</td>
+	<td> Add a listener(local), and make connection request from remote. 
+</tr>
+
+
+<tr>
+	<td>TCP/UI/RUN/SEND_DATA_TPKT(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiDataReq by User Layer. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/SEND_DATA_NO_TPKT(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiDataReq by User Layer. 
+</tr>
+
+
+<tr>
+	<td>TCP/UI/RUN/SEND_DATA(I)</td>
+	<td> Invalid Parameter passed to cdSuNhTcpUiDataReq by User Layer. 
+</tr>
+
+
+<tr>
+	<td>TCP/UI/RUN/RECV_DATA</td>
+	<td> Add a listener(local), make connection and send data on a
+	connection from remote. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/UL_DISCONNECT(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiCloseConReq by User Layer. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/UL_DISCONNECT(I)</td>
+	<td> Invalid Parameter passed to cdSuNhTcpUiCloseConReq by User Layer. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/RM_DISCONNECT(V)</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiCloseConReq by Remote. 
+</tr>
+
+
+</tbody></table>
+
+<p><b>Load Testing: Test Cases</b>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/ADD_MULT_LISTNER</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiAddLstnReq by User Layer to
+	add multiple listeners(1000). 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/DEL_MULT_LISTNER</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiAddLstnReq by User Layer to
+	add multiple listeners(1000). 
+
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/CONN_MULT_REMT</td>
+	<td> Make mulitple connection(1000) with single listener at a remote end. 
+</tr>
+
+
+<tr>
+	<td>TCP/UI/RUN/CONN_MULT_ACCEPT</td>
+	<td> Add a listener(local), and make mulitple connection(1000) from remote. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/SEND_MULT_DATA_TPKT</td>
+	<td> Open mulitple connection(1000) requests and send data on each
+	connection from User Layer. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/SEND_MULT_DATA_NO_TPKT</td>
+	<td> Open mulitple connection(1000) requests and send data on each
+	connection from User Layer. 
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/RECV_MULT_DATA</td>
+	<td> Add a listener(local),make mulitple connection(1000) and send data on each
+	connection from Remote. 
+
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/UL_MULT_DISCONNECT</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiCloseConReq by User Layer to 
+	close multiple connection(1000). 
+</tr>
+
+
+<tr>
+	<td>TCP/UI/RUN/RM_MULT_DISCONNECT</td>
+	<td> Valid Parameter passed to cdSuNhTcpUiCloseConReq by remote to 
+	close multiple connection(1000). 
+</tr>
+
+
+</tbody></table>
+
+<p><b>Init Parameter Validations: Test Cases</b>
+<table cellspacing="0" cellpadding="5" border="1" cols="1" width="100%" nosave="">
+<tbody>
+<tr>
+	<th> Test Id </th>
+	<th> Remarks </th>
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/PV_MAX_NO_CONN</td>
+	<td>Try to open connection more than MAX_NO_CONN specified in cdSuNhTcpMiInit
+	parameters.</td>
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/PV_MAX_NO_LSTN</td>
+	<td>Try to add listener more than MAX_NO_LSTN specified in cdSuNhTcpMiInit
+	parameters.</td>
+</tr>
+
+<tr>
+	<td>TCP/UI/RUN/PV_MAX_BUF_LEN</td>
+	<td>Try to send data more than MAX_BUF_LEN specified in cdSuNhTcpMiInit
+	parameters.</td>
+</tr>
+
+</tbody></table>
+
+<h4>Test Case Descriptions :</h4>
+
+<p>
+
+<h4>Management Interface Functionalities</h4>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/IDLE/INIT_NH(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test init network handler function.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td> Null.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>MI will get CdSuNhTcpInstId.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call function cdSuNhTcpMiInit with valid parmeters such as.
+	<ol>
+		<li>Valid SM Actor Id. </li>
+		<li>Valid NH Actor Id. </li>
+		<li>Valid range of Maximum no. of connections.
+		<li>Valid range of Maximum no of Lstns.
+		<li>Valid range of Maximum buffer length.
+		<li>Valid range of Time to wait in the select call waiting for connections.(microsecs)
+		<li>Valid range of Time to wait in the select call waiting for data in connection.(microsecs)
+		<li>Valid range of Time to sleep if no fds are there.
+		<li>Valid range of Maximum length of the queue of Listen Queue.
+		<li>Layer manager will receive Valid CdSuNhInsId. </li>
+	</ol>
+</td>
+</tr>
+</tbody></table>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/IDLE/INIT_NH(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test init network handler function.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td> Null.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>MI will get CDSU_NHTCP_INV_NHINSTID as a CdSuNhTcpInstId.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call function cdSuNhTcpMiInit with either of these invalid parmeters such as.
+	<ol>
+		<li>Invalid SM Actor Id. </li>
+		<li>Invalid NH Actor Id. </li>
+		<li>Invalid Maximum no. of connections.
+		<li>Invalid Maximum no of Lstns.
+		<li>Invalid Maximum buffer length.
+		<li>Invalid Time to wait in the select call waiting for connections.(microsecs)
+		<li>Invalid Time to wait in the select call waiting for data in connection.(microsecs)
+		<li>Invalid Time to sleep if no fds are there.
+		<li>Invalid Maximum length of the queue of Listen Queue.
+		<li>Layer manager will receive Invalid CdSuNhInsId. </li>
+	</ol>
+	Any other API call before the cdSuNhTcpMiInit().
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/CRE/GEN_CFG_NH(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test general configuration of Network Handler with valid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/IDLE/INIT_CFG_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>MI gets CDSU_NHTCP_MI_CNFG_GENERAL_RSP with CDSU_NHTCP_RSPCODE_SUCCESS </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiCnfgReq function with following parmeters.
+	<ol>
+		<li> Valid CdSuNhTcpInstId.
+		<li> Valid smActorId.
+		<li> Valid CdSuNhTcpSubOpode.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/CRE/GEN_CFG_NH(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test general configuration of Network Handler with Invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/IDLE/INIT_CFG_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns false.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiCnfgReq function with either of these following parmeters.
+	<ol>
+		<li>Invalid CdSuNhTcpInstId.
+		<li>Invalid smActorId.
+		<li>Invalid CdSuNhTcpSubOpode.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/CRE/STRT_NH(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test control request API of Network Handler with valid parameter.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/IDLE/INIT_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API will return true and MI gets CDSU_NHTCP_MI_START_NH_RSP with CDSU_NHTCP_RSPCODE_SUCCESS</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiCnfgReq function with either of these following parmeters.
+	<ol>
+		<li>Valid CdSuNhTcpInstId.
+		<li>Valid smActorId.
+		<li>Valid CdSuNhTcpSubOpode.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/CRE/STRT_NH(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test control request API of Network Handler with invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/CRE/INIT_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API will return false.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiCnfgReq function with either of these following parmeters.
+	<ol>
+		<li>Invalid CdSuNhTcpInstId.
+		<li>Invalid smActorId.
+		<li>Invalid CdSuNhTcpSubOpode.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/RUN/STOP_NH(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test stop control request API of Network Handler with valid parameter.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/CRE/START_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API will return true and MI gets CDSU_NHTCP_MI_STOP_NH_RSP with CDSU_NHTCP_RSPCODE_SUCCESS</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiCnfgReq function with either of these following parmeters.
+	<ol>
+		<li>Valid CdSuNhTcpInstId.
+		<li>Valid smActorId.
+		<li>Valid CdSuNhTcpSubOpode.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/RUN/STOP_NH(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test control request API of Network Handler with invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/CRE/START_NH(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API will return false or MI gets CDSU_NHTCP_MI_STOP_NH_RSP with
+CDSU_NHTCP_RSPCODE_FAIL</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiCnfgReq function with either of these following parmeters. 
+	<ol>
+		<li>Invalid CdSuNhTcpInstId.
+		<li>Invalid smActorId.
+		<li>Invalid CdSuNhTcpSubOpode.
+	</ol>
+	Witout starting TCP NH call cdSuNhTcpMiCnfgReq with Stop Nh control
+	request.
+</td>
+</tr>
+</tbody></table>
+</p>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/CRE/DEL_NH(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test delete NH Tcp API of Network Handler with valid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/RUN/STOP_NH(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API will return true or MI gets CDSU_NHTCP_MI_DEL_NH_RSP with
+CDSU_NHTCP_RSPCODE_SUCCESS.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiNhDelReq function with the following parmeters. 
+	<ol>
+		<li>Valid CdSuNhTcpInstId.
+		<li>Valid smActorId.
+	</ol>
+	</td>
+</trthe>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/CRE/DEL_NH(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test delete NH Tcp API of Network Handler with invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/RUN/STOP_NH(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API will return false or MI gets CDSU_NHTCP_MI_DEL_NH_RSP with
+CDSU_NHTCP_RSPCODE_FAIL.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiNhDelReq function with either of these following parmeters. 
+	<ol>
+		<li>Invalid CdSuNhTcpInstId.
+		<li>Invalid smActorId.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/CRE/TERMINATE_NH(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test terminate NH Tcp API of Network Handler with valid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/CRE/DEL_NH(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API will return true.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiTerminate function with the following parmeters. 
+	<ol>
+		<li>Valid CdSuNhTcpInstId.
+		<li>Valid smActorId.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/CRE/TERMINATE_NH(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test terminate NH Tcp API of Network Handler with invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/CRE/DEL_NH(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API will return false.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiTerminate function with either of these following parmeters. 
+	<ol>
+		<li>Invalid CdSuNhTcpInstId.
+		<li>Invalid smActorId.
+	</ol>
+	</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/ANY/STATUS_REQ(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test status of tcp network handler with valid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/IDLE/INIT_NH(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns true and MI gets CDSU_NHTCP_MI_STATUS_RSP with CDSU_NHTCP_RSPCODE_SUCCESS </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiStatusReq function with valid parmeters.
+	<ol>
+	<li> Valid CdSuNhTcpInstId.
+	<li> Valid smActorId.
+	</ol>
+	ANY state except IDLE.
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/ANY/STATUS_REQ(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test status of tcp network handler with invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+<td>TCP/MI/IDLE/INIT_NH(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns false.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiStatusReq function with either of these following invalid parmeters.
+	<ol>
+		<li> Invalid CdSuNhTcpInstId.
+		<li> Invalid smActorId.
+	</ol>
+	ANY state except IDLE.
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td> TCP/MI/RUN/STATS_REQ(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test the statistical information by Network Handler with valid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH  is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API call returns true and MI gets CDSU_NHTCP_MI_STATISTICS_RSP with CDSU_NHTCP_RSPCODE_SUCCESS </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call function cdSuNhTcpMiStsReq with appropriate parmeters.<ol>
+		<li> Valid CdSuNhTcpInstId.
+		<li> Valid smActorId.
+	</ol>
+</td>
+
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td> TCP/MI/RUN/STATS_REQ(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test the statistical information by Network Handler with invalid
+parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/CRE/STRT_NH  is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API call returns false.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call function cdSuNhTcpMiStsReq with appropriate parmeters.
+	<ol>
+		<li> Invalid CdSuNhTcpInstId.
+		<li> Invalid smActorId.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/IDLE/INIT_NH_MULTI(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test creation of mulitple network handler instances with valid range of
+NH instances.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td> Null.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>Upto MAX_NHTCP_INSTANCES API returns valid CdSuNhTcpInstId.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpMiInit as many times(with in range of
+MAX_NHTCP_INSTANCES)</td>
+</tr>
+</tbody></table>
+<br>
+
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/MI/IDLE/INIT_NH_MULTI(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test multiple init NH out of MAX_NHTCP_INSTANCES limit.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td> Null.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+<td>Upto MAX_NHTCP_INSTANCES API returns valid CdSuNhTcpInstId upto
+MAX_NHTCP_INSTANCES and then starts returning CDSU_NHTCP_INV_NHINSTID.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+<td>Call cdSuNhTcpMiInit as many times  MAX_NHTCP_INSTANCES overflows.
+</tr>
+</tbody></table>
+<br>
+
+<h4>User Layer Interface Functionalities</h4>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/ADD_LISTNER(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test add listener functionality with valid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns valid CdSuNhTcpLstnKey and UI gets CDSU_NHTCP_UI_ADD_LISTENER_RSP with CDSU_NHTCP_RSPCODE_SUCCESS </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call function cdSuNhTcpUiAddLstnReq with following valid parmeters.
+	<ol>
+	<li> Valid CdSuNhTcpInstId in CdSuNhTcpLstnKey Key.
+	<li> Correct IP address and Port.
+	<li> Valid listenEventHlr and conEventHlr.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/ADD_LISTNER(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test add listener functionality with invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns invalid CdSuNhTcpLstnKey or UI gets CDSU_NHTCP_UI_ADD_LISTENER_RSP with CDSU_NHTCP_RSPCODE_FAIL</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call function cdSuNhTcpUiAddLstnReq with following valid parmeters.
+	<ol>
+	<li> Invalid CdSuNhTcpInstId in CdSuNhTcpLstnKey Key.
+	<li> Incorrect IP address and Port.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+<td>TCP/UI/RUN/DEL_LISTNER(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test remove listener functionality with valid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/ADD_LISTNER is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI gets CDSU_NHTCP_UI_DEL_LISTENER_RSP with CDSU_NHTCP_RSPCODE_SUCCESS </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiRemLstnReq function with following valid parmeters.
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpLstnId in CdSuNhTcpLstnKey. 
+	<li> Valid application actor Id.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+<td>TCP/UI/RUN/DEL_LISTNER(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test remove listener functionality with invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/ADD_LISTNER is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API call returns false or UI gets CDSU_NHTCP_UI_DEL_LISTENER_RSP with CDSU_NHTCP_RSPCODE_SUCCESS </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiRemLstnReq function with following valid parmeters.
+	<ol>
+	<li> Invalid CdCdSuNhTcpInstId and CdSuNhTcpLstnId in CdSuNhTcpLstnKey. 
+	<li> Invalid application actor Id.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/CONN_REMT(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test open connection with remote functionality with valid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns valid CdSuNhTcpConnKey and UI gets CDSU_NHTCP_UI_CONNECT_RSP with CDSU_NHTCP_RSPCODE_SUCCESS </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiConReq function with following valid parmeters.
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey. 
+	<li> Valid destination Ip address and port. 
+	<li> Valid application actor Id.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/CONN_REMT(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test open connection with remote functionality with invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns invalid CdSuNhTcpConnKey or UI gets CDSU_NHTCP_UI_CONNECT_RSP with
+CDSU_NHTCP_RSPCODE_FAIL</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiConReq function with following valid parmeters.
+	<ol>
+	<li> Invalid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey. 
+	<li> Invalid destination Ip address and port. 
+	<li> Invalid application actor Id.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/ACCPT_CONN(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test accept connections when a listener is set locally.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/UI/RUN/ADD_LISTNER is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI gets new connection indication.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiAddLstnReq function with valid parmeters, then connect
+as a client to that listener port from remote test stub.
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/SEND_DATA_TPKT(V) </td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test sending data to the remote end with valid parameters and TPKT = true.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH is successful and Connection should be present with TPKT
+attribute true.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI gets CDSU_NHTCP_UI_DATA_RSP with CDSU_NHTCP_RSPCODE_SUCCESS </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiDataReq function with following valid parmeters.
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey. 
+	<li> Valid destination Ip address and port. 
+	<li> Correct data length and data buffer not exceeding MAX_BUF_SIZE. 
+	<li> Valid application actor Id.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/SEND_DATA_NO_TPKT(V) </td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test sending data to the remote end with valid parameters and TPKT = false.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH is successful and Connection should be present with TPKT
+attribute false.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI gets CDSU_NHTCP_UI_DATA_RSP with CDSU_NHTCP_RSPCODE_SUCCESS </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiDataReq function with following valid parmeters.
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey. 
+	<li> Valid destination Ip address and port. 
+	<li> Correct data length and data buffer not exceeding MAX_BUF_SIZE. 
+	<li> Valid application actor Id.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/SEND_DATA(I) </td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test sending data to the remote end with invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH is successful and Connection should be present.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns false or UI gets CDSU_NHTCP_UI_DATA_RSP with CDSU_NHTCP_RSPCODE_SUCCESS </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiDataReq function with following invalid parmeters.
+	<ol>
+	<li> Invalid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey. 
+	<li> Invalid destination Ip address and port. 
+	<li> Incorrect data length and data buffer not exceeding MAX_BUF_SIZE. 
+	<li> Invalid application actor Id.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/RECV_DATA(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test data receiving on a connection.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/UI/RUN/ACCPT_CONN(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI connection event handler gets data indication.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiAddLstnReq function with valid parmeters, then connect
+as a client to that listener port from remote test stub and send data on the
+conncetion.</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/UL_DISCONNECT(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test close connection by user layer with valid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/UI/RUN/ACCPT_CONN(V) or TCP/UI/RUN/CONN_REMT(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI connection event handler gets close connection response/indication.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiCloseConReq function with following valid parmeters from local test
+stub. 
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey.
+	<li> Valid application actor Id.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/RM_DISCONNECT(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test close connection by user layer of remote test stub with valid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/UI/RUN/ACCPT_CONN(V) or TCP/UI/RUN/CONN_REMT(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI connection event handler gets close connection response/indication.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiCloseConReq function with following valid parmeters from
+remote test stub. 
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey.
+	<li> Valid application actor Id.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/UL_DISCONNECT(I)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test close connection by user layer with invalid parameters.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/UI/RUN/ACCPT_CONN(V) or TCP/UI/RUN/CONN_REMT(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns false or UI connection event handler gets
+CDSU_NHTCP_UI_CLOSE_CON_RSP with CDSU_NHTCP_RSPCODE_FAIL.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiCloseConReq function with following valid parmeters from local test
+stub. 
+	<ol>
+	<li> Invalid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey.
+	<li> Invalid application actor Id.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Load Testing: Test Cases Descriptions</b>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/ADD_MULT_LISTNER </td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test add listener functionality in load conditions.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI gets CDSU_NHTCP_UI_ADD_LISTENER_RSP with CDSU_NHTCP_RSPCODE_SUCCESS for
+every requrest.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call function cdSuNhTcpUiAddLstnReq with valid parmeters multiple
+times(1000).
+<ol>
+	<li> Valid CdSuNhTcpInstId in CdSuNhTcpLstnKey Key.
+	<li> Correct IP address and Port.
+	<li> Valid listenEventHlr and conEventHlr.
+</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+<td>TCP/UI/RUN/DEL_MULT_LISTNER </td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test remove listener functionality in load conditions.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/ADD_MULT_LISTNER is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI gets CDSU_NHTCP_UI_DEL_LISTENER_RSP with CDSU_NHTCP_RSPCODE_SUCCESS for
+each request. </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiRemLstnReq function with valid following parmeters, for as many
+as listener added.
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpLstnId in CdSuNhTcpLstnKey. 
+	<li> Valid application actor Id.
+	</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/CONN_MULT_REMT </td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test open connection with remote functionality in load conditions.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns valid CdSuNhTcpConnKeys and UI gets CDSU_NHTCP_UI_CONNECT_RSP with CDSU_NHTCP_RSPCODE_SUCCESS for each
+request. </td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiConReq function with following valid parmeters, many times(1000).	
+<ol>
+	<li> Valid CdCdSuNhTcpInstId in CdSuNhTcpConnKey. 
+	<li> Valid destination Ip address and port. 
+	<li> Valid application actor Id.
+</ol>
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/CONN_MULT_ACCPT</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test accept multiple connections when listener is set.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/UI/RUN/ADD_LISTNER is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI gets new connection indications.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiAddLstnReq function with following valid parmeters, then connect
+1000 times as a client to that listener port, from remote test stub.
+<ol>
+	<li> Valid CdCdSuNhTcpInstId in CdSuNhTcpConnKey. 
+	<li> Valid destination Ip address and port. 
+	<li> Valid application actor Id.
+</ol>
+</td>
+</tr>
+
+</tbody></table>
+</p>
+
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/SEND_MULT_DATA_TPKT</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test sending data on multiple connection in load conditions.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/CONN_MULT_REMT is successful and connection has TPKT flag = true.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI gets CDSU_NHTCP_UI_DATA_RSP with CDSU_NHTCP_RSPCODE_SUCCESS for each data
+sent.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiDataTxReq function with following valid parmeters, on multiple
+connection.
+<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey. 
+	<li> Valid destination Ip address and port. 
+	<li> Correct data length and data buffer not exceeding MAX_BUF_SIZE. 
+	<li> Valid application actor Id.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/SEND_MULT_DATA_NO_TPKT</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test sending data on multiple connection in load conditions.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/CONN_MULT_REMT is successful and connection has TPKT flag = false.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI gets CDSU_NHTCP_UI_DATA_RSP with CDSU_NHTCP_RSPCODE_SUCCESS for each data
+sent.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiDataTxReq function with following valid parmeters, on multiple
+connection.
+<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey. 
+	<li> Valid destination Ip address and port. 
+	<li> Correct data length and data buffer not exceeding MAX_BUF_SIZE. 
+	<li> Valid application actor Id.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/RECV_MULT_DATA </td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test data receiving on multiple connection.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/UI/RUN/CONN_MULT_ACCEPT is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI gets mulitple data indications.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiAddLstnReq function with valid parmeters, then connect
+as a client to that listener port from remote test stub and send data 2000 times on the
+conncetion.</td>
+</tr>
+</tbody></table>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/UL_MULT_DISCONNECT(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test close connection by user layer with valid parameters in load
+conditions.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/UI/RUN/ACCPT_CONN(V) or TCP/UI/RUN/CONN_REMT(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI connection event handler gets close connection response/indication.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiCloseConReq function with following valid parmeters from local test
+stub for 1000 connections. 
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey.
+	<li> Valid application actor Id.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/RM_DISCONNECT(V)</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test close connection by user layer of remote test stub with valid
+parameters in load conditions.</td>
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/UI/RUN/ACCPT_CONN(V) or TCP/UI/RUN/CONN_REMT(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI connection event handler gets close connection response/indication.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiCloseConReq function with following valid parmeters from
+remote test stub for 1000 connections. 
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId and CdSuNhTcpConnId in CdSuNhTcpConnKey.
+	<li> Valid application actor Id.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p><b>Init Parameter Validations: Test Cases Descriptions</b>
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/PV_MAX_NO_CONN</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test NH Tcp does it allow UL more than MAX_NO_CONN which specified in cdSuNhTcpMiInit
+	parameters.</td>
+
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API return valid CdSuNhTcpConnKey and UI will get CDSU_NHTCP_OPEN_CONN_RSP with CDSU_NHTCP_RSPCODE_FAIL for the
+last cdSuNhTcpUiConReq which exceeds MAX_NO_CONN limit.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiConReq function with following valid parmeters more than
+MAX_NO_CONN limit. 
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId in CdSuNhTcpConnKey.
+	<li> Valid application actor Id.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/PV_MAX_NO_LSTN</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test NH Tcp does it allow UL more than MAX_NO_LSTN which specified in cdSuNhTcpMiInit
+	parameters.</td>
+
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH(V) is successful.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>API returns valid CdSuNhTcpLstnKey UI will get CDSU_NHTCP_ADD_LSTN_RSP with CDSU_NHTCP_RSPCODE_FAIL for the
+last cdSuNhTcpUiAddLstnReq which exceeds MAX_NO_LSTN limit.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiAddLstnReq function with following valid parmeters more than
+MAX_NO_LSTN limit.
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId in CdSuNhTcpLstnKey.
+	<li> Valid application actor Id.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<p>
+<table cellspacing="0" cellpadding="5" border="1" width="80%">
+<tbody><tr>
+<th width="20%">Item</th>
+
+<th>Information</th>
+</tr>
+
+<tr>
+<td>Test Case</td>
+
+<td>TCP/UI/RUN/PV_MAX_BUF_LEN</td>
+</tr>
+
+<tr>
+<td>Purpose</td>
+
+<td>To test NH Tcp does it allow UL to send data more than MAX_BUF_LEN which specified in cdSuNhTcpMiInit
+	parameters.</td>
+
+</tr>
+
+<tr>
+<td>Pre-Test Condition</td>
+
+<td>TCP/MI/STRT_NH(V) is successful.and Connection does exists.</td>
+</tr>
+
+<tr>
+<td>Expected Outcome</td>
+
+<td>UI will get CDSU_NHTCP_DATA_REQ_RSP with CDSU_NHTCP_RSPCODE_FAIL.</td>
+</tr>
+
+<tr>
+<td>Test Description</td>
+
+<td>Call cdSuNhTcpUiDataReq function with following valid parmeters more than
+MAX_NO_LSTN limit.
+	<ol>
+	<li> Valid CdCdSuNhTcpInstId CdSuNhTcpConnId in CdSuNhTcpConnKey.
+	<li> Valid application actor Id.
+	</ol>
+
+</td>
+</tr>
+</tbody></table>
+</p>
+
+<hr noshade="noshade">
+<i>End of Document</i>
+<hr noshade="noshade">
+
+</body></html>

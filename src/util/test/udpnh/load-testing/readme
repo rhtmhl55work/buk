@@ -1,0 +1,107 @@
+Utility kit for testing
+-----------------------
+
+Introduction
+------------
+	This utility contains source files which can be used as a template for
+testing various modules. It contains timer utility, test menu, test server and
+test client. The user can add/modify specified sections of the source according
+to the needs of the module under testing.
+
+Description of files
+--------------------
+	timerdef.h, .cpp : contains declaration of the timer handler, timer
+			   thread create and delete functions, timer hander
+			   create and delete functions. It also contains the
+			   timeout handler where the user can specify the
+			   action to be done (eg. send timeout to a module) on
+			   timer expiry.
+	testmenu.h, .cpp : contains the testmenu which is a list of test names
+			   and the corresponding test functions. The user can
+			   add tests here. It also contains functions
+			   to open connection, send and receive  between the
+			   test client and server.
+	testfunctions.h, .cpp : contains the test function definitions. The user
+			   can define test functions here.
+	testserver.cpp	: the test server which waits for input from the client
+			  and executes the test function. The user can create
+			  and initialise the module before testing starts.
+			  And cleanup the module after testing.
+	testclient.cpp	: test test client which takes input from the user and
+			  sends it to the server.
+			 
+
+Modifications
+--------------
+	User should make the following modifications
+
+testserver.cpp : Add initialisation and cleanup code here.
+testclient.cpp : Change the ipaddr of the test server.
+testmenu.cpp : Add test name and test functions here.
+timerdef.cpp : Add timeout action here.
+
+
+
+Running Load Testing
+--------------------
+*) When you run Load testing you will get menu.
+
+*) You can configure running instance of load testing
+   as 1) Local
+      2) Remote
+      3) Self [See Menu]
+
+*) Local and Remote Mode works as follow
+   	- Assume A is address of Computer 1
+   	- Assume B is address of Computer 2
+   	- Change localIpAddr in parameter.h to A.
+   	- Change remoteIpAddr in parameter.h to B.
+   	- Compile the load testing over computer A. Run load testing in local mode
+  	- Compile the load testing over computer B.(Note dont change local ip address and
+	 remoteIpAddres, Let it be same). Run this load testing in remote mode.
+
+*) Self Mode
+   	- Here two instance of load testing (remote and local) as above is not required.
+   	- Single instance of load testing is enough.
+   	- Change localIpAddr in parameter.h to address of computer where you are going
+   	to run load testing. Anyhow remoteIpAddress doesn't matter.
+	
+*) in parameter.h you can change Following Values statically.
+	- MAXPORT : Maximum Udp Port 
+	- REMOTEMAXPORT, Now it must be equal to MAXPORT
+	- MAXINST : Maximum Udp Network Handler Instance.
+	- SENDATTEMPT : No of send attempt
+	- MSGDISTUDPPORT : anyhow we are not using udp interprocess communication
+		in message distributor. Still we have to mention UDP port
+		This restriction is from message distributor.
+	- localIpAddr
+	- remoteIpAddr
+	- doReply : refer Reply Mode [explained bellow]
+	- delay : delay between each data sending. This is effective only
+		delay is set [see menu]
+
+*) ReplyMode:
+		
+      - In Reply Mode Load tester will send data to each data received
+      	[Reply to data received] [if Reply mode is set in local end and remote end
+	then load tester will run for infinite time]
+	
+
+Using This Load testing you can following load testing
+   - Opening N(= MAXPORT) Udp Port
+   - Following Type of Sending Data
+	   - Sending Data From 1 Local Udp Port to N Remote Udp Port
+	   	- Total No of Data Sent = 1 * N * SENDDATAATTEMPT
+	   - Sending Data From N Local Udp Port To 1 remote Udp Port
+	      	- Total No of Data Sent = 1 * N * SENDDATAATTEMPT
+	   - Sending Data From N Local Upd Port To M Remote Udp Port
+	   	- Total No of Data Sent = N * M(= REMOTEMAXPORT) * SENDDATAATTEMPT
+		  [note : Currently MAXPORT = REMOTEMAXPORT]
+   	   - Each above type can have reply mode	 
+	   - If one side act as sender other side act as receiver.
+	   - In reply mode sender will act as sender and receiver [Reply mode
+	   	should be set in receiver side not in sender side]
+
+
+*) Note : If you are running over ecos then signals must be blocked. See
+	testserver.cpp. If that portion of code is commented then uncomment.

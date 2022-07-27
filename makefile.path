@@ -1,0 +1,44 @@
+#=============================================================================
+# Application Software Group
+# Center for Development of Telematics (C-DOT), Bangalore, India.
+# Filename     : makefile.path
+# Description  : This file contains path which are exposed to user of this module
+#			 and external dependent module path
+# Author       : Trainee 2013
+# Created On   :
+# Last Modified:
+#============================================================================
+
+#-----------------------------------------------------------------------------
+# BASE is set from makefile.inc which is included in all the makefile
+#-----------------------------------------------------------------------------
+
+#--------------------------------------------------------------
+# External Module Dependent Path
+#--------------------------------------------------------------
+ifdef PIC
+ECOS_DIR= /export/home1/seema/users/build-192.168.50.176/install
+endif
+ifdef GII
+ECOS_DIR=/home/guest/users/vijayk/build-192.168.51.249/install
+endif
+
+#--------------------------------------------------------------
+# Base Directory Path
+#--------------------------------------------------------------
+BUK_BASE_DIR= $(BASE_DIR)
+
+#--------------------------------------------------------------
+# Exposed to external world
+#--------------------------------------------------------------
+BUK_INCLUDE = $(BUK_BASE_DIR)/src/common
+CDSU_UTIL_INCLUDE = $(CDSU_UTIL_BASE_DIR)/include
+BUK_LIB_PATH = $(BUK_BASE_DIR)/src/common
+CDSU_UTIL_LIB_PATH = $(CDSU_UTIL_BASE_DIR)/src
+BUK_LIB_NAME = bukcommon
+BUK_BASICINFRA = $(BUK_BASE_DIR)/src/basicinfra
+BUK_BASICINFRA_LIB = bukbasicinfra
+
+#============================================================================
+# <End of makefile.path>
+#============================================================================

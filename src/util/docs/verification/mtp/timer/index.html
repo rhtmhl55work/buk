@@ -1,0 +1,1331 @@
+<html>
+<head>
+  <title>Timer Test Plan Document</title>
+</head>
+
+<body text="#000000" bgcolor="#ffffff" link="#0000ff" vlink="#ff0000"
+ alink="#000088">
+    
+<hr>  
+<h1 align ="center"> TIMER Test Plan</h1>
+<hr>    
+
+<table width="80%" border=0>
+<tr>
+        <td><b>Document id</b></td>
+        <td>:<br> </td>
+        <td><b>ITS-FTP-CDSU_TIMER-001</b></td>
+</tr>
+<tr>
+        <td><b>Document name</b></td>
+        <td>: <br> </td>
+        <td>Timer Test Plan Document </td>
+</tr>
+<tr>
+        <td><b>Author(s)</b></td>
+        <td>:<br> </td>
+        <td>Indu Mishra</td>
+</tr>
+<tr>
+        <td><b>Contributor(s)</b></td>
+        <td>: <br></td>
+        <td>Shiv Kumar B, Titty Thomas</td>
+</tr>
+<tr>
+        <td><b>Approved By</b></td>
+        <td>:<br> </td>
+        <td> Prakash R.</td>
+</tr>
+<tr>
+        <td><b>Document Source</b></td>
+        <td>:<br> </td>
+        <td>Internet Telephony Group, C-DOT, Bangalore</td>
+</tr>
+</table>
+ 
+<table>
+<tr>
+	<td>Copyright @ 2003 by C-DOT. All rights reserved. Contents of publication
+ may not be reproduced in any form without permission from C-DOT </td>
+	</td>
+</tr>
+</table>
+<hr>
+<h4>Revision Chart</h4>
+<p>
+
+<table border=1 cellpadding=10 width="100%">
+<tr>
+        <th colspan=5>Document History</th>
+
+</tr>
+<tr>
+        <th> Version No </th>
+        <th> Revised By </th>
+        <th> Released On </th>
+
+        <th> Approved By </th>
+
+        <th> Remarks </th>
+</tr>
+<tr>
+        <td> 1st draft </td>
+        <td> Shiv Kumar B </td>
+
+        <td> 26th Feb, 2003 </td>
+
+        <td> Prakash R </td>
+        <td> The document was released as the Timer Module</td>
+</tr>
+<tr>
+        <td> 2nd draft </td>
+
+        <td> Shiv Kumar B </td>
+
+        <td> 12th May, 2003 </td>
+        <td> Prakash R</td>
+        <td> Feedback incorporation:  </td>
+
+</tr>
+<tr>
+        <td> <br> </td>
+
+        <td> <br> </td>
+        <td> <br> </td>
+
+        <td> <br> </td>
+
+        <td> <br> </td>
+
+</tr>
+</table>
+
+<hr width="100%"> 
+<hr >  
+<h2> Table Of Contents</h2>
+<p>
+<font face = "arial">
+<pre>
+
+1	<a href="#Introduction"><b>Introduction</b></a>
+	1.1	<a href="#Scope"><b>Purpose and Scope</b></a>
+	1.2	<a href="#References"><b>References</b></a>
+	1.3	<a href="#Def"><b>Definitions,Acronyms and Abbreviations</b></a>  
+
+2	<a href="#Items"><b>Test items</b></a>
+	2.1	<a href="#References"><b>References</b></a>
+
+3	<a href="#Features-Tested"><b>Features to be tested</b></a>
+    
+4	<a href="#4.Features-Not-Tested"><b>Features not to be tested</b></a>
+    
+5	<a href="#Approach"><b>Approach</b></a>
+	5.1	<a href="#Description"><b>Description</b></a>
+	5.2	<a href="#Constraints"><b>Constraints</b></a>
+ 
+6	<a href="#Testing-Environment"><b>Testing Environment</b></a>
+    
+7	<a href="#Schedule"><b>Schedule</b></a>
+    
+8	<a href="#Risks-Contingencies"><b>Risks and Contingencies</b></a>
+    
+9	<a href="#Test-Cases"><b>Test Case Specification</b></a>
+
+</pre>
+</font>
+</p>  
+
+<hr >   
+<a name="Introduction"></a><h2>1.Introduction</h2>
+    
+<h3><a name="Scope"></a>1.1) Purpose and Scope</h3>
+<p>  This document provides a test plan for Timer Module .Timer Module provides
+ following functions:  
+</p>
+<ul>
+	<li> startTimer</li>
+	<li> StopTimer</li>
+   
+</ul>
+    
+<h3><a name="References"></a>1.2) References</h3>
+    
+<h3><a name="Def"></a>1.3) Definitions, Acronyms and Abbreviations</h3>
+    
+<h2><a name="Items"></a>2.Test Items</h2>
+    
+<ul>
+	<li> Time to start a Timer</li>
+	<li> Time to stop a Timer</li>
+	<li> Total timeOut time for each timer</li>
+	<li> Maximum number of Timers which can be started.</li>
+	<li> Memory Usage.</li>
+	<li> Timer Precision time</li>
+   
+</ul>
+    
+<h2><a name="Features-Tested"></a>3. Features to be tested</h2>
+<b>1.Functional Testing:</b>  
+<p> StartTimer()
+</p>
+ 
+<ul>
+	<li> to test Inputs .Check for which are mandatory fields,which can 
+be null ,which cant be null .</li>
+	<li> to test return value.</li>
+   
+</ul>
+<p> Stop Timer()  
+</p>
+<ul>
+	<li> to test for Inputs . Check for which timers expired .</li>
+	<li> to test for return value.Whether deletion or stopping of Timer 
+was successfull or not.</li>
+   
+</ul>
+<p> Add/Delete Functions testing:</p>
+<ul>
+	<li> adding a single node. </li>
+	<li> adding a node at start of linked list.</li>
+	
+	<li> adding a node at end of list.</li>
+	
+	<li> adding a node in the middle of list.</li>
+	
+	<li> timeout of a node.</li>
+	
+	<li> deletion of a node from end.</li>
+	
+	<li> deletion of node from middle.</li>
+	
+	<li> cyclic timers. </li>
+
+	
+</ul>
+
+<b>2.Performance testing:</b>  
+
+<ul>
+	<li> Check for Number of threads that can be started.</li>
+	<li> Check for Number of timers that can be started.</li>
+	<li> Check for different denominations for which timer can be started.</li>
+	<li> Check for Time Precision in case of Timer Start time ,Timer Stop
+Time and TimeOut Time.</li>
+	<li> Check for whether each part of code is reachable or not.</li>
+	<li> Check Multithreading with Signals using mutex lock and unlock.</li>
+	<li>Check for Hash size in case of Timing Wheel implementation</li>
+   
+</ul>
+
+<a name="Features-Not-Tested"></a><h2>4.Features Not To Be Tested</h2></b> 
+
+<h2><a name="Approach"></a>5. Approach</h2>
+<p>    In this section the approach used for testing is explained.  
+</p>
+<h3><a name="Description"></a>5.1 Description</h3>
+<p>  Black box testing approach is used which just checks what a program is
+supposed to do without going into the program structure.  
+</p>
+<h3><a name="Constraints"></a>5.2 Constraints</h3>
+    None  
+
+<h2><a name="Testing-Environment"></a>6. Testing Environment</h2>
+  The test setup is as follows:  
+<h3><b>6.1 Test SetUp Description</b></h3>
+  The Test setup consists of following:  
+<ul>
+	<li> Client Program:</li>
+</ul>
+<p>  
+ This program is used to create a timer Handler for Timer Class. 
+ Used to create different number of threads. 
+ Used to initialise System Clock_Timer settings as per the OS used.
+ Then start different number of timers. 
+ Check for User Timeout handler ,CallBack function.
+ Sending messages in Queue, Receiving messages from queue.
+ Logging time for Starttimer ,Stop timer ,TimeoutHandler to check time Precision.  
+</p>
+
+<ul>
+	<li> Timer .cpp and Timer.h</li>
+	<li> cdsuinthash.h</li>
+	<li> keyAllocator.cpp and keyAllocator.h</li>
+	<li> TimingWheel.cpp and TimingWheel.h</li>
+
+</ul>
+    
+<h3>6.2) Test setup variations:</h3>
+   There are various test scenarious:  
+<ul>
+	<li> We can run timer class on Different OS.</li>
+</ul>
+    
+<h3><a name="Test-Menu."></a>6.3 Test Menu.</h3>
+<p> The test menu provided to the user is as follows (when the "Test Client" is executed.)  
+</p>
+<p>
+ 1.) Create Application<br> 
+ 2.) Create Threads <br>
+ 3.) Create CLOCK_TIMER time setup and environment
+related to OS.<br> 
+ 4.) Start Threads<br> 
+ 5.) Create different Timers using different threads.<br>
+ 6.) Create UserTimeOutFunction <br>
+ 7.) Create CallBackFunction <br>
+ 8.) Stop Timers for diffrerent threads <br>
+ 9.) Create different queue to recieve messages from 
+UserTimeOutFunction. <br>
+ 10.) Create Signal Handler function to give Tick Count 
+and Timeout. <br>
+ 11.) Exit from each thread using SIGINT function.<br>
+ 12.) Doing Calculations for Reports to be generated
+for testplans. <br>
+ 13.) Printing reports in a seperate file.<br>
+ 14.) Check above times for different Hash sizes to verify that change 
+in hash size does not affect the timer effieiency.<br>
+ 15.) Verify Timer Node additions and deletions.
+</p>
+ 
+<h2><a name="Schedule"></a>7.Schedule</h2>
+    
+<h2><a name="Risks-Contingencies"></a>8. Risks and contingencies</h2>
+    
+<h2><a name="Test-Cases"></a>9.Test Cases and its Specification</h2>
+  <b>Test cases for Functional Testing for Timer Class
+ are as follows</b>:  
+<p><b>Valid Fields for Start Timer:</b> 
+   
+<table border="1" cellspacing="0" cellpadding="5" cols="1" width="50%"
+ nosave="">
+<tr>
+  <td>TIMER/START_TIMER/VAL_TIMECOUNTS</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/VAL_TIMEUNITS</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/VAL_TIMEOUT_REPORTTYPE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/VAL_OPCODE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/VAL_ CALLBACK_FUNCTION</td>
+</tr>
+     
+</table>
+</p>
+ 
+<p><b>InValid Fields for Start Timer:</b> 
+   
+<table border="1" cellspacing="0" cellpadding="5" cols="1" width="50%"
+ nosave="">
+<tr>
+  <td>TIMER/START_TIMER/INVAL_TIMECOUNTS</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/INVAL_TIMEUNITS</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/INVAL_TIMEOUT_REPORTTYPE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/INVAL_OPCODE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/INVAL_CALLBACK_FUNCTION</td>
+</tr>
+     
+</table>
+</p>
+ 
+<p><b>Valid Fields for StopTimer:</b> 
+   
+<table border="1" cellspacing="0" cellpadding="5" cols="1" width="50%"
+ nosave="">
+<tr>
+  <td>TIMER/STOP_TIMER/VAL_TIMERID</td>
+</tr>
+</table>
+</p>
+ 
+<p><b>Invalid Fields for Stop Timer:</b> 
+   
+<table border="1" cellspacing="0" cellpadding="5" cols="1" width="50%"
+ nosave="">
+  
+<tr>
+  <td>TIMER/START_TIMER/INVAL_TIMERID</td>
+</tr>
+
+</table>
+</p>
+
+<p>
+<b>Verifying Add/Delete Timer Functions:</b> 
+   
+<table border="1" cellspacing="0" cellpadding="5" cols="1" width="50%"
+ nosave="">
+  
+<tr>
+  <td>TIMER/START_TIMER/ADD_NO_NODE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/ADD_FIRST_NODE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/ADD_LAST_NODE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/ADD_MIDDLE_NODE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/TO_FIRST_NODE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/STOP_FIRST_NODE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/STOP_LAST_NODE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/STOP_MIDDLE_NODE</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/CYCLIC_TIMER</td>
+</tr>
+
+</table>
+</p>
+ 
+<p><b>Test Cases for Performance Testing </b>: </p>
+ 
+<p><b>For Different Sets of Timers:</b> <br>
+   
+<table border="1" cellspacing="0" cellpadding="5" cols="1" width="50%"
+ nosave="">
+  
+<tr>
+  <td>TIMER/START_TIMER/AVG_STARTTIME</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/AVG_STOPTIME</td>
+</tr>
+<tr>
+  <td>TIMER/START_TIMER/AVG_TIMEOUTTIME</td>
+</tr>
+     
+</table>
+</p>
+ 
+<p><b>Maximum Number of Timers that can be started:</b> <br>
+   
+<table border="1" cellspacing="0" cellpadding="5" cols="1" width="50%"
+ nosave="">
+  
+<tr>
+  <td>TIMER/MAX_START_TIMERS</td>
+</tr>
+ 
+</table>
+   </p>
+ 
+<p><b>Maximum Number of Timers that can be started Using Threads:</b>
+ <br>
+ <b></b>  
+<table border="1" cellspacing="0" cellpadding="5" cols="1" width="50%"
+ nosave="">
+  
+<tr>
+  <td>TIMER/MAX_START_TIMERS_THREADS</td>
+</tr>
+  
+</table>
+  <b></b><b></b> </p>
+ 
+<p><b>Maximum number of Timers that can be Stopped:</b> <br>
+   
+<table border="1" cellspacing="0" cellpadding="5" cols="1" width="50%"
+ nosave="">
+  
+<tr>
+  <td>TIMER/MAX_STOP_TIMERS</td>
+</tr>
+   
+</table>
+   </p>
+ 
+<p><b>Different Resolutions of TimeCounts:</b> <br>
+   
+<table border="1" cellspacing="0" cellpadding="5" cols="1" width="50%"
+ nosave="">
+  
+<tr>
+  <td>TIMER/TIME_COUNTS</td>
+</tr>
+   
+</table>
+  <b></font></b> </p>
+ <br>
+<br>
+ 
+<p><b>Results for each Functional TestCase:</b><b></b> </p>
+ 
+<p><b>STARTTIMER:</b></p>
+<p><b></b></p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+<tr>
+  <td><b>Item</b></td>
+  <td><b>Information</b></td>
+</tr>
+<tr>
+  <td>Test Case</td>
+   <td>TIMER/START_TIMER/VAL_TIMECOUNTS</td>
+</tr>
+<tr>
+  <td>Purpose</td>
+   <td>To test valid Timecounts value</td>
+</tr>
+<tr>
+  <td>Pre-Test Condition</td>
+   <td>It is to be of type Uint16</td>
+</tr>
+<tr>
+  <td>Expected Outcome</td>
+   <td>Valid Timer TimeCounts</td>
+</tr>
+<tr>
+  <td>Test Description</td>
+   <td>Pass any valid Uint16 value as timecount.It works Successfully.</td>
+</tr>
+<tr>
+       <td valign="top"><br>
+       </td>
+       <td valign="top"><br>
+       </td>
+</tr>
+  
+</table>
+<p><br>
+</p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+<tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+</tr>
+<tr>
+  <td>Test Case</td>
+   <td>TIMER/START_TIMER/VAL_TIMEUNITS</td>
+</tr>
+<tr>
+  <td>Purpose</td>
+   <td>To test valid TimeUnits</td>
+</tr>
+<tr>
+  <td>Pre-Test Condition</td>
+   <td>It is to be of predefined Enum CdSuTimeUnitsType only.</td>
+</tr>
+<tr>
+  <td>Expected Outcome</td>
+   <td>Multiplied with TimeCounts to give total Time in MS.</td>
+</tr>
+<tr>
+  <td>Test Description</td>
+   <td>Choose any type from Enum nad assign it to TimeUnits.</td>
+</tr>
+   
+</table>
+<p><br>
+</p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+<tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+</tr>
+<tr>
+  <td>Test Case</td>
+   <td>TIMER/START_TIMER/VAL_TIMEOUT_REPORTTYPE</td>
+</tr>
+<tr>
+  <td>Purpose</td>
+   <td>To test validity of User Handler functions or Callback functions.</td>
+</tr>
+<tr>
+  <td>Pre-Test Condition</td>
+   <td>It is to be if predefined Enum type CdSuTimeoutReport Type</td>
+</tr>
+<tr>
+  <td>Expected Outcome</td>
+   <td>If it is of type Message then UserTimeOut?Handler function should
+be  there to handle the Timeout.If Its of type CallBack then CallBack function
+ should be passed as a parameter in UserInfo while Start_Timer function is 
+being called Else Error will come.</td>
+</tr>
+<tr>
+  <td>Test Description</td>
+   <td>If Message type then use a UserTimeOutHanlder function else in case
+ of Callback Specify the callbackfunction(CallBcakfunction should not be
+Null in case of CallBackFunction type.)</td>
+</tr>
+   
+</table>
+<p><br>
+</p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/START_TIMER/VAL_OPCODE</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>It is passed to UserTimeOutHandler function as remote information</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>It is of type Uint32 and should be provided.</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>It is used for remote destination only and its use depends on Client
+ .</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>Assign some value of type Uint32 tp opcode.</td>
+  </tr>
+   
+</table>
+<p><br>
+  
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/START_TIMER/VAL_CALLBACK_FUNCTION</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To test validity of Callback functions.</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>It is to be set to NULL or not defined.</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>If it is of type Message then UserTimeOut?Handler function should
+be  there to handle the Timeout.If Its of type CallBack then CallBack function
+ should be passed as a parameter in UserInfo while Start_Timer function is 
+being called Else Error will come.If CallBack function is not there then segmentation
+fault occurs.</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>If Callback do Specify the callbackfunction(CallBackFunction
+ should not be Null in case of CallBackFunction type.)</td>
+  </tr>
+   
+</table>
+   <br>
+   
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/START_TIMER/INVAL_TIMECOUNT</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To check timeCount is invalid in what cases.</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>Assign TimeCount some real or any other value other thanUint32</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>It will give cast error and warning that assignment from double to
+Uint16 is not possible.It is supposed to be time and time cant be real or
+some negative value.Finally in NULLcase segmentation fault will occur.Returns
+CDSU_TMR_RV_INV_TIME_COUNT in case of 0 timecount.</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>assign some value real or negative value to timecount or set it to
+NULL</td>
+  </tr>
+     
+   
+</table>
+   <br>
+ </p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/START_TIMER/INVAL_TIMEUNITS</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To Test invalidity of timeUnits in different aspects.</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>It can be NULL or some negative value or some other value.</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>If its NULL then segmentation fault ,If its other value then error:
+ cant convert from int to CdSuTimeUnits.Returns CDSU_TMR_RV_INV_TIME_COUNT
+ in case of invalid timeunits</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>Assign some value to it.</td>
+  </tr>
+     
+   
+</table>
+<p><br>
+</p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/START_TIMER/INVAL_TIMEOUT_REPORTTYPE</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To test invalidity of User Handler functions or Callback functions.</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>It is to be NULL or no defined type.</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>If TimeoutReport type is not defined then when timeout occurs then
+neither UserTimeoutHandler nor CallBack function is called up.</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>Do not specify the TimeoutReport type and then run module.</td>
+  </tr>
+     
+   
+</table>
+<p><br>
+</p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td>I<b>tem</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/START_TIMER/INVAL_OPCODE</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To test use of opcode.</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>It is not defined or its defined of some wrong type.</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>If it is not defined then there is no error.But it is required at
+destination  when userTimeOutHandler function is called.If its of some wrong
+type then  warning that of incompatible types come.</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>Specify some wrong value or NULL to opcode.<br>
+       <br>
+ </td>
+  </tr>
+     
+   
+</table>
+<p><br>
+<br>
+              
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td>I<b>tem</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/START_TIMER/INVAL_CALLBACK_FUNCTION</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To test validity of Callback functions.</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>It is to be if NULL initially.</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>If Its of type CallBack then CallBack function should be passed as
+a parameter in UserInfo while Start_Timer function is being called When TimeOut 
+occurs it will search for CalBack functruion and in case it doesnt finds then
+segmentation fault.Returns Invalid callback .Returns CDSU_TMR_RV_INV_CALLBACK.</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>If Message type then use a UserTimeOutHanlder function else in case
+ of Callback Specify the callbackfunction(CallBackfunction should not be
+Null in case of CallBackFunction type.)</td>
+  </tr>
+     
+   
+</table>
+</p>
+ 
+<p><b>STOP TIMER :</b></p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/STOP_TIMER/VAL_TIMERID</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To test validity of Timer Id.</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>It is to be passed to StopTImer as a parameter.So that timerId can
+be used to get node address from hash which is then deleted both from linear
+ list and from hash.</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>If TimerId is valid then its hashed value functuon is used to get
+the  node address which is used for node deletion .Hence timer deletion.Returns
+ success .</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>Pass some TimerId of timers already started.</td>
+  </tr>
+     
+   
+</table>
+</p>
+
+<p><b>Add/Delete Functions Test Cases.</b>
+       
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+ <tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/STOP_TIMER/INVAL_TIMERID</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To test invalidity of TimerId</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>It can be NULL or any Timer value not yet started .</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>If its any value not yet started then it returns CDSU_TMR_RV_INV_TMRID.</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>If timervalue is not valid means timer not yet started then it returns
+ invalid state.</td>
+  </tr>
+</p>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+ <tr>
+  <td><b>Item</b></td>
+  <td><b>Information</b></td>
+ </tr>
+ <tr>
+  <td>Test Case</td>
+  <td>TIMER/START_TIMER/ADD_FIRST_NODE</td>
+ </tr>
+ <tr>
+  <td>Purpose</td>
+  <td>To start a timer .</td>
+ </tr>
+ <tr>
+  <td>Pre-Test Condition</td>
+  <td>One timer node created.</td>
+ </tr>
+ <tr>
+  <td>Expected Outcome</td>
+  <td>Timer started and added to the start of the linked list.</td>
+ </tr>
+ <tr>
+  <td>Test Description</td>
+  <td>Used to start a timer which is added to start of the linked
+  list.</td>
+ </tr>     
+</table>
+</p>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+ <tr>
+  <td><b>Item</b></td>
+  <td><b>Information</b></td>
+ </tr>
+ <tr>
+  <td>Test Case</td>
+  <td>TIMER/START_TIMER/ADD_LAST_NODE</td>
+ </tr>
+ <tr>
+  <td>Purpose</td>
+  <td>To start a timer and add it to end of linked list .</td>
+ </tr>
+ <tr>
+  <td>Pre-Test Condition</td>
+  <td>Timer node created.</td>
+ </tr>
+ <tr>
+  <td>Expected Outcome</td>
+  <td>Timer started and added at the end of list.</td>
+ </tr>
+ <tr>
+  <td>Test Description</td>
+  <td>Used to start a timer which is added to end of the linked
+  list.</td>
+ </tr>     
+</table>
+</p>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+ <tr>
+  <td><b>Item</b></td>
+  <td><b>Information</b></td>
+ </tr>
+ <tr>
+  <td>Test Case</td>
+  <td>TIMER/START_TIMER/ADD_MIDDLE_NODE</td>
+ </tr>
+ <tr>
+  <td>Purpose</td>
+  <td>To start a timer and add it to middle of linked list .</td>
+ </tr>
+ <tr>
+  <td>Pre-Test Condition</td>
+  <td>Atleast two timer nodes created.</td>
+ </tr>
+ <tr>
+  <td>Expected Outcome</td>
+  <td>Timer started and added in the middle of list.</td>
+ </tr>
+ <tr>
+  <td>Test Description</td>
+  <td>Used to start a timer which is added to middle of the linked
+  list.</td>
+ </tr>     
+</table>
+</p>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+ <tr>
+  <td><b>Item</b></td>
+  <td><b>Information</b></td>
+ </tr>
+ <tr>
+  <td>Test Case</td>
+  <td>TIMER/START_TIMER/TO_FIRST_NODE</td>
+ </tr>
+ <tr>
+  <td>Purpose</td>
+  <td>To timeout a timer .</td>
+ </tr>
+ <tr>
+  <td>Pre-Test Condition</td>
+  <td>Timer node created.</td>
+ </tr>
+ <tr>
+  <td>Expected Outcome</td>
+  <td>Timer started and then timeout occurs.Always first node gets timedout.</td>
+ </tr>
+ <tr>
+  <td>Test Description</td>
+  <td>Used to timeout a timer which already exists.</td>
+ </tr>     
+</table>
+</p>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+ <tr>
+  <td><b>Item</b></td>
+  <td><b>Information</b></td>
+ </tr>
+ <tr>
+  <td>Test Case</td>
+  <td>TIMER/START_TIMER/STOP_FIRST_NODE</td>
+ </tr>
+ <tr>
+  <td>Purpose</td>
+  <td>To stop first timer node .</td>
+ </tr>
+ <tr>
+  <td>Pre-Test Condition</td>
+  <td>Timer node created.</td>
+ </tr>
+ <tr>
+  <td>Expected Outcome</td>
+  <td>Timer stopped.</td>
+ </tr>
+ <tr>
+  <td>Test Description</td>
+  <td>Used to stop a timer which already exists as a first node.</td>
+ </tr>     
+</table>
+</p>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+ <tr>
+  <td><b>Item</b></td>
+  <td><b>Information</b></td>
+ </tr>
+ <tr>
+  <td>Test Case</td>
+  <td>TIMER/START_TIMER/STOP_LAST_NODE</td>
+ </tr>
+ <tr>
+  <td>Purpose</td>
+  <td>To timeout a timer .</td>
+ </tr>
+ <tr>
+  <td>Pre-Test Condition</td>
+  <td>Timer node created and exists at the end of list.</td>
+ </tr>
+ <tr>
+  <td>Expected Outcome</td>
+  <td>Timer at the end of list stopped.</td>
+ </tr>
+ <tr>
+  <td>Test Description</td>
+  <td>Used to stop a timer which has not timed out.</td>
+ </tr>     
+</table>
+</p>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+ <tr>
+  <td><b>Item</b></td>
+  <td><b>Information</b></td>
+ </tr>
+ <tr>
+  <td>Test Case</td>
+  <td>TIMER/START_TIMER/STOP_MIDDLE_NODE</td>
+ </tr>
+ <tr>
+  <td>Purpose</td>
+  <td>To timeout a timer .</td>
+ </tr>
+ <tr>
+  <td>Pre-Test Condition</td>
+  <td>Timer node created and exists in the middle of list.</td>
+ </tr>
+ <tr>
+  <td>Expected Outcome</td>
+  <td>Timer in the middle of list stopped.</td>
+ </tr>
+ <tr>
+  <td>Test Description</td>
+  <td>Used to stop a timer which has not timed out.</td>
+ </tr>     
+</table>
+</p>
+
+<p>
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+ <tr>
+  <td><b>Item</b></td>
+  <td><b>Information</b></td>
+ </tr>
+ <tr>
+  <td>Test Case</td>
+  <td>TIMER/START_TIMER/CYCLIC_TIMER</td>
+ </tr>
+ <tr>
+  <td>Purpose</td>
+  <td>To start the same timer repeatedly .</td>
+ </tr>
+ <tr>
+  <td>Pre-Test Condition</td>
+  <td></td>
+ </tr>
+ <tr>
+  <td>Expected Outcome</td>
+  <td>Timer started and on timeout creates a new timer with the same timerId.</td>
+ </tr>
+ <tr>
+  <td>Test Description</td>
+  <td>Used to start a timer which on timeout restarts itself.</td>
+ </tr>     
+</table>
+</p>
+
+<p><b>Results for each Performance TestCases:</b>
+</p>
+ 
+<p><b>FOR DIFFERENT SETS OF TIMERS:</b><b></b> </p>
+ 
+<p>TIME/START_TIMER/ <br>
+ <b></b>  
+<table border="1" cellspacing="0" cellpadding="5" width="80%" nosave="">
+  
+     <tr>
+   <td><b>No.Of Timers</b></td>
+   <td><b>DENOMINATIONS</b></td>
+   <td><b>AVG_STARTTIME</b></td>
+   <td><b>AVG_STOPTIME</b></td>
+   <td><b>AVG_TIMEOUTTIME</b></td>
+   <td><b>RESULT</b></td>
+  </tr>
+   <tr>
+  <td>2000</td>
+   <td>6 MS, 12 SEC, 5 MS</td>
+   <td><br>
+       </td>
+   <td><br>
+       </td>
+   <td><br>
+       </td>
+   <td><br>
+       </td>
+  </tr>
+   <tr>
+  <td>5000</td>
+   <td>6 SEC, 12 SEC, 5 SEC</td>
+   <td><br>
+       </td>
+   <td><br>
+       </td>
+   <td><br>
+       </td>
+   <td><br>
+       </td>
+  </tr>
+   <tr>
+  <td>7000</td>
+   <td>6 SEC, 12 SEC, 5 SEC</td>
+   <td><br>
+       </td>
+   <td><br>
+       </td>
+   <td><br>
+       </td>
+   <td><br>
+       </td>
+  </tr>
+<tr>
+  <td>11000<br></td>
+  <td>6 SEC, 12 SEC, 5 SEC<br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>18000<br></td>
+  <td>6 SEC, 12 SEC, 5 SEC<br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+     
+   
+</table>
+</p>
+ 
+<p><b>MAX NUMBER OF TIMERS THAT CAN BE STARTED:</b></p>
+<p>Tested for 18000 timers.<br>
+   
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/MAX_START_TIMERS</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To test Maximum number of timers that can be started</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>Specify initially number of timers to be started.</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>Start all timers.</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>Start number of timers in a loop with same or different values each
+ time.</td>
+  </tr>
+     
+   
+</table>
+   </p>
+ 
+<p><b>MAX NUMBER OF TIMERS THAT CAN BE STARTED USING THREADS:</b></p>
+<p>Tested for 18000 timers.<br>
+  
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/MAX_START_TIMERS_THREADS</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To test Maximum number of timers that can be started using different
+ threads.</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>Specify initially number of timers to be startedand number of threads
+ .Start some timers in each thread.Specify conditions related to thread programming 
+required before thread start.like creation of a thread etc.</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>Start all timers while performing multithreading..</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>Start number of timers in a loop in different threads.</td>
+  </tr>
+     
+   
+</table>
+</p>
+ 
+<p><b>MAX NUMBER OF TIMERS THAT CAN BE STOPPED:</b></p>
+<p> Tested for 11000 timers.<br>
+  
+<table border="1" cellspacing="0" cellpadding="5" width="70%" nosave="">
+  
+     <tr>
+  <td><b>Item</b></td>
+   <td><b>Information</b></td>
+  </tr>
+   <tr>
+  <td>Test Case</td>
+   <td>TIMER/MAX_STOP_TIMERS</td>
+  </tr>
+   <tr>
+  <td>Purpose</td>
+   <td>To test Maximum number of timers that can be stopped at a time.</td>
+  </tr>
+   <tr>
+  <td>Pre-Test Condition</td>
+   <td>Start number of timers initially .then conditionally call stop timer.</td>
+  </tr>
+   <tr>
+  <td>Expected Outcome</td>
+   <td>Stops all timers .it can stop randomly or sequentially as par the
+mode  choosen by Client.</td>
+  </tr>
+   <tr>
+  <td>Test Description</td>
+   <td>Stop number of timers .</td>
+  </tr>
+     
+   
+</table>
+</p>
+ 
+<p><b>DIFFERENT TIMER RESOLUTIONS:</b><b></b> </p>
+ 
+<p><b>Any combination of timers resolution can be choosen for starting timers.Right 
+from 10 MS to Hour.</b> <br>
+ <b>Resolution means timerUnits Type.</b> <br>
+</p>
+ 
+<p>struct UserInfo has following fields: </p>
+ 
+<p><b>1. Mandatory fields:</b> </p>
+ 
+<ul>
+	<li> timeCounts : cant be 0 or NULL</li>
+	<li> timeUnits : cant be 0 or NULL (USER to use 
+predefined types only)</li>
+	<li> timerType : in case of type callback then CallBack function
+ has to be provided.else it will give segmentation fault.</li>
+   
+</ul>
+  <b>2. Optional fields:</b>  
+<ul>
+	<li> Opcode : can be null</li>
+	<li> desttype : depends on client.</li>
+   
+</ul>
+<hr width="100%" size="2">End of Document.<br>
+    <br>
+  <br>
+  <br>
+  <br>
+  <br>
+ <br>
+</body>
+</html>
